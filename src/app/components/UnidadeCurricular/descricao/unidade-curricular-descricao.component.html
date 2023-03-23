@@ -1,0 +1,40 @@
+
+<div *ngIf="unidadeCurricular">
+
+  <p-card header="{{unidadeCurricular.nome}}">
+
+    <h2><p>{{planejamentoUC.descricao}}</p></h2>
+
+    <div *ngIf="competencias">
+      <h2>Competências</h2>
+      <ul>
+        <li *ngFor="let competencia of competencias">
+          {{competencia.descricao}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="competenciaIndicadores">
+      <h2>Indicadores de Competências</h2>
+      <ul>
+        <li *ngFor="let competenciaIndicador of competenciaIndicadores">
+          {{competenciaIndicador.descricao}}
+        </li>
+      </ul>
+    </div>
+ 
+    <!-- mostrar bibliografia -->
+
+    <div *ngIf="bibliografias">
+      <h2>Bibliografia</h2>
+      <ul>
+        <li *ngFor="let bibliografia of bibliografias">
+          {{bibliografia.nome}}
+        </li>
+      </ul>
+    </div>
+  </p-card>
+</div>
+
+<div class="card">
+  <app-timeline-lista></app-timeline-lista>
+</div>

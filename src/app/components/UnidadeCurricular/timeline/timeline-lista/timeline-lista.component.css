@@ -1,0 +1,65 @@
+.l-section__timeline {
+    margin: 5rem 0;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00000026;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  
+  .custom-marker {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  ::ng-deep .customized-timeline {
+    /* margin-left: 5rem; */
+    /* width: 100vw; */
+    align-self: flex-start;
+  }
+  
+  ::ng-deep .p-card .p-card-body {
+    width: 60vw;
+    margin-top: 2rem;
+  }
+  
+  ::ng-deep .p-timeline-event {
+    align-self: flex-start;
+  }
+  
+  ::ng-deep .p-timeline-event-content,
+  ::ng-deep .p-timeline-event-opposite {
+    line-height: 1;
+  }
+  
+  @media screen and (max-width: 960px) {
+    ::ng-deep .customized-timeline .p-timeline-event:nth-child(even) {
+      flex-direction: row !important;
+    }
+    ::ng-deep
+      .customized-timeline
+      .p-timeline-event:nth-child(even)
+      .p-timeline-event-content {
+      text-align: left !important;
+    }
+    ::ng-deep .customized-timeline .p-timeline-event-opposite {
+      flex: 0;
+    }
+    ::ng-deep .customized-timeline .p-card {
+      margin-top: 1rem;
+    }
+  }
+  
+  .check {
+    text-decoration: line-through;
+  }

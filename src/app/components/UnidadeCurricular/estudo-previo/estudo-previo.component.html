@@ -1,0 +1,18 @@
+<!-- <div *ngIf="loading else carregado">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div> -->
+<div style="margin-top: 100px; background-color: white;" >
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <h1><b>{{situacaoAprendizagem.titulo}}</b></h1>
+    </div>
+    <mat-card style="margin-left: 3em; margin-right: 3em; background-color: #e5e5e5; padding: 2em;">
+        <mat-card-title style="font-size: 16px;">ATIVIDADE DE ESTUDO PRÉVIO:</mat-card-title>
+        <mat-card-content><b>Descrição: </b>{{situacaoAprendizagem.descricao}}</mat-card-content>
+        <mat-card-content><b>Duração: </b>{{situacaoAprendizagem.duracao}}</mat-card-content>
+        <mat-card-content><b>Dificuldade: </b>{{situacaoAprendizagem.grauDificuldade.descricao}}</mat-card-content>
+        <mat-card-content><b>Aviso: </b>Ao iniciar a tarefa o aluno não poderá interrompê-lo, ele deverá ser concluído dentro da duração mencionada anteriormente. Clique no botão abaixo para iniciá-lo.</mat-card-content>
+        <mat-card-actions style="display: flex; justify-content: center; align-items: center;">
+            <button mat-raised-button color="primary" (click)="comecarAtividade()">Iniciar Tarefa</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

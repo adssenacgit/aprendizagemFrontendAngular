@@ -1,0 +1,49 @@
+  .card-uc-descricao {    
+    width: 100%;
+    margin-top: 2.0rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card {
+    /*height: 4rem;*/
+    width: 10rem;
+    margin-right: 0.3em;
+    margin-left: 0.3rem;
+    margin-top: 0.5rem;
+  }
+  
+  .card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  /*
+  drag-scroll {
+    height: 7rem;
+    width: 100%;
+  }
+
+  scroll-badge {
+    height: 5rem;
+    width: 100%;
+  }
+  */
+  ngb-carousel {
+    margin-top: -115px;
+  }
+
+  @media screen and (min-width: 1400px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      max-width: 1545px;
+      margin-left: 0;
+    }
+  }
+  @media screen and (max-width: 1210px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1000px;
+      margin-left: 0;
+    }
+  }
+  
