@@ -1,0 +1,3 @@
+<button type="button" pButton icon="pi pi-user" label="Olá, {{nomeUsuarioLogado}}"
+    (click)="menu.toggle($event)"></button>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>

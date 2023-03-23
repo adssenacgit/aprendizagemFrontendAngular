@@ -1,0 +1,30 @@
+<div class="card">
+    <h2>Lista de Chapters</h2>
+    <p-table [value]="chapterAssuntos" sortField="chapter.nome" sortMode="single" dataKey="chapter.nome"
+        rowGroupMode="subheader" groupRowsBy="chapter.nome">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Assunto</th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="groupheader" let-chapterAssunto let-rowIndex="rowIndex" let-expanded="expanded">
+            <tr>
+                <td colspan="5">
+                    <button type="button" pButton pRipple [pRowToggler]="chapterAssunto" class="p-button-text p-button-rounded p-button-plain p-mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                    <span class="p-text-bold p-ml-2">{{chapterAssunto.chapter.nome}}</span>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-chapterAssunto>
+            <tr>
+                <td>
+                    {{chapterAssunto.descricao}}
+                </td>
+                <td>
+                    {{chapterAssunto.status==1 ? "Ativo":""}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

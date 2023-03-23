@@ -1,0 +1,98 @@
+<div *ngIf="!formulario">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
+<div class="divCard" *ngIf="formulario">
+    <mat-card>
+        <mat-card-title>
+            <h3>Atualizar Curso : {{nomeCurso}}</h3>
+        </mat-card-title>
+
+        <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
+            <div class="cardErros" *ngIf="erros.length > 0">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Erro no formulário!</mat-card-title>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <mat-card-content>
+                        <div class="divErros">
+                            <h4 class="textoErros" *ngFor="let erro of erros">
+                                {{erro}}
+                            </h4>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>            
+            <mat-card-content>
+                <div>
+                    <mat-form-field>
+                        <mat-label>
+                            Nome
+                        </mat-label>
+                        <input 
+                            type="text" 
+                            matInput 
+                            formControlName="nome" 
+                            placeholder="Digite o nome do curso"
+                            required
+                        />
+                        <mat-error *ngIf="propriedade.nome.touched && propriedade.nome.invalid">
+                            <sup>*</sup>Digite o nome do curso
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>
+                            Codigo
+                        </mat-label>
+                        <input 
+                            type="text"
+                            matInput 
+                            formControlName="codigo" 
+                            placeholder="Digite o código do curso"
+                            required
+                        />
+                        <mat-error *ngIf="propriedade.codigo.touched && propriedade.codigo.invalid">
+                            <sup>*</sup>Digite o codigo do curso
+                        </mat-error>                        
+                    </mat-form-field>
+                </div>      
+                <div>
+                    <mat-form-field>
+                        <mat-label>
+                            Selecione o tipo de curso
+                        </mat-label>
+                        <mat-select formControlName="cursoTipoId" required="">
+                            <mat-option *ngFor="let tipo of tiposCurso" [value]="tipo.id">{{tipo.descricao}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="propriedade.cursoTipoId.touched && propriedade.cursoTipoId.invalid">
+                            <sup>*</sup>Selecione o tipo adequado
+                        </mat-error>                        
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>
+                            Status de Operação
+                        </mat-label>
+                        <mat-select formControlName="status" required>
+                            <mat-option *ngFor="let estado of estados" [value]="estado.value">
+                                {{estado.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+                <div>
+                    <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid">
+                        Atualizar
+                    </button>
+                    <button mat-stroked-button type="button" (click)="VoltarListagem()">Voltar</button>
+                </div>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

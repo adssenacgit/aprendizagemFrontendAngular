@@ -1,0 +1,114 @@
+<div *ngIf="!formulario">
+    <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
+
+<div *ngIf="formulario" class="divCard">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <h3>Atualizar Oferta </h3>
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
+            <div class="cardErros" *ngIf="erros.length > 0">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Algo deu errado...
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+
+                    <mat-card-content>
+                        <div class="divErros">
+                            <h4 *ngFor="let erro of erros" class="textoErros">
+                                {{erro}}
+                            </h4>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <mat-card-content>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Selecione o curso</mat-label>
+                        <mat-select formControlName="cursoId" required>
+                            <mat-option *ngFor="let curso of cursos" [value]="curso.id">
+                                {{curso.nome}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="propriedade.cursoId.touched && propriedade.cursoId.invalid">
+                            <sup>*</sup>Selecione o curso
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>Descrição</mat-label>
+                        <input type="text" formControlName="descricao" matInput placeholder="Digite a descrição da oferta" required minlength="1" maxlength="50">
+                        <mat-error *ngIf="propriedade.descricao.touched && propriedade.descricao.invalid">
+                            <sup>*</sup>Digite a descrição
+                        </mat-error>
+                        <mat-error *ngIf="propriedade.descricao.errors?.minlength">
+                            <sup>*</sup>Use mais caracteres
+                        </mat-error>
+                        <mat-error *ngIf="propriedade.descricao.errors?.maxlength">
+                            <sup>*</sup>Utilize no máximo 50 caracteres
+                        </mat-error>                                                
+                    </mat-form-field>
+                </div>  
+                <div>
+                    <mat-form-field>
+                        <mat-label>Código</mat-label>
+                        <input type="text" formControlName="codigo" matInput placeholder="Digite o código da oferta" required minlength="1" maxlength="50">
+                        <mat-error *ngIf="propriedade.codigo.touched && propriedade.codigo.invalid">
+                            <sup>*</sup>Digite o código
+                        </mat-error>
+                        <mat-error *ngIf="propriedade.codigo.errors?.minlength">
+                            <sup>*</sup>Use mais caracteres
+                        </mat-error>
+                        <mat-error *ngIf="propriedade.codigo.errors?.maxlength">
+                            <sup>*</sup>Utilize no máximo 50 caracteres
+                        </mat-error>                                                
+                    </mat-form-field>
+                </div>                  
+                <div>
+                    <mat-form-field>
+                        <mat-label>Data de Inicio de Operação</mat-label>                        
+                        <input type="date" formControlName="inicioOperacao" matInput placeholder="Digite o inicio da operação da oferta" required>
+                        <mat-error *ngIf="propriedade.inicioOperacao.touched && propriedade.inicioOperacao.invalid">
+                            <sup>*</sup>Digite o inicio da operação
+                        </mat-error>
+                    </mat-form-field>
+                </div>                    
+                <div>
+                    <mat-form-field>
+                        <mat-label>
+                            Status de Operação
+                        </mat-label>
+                        <mat-select formControlName="status" required>
+                            <mat-option *ngFor="let estado of estados" [value]="estado.value">
+                                {{estado.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>            
+                
+            </mat-card-content>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-actions>
+                <div>
+                    <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid">
+                        Salvar
+                    </button>
+                    <button type="button" mat-stroked-button (click)="VoltarListagem()">
+                        Voltar
+                    </button>                    
+                </div>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

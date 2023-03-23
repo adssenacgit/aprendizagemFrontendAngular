@@ -1,0 +1,54 @@
+<div class="card">
+
+    <p-table #dt1 [value]="cursos" dataKey="id"
+        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Apresentando {first} para {last} de {totalRecords} registros">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:15rem">
+                    <div class="flex justify-content-center align-items-center">
+                        Cursos
+                        <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th style="min-width:10rem">
+                    <div class="flex justify-content-center align-items-center">
+                        Status
+                        <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th style="min-width:10rem">
+                    <div class="flex justify-content-center align-items-center">
+                        Activity
+                    </div>
+                </th>
+                <th style="width: 3rem">
+                    <div class="flex justify-content-center align-items-center">
+                        Situação
+                    </div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-curso>
+            <tr>
+                <td>
+                    {{curso.nome}}
+                </td>
+                <td>
+                    <span [class]="'customer-badge status-' + curso.status">{{curso.status}}</span>
+                </td>
+                <td>
+                    <p-progressBar [value]="curso.status" [showValue]="false"></p-progressBar>
+                </td>
+                <td class="text-center">
+                    <i class="pi" [ngClass]="{'true-icon pi-check-circle': curso.status, 'false-icon pi-times-circle': !curso.status}"></i>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">Não existem cursos disponíveis.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,30 @@
+<div class="card">
+<h2>Lista de Recursos Digitais do Usuário</h2>
+<p-orderList [value]="recursos" [listStyle]="{'height':'auto'}">
+    <ng-template let-recurso pTemplate="item">
+        <div class="product-item">
+          <div class="product-list-action">
+            <span [class]="'product-badge status-' +recurso.descricao.toLowerCase()">{{recurso.nomeArquivo}}</span>
+            <span class="product-category">{{recurso.id}}</span>
+        </div>
+            <div class="product-list-detail">
+                <h5 class="mb-2">{{recurso.descricao}}</h5>
+                <i class="pi pi-file"></i>
+            </div>
+  
+        </div>
+    </ng-template>
+  </p-orderList>
+</div>  
+<br>
+<br>
+<div class="card">
+    <h3>Upload de arquivo de recursos</h3>
+    <p-fileUpload name="arquivosUpload[]" url="./upload.php" (onUpload)="onUpload($event)"  accept="image/*" chooseLabel="Escolher Arquivo">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template>
+    </p-fileUpload>
+</div>

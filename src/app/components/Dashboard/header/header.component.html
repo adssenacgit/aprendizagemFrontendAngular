@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+    <span>Aprendizagem</span>
+    <span class="spacer"></span>
+
+    <div *ngIf="idUsuarioLogado" fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="end center">
+        <app-menu-usuario></app-menu-usuario>
+    </div>
+</mat-toolbar>
