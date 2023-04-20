@@ -27,8 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
@@ -106,5 +106,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "26fbbb39-b9e8-4986-9882-e55eb0a0d21b"
   }
 }
