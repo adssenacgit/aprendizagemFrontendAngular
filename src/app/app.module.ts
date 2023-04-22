@@ -89,6 +89,8 @@ import { MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import { ButtonModule } from 'primeng/button';
 import { ProgressBarModule } from 'primeng/progressbar';
@@ -108,6 +110,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CarouselModule } from 'primeng/carousel';
 import { KnobModule } from 'primeng/knob';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -122,6 +125,10 @@ import localePT from '@angular/common/locales/pt';
 import localeES from '@angular/common/locales/es';
 import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
+import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/meus-recursos.component';
+import { PostagemDeRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/postagem-de-recursos/postagem-de-recursos.component';
+import { PrimengModule } from './shared/primeng/primeng.module';
+import { NovoRecursoComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/novo-recurso/novo-recurso.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -166,7 +173,10 @@ registerLocaleData(localeFR);
     TimelineDetalhesComponent,
     ChapterListagemGeralComponent,
     EstudoPrevioComponent,
-    EncontrosComponent
+    EncontrosComponent,
+    MeusRecursosComponent,
+    PostagemDeRecursosComponent,
+    NovoRecursoComponent
   ],
   imports: [
     BrowserModule,
@@ -194,6 +204,7 @@ registerLocaleData(localeFR);
     MatNativeDateModule,
     MatProgressSpinnerModule,
     FlexLayoutModule,
+    DynamicDialogModule,
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({
       config:{
@@ -202,6 +213,9 @@ registerLocaleData(localeFR);
         disallowedRoutes: []
       }      
     }),
+    PrimengModule,
+    InputTextareaModule,
+    InputTextModule,
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,

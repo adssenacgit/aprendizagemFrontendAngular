@@ -1,0 +1,36 @@
+     <p-scrollPanel [style]="{ width: '100%', height: '280px' }">
+        <p-table [columns]="cols" [value]="recursos"  [(selection)]="selectedRecursos" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header" let-columns>
+         
+          <tr>
+              <th style="width: 4rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+              <th *ngFor="let col of columns">
+                  {{ col.header }}
+              </th>
+          </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+      
+          <tr>
+              <td> 
+                  <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+              </td>
+              
+              <td *ngFor="let col of columns" >
+                      
+                  {{ rowData[col.field] }}
+                 
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+  </p-scrollPanel>
+
+  <div class="card-recursos flex justify-content-flex-end class-Button">
+    <p-button label="+ Novo" (onClick)="show()"></p-button>
+    </div>
+
+    <!-- <p-fileUpload  class="my-file-upload" mode="basic" name="arquivosUpload[]" url="./upload.php" accept="image/*" (onUpload)="onUpload($event)" [auto]="true" chooseLabel="Novo" ></p-fileUpload> -->

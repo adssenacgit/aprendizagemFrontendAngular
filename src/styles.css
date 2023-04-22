@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -24,3 +25,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .recesso-institucional {
     background-color: gray !important;
 }
+
+.p-button.p-fileupload-choose {
+    background-color: blue;
+    
+   
+  color: white;
+  }
+
+
+
+
+/* .p-tabview .p-tabview-panels  */
+/* .p-elemente-vai {
+    padding: 0px !important ;
+    background-color: aqua !important;
+} 
+
+#p-tabpanel-3 {
+    padding: 0px !important ;
+    background-color: aqua !important;
+} */
+

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Recurso } from '../models/Recurso';
+import { FormControl, FormGroup,Validators } from '@angular/forms';
 
 const httpOptions = {
   headers: new HttpHeaders ({
@@ -30,5 +31,14 @@ export class RecursoService {
   {
     const apiUrl = `${this.apiUrl}/FiltrarRecursosByUsuarioId/${id}`;
     return this.http.get<Recurso[]>(apiUrl);
-  }  
+  }
+
+  postar(formData:FormData): Observable<FormData> {
+    return this.http.post<FormData>(this.apiUrl,formData);
+  }
+
+
+  
+
+
 }

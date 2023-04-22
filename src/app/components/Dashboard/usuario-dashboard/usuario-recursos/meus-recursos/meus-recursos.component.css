@@ -1,0 +1,21 @@
+.card{
+    margin-top: 16px;
+}
+.card-recursos{
+    padding: 32px;
+    
+}
+
+.class-Button{
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+}
+
+
+.p-button.p-fileupload-choose {
+    background-color: black;
+    
+   
+  color: white;
+  }
