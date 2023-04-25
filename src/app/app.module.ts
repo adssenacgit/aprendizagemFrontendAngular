@@ -43,7 +43,7 @@ import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboa
 import { UnidadeCurricularDescricaoComponent } from './components/UnidadeCurricular/descricao/unidade-curricular-descricao.component';
 
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
-import { EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
+import { DialogIndicadoresComponent, EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
 
 import { ListagemBadgesComponent, DialogExclusaoBadgeComponent } from './components/Badge/listagem-badge/listagem-badges.component';
 import { NovoBadgeComponent } from './components/Badge/novo-badge/novo-badge.component';
@@ -108,6 +108,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CarouselModule } from 'primeng/carousel';
 import { KnobModule } from 'primeng/knob';
+import { SplitterModule } from 'primeng/splitter';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -166,7 +167,8 @@ registerLocaleData(localeFR);
     TimelineDetalhesComponent,
     ChapterListagemGeralComponent,
     EstudoPrevioComponent,
-    EncontrosComponent
+    EncontrosComponent,
+    DialogIndicadoresComponent
   ],
   imports: [
     BrowserModule,
@@ -224,7 +226,8 @@ registerLocaleData(localeFR);
     ScrollPanelModule,
     CarouselModule,
     DragScrollModule,
-    KnobModule
+    KnobModule,
+    SplitterModule
   ],
   providers: [
     CursosService,
@@ -238,4 +241,5 @@ registerLocaleData(localeFR);
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

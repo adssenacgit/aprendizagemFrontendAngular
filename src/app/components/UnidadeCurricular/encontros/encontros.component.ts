@@ -1,3 +1,6 @@
+import { SituacaoAprendizagemService } from './../../../services/situacaoaprendizagem.service';
+import { SituacaoAprendizagem } from './../../../models/SituacaoAprendizagem';
+import { EstudantesService } from 'src/app/services/estudante.service';
 import { BadgeService } from './../../../services/badge.service';
 import { PlanejamentoUcService } from './../../../services/planejamento-uc.service';
 import { BibliografiaService } from './../../../services/bibliografia.service';
@@ -5,7 +8,7 @@ import { GrupoService } from './../../../services/grupo.service';
 import { CompetenciaService } from './../../../services/competencia.service';
 import { UnidadeCurricularService } from './../../../services/unidade-curricular.service';
 import { AuthGuardService } from './../../../services/auth-guard.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Encontro } from 'src/app/models/Encontro';
 import { EncontroService } from 'src/app/services/encontro.service';
@@ -18,6 +21,10 @@ import { Grupo } from 'src/app/models/Grupo';
 import { Bibliografia } from 'src/app/models/Bibliografia';
 import { PlanejamentoUC } from 'src/app/models/PlanejamentoUC';
 import { Badge } from 'src/app/models/Badge';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Estudante } from 'src/app/models/Estudante';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-encontros',
@@ -26,7 +33,7 @@ import { Badge } from 'src/app/models/Badge';
 })
 export class EncontrosComponent implements OnInit {
 
-  idUsuarioLogado : string;
+  idEstudanteUsuarioLogado : number;
   grupoId: number;
   loading: boolean = true;
 
@@ -40,6 +47,8 @@ export class EncontrosComponent implements OnInit {
   competencias: Competencia[]=[];
   competenciaIndicadores: CompetenciaIndicador[]=[];
   bibliografias: Bibliografia[]=[];
+  participantes: Estudante[]=[];
+  situacoesAprendizagem: SituacaoAprendizagem[]=[];
   planejamentoUC: PlanejamentoUC = new PlanejamentoUC();
   badges: Badge[]=[];
 
@@ -57,21 +66,33 @@ export class EncontrosComponent implements OnInit {
     private bibliografiaService: BibliografiaService,
     private planejamentoUcService: PlanejamentoUcService,
     private badgeService: BadgeService,
-    private authGuardService: AuthGuardService
+    private estudantesService: EstudantesService,
+    private situacaoAprendizagemService: SituacaoAprendizagemService,
+    private authGuardService: AuthGuardService,
+    private sanitizer: DomSanitizer,
+    private dialog: MatDialog
   ) {  }
 
   ngOnInit(): void {
-    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
-    //this.grupoId = this.route.snapshot.params['id'];
-    this.grupoId = 7;
+    this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
+    this.grupoId = this.route.snapshot.params['id'];
+    //this.grupoId = 7;
     this.ObterEncontros();
     //this.ds.moveTo(8);
     this.ObterDetalhesUC();
+
+  }
+
+  getImage(baseImage:string) : any{
+
+    let objectURL = 'data:image/png;base64,' + atob(baseImage);
+    return objectURL;
   }
 
   ObterEncontros = () => {
-    this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idUsuarioLogado).subscribe(resultado => {
+    this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe(resultado => {
         this.encontros = resultado;
+        this.ObterSituacoesAprendizagem(this.encontros[0].id, 0);
         this.loading = false;
       });
   };
@@ -113,7 +134,12 @@ export class EncontrosComponent implements OnInit {
       this.badgeService.ObterBadgesPeloGrupoId(this.grupo.id).subscribe(
         (badge: Badge[]) => {
           this.badges = badge;
-          console.log(badge)
+        }
+      );
+
+      this.estudantesService.ObterEstudanteByGrupoId(this.grupo.id).subscribe(
+        (participantes: Estudante[]) => {
+          this.participantes = participantes;          
         }
       );
 
@@ -121,6 +147,20 @@ export class EncontrosComponent implements OnInit {
     });
   }
 
+  ObterSituacoesAprendizagem = (idEncontro: number, i:number) => {
+
+    for(var j=0; j< this.encontros.length; j=j+1){
+      this.encontros[j].selecionado=0;  
+    }
+
+    this.encontros[i].selecionado=1;
+
+    this.loading = true;
+    this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
+        this.situacoesAprendizagem = resultado;
+        this.loading = false;
+      });
+  };
 
   //Comandos do scroll de encontros
   moveLeft() {
@@ -133,4 +173,36 @@ export class EncontrosComponent implements OnInit {
     this.ds.moveTo(index);
   }
 
+  AbrirDialog(id : any, descricaoCompetencia: any): void 
+  {
+    this.dialog.open(DialogIndicadoresComponent, {
+      data: {
+        id: id,
+        descricao: descricaoCompetencia,
+      }
+    });
+  }
+
+}
+
+@Component({
+  selector: 'app-dialog-indicadores',
+  templateUrl: './dialog-indicadores.html'
+})
+
+export class DialogIndicadoresComponent{
+
+  competenciaIndicadores: CompetenciaIndicador[]=[];
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public dados: any,
+    private competenciaIndicadorService: CompetenciaIndicadorService
+    ) { }
+
+    ngOnInit(): void {
+      this.competenciaIndicadorService.FiltrarCompetenciaIndicadoresByUnidadeCurricularId(this.dados.id).subscribe(resultado => {
+          this.competenciaIndicadores = resultado;
+      });
+    }        
+  
 }

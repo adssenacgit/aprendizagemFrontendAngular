@@ -17,4 +17,5 @@ export class Encontro {
   encontroTipoId: EncontroTipo['encontroTipoId'];
   encontroTipo: EncontroTipo;
   encontroStatus: EncontroStatus;
+  selecionado : number;
 }

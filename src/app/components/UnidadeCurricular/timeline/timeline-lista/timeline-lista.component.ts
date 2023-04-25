@@ -24,7 +24,7 @@ import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 })
 export class TimelineListaComponent implements OnInit {
 
-  idUsuarioLogado : string;
+  idEstudanteUsuarioLogado : number;
   grupoId: number;
   loading: boolean = true;
 
@@ -65,14 +65,14 @@ export class TimelineListaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+    this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
     this.grupoId = this.route.snapshot.params['id'];
     //this.unidadeCurricularId = 1;
     this.ObterEncontros();
   }
 
   ObterEncontros = () => {
-    this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idUsuarioLogado).pipe(
+    this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).pipe(
         delay(500),
         catchError((error) => {
           this.errorService.onError('Erro ao carregar encontros da unidade curricular.');

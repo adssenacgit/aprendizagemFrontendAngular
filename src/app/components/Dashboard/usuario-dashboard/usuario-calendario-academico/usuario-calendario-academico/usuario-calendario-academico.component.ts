@@ -2,7 +2,9 @@ import { DiaLetivo } from './../../../../../models/DiaLetivo';
 import { Component, OnInit } from '@angular/core';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { DiaLetivoService } from 'src/app/services/dia-letivo.service';
+import { EstudantesService } from 'src/app/services/estudante.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { Estudante } from 'src/app/models/Estudante';
 
 @Component({
   selector: 'app-usuario-calendario-academico',
@@ -11,12 +13,12 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 })
 export class UsuarioCalendarioAcademicoComponent implements OnInit {
 
-  idUsuarioLogado : string;
+  idEstudanteUsuarioLogado : number;
   cdiasLetivos: DiaLetivo[];
   loading: boolean = true;
 
-  minDate: any =  "2022-08-01T18:30:00.000Z"; 
-  maxDate: any =  "2022-12-30T18:30:00.000Z";
+  minDate: any; //=  "2022-08-01T18:30:00.000Z"; 
+  maxDate: any; //=  "2022-12-30T18:30:00.000Z";
 
   diasLetivos     : Date[]= [];
   inicioPeriodo   : Date[]= [];
@@ -28,13 +30,15 @@ export class UsuarioCalendarioAcademicoComponent implements OnInit {
 
   constructor(
     private diaLetivoService: DiaLetivoService,
+    private estudantesService: EstudantesService,
     private authGuardService: AuthGuardService
   ) { }
 
   ngOnInit(): void {
     
-    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
-    this.diaLetivoService.ObterCalendarioSemestreAtualByUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
+    this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
+
+    this.diaLetivoService.ObterCalendarioSemestreAtualByEstudanteId(this.idEstudanteUsuarioLogado).subscribe(resultado => {
       this.cdiasLetivos = resultado;
 
       this.minDate = this.cdiasLetivos[0].dialetivo;
@@ -58,8 +62,10 @@ export class UsuarioCalendarioAcademicoComponent implements OnInit {
           }
         }
       )
-      this.loading = false;
     }); 
+
+    this.loading = false;
+
 
     // this.diasLetivos = [new Date('12/01/2022'), new Date('12/02/2022'), new Date('12/05/2022'), new Date('12/06/2022'), new Date('12/07/2022'), new Date('12/08/2022'), new Date('12/09/2022'), new Date('12/12/2022'), new Date('12/13/2022'), new Date('12/14/2022'), new Date('12/15/2022')];
     // this.inicioPeriodo = [new Date('11/01/2022'),new Date('12/16/2022')];

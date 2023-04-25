@@ -2,78 +2,151 @@
   <div class="row">
     <div class="d-flex bd-highlight" style="height: 100%;">
       <div class="col-6">
-        <div class="card-uc-descricao shadow-sm" >
-          <div class="container">
-            <h2>{{grupo.unidadeCurricular.nome}} - {{grupo.unidadeCurricular.horas}} horas </h2>
-            <h3>{{planejamentoUC.descricao}}</h3>
-            <h3>Professor: {{grupo.professor.usuario.nomeCompleto}}</h3>
+        <div class="card-uc-descricao shadow-sm">
+          <p-tabView styleClass="tabview-custom">
 
-            <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 5rem;">
-              <div *ngFor="let badge of badges; let i = index" drag-scroll-item>
-                <div class="card shadow-sm">
-                  <div class="card-body">                    
-                    <h5 style="text-align: center; margin: 0 0 0;">{{badge.descricao}}</h5>
-                  </div>
-                </div>
+            <p-tabPanel header="DescriçãoDaUC">
+              <ng-template pTemplate="header">
+                <i class="pi pi-book"></i>
+                <span>Descrição da UC</span>
+              </ng-template>
+
+              <div class="container">
+                <h2>{{grupo.unidadeCurricular.nome}} - {{grupo.unidadeCurricular.horas}} horas </h2>
+                <h3>{{planejamentoUC.descricao}}</h3>
+                <h3>Professor: {{grupo.professor.usuario.nomeCompleto}}</h3>    
               </div>
-            </drag-scroll>
+            </p-tabPanel>
+            <p-tabPanel header="HeaderParticipantes">
+              <ng-template pTemplate="header">
+                <i class="pi pi-user"></i>
+                <span>Participantes</span>
+              </ng-template>
+              <ol type="1">
+                <div *ngFor="let participante of participantes; let i = index" drag-scroll-item>                 
+                  <li>{{participante.usuario.nomeCompleto}} </li>
+                </div>
+              </ol>
+            </p-tabPanel>
+            <p-tabPanel header="HeaderCompetencias">
+              <ng-template pTemplate="header">
+                <i class="pi pi-skills"></i>
+                <span>Competências</span>
+              </ng-template>
+              <div *ngFor="let competencia of competencias; let i = index" drag-scroll-item>                 
+                <ol type="1">
+                  <li>{{competencia.descricao }}&nbsp;
+                    <button mat-mini-fab color="primary" (click)="AbrirDialog(competencia.unidadeCurricularId, competencia.descricao)">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </li>
+                </ol>
+              </div>
 
-          </div>
+            </p-tabPanel>
+
+
+          </p-tabView>
+
         </div>      
       </div>
       <div class="col-6">
         <div class="card-uc-descricao shadow-sm">
           <div class="d-flex align-items-start flex-column" >
-            <div class="container">
-              <h2>Progresso nas Aulas</h2>
-              <div class="row text-center">                
-                <div class="col-4">
-                  <h5>Atividades</h5>
-                  <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise" valueTemplate="12/20"></p-knob>
-                </div>
-                <div class="col-4">
-                  <h5>Avaliações</h5>
-                  <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>                  
-                </div>
-                <div class="col-4">
-                  <h5>Desafíos</h5>
-                  <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>                  
-                </div>                 
-              </div>
-              <div class="row">
-                <div class="col-2" >
-                    <h5>Meu progresso</h5>
-                </div>
-                <div class="col-10">
-                  <div class="progress" style="margin-top: 0.5rem;">
-                    <div class="progress-bar" style="width:10%">10</div>
-                  </div>
-                </div>                
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <h5>Progresso da UC</h5>
-                </div>
-                <div class="col-10">
-                  <div class="progress" style="margin-top: 0.5rem;">
-                    <div class="progress-bar bg-success" style="width:15%">15</div>
-                  </div>            
-                </div>
-              </div>
+            <p-tabView styleClass="tabview-custom" style="width:100%;" >
+              <p-tabPanel header="HeaderStatusParticipacao">
+                <ng-template pTemplate="header">
+                  <i class="pi pi-chips"></i>
+                  <span>Status de Participação</span>
+                </ng-template>
 
-            </div>
+                <div class="container">
+                  <div class="row text-center">                
+                    <div class="col-4">
+                      <h5>Atividades</h5>
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise" valueTemplate="12/20"></p-knob>
+                    </div>
+                    <div class="col-4">
+                      <h5>Avaliações</h5>
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>                  
+                    </div>
+                    <div class="col-4">
+                      <h5>Desafíos</h5>
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>                  
+                    </div>                 
+                  </div>
+                  <div class="row">
+                    <div class="col-2" >
+                        <h5>Meu progresso</h5>
+                    </div>
+                    <div class="col-10">
+                      <div class="progress" style="margin-top: 0.5rem;">
+                        <div class="progress-bar" style="width:10%">10</div>
+                      </div>
+                    </div>                
+                  </div>
+                  <div class="row">
+                    <div class="col-2">
+                      <h5>Progresso da UC</h5>
+                    </div>
+                    <div class="col-10">
+                      <div class="progress" style="margin-top: 0.5rem;">
+                        <div class="progress-bar bg-success" style="width:15%">15</div>
+                      </div>            
+                    </div>
+                  </div>
+    
+                </div>              
+
+              </p-tabPanel>
+              
+              <p-tabPanel header="HeaderBadges">
+                <ng-template pTemplate="header">
+                  <i class="pi pi-chips"></i>
+                  <span>Badges da UC</span>
+                </ng-template>
+
+                <div class="container">
+                  <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 13rem;">
+                    <div *ngFor="let badge of badges; let i = index" drag-scroll-item>
+                      <div class="card shadow-sm">
+                        <div class="card-body">
+                          <div class="divFoto">
+                            <img id="badge_img" src="{{getImage(badge.imagem)}}" width="120" height="100" />                                
+                          </div>
+                          <h5 style="text-align: center; margin: 0 0 0;">{{badge.descricao}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </drag-scroll>
+                </div>       
+
+              </p-tabPanel>
+              
+            </p-tabView>
+
           </div>
         </div>
       </div>
     </div>
   </div>
-  <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 7rem;width: 100%;">
+  <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 7rem; width:100%;">
     <div *ngFor="let encontro of encontros; let i = index" drag-scroll-item>
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
-          <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
+      <div *ngIf="encontro.selecionado==1">
+        <div class="card shadow-sm border-warning" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
+          <div class="card-body">
+            <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
+            <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
+          </div>
         </div>
+      </div>
+      <div *ngIf="encontro.selecionado!=1">
+        <div class="card shadow-sm" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
+          <div class="card-body">
+            <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
+            <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
+          </div>
+        </div>        
       </div>
     </div>
   </drag-scroll>
@@ -89,34 +162,53 @@
 
 
 <div class="container">  
-  <p-tabView styleClass="tabview-custom">
-      <p-tabPanel>
-          <ng-template pTemplate = "header">
-              <i class="pi pi-calendar"></i>
-              <span>Header I</span>
+
+  <p-tabView styleClass="tabview-custom" style="width:100%;" >
+
+    <p-tabPanel header="Header V">
+      <ng-template pTemplate="header">
+        <i class="pi pi-chips"></i>
+        <span>Planejamento do Encontro</span>
+      </ng-template>
+
+      <div class="container">
+
+        <p-splitter [panelSizes]="[25, 75]" styleClass="mb-5"><!--[style]="{ height: '300px' }"-->
+          <ng-template pTemplate>
+            <div class="col flex align-items-center justify-content-center" style="padding: 10px">
+      
+              <p-accordion [activeIndex]="0">
+
+                <div *ngFor="let situacaoAprendizagem of situacoesAprendizagem; let i = index" drag-scroll-item>                 
+                  <p-accordionTab header="{{situacaoAprendizagem.titulo}}">
+                    <p>
+                      {{situacaoAprendizagem.descricao}}
+                    </p>
+                  </p-accordionTab>                  
+                </div>
+              </p-accordion>
+            </div>
           </ng-template>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-              ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </p-tabPanel>
-      <p-tabPanel header="Header II">
-          <ng-template pTemplate = "header">
-              <i class="pi pi-user"></i>
-              <span>Header II</span>
+          <ng-template pTemplate>
+            <div class="col flex align-items-center justify-content-center">Panel 2</div>
           </ng-template>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-              architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-              voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.</p>
-      </p-tabPanel>
-      <p-tabPanel header="Header III">
-          <ng-template pTemplate = "header">
-              <i class="pi pi-search"></i>
-              <span>Header III</span>
-          </ng-template>
-          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-              cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-              Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
-      </p-tabPanel>
-    </p-tabView>
-  </div>
+        </p-splitter>
+      </div>         
+
+    </p-tabPanel>
+
+    <p-tabPanel header="Header VI">
+      <ng-template pTemplate="header">
+        <i class="pi pi-chips"></i>
+        <span>Forum da UC</span>
+      </ng-template>
+
+      <div class="container">
+
+      </div>              
+
+    </p-tabPanel>
+
+  </p-tabView>
+</div>
 

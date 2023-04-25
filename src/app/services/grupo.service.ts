@@ -38,15 +38,15 @@ export class GrupoService {
 //     return this.https.get<Grupo[]>(apiUrl);
 //   }
 
-  ObterGrupoPeloUsuarioIdSemestreAtivo (usuarioId: string) : Observable<Grupo[]>
+  ObterGrupoPeloEstudanteIdSemestreAtivo (estudanteId: number) : Observable<Grupo[]>
   {
-    const apiUrl = `${this.url}/ObterGruposByPeriodoAtivoByUsuarioId/${usuarioId}`;
+    const apiUrl = `${this.url}/ObterGruposByPeriodoAtivoByEstudanteId/${estudanteId}`;
     return this.https.get<Grupo[]>(apiUrl);
   }
 
-  ObterGrupoPeloUsuarioIdPeriodoId (idUsuario: string, idPeriodo: number) : Observable<Grupo[]>
+  ObterGrupoPeloEstudanteIdPeriodoId (idEstudante: number, idPeriodo: number) : Observable<Grupo[]>
   {
-    const apiUrl = `${this.url}/ObterGruposByUsuarioIdByPeriodoId/${idUsuario}/${idPeriodo}`;
+    const apiUrl = `${this.url}/ObterGruposByEstudanteIdByPeriodoId/${idEstudante}/${idPeriodo}`;
     return this.https.get<Grupo[]>(apiUrl);
   }
 

@@ -44,13 +44,13 @@ export class LoginUsuarioComponent implements OnInit {
       //localStorage.setItem('CpfUsuarioLogado', cpfUsuarioLogado);
       //localStorage.setItem('NomeUsuarioLogado', nomeUsuarioLogado);      
       //localStorage.setItem('UsuarioId', usuarioId);
-      localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
+      
+      //localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
+      sessionStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
 
       if (this.authGuard.VerificarAdministrador()){
-        console.log("admin");
         this.router.navigate(['/dashboard/administradordashboard']);
       }else {
-        console.log("usuario");
         this.router.navigate(['/dashboard/usuariodashboard']);
       }
 

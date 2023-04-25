@@ -22,7 +22,7 @@ export class SituacaoAprendizagemService {
 
   FiltrarSituacoesAprendizagemPorEncontroId (id: number) : Observable<SituacaoAprendizagem[]>
   {
-    const apiUrl = `${this.url}/FiltrarSituacaoAprendizagemAtividadesEObjetosByEncontroId/${id}`;
+    const apiUrl = `${this.url}/FiltrarSituacoesAprendizagemPorEncontroId/${id}`;
     return this.https.get<SituacaoAprendizagem[]>(apiUrl);
   }
 

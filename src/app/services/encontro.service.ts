@@ -17,8 +17,7 @@ const httpOptions = {
 })
 export class EncontroService {
   url = environment.apiServer + 'api/Encontro';
-  // url = '/assets/db/timeline.json';
-  // url2 = '/assets/db/encontro.json';
+
   constructor(private https: HttpClient) {}
 
   ObterEncontros(): Observable<Encontro[]> {
@@ -31,8 +30,8 @@ export class EncontroService {
     return this.https.get<Encontro>(apiUrl);
   }
 
-  ObterEncontroPorGrupoId(grupoId: number, usuarioId: string): Observable<Encontro[]> {
-    const apiUrl = `${this.url}/FilterByGrupoId/${grupoId}/${usuarioId}`;
+  ObterEncontroPorGrupoId(grupoId: number, estudanteId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.url}/FilterByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
     return this.https.get<Encontro[]>(apiUrl);
   }
 

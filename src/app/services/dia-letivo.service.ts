@@ -25,11 +25,18 @@ export class DiaLetivoService {
     return this.https.get<DiaLetivo[]>(this.url);
   }
 
-  ObterCalendarioSemestreAtualByUsuarioId (usuarioId: string) : Observable<DiaLetivo[]>
+
+  ObterCalendarioSemestreAtualByEstudanteId (estudanteId: number) : Observable<DiaLetivo[]>
   {
-    const apiUrl = `${this.url}/FiltrarDiasLetivosByUsuarioId/${usuarioId}`;
+    const apiUrl = `${this.url}/FiltrarDiasLetivosByEstudanteId/${estudanteId}`;
     return this.https.get<DiaLetivo[]>(apiUrl);
   }
+
+//  ObterCalendarioSemestreAtualByUsuarioId (usuarioId: string) : Observable<DiaLetivo[]>
+//  {
+//    const apiUrl = `${this.url}/FiltrarDiasLetivosByUsuarioId/${usuarioId}`;
+//    return this.https.get<DiaLetivo[]>(apiUrl);
+//  }
 
   NovoDiaLetivo (diaLetivo: DiaLetivo): Observable<any>
   {

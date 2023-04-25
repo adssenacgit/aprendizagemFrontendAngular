@@ -12,22 +12,25 @@ export class AuthGuardService implements CanActivate {
   constructor(private jwtHelper: JwtHelperService, private router: Router) { }
 
   canActivate(): boolean {
-      const token = localStorage.getItem('TokenUsuarioLogado');
+      //const token = localStorage.getItem('TokenUsuarioLogado');
+      const token = sessionStorage.getItem('TokenUsuarioLogado');
       if(token && !this.jwtHelper.isTokenExpired(token)){
         return true;
       }
-      this.router.navigate(['/usuarios/loginusuario']);
+      this.router.navigate(['usuarios/loginusuario']);
       return false;
   }
 
   VerificarAdministrador(): boolean {
-    const token = String(localStorage.getItem('TokenUsuarioLogado'));
+    //const token = String(localStorage.getItem('TokenUsuarioLogado'));
+    const token = String(sessionStorage.getItem('TokenUsuarioLogado'));
     //const tokenUsuario = decode(token);
 
     const tokenUsuario = this.getDecodedAccessToken(token);
-    
+
     const decodedName = tokenUsuario['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     const decodedRole = tokenUsuario['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    const decodedIdEstudante = tokenUsuario['http://schemas.microsoft.com/ws/2008/06/identity/claims/upn'];
 
     if(decodedRole === 'Administrador'){
       return true;
@@ -48,16 +51,25 @@ export class AuthGuardService implements CanActivate {
   }
 
   getIdUsuarioLogado(): string {
-    const token = String(localStorage.getItem('TokenUsuarioLogado'));
+    //const token = String(localStorage.getItem('TokenUsuarioLogado'));
+    const token = String(sessionStorage.getItem('TokenUsuarioLogado'));
     const tokenUsuario = this.getDecodedAccessToken(token);
     const decodedName = tokenUsuario['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     return decodedName;
   }
     
   getNomeUsuarioLogado(): string {
-    const token = String(localStorage.getItem('TokenUsuarioLogado'));
+    //const token = String(localStorage.getItem('TokenUsuarioLogado'));
+    const token = String(sessionStorage.getItem('TokenUsuarioLogado'));
     const tokenUsuario = this.getDecodedAccessToken(token);
     const decodedName = tokenUsuario['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'];
+    return decodedName;
+  }
+
+  getIdEstudanteUsuarioLogado(): number {
+    const token = String(sessionStorage.getItem('TokenUsuarioLogado'));
+    const tokenUsuario = this.getDecodedAccessToken(token);
+    const decodedName = tokenUsuario['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn'];
     return decodedName;
   }
 

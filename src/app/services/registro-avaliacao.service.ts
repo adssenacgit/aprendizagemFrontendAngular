@@ -21,18 +21,18 @@ export class RegistroAvaliacaoService {
 
   constructor(private https: HttpClient) { }
 
-  ObterRegistrosAvaliacaoPeloUsuarioId (id: string) : Observable<RegistroAvaliacao[]> {
-    const apiUrl = `${this.url}/TodosRegistrosFilterByUsuarioId/${id}`;
+  ObterRegistrosAvaliacaoPeloEstudanteId (id: string) : Observable<RegistroAvaliacao[]> {
+    const apiUrl = `${this.url}/TodosRegistrosFilterByEstudanteId/${id}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);
   }
 
-  ObterRegistrosPeriodoAtivoFilterByUsuarioId(usuarioId: string) : Observable<RegistroAvaliacao[]>{
-    const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByUsuarioId/${usuarioId}`;
+  ObterRegistrosPeriodoAtivoFilterByEstudanteId(estudanteId: number) : Observable<RegistroAvaliacao[]>{
+    const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByEstudanteId/${estudanteId}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);
   }
   
-  ObterRegistrosPeriodoAtivoFilterByUsuarioIdByGrupoId(usuarioId: string, grupoId: number) : Observable<RegistroAvaliacao[]>{
-    const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByUsuarioIdByGrupoId/${usuarioId}/${grupoId}`;
+  ObterRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId(estudanteId: number, grupoId: number) : Observable<RegistroAvaliacao[]>{
+    const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId/${estudanteId}/${grupoId}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);
   }
 

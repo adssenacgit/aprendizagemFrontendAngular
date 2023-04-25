@@ -49,7 +49,8 @@ export class MenuUsuarioComponent implements OnInit {
   }
 
   EfetuarLogout(): void {
-    localStorage.clear();
+    //localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(["usuarios/loginusuario"]);
   }
 }

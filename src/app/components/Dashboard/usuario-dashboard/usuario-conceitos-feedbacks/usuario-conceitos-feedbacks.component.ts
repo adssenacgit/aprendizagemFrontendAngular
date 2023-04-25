@@ -18,7 +18,7 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   registrosAvaliacao: RegistroAvaliacao[];
   registrosAvaliacaoAtual : {[key: string] : RegistroAvaliacao[]} = {};
   loading: boolean = true;
-  idUsuarioLogado : string;
+  idEstudanteUsuarioLogado : number;
 
   constructor(
     private registroAvaliacaoService : RegistroAvaliacaoService, 
@@ -28,12 +28,12 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   { }
 
   ngOnInit(): void {
-    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+    this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
 
-    this.grupoService.ObterGrupoPeloUsuarioIdSemestreAtivo(this.idUsuarioLogado).subscribe(resultado => {
+    this.grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe(resultado => {
       this.grupos = resultado;
       this.grupos.forEach(grupo => 
-        this.registroAvaliacaoService.ObterRegistrosPeriodoAtivoFilterByUsuarioIdByGrupoId(this.idUsuarioLogado, grupo.id).subscribe(resultado =>{
+        this.registroAvaliacaoService.ObterRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId(this.idEstudanteUsuarioLogado, grupo.id).subscribe(resultado =>{
           this.registrosAvaliacaoAtual[grupo.unidadeCurricular.nomeCurto]=resultado;
         })
         )

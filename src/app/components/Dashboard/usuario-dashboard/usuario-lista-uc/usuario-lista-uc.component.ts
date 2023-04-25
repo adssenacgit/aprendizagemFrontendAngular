@@ -14,13 +14,14 @@ export class UsuarioListaUcComponent implements OnInit {
 
   loading: boolean = true;
 
-  idUsuarioLogado : string;
+  idEstudanteUsuarioLogado : number;
 
-  constructor(private grupoService: GrupoService, private authGuardService: AuthGuardService) { }
+  constructor(private grupoService: GrupoService, 
+              private authGuardService: AuthGuardService) { }
 
   ngOnInit(): void {
-    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
-    this.grupoService.ObterGrupoPeloUsuarioIdSemestreAtivo(this.idUsuarioLogado).subscribe(resultado => {
+    this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
+    this.grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe(resultado => {
       this.grupos = resultado;      
       this.loading = false;
     });    
