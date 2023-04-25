@@ -33,10 +33,10 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children:[
       {
-        path: 'unidadeCurricular/encontros', component: EncontrosComponent
+        path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent
       },         
       {
         path: 'unidadeCurricular/estudoprevio', component: EstudoPrevioComponent
