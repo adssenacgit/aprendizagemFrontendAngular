@@ -17,4 +17,5 @@ export class Grupo {
   periodo: Periodo = new Periodo();
   professorId: number;
   professor: Professor = new Professor();
+  frequencia?: string;
 }
