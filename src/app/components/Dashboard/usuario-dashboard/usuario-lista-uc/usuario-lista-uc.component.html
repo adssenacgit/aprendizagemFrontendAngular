@@ -1,82 +1,137 @@
 <div class="card">
-
-    <p-table #dt1 [value]="grupos" dataKey="id"
-        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
-        [paginator]="true" currentPageReportTemplate="Apresentando {first} para {last} de {totalRecords} registros">
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="min-width:15rem">
-                    <div class="flex justify-content-center align-items-center">
-                        Modulo
-                        <p-columnFilter type="text" field="modulo.descricao" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:15rem">
-                    <div class="flex justify-content-center align-items-center">
-                        Nome
-                        <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:15rem">
-                    <div class="flex justify-content-center align-items-center">
-                        Horas
-                        <p-columnFilter type="text" field="horas" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex justify-content-center align-items-center">
-                        Status
-                        <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex justify-content-center align-items-center">
-                        Activity
-                    </div>
-                </th>
-                <th style="width: 3rem">
-                    <div class="flex justify-content-center align-items-center">
-                        Situação
-                    </div>
-                </th>
-                <th style="width: 3rem">
-                    <div class="flex justify-content-center align-items-center">
-                        Opção
-                    </div>
-                </th>                
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-grupo>
-            <tr>
-                <td>
-                    {{grupo.unidadeCurricular.modulo.descricao}}
-                </td>                
-                <td>
-                    {{grupo.unidadeCurricular.nome}}
-                </td>
-                <td>
-                    {{grupo.unidadeCurricular.horas}}
-                </td>                
-                <td>
-                    <span>{{grupo.unidadeCurricular.status == 1 ? 'Ativo' : grupo.unidadeCurricular.status == 2 ? 'cursado' : '' }}</span>
-                </td>
-                <td>
-                    <p-progressBar [value]="grupo.unidadeCurricular.status" [showValue]="false"></p-progressBar>
-                </td>
-                <td class="text-center">
-                    <i class="pi" [ngClass]="{'true-icon pi-check-circle': grupo.unidadeCurricular.status, 'false-icon pi-times-circle': !grupo.unidadeCurricular.status}"></i>
-                </td>
-                <td>
-                    <button mat-mini-fab color="primary" [routerLink]="['/unidadeCurricular/encontros/', grupo.id]">
-                        <mat-icon>list</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="7">Não existem unidades curriculares matriculadas neste semestre.</td>
-            </tr>
-        </ng-template>
+    <p-table
+      #dt1
+      [value]="grupos"
+      dataKey="id"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [loading]="loading"
+      [paginator]="true"
+      currentPageReportTemplate="Apresentando {first} para {last} de {totalRecords} registros"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="min-width: 15rem">
+            <div class="flex justify-content-center align-items-center">
+              Modulo
+              <p-columnFilter
+                type="text"
+                field="modulo.descricao"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th style="min-width: 15rem">
+            <div class="flex justify-content-center align-items-center">
+              Nome
+              <p-columnFilter
+                type="text"
+                field="nome"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th style="min-width: 15rem">
+            <div class="flex justify-content-center align-items-center">
+              Horas
+              <p-columnFilter
+                type="text"
+                field="horas"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th style="min-width: 10rem">
+            <div class="flex justify-content-center align-items-center">
+              Status
+              <p-columnFilter
+                type="text"
+                field="status"
+                display="menu"
+              ></p-columnFilter>
+            </div>
+          </th>
+          <th style="min-width: 10rem">
+            <div class="flex justify-content-center align-items-center">
+              Activity
+            </div>
+          </th>
+          <th style="min-width: 10rem">
+            <div class="flex justify-content-center align-items-center">
+              Frequencia
+            </div>
+          </th>
+          <th style="width: 3rem">
+            <div class="flex justify-content-center align-items-center">
+              Situação
+            </div>
+          </th>
+          <th style="width: 3rem">
+            <div class="flex justify-content-center align-items-center">
+              Opção
+            </div>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-grupo>
+        <tr>
+          <td>
+            {{ grupo.unidadeCurricular.modulo.descricao }}
+          </td>
+          <td>
+            {{ grupo.unidadeCurricular.nome }}
+          </td>
+          <td>
+            {{ grupo.unidadeCurricular.horas }}
+          </td>
+          <td>
+            <span>{{
+              grupo.unidadeCurricular.status == 1
+                ? 'Ativo'
+                : grupo.unidadeCurricular.status == 2
+                ? 'cursado'
+                : ''
+            }}</span>
+          </td>
+          <td>
+            <p-progressBar
+              [value]="grupo.unidadeCurricular.status"
+              [showValue]="false"
+            ></p-progressBar>
+          </td>
+          <td>
+            <p-progressBar
+              [value]="grupo.frequencia"
+              [showValue]="false"
+            ></p-progressBar>
+          </td>
+          <td class="text-center">
+            <i
+              class="pi"
+              [ngClass]="{
+                'true-icon pi-check-circle': grupo.unidadeCurricular.status,
+                'false-icon pi-times-circle': !grupo.unidadeCurricular.status
+              }"
+            ></i>
+          </td>
+          <td>
+            <button
+              mat-mini-fab
+              color="primary"
+              [routerLink]="['/unidadeCurricular/encontros/', grupo.id]"
+            >
+              <mat-icon>list</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7">
+            Não existem unidades curriculares matriculadas neste semestre.
+          </td>
+        </tr>
+      </ng-template>
     </p-table>
-</div>
+  </div>
