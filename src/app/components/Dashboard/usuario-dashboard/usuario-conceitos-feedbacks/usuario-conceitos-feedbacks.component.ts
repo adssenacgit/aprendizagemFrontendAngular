@@ -5,6 +5,7 @@ import { Grupo } from 'src/app/models/Grupo';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { RegistroAvaliacaoService } from 'src/app/services/registro-avaliacao.service';
 import { GrupoService } from 'src/app/services/grupo.service';
+import { AcompanhamentoComentarios } from 'src/app/models/acompanhamento-comentarios';
 
 
 @Component({
@@ -19,15 +20,29 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   registrosAvaliacaoAtual : {[key: string] : RegistroAvaliacao[]} = {};
   loading: boolean = true;
   idEstudanteUsuarioLogado : number;
+  AcompanhamentoComentariosService: any;
+  acompanhamentoComentario: AcompanhamentoComentarios = {
+    id: null as unknown as number,
+    nome: "blabla",
+   
+  }
 
   constructor(
     private registroAvaliacaoService : RegistroAvaliacaoService, 
     private grupoService: GrupoService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
+
+
   ) 
   { }
 
   ngOnInit(): void {
+    
+    /*this.AcompanhamentoComentariosService.obterTodos().subscribe((t ) => {
+      this.acompanhamentoComentario = t
+      console.log(t) 
+    } )*/
+
     this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
 
     this.grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe(resultado => {
@@ -39,6 +54,7 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
         )
       this.loading = false;
     });
+
     // this.registroAvaliacaoService.ObterRegistrosPeriodoAtualFilterByUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
     //   this.registrosAvaliacao = resultado;
     //   this.loading = false;
@@ -46,5 +62,6 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
     //console.log(this.registrosAvaliacaoAtual);
     //console.log(this.idUsuarioLogado);
   }
+  
 
 }
