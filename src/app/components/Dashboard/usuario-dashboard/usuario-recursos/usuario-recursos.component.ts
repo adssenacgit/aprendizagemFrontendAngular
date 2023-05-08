@@ -12,9 +12,15 @@ import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 export class UsuarioRecursosComponent implements OnInit {
 
   
+  idUsuarioLogado : string;
+  constructor(
+    private recursoService : RecursoService,
+    private authGuardService: AuthGuardService
+  ) { }
+
 
   ngOnInit(): void {
-   
+    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
   
 }

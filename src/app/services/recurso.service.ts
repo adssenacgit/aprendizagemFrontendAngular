@@ -33,10 +33,21 @@ export class RecursoService {
     return this.http.get<Recurso[]>(apiUrl);
   }
 
-  postar(formData:FormData): Observable<FormData> {
-    return this.http.post<FormData>(this.apiUrl,formData);
+  
+  SalvarRecurso(recurso: Recurso): Observable<Recurso> {
+    const apiUrl = `${this.apiUrl}`;
+    return this.http.post<Recurso>(apiUrl, recurso, httpOptions);
   }
 
+  DeletarRecurso(id: number): Observable<Recurso> {
+    const apiUrl = `${this.apiUrl}/${id}`;
+    return this.http.delete<Recurso>(apiUrl, httpOptions);
+  }
+
+  ObterRecursoPorId(id: number): Observable<Recurso> {
+    const apiUrl = `${this.apiUrl}/${id}`;
+    return this.http.get<Recurso>(apiUrl, httpOptions);
+  }
 
   
 

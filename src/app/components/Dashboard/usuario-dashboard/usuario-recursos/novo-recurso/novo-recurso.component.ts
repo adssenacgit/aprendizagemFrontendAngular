@@ -29,7 +29,7 @@ export class NovoRecursoComponent implements OnInit {
       formData.append('arquivo',recurso.arquivo);
     }
 // enviar par ao service
-  await this.RecursoService.postar(formData).subscribe();
+ // await this.RecursoService.postar(formData).subscribe();
 
  
   this.router.navigate(['/']);

@@ -1,3 +1,47 @@
+<form  [formGroup]="postagemForm" #formDir="ngForm">
+    <p-dialog header="Upload de arquivos" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+    [draggable]="false" [resizable]="false">
+    
+        
+
+    <div class="telaDePostagem"  >
+      <div class="field">
+        <label for="nomeArquivo">Título</label>
+        <input id="nomeArquivo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="nomeArquivo" required>
+      </div>
+      <div class="field">
+        <label for="descricao">Comentário</label>
+        <textarea id="descricao" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="descricao" required></textarea>
+      </div>
+
+      <div class=" telaDePostagem flex-row justify-content-around">        
+        <!-- <p-fileUpload class="mr-2" mode="basic" chooseLabel="Arquivo" name="uploadedFiles[]" [customUpload]="true" [multiple]="true"  chooseLabel="Escolher Arquivo" ></p-fileUpload>
+        
+        
+        <p-button label="Submit" icon="pi pi-check" (uploadHandler)="onUpload($event)" ></p-button> -->
+        <div class="card">
+            <p-fileUpload name="uploadedFiles[]" [customUpload]="true" [multiple]="true" (uploadHandler)="
+    onUpload($event)" chooseLabel="Escolher Arquivo"> </p-fileUpload>
+        </div>
+      </div>
+
+     
+    </div>
+
+    </p-dialog>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- <form (ngSubmit)="submit()"  [formGroup]="postagemForm" #formDir="ngForm">
 
 <div class="container">
@@ -56,34 +100,20 @@
         <input type="submit">
     
     </div>
+</form>
 
 
-
-
-</form> -->
-
-
-<form (ngSubmit)="submit()" [formGroup]="postagemForm" #formDir="ngForm">
-    <div class="telaDePostagem">
-      <div class="field">
-        <label for="nomeArquivo">Título</label>
-        <input id="nomeArquivo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="nomeArquivo" required>
-      </div>
-      <div class="field">
-        <label for="descricao">Comentário</label>
-        <textarea id="descricao" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="descricao" required></textarea>
-      </div>
-
-      <div class=" telaDePostagem flex-row justify-content-around">        
-        <p-fileUpload class="mr-2" mode="basic" chooseLabel="Arquivo" name="uploadedFiles[]" url="./upload.php" accept="image/*" (onUpload)="onUpload($event)" (change)="onFileSelected($event)" ></p-fileUpload>
-        
-        
-        <p-button (onClick)="submit()" label="Submit" icon="pi pi-check"  ></p-button>
-      </div>
-
-     
-    </div>
-  </form>
-
-  
-  
+<!-- Funcionando 
+<div class="card">
+    
+        <div class="p-toolbar-group-start">
+            
+           
+                <div class="card">
+                    <p-fileUpload name="uploadedFiles[]" [customUpload]="true" [multiple]="true" (uploadHandler)="
+            onUpload($event)" chooseLabel="Escolher Arquivo"> </p-fileUpload>
+                </div>
+          
+        </div>
+    
+</div> -->

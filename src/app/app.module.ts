@@ -89,6 +89,7 @@ import { MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
+import Swal from 'sweetalert2';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
@@ -179,6 +180,7 @@ registerLocaleData(localeFR);
     NovoRecursoComponent
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -213,6 +215,7 @@ registerLocaleData(localeFR);
         disallowedRoutes: []
       }      
     }),
+   
     PrimengModule,
     InputTextareaModule,
     InputTextModule,
@@ -241,6 +244,7 @@ registerLocaleData(localeFR);
     KnobModule
   ],
   providers: [
+    
     CursosService,
     CursoTiposService,
     FuncoesService,

@@ -30,7 +30,46 @@
   </p-scrollPanel>
 
   <div class="card-recursos flex justify-content-flex-end class-Button">
-    <p-button label="+ Novo" (onClick)="show()"></p-button>
+    <p-button label="+ Novo"  (click)="showDialog()" ></p-button>
     </div>
 
+    <!-- (onClick)="show()  " -->
+
     <!-- <p-fileUpload  class="my-file-upload" mode="basic" name="arquivosUpload[]" url="./upload.php" accept="image/*" (onUpload)="onUpload($event)" [auto]="true" chooseLabel="Novo" ></p-fileUpload> -->
+
+    <!-- testes -->
+
+
+    <div class="telaDePostagem"  >
+        <p-dialog header="Upload de arquivos" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
+                    [draggable]="false" [resizable]="false">
+        <div class="field">
+          <label for="nomeArquivo">Título</label>
+          <input id="nomeArquivo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="nomeArquivo" required>
+        </div>
+        <div class="field">
+          <label for="descricao">Comentário</label>
+          <textarea id="descricao" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="descricao" required></textarea>
+        </div>
+  
+        <div class=" telaDePostagem flex-row justify-content-around">        
+            
+            <p-fileUpload name="uploadedFiles[]" [customUpload]="true" [multiple]="true" (uploadHandler)="
+                onUpload($event)" chooseLabel="Escolher Arquivo">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+
+
+        </div>
+  
+    </p-dialog>
+      </div>
+
+
+
+
+    
