@@ -9,19 +9,13 @@
   subheader="{{ pergunta.usuario.nomeCompleto }}"
 >
   <ng-template pTemplate="header">
-    <button
-      id="butaocheck"
-      pButton
-      type="button"
-      icon="pi pi-check"
-      iconPos="left"
-    ></button>
   </ng-template>
   <p>
     {{ pergunta.descricao }}
   </p>
   <ng-template pTemplate="footer">
-    <p-button id="comentarios">3<i class="pi pi-comment"></i></p-button>
+    <p-button id={{pergunta.chapter.id}}    id="comentarios"
+    routerLink="/comunidade/comentario">3<i class="pi pi-comment"></i></p-button>
     <p-button id="curtidas">10<i class="pi pi-thumbs-up"></i></p-button>
     <p-button id="visualizacoes">10<i class="pi pi-eye"></i></p-button>
   </ng-template>

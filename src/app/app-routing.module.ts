@@ -29,6 +29,7 @@ import { ListagemBadgesComponent } from "./components/Badge/listagem-badge/lista
 import { NovoBadgeComponent } from "./components/Badge/novo-badge/novo-badge.component";
 import { AtualizarBadgeComponent } from "./components/Badge/atualizar-badge/atualizar-badge.component";
 import { NovaperguntaComponent } from "./components/apoio-duvidas/novapergunta/novapergunta.component";
+import { ComentarioComponent } from "./components/apoio-duvidas/comentario/comentario.component";
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: "comunidade/novapergunta",
         component: NovaperguntaComponent,
+      },
+      {
+        path: "comunidade/comentario",
+        component: ComentarioComponent,
       },
       {
         path: "unidadeCurricular/encontros",

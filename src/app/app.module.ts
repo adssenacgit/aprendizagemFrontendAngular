@@ -124,6 +124,7 @@ import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
 import { ApoioDuvidasComponent } from './components/apoio-duvidas/apoio-duvidas.component';
 import { NovaperguntaComponent } from './components/apoio-duvidas/novapergunta/novapergunta.component';
+import { ComentarioComponent } from './components/apoio-duvidas/comentario/comentario.component';
 
 
 registerLocaleData(localePT);
@@ -172,6 +173,7 @@ registerLocaleData(localeFR);
     EncontrosComponent,
     ApoioDuvidasComponent,
     NovaperguntaComponent,
+    ComentarioComponent,
   ],
   imports: [
     BrowserModule,
