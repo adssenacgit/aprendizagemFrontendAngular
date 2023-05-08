@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { RegistroAvaliacao } from 'src/app/models/RegistroAvaliacao';
 import { Grupo } from 'src/app/models/Grupo';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
@@ -8,11 +7,19 @@ import { GrupoService } from 'src/app/services/grupo.service';
 import { AcompanhamentoComentarios } from 'src/app/models/acompanhamento-comentarios';
 
 
+
 @Component({
   selector: 'app-conceitos-feedbacks',
   templateUrl: './usuario-conceitos-feedbacks.component.html',
-  styleUrls: ['./usuario-conceitos-feedbacks.component.css']
+  styleUrls: ['./usuario-conceitos-feedbacks.component.css'],
+  
 })
+
+
+  
+
+
+
 export class UsuarioConceitosFeedbacksComponent implements OnInit {
 
   grupos: Grupo[];
@@ -24,9 +31,15 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   acompanhamentoComentario: AcompanhamentoComentarios = {
     id: null as unknown as number,
     nome: "blabla",
+    
    
   }
+  visible: boolean;
 
+    showDialog() {
+        this.visible = true;
+    }
+    
   constructor(
     private registroAvaliacaoService : RegistroAvaliacaoService, 
     private grupoService: GrupoService,
