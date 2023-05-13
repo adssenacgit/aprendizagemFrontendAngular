@@ -4,7 +4,6 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { RecursoService } from 'src/app/services/recurso.service';
 import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { PostagemDeRecursosComponent } from '../postagem-de-recursos/postagem-de-recursos.component';
 import { EventEmitter } from 'stream';
 import Swal from 'sweetalert2';
 import { Usuario } from 'src/app/models/Usuario';
@@ -34,9 +33,11 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
   visible: any;
   filteredItems: Recurso[];
   cols: any[];
-  selectedRecursos: Recurso;
+  selectedRecursos: Recurso[] = [];
 
   botaoUp:FileUploadModule;
+
+
   constructor(
     private dialogService: DialogService,
     private recursoService : RecursoService,
@@ -54,9 +55,9 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
   
     this.cols = [
       { field: 'nomeArquivo', header: 'Nome' },
-      { field: 'descricao', header: 'Descrição' },
-      { field: 'arquivo.length.size', header: 'arquivo' },
-      { field: 'status', header: 'Status' }
+      { field: 'descricao'  , header: 'Descrição' }
+     
+    
   ];  
     
   // this.botaoUp = ['{background-color: black}'];
@@ -69,16 +70,16 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
     return true
   }
 
-  show() {
-    this.ref = this.dialogService.open(PostagemDeRecursosComponent, { header: 'Postagem de Recursos' ,
+  // show() {
+  //   this.ref = this.dialogService.open(PostagemDeRecursosComponent, { header: 'Postagem de Recursos' ,
     
-    width: '50%',
-    contentStyle: { overflow: 'auto' },
-    baseZIndex: 10000,
-    maximizable: true
+  //   width: '50%',
+  //   contentStyle: { overflow: 'auto' },
+  //   baseZIndex: 10000,
+  //   maximizable: true
   
-    });
-    }
+  //   });
+  //   }
 
   ngOnDestroy() {
     if (this.ref) {
@@ -164,6 +165,12 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
     });
   }
   
+  
+  
+
+
+
+
   ondownload(event: any) {
     const arquivo = event.arquivo
     const nomeArquivo = event.nomeArquivo

@@ -89,6 +89,7 @@ import { MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
+
 import Swal from 'sweetalert2';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
@@ -127,9 +128,7 @@ import localeES from '@angular/common/locales/es';
 import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
 import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/meus-recursos.component';
-import { PostagemDeRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/postagem-de-recursos/postagem-de-recursos.component';
 import { PrimengModule } from './shared/primeng/primeng.module';
-import { NovoRecursoComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/novo-recurso/novo-recurso.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -176,8 +175,6 @@ registerLocaleData(localeFR);
     EstudoPrevioComponent,
     EncontrosComponent,
     MeusRecursosComponent,
-    PostagemDeRecursosComponent,
-    NovoRecursoComponent
   ],
   imports: [
     

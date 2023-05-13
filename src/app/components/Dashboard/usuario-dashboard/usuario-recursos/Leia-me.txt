@@ -10,8 +10,9 @@ no angular.json deve-se atualizar o style.css
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeflex/primeflex.css"
             ],
+            
+Dar os comandos no cli
 
-e dar os comandos no cli
 npm install primeflex
 npm install primeng
 npm install --save sweetalert2 @sweetalert2/ngx-sweetalert2
