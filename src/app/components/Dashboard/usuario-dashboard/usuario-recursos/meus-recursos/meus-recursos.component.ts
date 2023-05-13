@@ -8,6 +8,8 @@ import { EventEmitter } from 'stream';
 import Swal from 'sweetalert2';
 import { Usuario } from 'src/app/models/Usuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { strict } from 'assert';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-meus-recursos',
@@ -37,6 +39,8 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
 
   botaoUp:FileUploadModule;
 
+  descricao : string = '' ;
+  nomeArquivo: string= '';
 
   constructor(
     private dialogService: DialogService,
@@ -109,8 +113,8 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
   
         const Recurso = {
           id: 7,
-          descricao: "",
-          nomeArquivo: file.name,
+          descricao: this.descricao,
+          nomeArquivo: this.nomeArquivo,
           arquivo: formatAquivo,
           dataCadastro: new Date().toISOString(),
           status: 1,

@@ -54,13 +54,15 @@
                     [draggable]="false" [resizable]="false">
         <div class="field">
           <label for="nomeArquivo">Título</label>
-          <input id="nomeArquivo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="nomeArquivo" required>
+          <input id="nomeArquivo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="nomeArquivo" required>
         </div>
         <div class="field">
-          <label for="descricao">Comentário</label>
-          <textarea id="descricao" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" formControlName="descricao" required></textarea>
+          <label for="descricao">Comentário</label> 
+          <input type="textarea" id="descricao"  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="descricao" required>
         </div>
-  
+       
+      
+        
         <div class=" telaDePostagem flex-row justify-content-around">        
             
             <p-fileUpload name="uploadedFiles[]" [customUpload]="true" [multiple]="true" (uploadHandler)="
@@ -68,6 +70,7 @@
                             <ng-template pTemplate="content">
                                 <ul *ngIf="uploadedFiles.length">
                                     <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                   
                                 </ul>
                             </ng-template>
                         </p-fileUpload>
