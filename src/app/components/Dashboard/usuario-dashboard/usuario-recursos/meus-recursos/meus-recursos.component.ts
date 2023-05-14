@@ -55,6 +55,8 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
   ) { }
 
   ngOnInit(): void {
+
+    
    
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
@@ -65,6 +67,7 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
     this.cols = [
       { field: 'nomeArquivo', header: 'Nome' },
       { field: 'descricao'  , header: 'Descrição' }
+      
      
     
   ];  
@@ -79,16 +82,7 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
     return true
   }
 
-  // show() {
-  //   this.ref = this.dialogService.open(PostagemDeRecursosComponent, { header: 'Postagem de Recursos' ,
-    
-  //   width: '50%',
-  //   contentStyle: { overflow: 'auto' },
-  //   baseZIndex: 10000,
-  //   maximizable: true
-  
-  //   });
-  //   }
+
 
   ngOnDestroy() {
     if (this.ref) {
@@ -221,6 +215,9 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
     link.click();
     document.body.removeChild(link);
   }
+
+
+  
 
 
 }
