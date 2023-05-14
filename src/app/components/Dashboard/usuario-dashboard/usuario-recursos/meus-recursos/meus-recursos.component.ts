@@ -180,9 +180,13 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
       message: 'Deseja excluir este recurso?',
       header: 'Confirmação de Exclusão',
       icon: 'pi pi-info-circle',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
       accept: () => {
         this.onDelete(rowData);
-      }
+      },
+      rejectButtonStyleClass: 'p-button-danger',
+      acceptButtonStyleClass: 'p-button-success'
     });
   
   }
