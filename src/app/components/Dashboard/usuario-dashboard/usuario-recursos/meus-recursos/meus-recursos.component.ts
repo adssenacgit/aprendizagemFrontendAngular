@@ -10,12 +10,16 @@ import { Usuario } from 'src/app/models/Usuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { strict } from 'assert';
 import { FormsModule } from '@angular/forms';
+import {  MessageService, ConfirmEventType } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-meus-recursos',
   templateUrl: './meus-recursos.component.html',
   styleUrls: ['./meus-recursos.component.css'],
-  providers: [DialogService]
+  providers: [DialogService ,ConfirmationService]
 })
 export class MeusRecursosComponent implements OnInit ,OnDestroy{
 
@@ -46,7 +50,8 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
     private dialogService: DialogService,
     private recursoService : RecursoService,
     private authGuardService: AuthGuardService,
-    
+    private confirmationService: ConfirmationService
+ 
   ) { }
 
   ngOnInit(): void {
@@ -168,9 +173,20 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
       }
     });
   }
+
+
+  confirm2(rowData: any) {
+    this.confirmationService.confirm({
+      message: 'Deseja excluir este recurso?',
+      header: 'Confirmação de Exclusão',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.onDelete(rowData);
+      }
+    });
   
-  
-  
+  }
+
 
 
 
