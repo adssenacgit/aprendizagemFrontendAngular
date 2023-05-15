@@ -38,6 +38,12 @@ export class BadgeService {
     return this.https.get<BadgeRetorno>(apiUrl);
   }
 
+  ObterBadgesRecentesPeloUsuarioId(usuarioId: string): Observable<Badge[]>
+  {
+    const apiUrl = `${this.url}`;
+    return this.https.get<Badge[]>(apiUrl);
+  }
+
   NovoBadge(badge: DadosBadge): Observable<any>{
     return this.https.post<any>(this.url, badge, httpOptions);
   }

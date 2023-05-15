@@ -28,6 +28,8 @@ import { EncontrosComponent } from './components/UnidadeCurricular/encontros/enc
 import { ListagemBadgesComponent } from './components/Badge/listagem-badge/listagem-badges.component';
 import { NovoBadgeComponent } from './components/Badge/novo-badge/novo-badge.component';
 import { AtualizarBadgeComponent } from './components/Badge/atualizar-badge/atualizar-badge.component';
+import { ListagemUsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/listagem-usuario-badges/listagem-usuario-badges.component';
+import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-objetos-aprendizagem/lista-objetos-aprendizagem.component';
 
 const routes: Routes = [
   {
@@ -106,7 +108,13 @@ const routes: Routes = [
       },
       {
         path: 'ofertas/atualizaroferta/:id', component: AtualizarOfertaComponent
-      },      
+      },  
+      {
+        path: 'badges/listagemusuariobadges', component: ListagemUsuarioBadgesComponent
+      },    
+      {
+        path: 'unidadeCurricular/objetosaprendizagem', component: ListaObjetosAprendizagem
+      }         
     ]
   },
   {

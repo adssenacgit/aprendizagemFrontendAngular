@@ -56,6 +56,17 @@ import { TimelineDetalhesComponent } from './components/UnidadeCurricular/timeli
 
 import { ChapterListagemGeralComponent } from './components/Chapters/chapter-listagem-geral/chapter-listagem-geral.component';
 
+import { UsuarioArquivosPrivadosComponent } from './components/Dashboard/usuario-dashboard/usuario-arquivos-privados/usuario-arquivos-privados.component';
+import { UsuarioDadosComponent } from './components/Dashboard/usuario-dashboard/usuario-dados/usuario-dados.component';
+import { UsuarioProximasAtividadesComponent } from './components/Dashboard/usuario-dashboard/usuario-proximas-atividades/usuario-proximas-atividades.component';
+import { UsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/usuario-badges.component';
+
+import { ListagemUsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/listagem-usuario-badges/listagem-usuario-badges.component';
+import { ApoioDuvidasComponent } from './components/ApoioDuvidas/apoio-duvidas.component';
+import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
+
+import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-objetos-aprendizagem/lista-objetos-aprendizagem.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -75,6 +86,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
@@ -109,6 +121,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CarouselModule } from 'primeng/carousel';
 import { KnobModule } from 'primeng/knob';
 import { SplitterModule } from 'primeng/splitter';
+import { AvatarModule } from 'primeng/avatar';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -168,7 +181,15 @@ registerLocaleData(localeFR);
     ChapterListagemGeralComponent,
     EstudoPrevioComponent,
     EncontrosComponent,
-    DialogIndicadoresComponent
+    DialogIndicadoresComponent,
+    UsuarioArquivosPrivadosComponent,
+    UsuarioDadosComponent,
+    UsuarioProximasAtividadesComponent,
+    UsuarioBadgesComponent,
+    ListagemUsuarioBadgesComponent,
+    ApoioDuvidasComponent,
+    ComentarioComponent,
+    ListaObjetosAprendizagem
   ],
   imports: [
     BrowserModule,
@@ -185,7 +206,7 @@ registerLocaleData(localeFR);
     MatDividerModule,
     MatSelectModule,
     MatGridListModule,
-    MatDialogModule,
+    MatDialogModule,    
     FormsModule,
     MatAutocompleteModule,
     MatPaginatorModule,
@@ -195,6 +216,7 @@ registerLocaleData(localeFR);
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
     FlexLayoutModule,
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({
@@ -227,7 +249,8 @@ registerLocaleData(localeFR);
     CarouselModule,
     DragScrollModule,
     KnobModule,
-    SplitterModule
+    SplitterModule,
+    AvatarModule
   ],
   providers: [
     CursosService,

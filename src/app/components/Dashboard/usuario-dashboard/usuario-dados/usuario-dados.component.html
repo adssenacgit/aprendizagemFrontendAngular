@@ -1,0 +1,17 @@
+<div class="card">
+	<div class="col-12 md:col-4 user">
+		<p-avatar
+			id="userIcon"
+			image="{{'data:image/png;base64,' + usuario.foto}}"
+			styleClass="mr-2"
+			size="large"
+			[style]="{
+				'background-color': '#2196F3',
+				color: '#ffffff',
+				width: '150px',
+				height: '150px'
+			}"
+			shape="circle"></p-avatar>&nbsp;&nbsp;
+		<p style="font-size:2rem">{{usuario.nomeCompleto}}</p>
+	</div>
+</div>

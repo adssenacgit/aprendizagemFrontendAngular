@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DadosLogin } from '../models/DadosLogin';
 import { DadosRegistro } from '../models/DadosRegistros';
+import { Usuario } from '../models/Usuario';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,6 +20,11 @@ export class UsuariosService {
   url = environment.apiServer + 'api/Usuario';
 
   constructor(private http: HttpClient) { }
+
+  ObterUsuarioPorId(id : string): Observable<Usuario>{
+    const apiUrl = `${this.url}/${id}`;
+    return this.http.get<Usuario>(apiUrl);
+  }
 
   SalvarFoto(formData: any): Observable<any>
   {

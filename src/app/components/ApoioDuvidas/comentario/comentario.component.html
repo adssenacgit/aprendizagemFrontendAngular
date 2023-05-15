@@ -1,0 +1,31 @@
+<p-card
+  *ngFor="let comentario of comentarios.slice(0,1)"
+
+  header="{{comentario.pergunta}}"
+  subheader = "{{comentario.nome}}">
+
+</p-card>
+
+
+
+<p-card
+*ngFor="let comentario of comentarios"
+header="{{ comentario.nome }}"
+subheader="{{ comentario.data }}"
+>
+  <ng-template pTemplate="header">
+    
+  </ng-template>
+  <p>
+    {{ comentario.comentario }}
+  </p>
+  <ng-template pTemplate="footer">
+  </ng-template>
+</p-card>
+
+<div class="form-group">
+  <label for="exampleFormControlTextarea1">Comentario</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+</div>
+
+<p-button id="perguntarbutton" label="Comentar"></p-button>

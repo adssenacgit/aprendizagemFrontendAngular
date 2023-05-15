@@ -33,6 +33,10 @@ export class AtividadeService {
     return  this.https.get<Atividade[]>(apiUrl);
   }
 
+  ObterAtividadesRecentesPeloUsuarioId(usuarioId : string){
+    const apiUrl = `${this.url}`
+    return this.https.get<Atividade[]>(apiUrl);
+  }
 
   async formatarAtividades(questoes : Atividade[]) {
     questoes.forEach((atividade) => {

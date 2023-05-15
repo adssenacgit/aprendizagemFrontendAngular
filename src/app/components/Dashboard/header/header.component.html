@@ -1,8 +1,9 @@
-<mat-toolbar color="primary">
-    <span>Aprendizagem</span>
-    <span class="spacer"></span>
-
-    <div *ngIf="idUsuarioLogado" fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="end center">
-        <app-menu-usuario></app-menu-usuario>
-    </div>
+<mat-toolbar
+	*ngIf="idUsuarioLogado"
+	color="primary"
+	style="background-color: white; display: flex; flex-direction: row-reverse">
+	<div class="botoes__Menu">
+		<p-button icon="pi pi-bell" styleClass="p-button-warning"></p-button>
+		<app-menu-usuario></app-menu-usuario>
+	</div>
 </mat-toolbar>

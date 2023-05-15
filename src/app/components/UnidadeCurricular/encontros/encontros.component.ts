@@ -25,6 +25,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Estudante } from 'src/app/models/Estudante';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
+import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
+import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 
 @Component({
   selector: 'app-encontros',
@@ -49,6 +51,7 @@ export class EncontrosComponent implements OnInit {
   bibliografias: Bibliografia[]=[];
   participantes: Estudante[]=[];
   situacoesAprendizagem: SituacaoAprendizagem[]=[];
+  objetosAprendizagem: ObjetoAprendizagem[]=[];
   planejamentoUC: PlanejamentoUC = new PlanejamentoUC();
   badges: Badge[]=[];
 
@@ -68,6 +71,7 @@ export class EncontrosComponent implements OnInit {
     private badgeService: BadgeService,
     private estudantesService: EstudantesService,
     private situacaoAprendizagemService: SituacaoAprendizagemService,
+    private objetoAprendizagemService: ObjetoAprendizagemService,
     private authGuardService: AuthGuardService,
     private sanitizer: DomSanitizer,
     private dialog: MatDialog
@@ -149,6 +153,8 @@ export class EncontrosComponent implements OnInit {
 
   ObterSituacoesAprendizagem = (idEncontro: number, i:number) => {
 
+    this.objetosAprendizagem=[];
+
     for(var j=0; j< this.encontros.length; j=j+1){
       this.encontros[j].selecionado=0;  
     }
@@ -158,6 +164,21 @@ export class EncontrosComponent implements OnInit {
     this.loading = true;
     this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
         this.situacoesAprendizagem = resultado;
+        this.loading = false;
+      });
+  };
+
+  ObterObjetosAprendizagem = (idSituacaoAprendizagem: number, i:number) => {
+
+    for(var j=0; j< this.situacoesAprendizagem.length; j=j+1){
+      this.situacoesAprendizagem[j].selecionado=0;  
+    }
+
+    this.situacoesAprendizagem[i].selecionado=1;
+
+    this.loading = true;
+    this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorSituacaoAprendizagemId(idSituacaoAprendizagem).subscribe(resultado => {
+        this.objetosAprendizagem = resultado;
         this.loading = false;
       });
   };

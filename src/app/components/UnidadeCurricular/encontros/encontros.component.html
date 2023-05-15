@@ -33,15 +33,19 @@
                 <i class="pi pi-skills"></i>
                 <span>Competências</span>
               </ng-template>
-              <div *ngFor="let competencia of competencias; let i = index" drag-scroll-item>                 
-                <ol type="1">
-                  <li>{{competencia.descricao }}&nbsp;
-                    <button mat-mini-fab color="primary" (click)="AbrirDialog(competencia.unidadeCurricularId, competencia.descricao)">
+              <!-- Carrossel de competencias  -->
+              <p-carousel [value]="competencias" [numVisible]="1" [numScroll]="1" [circular]="false">
+                <ng-template let-competencia pTemplate="item">
+                  <div class="border-1 surface-border border-round m-2 text-center py-5 px-1">
+                    <h4 class="mb-1">{{ competencia.descricao }}</h4>
+                    <br>
+                    <button mat-mini-fab color="primary"
+                      (click)="AbrirDialog(competencia.unidadeCurricularId, competencia.descricao)">
                       <mat-icon>list</mat-icon>
                     </button>
-                  </li>
-                </ol>
-              </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
 
             </p-tabPanel>
 
@@ -180,7 +184,7 @@
               <p-accordion [activeIndex]="0">
 
                 <div *ngFor="let situacaoAprendizagem of situacoesAprendizagem; let i = index" drag-scroll-item>                 
-                  <p-accordionTab header="{{situacaoAprendizagem.titulo}}">
+                  <p-accordionTab (click)="ObterObjetosAprendizagem(situacaoAprendizagem.id, i)" header="{{situacaoAprendizagem.titulo}}">
                     <p>
                       {{situacaoAprendizagem.descricao}}
                     </p>
@@ -190,7 +194,21 @@
             </div>
           </ng-template>
           <ng-template pTemplate>
-            <div class="col flex align-items-center justify-content-center">Panel 2</div>
+            <div class="col flex">
+              <div *ngFor="let objetoAprendizagem of objetosAprendizagem">
+                <p-timeline [value]="objetosAprendizagem" >
+                  <ng-template pTemplate="content" let-objetoAprendizagem>
+                      {{ objetoAprendizagem.descricao }}
+                  </ng-template>
+                  <ng-template pTemplate="opposite" let-objetoAprendizagem>
+                      {{ objetoAprendizagem.grauDificuldade.descricao }}
+                  </ng-template>    
+                </p-timeline>
+                <!--
+                <p>{{objetoAprendizagem.id}} - {{objetoAprendizagem.descricao}}</p>
+                -->
+              </div>
+            </div>
           </ng-template>
         </p-splitter>
       </div>         

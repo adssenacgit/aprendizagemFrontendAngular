@@ -1,0 +1,12 @@
+:host ::ng-deep .p-button-warning {
+	background: #f7941d;
+	padding: 20px;
+	margin: 20px;
+	width: 2rem;
+	height: 2rem;
+}
+
+.botoes__Menu {
+	display: flex;
+	align-items: center;
+}
