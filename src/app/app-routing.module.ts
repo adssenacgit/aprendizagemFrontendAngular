@@ -37,6 +37,12 @@ const routes: Routes = [
     component: DashboardComponent,
     //canActivate: [AuthGuardService],
     children: [
+
+      {
+        path: "comunidade/comentario/:id",
+        component: ComentarioComponent,
+      },
+
       {
         path: "comunidade/novapergunta",
         component: NovaperguntaComponent,

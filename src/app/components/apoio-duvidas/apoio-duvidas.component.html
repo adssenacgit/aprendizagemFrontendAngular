@@ -1,8 +1,11 @@
+
+
 <p-button id="addpergunta"
   label="+ Adicionar Pergunta"
   routerLink="/comunidade/novapergunta"
 ></p-button>
 <router-outlet></router-outlet>
+<div class="container">
 <p-card
   *ngFor="let pergunta of chapterAssuntos"
   header="{{ pergunta.chapter.nome }}"
@@ -14,9 +17,9 @@
     {{ pergunta.descricao }}
   </p>
   <ng-template pTemplate="footer">
-    <p-button id={{pergunta.chapter.id}}    id="comentarios"
-    routerLink="/comunidade/comentario">3<i class="pi pi-comment"></i></p-button>
-    <p-button id="curtidas">10<i class="pi pi-thumbs-up"></i></p-button>
-    <p-button id="visualizacoes">10<i class="pi pi-eye"></i></p-button>
+    <p-button id="comentarios"routerLink="/comunidade/comentario/{{pergunta.id}}"><i class="pi pi-comment"></i></p-button>
+    <p-button id="curtidas"><i class="pi pi-thumbs-up"></i></p-button>
+    <p-button id="visualizacoes"><i class="pi pi-eye"></i></p-button>
   </ng-template>
 </p-card>
+</div>

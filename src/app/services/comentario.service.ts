@@ -1,39 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Comentario }from  '../models/comentario';
+import { Comentario } from 'src/app/models/Comentario';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { ChapterAssunto } from '../models/ChapterAssunto';
+import { Observable } from 'rxjs';
+
+
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComentarioService {
+  
+  url = environment.apiServer + 'api/ChapterAssuntoComentario';
+  constructor(private https: HttpClient) { }
 
-  comentarios: Comentario[] = [
-    {
-      id: 1,
-      nome: "João",
-      comentario: "Comentario 1",
-      data: "2023-05-07",
-      pergunta: "Pergunta 1 "
-    },
-    {
-      id: 2,
-      nome: "Maria",
-      comentario: "Comentario 2",
-      data: "2023-05-06",
-      pergunta: "Pergunta 2 "
-    },
-    {
-      id: 3,
-      nome: "Pedro",
-      comentario: "Comentario 3",
-      data: "2023-05-05",
-      pergunta: "Pergunta 3 ",
-    }
-  ];
 
-  getComentarios(): Observable<Comentario[]> {
-    return of(this.comentarios);
+
+
+
+  FiltrarChapterAssuntoComentarioPorId (id: number) : Observable<Comentario[]>
+  {
+    const apiUrl = `${this.url}/filterByChapterAssuntoId/${id}`;
+    let teste = this.https.get<Comentario[]>(apiUrl)
+    return teste;
   }
-
-  constructor() { }
 }
