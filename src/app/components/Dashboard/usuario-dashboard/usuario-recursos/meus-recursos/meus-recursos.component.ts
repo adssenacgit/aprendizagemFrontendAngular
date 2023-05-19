@@ -1,3 +1,4 @@
+import { AtividadeService } from 'src/app/services/atividade.service';
 import { Component, OnInit ,OnDestroy,Output} from '@angular/core';
 import { Recurso } from 'src/app/models/Recurso';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
@@ -46,35 +47,34 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
   descricao : string = '' ;
   nomeArquivo: string= '';
 
+  atividade:any;
+
+  filtro: string;
+
+
   constructor(
     private dialogService: DialogService,
     private recursoService : RecursoService,
     private authGuardService: AuthGuardService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+
  
   ) { }
 
   ngOnInit(): void {
-
-    
-   
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
-
-    this.recursoService.ObterRecursoPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado=>{
-        this.recursos = resultado;        
+  
+    this.recursoService.ObterRecursoPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
+      this.recursos = resultado;
+      this.filteredItems = this.recursos; // Inicializa filteredItems com os mesmos valores de recursos
     });
   
     this.cols = [
       { field: 'nomeArquivo', header: 'Nome' },
-      { field: 'descricao'  , header: 'Descrição' }
-      
-     
-    
-  ];  
-    
-  // this.botaoUp = ['{background-color: black}'];
-
+      { field: 'descricao', header: 'Descrição' }
+    ];
   }
+  
 
 
   
@@ -218,6 +218,16 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
 
 
   
-
+  filtrarRecursos() {
+    const filtro = this.filtro.toLowerCase(); // Converter o filtro para minúsculas para comparar de forma insensível a maiúsculas e minúsculas
+  
+    this.filteredItems = this.recursos.filter((recurso: Recurso) => {
+      // Aplicar a lógica de filtro desejada aqui
+      return recurso.nomeArquivo.toLowerCase().includes(filtro) ||
+             recurso.descricao.toLowerCase().includes(filtro);
+    });
+  }
+  
+  
 
 }

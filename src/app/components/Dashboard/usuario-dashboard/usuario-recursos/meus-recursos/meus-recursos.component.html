@@ -1,6 +1,13 @@
 <p-confirmDialog></p-confirmDialog>
+
+<div class="search-input-container">
+  <input type="text" [(ngModel)]="filtro" (input)="filtrarRecursos()" placeholder="Buscar recursos">
+  <i class="pi pi-search"></i>
+</div>
+
+
 <p-scrollPanel [style]="{ width: '100%', height: '280px' }">
-    <p-table [columns]="cols" [value]="recursos" [(selection)]="selectedRecursos" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [columns]="cols" [value]="filteredItems" [(selection)]="selectedRecursos" [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th style="width: 4rem">
