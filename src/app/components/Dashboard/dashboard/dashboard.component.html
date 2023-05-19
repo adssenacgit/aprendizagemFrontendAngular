@@ -14,7 +14,7 @@
 			</div>
 			<ul class="sidenav-nav">
 				<li class="sidenav-nav-item" *ngFor="let data of navData">
-					<a class="sidenav-nav-link" [routerLink]="[data.routelink]">
+					<a class="sidenav-nav-link" (click)="navigate(data.routelink)">
 						<i class="sidenav-link-icon" [class]="data.icon">
 							<span class="sidenav-link-text" *ngIf="collapsed">{{
 								data.label
@@ -25,10 +25,14 @@
 			</ul>
 		</div>
 		<div
-			class="container-fluid d-flex flex-fill"
-			style="flex-direction: column">
-			<app-header></app-header>
+    class="container-fluid d-flex flex-fill"
+    style="flex-direction: column">
+      <app-header></app-header>
+      <p-sidebar [(visible)]="sidebarVisible" position="right" styleClass="p-sidebar-md">
+          <app-mensagens></app-mensagens>
+      </p-sidebar>
 			<router-outlet> </router-outlet>
+
 		</div>
 	</div>
 </div>

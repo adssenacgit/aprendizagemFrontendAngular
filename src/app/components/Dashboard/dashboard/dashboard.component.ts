@@ -8,6 +8,7 @@ import {
 	transition,
 	trigger,
 } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,9 +20,10 @@ export class DashboardComponent implements OnInit {
 	collapsed = true;
 	screeWidth: 0;
 	navData = navbarData;
+  sidebarVisible: boolean;
 
   isAdministrador: boolean;
-  constructor(private authGuard: AuthGuardService) { }
+  constructor(private authGuard: AuthGuardService, private router: Router) { }
 
   ngOnInit(): void {
     this.isAdministrador = this.authGuard.VerificarAdministrador();
@@ -34,5 +36,12 @@ export class DashboardComponent implements OnInit {
 	closeSidenav(): void {
 		this.collapsed = false;
 	}
+  // (click)="navigate(data.routelink)"
+  navigate(link: String){
+    if(link == 'mensagens'){
+      this.sidebarVisible = true;
+    }
+    this.router.navigate([ link ])
+ }
 
 }

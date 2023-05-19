@@ -122,6 +122,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { KnobModule } from 'primeng/knob';
 import { SplitterModule } from 'primeng/splitter';
 import { AvatarModule } from 'primeng/avatar';
+import { SidebarModule } from 'primeng/sidebar';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -136,6 +137,8 @@ import localePT from '@angular/common/locales/pt';
 import localeES from '@angular/common/locales/es';
 import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
+import { MensagensComponent } from './components/Dashboard/mensagens/mensagens.component';
+import { CardContatoComponent } from './components/Dashboard/mensagens/card-contato/card-contato.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -149,7 +152,7 @@ registerLocaleData(localeFR);
     NovoCursoComponent,
     AtualizarCursoComponent,
     DialogExclusaoCursosComponent,
-    ListagemBadgesComponent,    
+    ListagemBadgesComponent,
     DialogExclusaoBadgeComponent,
     NovoBadgeComponent,
     AtualizarBadgeComponent,
@@ -189,7 +192,9 @@ registerLocaleData(localeFR);
     ListagemUsuarioBadgesComponent,
     ApoioDuvidasComponent,
     ComentarioComponent,
-    ListaObjetosAprendizagem
+    ListaObjetosAprendizagem,
+    MensagensComponent,
+    CardContatoComponent
   ],
   imports: [
     BrowserModule,
@@ -206,7 +211,7 @@ registerLocaleData(localeFR);
     MatDividerModule,
     MatSelectModule,
     MatGridListModule,
-    MatDialogModule,    
+    MatDialogModule,
     FormsModule,
     MatAutocompleteModule,
     MatPaginatorModule,
@@ -224,7 +229,7 @@ registerLocaleData(localeFR);
         tokenGetter: PegarTokenUsuario,
         allowedDomains: ['localhost:5099'],
         disallowedRoutes: []
-      }      
+      }
     }),
     MatSidenavModule,
     MatListModule,
@@ -250,15 +255,16 @@ registerLocaleData(localeFR);
     DragScrollModule,
     KnobModule,
     SplitterModule,
-    AvatarModule
+    AvatarModule,
+    SidebarModule
   ],
   providers: [
     CursosService,
     CursoTiposService,
     FuncoesService,
     OfertasService,
-    AuthGuardService,    
-    HttpClientModule, 
+    AuthGuardService,
+    HttpClientModule,
     {provide:LocationStrategy, useClass:HashLocationStrategy},
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
   ],
