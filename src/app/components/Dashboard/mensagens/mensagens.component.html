@@ -1,25 +1,55 @@
-<section style="background-color: #eee;">
+<section>
   <div class="container pt-3">
-    <div class="row">
-
-        <h5 class="font-weight-bold mb-3 text-center">Ultimas Mensagens</h5>
+    <div class="row"></div>
+    <p-tabView>
+      <p-tabPanel header="Ultimas Mensagens">
         <div class="card">
           <div class="card-body">
-
             <ul class="list-unstyled mb-0">
               <li *ngFor="let item of list">
-                <app-card-contato></app-card-contato>
+                <app-card-contato
+                  [nome]="item.nome"
+                  [msg]="item.msg"
+                  [img]="item.img"
+                  [unreaded]="item.unreaded"
+                ></app-card-contato>
               </li>
             </ul>
-
           </div>
         </div>
-
-      </div>
-
-
-
-
-
+      </p-tabPanel>
+      <p-tabPanel header="Favoritos">
+        <div class="card">
+          <div class="card-body">
+            <div class="list-unstyled mb-0">
+              <div *ngFor="let item of fav">
+                <app-card-contato
+                  [nome]="item.nome"
+                  [msg]="item.msg"
+                  [img]="item.img"
+                  [unreaded]="item.unreaded"
+                ></app-card-contato>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Grupos">
+        <div class="card">
+          <div class="card-body">
+            <div class="list-unstyled mb-0">
+              <div *ngFor="let item of group">
+                <app-card-contato
+                  [nome]="item.nome"
+                  [msg]="item.msg"
+                  [img]="item.img"
+                  [unreaded]="item.unreaded"
+                ></app-card-contato>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
   </div>
 </section>

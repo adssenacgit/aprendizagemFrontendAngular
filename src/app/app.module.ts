@@ -123,6 +123,7 @@ import { KnobModule } from 'primeng/knob';
 import { SplitterModule } from 'primeng/splitter';
 import { AvatarModule } from 'primeng/avatar';
 import { SidebarModule } from 'primeng/sidebar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -256,7 +257,8 @@ registerLocaleData(localeFR);
     KnobModule,
     SplitterModule,
     AvatarModule,
-    SidebarModule
+    SidebarModule,
+    AvatarGroupModule
   ],
   providers: [
     CursosService,

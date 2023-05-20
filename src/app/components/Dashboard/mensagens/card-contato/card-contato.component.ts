@@ -6,13 +6,17 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card-contato.component.css']
 })
 export class CardContatoComponent implements OnInit {
-  @Input() nome: String = "John Doe";
-  @Input() msg: String = "Hello, Are you there?";
-  @Input() img: String = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp";
-  @Input() unreaded: number = 1;
-  constructor() { }
+  @Input() nome: String;
+  @Input() msg: String;
+  @Input() img: String;
+  @Input() unreaded: number = 0;
 
+  constructor() { }
+  print(){
+    console.log(this.nome);
+  }
   ngOnInit(): void {
+
   }
 
 }
