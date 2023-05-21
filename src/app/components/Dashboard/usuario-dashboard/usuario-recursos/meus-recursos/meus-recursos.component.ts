@@ -50,7 +50,7 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
   atividade:any;
 
   filtro: string;
-
+  checkboxSelected = false;
 
   constructor(
     private dialogService: DialogService,
@@ -68,7 +68,9 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
       this.recursos = resultado;
       this.filteredItems = this.recursos; // Inicializa filteredItems com os mesmos valores de recursos
     });
+    
   
+
     this.cols = [
       { field: 'nomeArquivo', header: 'Nome' },
       { field: 'descricao', header: 'Descrição' }
@@ -85,9 +87,11 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
 
 
   ngOnDestroy() {
+    this.selectedRecursos = [];
     if (this.ref) {
         this.ref.close();
     }
+   
   }
 
 
@@ -102,54 +106,53 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
   }
   
   onUpload(item: any) {
-    const fileReader = new FileReader();
+    const file = item.files[0];
   
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const arquivo = e.target?.result as string;
+      const formatAquivo = arquivo.split(',')[1];
   
-    for (let file of item.files) {
-      fileReader.onload = (e) => {
-        const arquivo = e.target?.result as string;
-        const formatAquivo = arquivo.split(',')[1];
+      const recurso = {
+        id: 7,
+        descricao: this.descricao,
+        nomeArquivo: file.name,
+        arquivo: formatAquivo,
+        dataCadastro: new Date().toISOString(),
+        status: 1,
+        usuarioId: this.idUsuarioLogado,
+      };
   
-        const Recurso = {
-          id: 7,
-          descricao: this.descricao,
-          nomeArquivo: this.nomeArquivo,
-          arquivo: formatAquivo,
-          dataCadastro: new Date().toISOString(),
-          status: 1,
-          usuarioId: this.idUsuarioLogado,
-        };
+      this.recursoService.SalvarRecurso(recurso).subscribe({
+        next: (response) => {
+          this.closeDialog();
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Seu recurso foi salvo com sucesso.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            focusConfirm: false
+          }).then(() => {
+            console.log(response);
+            location.reload();
+          });
+        },
+        error: (error) => {
+          this.closeDialog();
+          Swal.fire({
+            title: 'Erro!',
+            text: 'Não foi possível salvar seu recurso.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            focusConfirm: false
+          });
+        }
+      });
+    };
   
-        this.recursoService.SalvarRecurso(Recurso).subscribe({
-          next: (response) => {
-            this.closeDialog();
-            Swal.fire({
-              title: 'Sucesso!',
-              text: 'Seu recurso foi salvo com sucesso.',
-              icon: 'success',
-              confirmButtonText: 'OK',
-              focusConfirm: false
-            }).then(() => {
-              console.log(response);
-              location.reload();
-            });
-          },
-          error: (error) => {
-            this.closeDialog();
-            Swal.fire({
-              title: 'Erro!',
-              text: 'Não foi possível salvar seu recurso.',
-              icon: 'error',
-              confirmButtonText: 'OK',
-              focusConfirm: false
-            });
-          }
-        });
-      }
-  
-      fileReader.readAsDataURL(file);
-    }
+    reader.readAsDataURL(file);
   }
+  
   
   onDelete(event: any) {
     const id = event.id
@@ -227,7 +230,4 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
              recurso.descricao.toLowerCase().includes(filtro);
     });
   }
-  
-  
-
 }

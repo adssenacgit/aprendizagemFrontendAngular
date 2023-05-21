@@ -64,19 +64,8 @@ label{
     justify-content: center;
   }
 
+  ::ng-deep .p-input-icon-left {
+    top: -55px
+  }
 
-  .search-input-container {
-    position: relative;
-  }
-  
-  .search-input-container input {
-    padding-right: 30px; /* Ajuste o valor conforme necessário para deixar espaço para o ícone */
-  }
-  
-  .search-input-container i {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-  }
   
