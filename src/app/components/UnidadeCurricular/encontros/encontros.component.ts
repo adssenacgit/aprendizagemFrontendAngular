@@ -8,7 +8,7 @@ import { GrupoService } from './../../../services/grupo.service';
 import { CompetenciaService } from './../../../services/competencia.service';
 import { UnidadeCurricularService } from './../../../services/unidade-curricular.service';
 import { AuthGuardService } from './../../../services/auth-guard.service';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Encontro } from 'src/app/models/Encontro';
 import { EncontroService } from 'src/app/services/encontro.service';
@@ -32,6 +32,7 @@ import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
   selector: 'app-encontros',
   templateUrl: './encontros.component.html',
   styleUrls: ['./encontros.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EncontrosComponent implements OnInit {
 
