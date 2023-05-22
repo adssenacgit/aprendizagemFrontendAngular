@@ -1,17 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { RegistroAvaliacao } from 'src/app/models/RegistroAvaliacao';
 import { Grupo } from 'src/app/models/Grupo';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { RegistroAvaliacaoService } from 'src/app/services/registro-avaliacao.service';
 import { GrupoService } from 'src/app/services/grupo.service';
+import { AcompanhamentoComentarios } from 'src/app/models/acompanhamento-comentarios';
+
 
 
 @Component({
   selector: 'app-conceitos-feedbacks',
   templateUrl: './usuario-conceitos-feedbacks.component.html',
-  styleUrls: ['./usuario-conceitos-feedbacks.component.css']
+  styleUrls: ['./usuario-conceitos-feedbacks.component.css'],
+  
 })
+
+
+  
+
+
+
 export class UsuarioConceitosFeedbacksComponent implements OnInit {
 
   grupos: Grupo[];
@@ -19,15 +27,35 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   registrosAvaliacaoAtual : {[key: string] : RegistroAvaliacao[]} = {};
   loading: boolean = true;
   idEstudanteUsuarioLogado : number;
+  AcompanhamentoComentariosService: any;
+  acompanhamentoComentario: AcompanhamentoComentarios = {
+    id: null as unknown as number,
+    nome: "blabla",
+    
+   
+  }
+  visible: boolean;
 
+    showDialog() {
+        this.visible = true;
+    }
+    
   constructor(
     private registroAvaliacaoService : RegistroAvaliacaoService, 
     private grupoService: GrupoService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
+
+
   ) 
   { }
 
   ngOnInit(): void {
+    
+    /*this.AcompanhamentoComentariosService.obterTodos().subscribe((t ) => {
+      this.acompanhamentoComentario = t
+      console.log(t) 
+    } )*/
+
     this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
 
     this.grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe(resultado => {
@@ -39,6 +67,7 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
         )
       this.loading = false;
     });
+
     // this.registroAvaliacaoService.ObterRegistrosPeriodoAtualFilterByUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
     //   this.registrosAvaliacao = resultado;
     //   this.loading = false;
@@ -46,5 +75,6 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
     //console.log(this.registrosAvaliacaoAtual);
     //console.log(this.idUsuarioLogado);
   }
+  
 
 }
