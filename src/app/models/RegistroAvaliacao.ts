@@ -5,6 +5,7 @@ import { Participante } from "./Participante";
 export class RegistroAvaliacao {
   id: number;
   data: Date;
+  comentario : string;
   status: number;
   avaliacaoTipoId: number;
   avaliacaoTipo: AvaliacaoTipo;

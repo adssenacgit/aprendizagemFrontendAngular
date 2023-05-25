@@ -10,7 +10,9 @@ import { RecursoService } from 'src/app/services/recurso.service';
 })
 export class UsuarioArquivosPrivadosComponent implements OnInit {
 
-  recursos : Recurso[];
+  recursos : Recurso[] = [];
+  selectedRecurso: Recurso;
+  //recurso : Recurso = new Recurso;
   idUsuarioLogado : string;
 
   constructor(
@@ -19,10 +21,16 @@ export class UsuarioArquivosPrivadosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //criando array de 4 atividades vazias
+    //this.recursos.push(this.recurso);
+    //this.recursos.push(this.recurso);
+    //this.recursos.push(this.recurso);
+    //this.recursos.push(this.recurso);
+
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
     this.recursoService.ObterRecursoPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado=>{
-      this.recursos = resultado;        
+      this.recursos = resultado; 
   }) 
   }
 

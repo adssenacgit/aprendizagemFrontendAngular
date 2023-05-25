@@ -10,7 +10,8 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 })
 export class UsuarioProximasAtividadesComponent implements OnInit {
 
-  atividades : Atividade[];
+  atividades : Atividade[]=[];
+  selectedAtividade : Atividade;
   idUsuarioLogado : string;
   data : string[];
 

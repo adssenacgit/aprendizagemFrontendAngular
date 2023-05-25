@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Comentario } from 'src/app/models/Comentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
+
+import { ApoioDuvidasComponent } from '../apoio-duvidas.component';
+import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 
 @Component({
   selector: 'app-comentarios',
@@ -11,11 +15,14 @@ export class ComentarioComponent implements OnInit {
 
   comentarios: Comentario[] = [];
 
-  constructor(private comentarioService: ComentarioService) { }
+  constructor(private route: ActivatedRoute, private comentarioService: ComentarioService, ) { }
 
   ngOnInit() {
-    this.comentarioService.getComentarios()
-      .subscribe(comentarios => this.comentarios = comentarios);
+    let id = this.route.snapshot.params["id"]
+    this.comentarioService.FiltrarChapterAssuntoComentarioPorId(id).subscribe((data)=>{
+      this.comentarios = data;
+    });
   }
 
 }
+export { Comentario };

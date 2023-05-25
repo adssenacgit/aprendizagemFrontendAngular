@@ -3,7 +3,25 @@
 	color="primary"
 	style="background-color: white; display: flex; flex-direction: row-reverse">
 	<div class="botoes__Menu">
-		<p-button icon="pi pi-bell" styleClass="p-button-warning"></p-button>
+		<p-button icon="pi pi-bell" styleClass="p-button-warning" (click)="sidebarVisible = true"></p-button>
 		<app-menu-usuario></app-menu-usuario>
 	</div>
 </mat-toolbar>
+
+<p-sidebar [(visible)]="sidebarVisible" position="right">
+    <ng-template pTemplate="header">Notificações</ng-template>
+    <ng-template pTemplate="content">
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                    <li *ngFor="let item of list">
+                        <app-card-notificacao
+                            [title]="item.title"
+                            [date]="item.date"
+                        ></app-card-notificacao>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ng-template>
+</p-sidebar>

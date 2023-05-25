@@ -10,7 +10,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class UsuarioDadosComponent implements OnInit {
 
-  usuario : Usuario
+  usuario : Usuario = new Usuario;
   idUsuarioLogado : string;
 
   constructor(

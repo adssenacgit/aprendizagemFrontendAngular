@@ -8,12 +8,23 @@
         <tr>
           <th>Avaliação</th>
           <th>Conceito</th>
+          <th>Feedbacks</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-reg>
         <tr>
           <td>{{ reg.avaliacaoTipo.descricao }}</td>
           <td>{{ reg.avaliacaoConceito.descricao }}</td>
+          <td>{{ reg.comentario }}
+            <div class="card flex justify-content-center">
+              <p-button (click)="showDialog()" icon="pi pi-external-link" label="Mostrar"></p-button>
+              <p-dialog header="Header" [(visible)]="dialogVisible" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                <p>
+                  {{ reg.comentario }}
+                </p>
+              </p-dialog>
+            </div>
+          </td>
         </tr>
       </ng-template>
     </p-table>
