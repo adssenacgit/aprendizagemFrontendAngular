@@ -2,12 +2,14 @@
 	<p-listbox [options]="atividades" [(ngModel)]="selectedAtividade" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '310px' }" [style]="{ width: '100%' }">
 		<ng-template pTemplate="header">
 			<b>Tarefas Pendentes</b>
-		</ng-template>		
-		<ng-template let-atividade pTemplate="item">
-			<div class="flex align-items-center gap-2">				
-				<h4 class="header"><b>Entrega: {{atividades[0].dataFim | date:"dd/MM/yyyy HH:mm":"+0000"}}</b></h4>
-				<div>{{ atividade.descricao }}</div>
-			</div>
 		</ng-template>
-	</p-listbox>	
+		<ng-template let-atividade pTemplate="item" id="atividade">
+        <li [routerLink]="['/atividadeverificacao', this.atividade.situacaoAprendizagem.id]">
+          <div class="flex align-items-center gap-2">
+            <h4 class="header"><b>Entrega: {{atividades[0].dataFim | date:"dd/MM/yyyy HH:mm":"+0000"}}</b></h4>
+            <div>{{ atividade.descricao }}</div>
+          </div>
+        </li>
+		</ng-template>
+	</p-listbox>
 </div>

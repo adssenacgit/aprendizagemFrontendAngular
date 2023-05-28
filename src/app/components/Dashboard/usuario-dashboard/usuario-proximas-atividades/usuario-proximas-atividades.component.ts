@@ -10,20 +10,24 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 })
 export class UsuarioProximasAtividadesComponent implements OnInit {
 
-  atividades : Atividade[]=[];
-  selectedAtividade : Atividade;
-  idUsuarioLogado : string;
-  data : string[];
+  atividades: Atividade[];
+  selectedAtividade: Atividade;
+  idUsuarioLogado: string;
+  data: string[];
 
   constructor(
-    private atividadeService : AtividadeService,
+    private atividadeService: AtividadeService,
     private authGuardService: AuthGuardService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
-    this.atividadeService.ObterAtividadesRecentesPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado =>{
+    this.ObterAtividades();
+  }
+
+  ObterAtividades = () => {
+    this.atividadeService.ObterAtividadesRecentesPeloUsuarioId(this.idUsuarioLogado).subscribe((resultado) => {
       this.atividades = resultado;
     })
   }
