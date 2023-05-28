@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,24 +18,34 @@ const httpOptions = {
 export class AtividadeService {
 
   url = environment.apiServer + 'api/Atividade';
+  urlAtividade = environment.apiServer + 'api/Atividade/AtividadeEnviarArquivoByAtividadeIdByEstudanteId';
   constructor(private https: HttpClient) { }
 
+  //Atividades por situação de aprendizagem
   FiltrarAtividadebySituacaoAprendizagemId (id: number) : Observable<Atividade[]>
   {
     const apiUrl = `${this.url}/FiltrarAtividadebySituacaoAprendizagemId/${id}`;
     return this.https.get<Atividade[]>(apiUrl);
   }
-//----
-//Atividade Estudo Prévio
-  ObterAtividadePorSituacaoId (situacaoId: number) : Observable<Atividade[]>
+
+  //Atividade por situação de aprendizagem
+  ObterAtividadePorSituacaoId (situacaoId: number) : Observable<Atividade>
   {
     const apiUrl = `${this.url}/FiltrarAtividadeBySituacaoAprendizagemId/${situacaoId}`
-    return  this.https.get<Atividade[]>(apiUrl);
+    return  this.https.get<Atividade>(apiUrl);
   }
 
   ObterAtividadesRecentesPeloUsuarioId(usuarioId : string){
     const apiUrl = `${this.url}`
     return this.https.get<Atividade[]>(apiUrl);
+  }
+
+  CadastrarAtividade(atividade: Set<File>, atividadeId: number, usuarioId: number){
+    const formData = new FormData();
+    atividade.forEach(arquivo => formData.append('file', arquivo, arquivo.name));
+
+    const request = new HttpRequest('POST', `${this.urlAtividade}/${atividadeId}/${usuarioId}` , formData);
+    return this.https.request(request);
   }
 
   async formatarAtividades(questoes : Atividade[]) {
@@ -49,7 +59,7 @@ export class AtividadeService {
           atividade.enunciado = enunciados[0];
           for (let index = 1; index < enunciados.length; index++) {
             atividade.alternativas?.push(enunciados[index]);
-          } 
+          }
         }
       }
     });
