@@ -1,18 +1,74 @@
 <!-- <div *ngIf="loading else carregado">
     <mat-progress-bar mode="buffer"></mat-progress-bar>
 </div> -->
-<div style="margin-top: 100px; background-color: white;" >
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <h1><b>{{situacaoAprendizagem.titulo}}</b></h1>
+<div style="margin-top: 100px; background-color: white">
+  <div style="display: flex; justify-content: center; align-items: center">
+    <h1>{{ situacaoAprendizagem.descricao }}</h1>
+  </div>
+  <mat-card
+    style="
+      margin-left: 3em;
+      margin-right: 3em;
+      background-color: #e5e5e5;
+      padding: 2em;
+    "
+  >
+    <mat-card-title style="font-size: 16px">ATIVIDADE DE VERIFICAÇÃO</mat-card-title>
+      <h5>Descrição:{{ atividadeVerificacao.descricao }}</h5><br>
+      <h5>Duração:{{ atividadeVerificacao.situacaoAprendizagem.descricao }}</h5><br>
+      <h5>Dificuldade:{{ situacaoAprendizagem.grauDificuldade.descricao }}</h5>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+    >
+      Anexar
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <input
+              class="form-control"
+              type="file"
+              (change)="onFileSelected($event)"
+              multiple
+            />
+            <label></label>
+          </div>
+          <div class="modal-footer">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              (click)="enviarArquivo()"
+              [disabled]="!files"
+            >
+              Enviar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <mat-card style="margin-left: 3em; margin-right: 3em; background-color: #e5e5e5; padding: 2em;">
-        <mat-card-title style="font-size: 16px;">ATIVIDADE DE ESTUDO PRÉVIO:</mat-card-title>
-        <mat-card-content><b>Descrição: </b>{{situacaoAprendizagem.descricao}}</mat-card-content>
-        <mat-card-content><b>Duração: </b>{{situacaoAprendizagem.duracao}}</mat-card-content>
-        <mat-card-content><b>Dificuldade: </b>{{situacaoAprendizagem.grauDificuldade.descricao}}</mat-card-content>
-        <mat-card-content><b>Aviso: </b>Ao iniciar a tarefa o aluno não poderá interrompê-lo, ele deverá ser concluído dentro da duração mencionada anteriormente. Clique no botão abaixo para iniciá-lo.</mat-card-content>
-        <mat-card-actions style="display: flex; justify-content: center; align-items: center;">
-            <button mat-raised-button color="primary" (click)="comecarAtividade()">Iniciar Tarefa</button>
-        </mat-card-actions>
-    </mat-card>
+  </mat-card>
 </div>
