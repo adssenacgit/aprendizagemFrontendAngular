@@ -2,30 +2,59 @@
     <mat-progress-bar mode="buffer"></mat-progress-bar>
 </div> -->
 <div style="margin-top: 100px; background-color: white">
-  <div style="display: flex; justify-content: center; align-items: center">
-    <h1>{{ situacaoAprendizagem.descricao }}</h1>
-  </div>
-  <mat-card
-    style="
-      margin-left: 3em;
-      margin-right: 3em;
-      background-color: #e5e5e5;
-      padding: 2em;
-    "
-  >
-    <mat-card-title style="font-size: 16px">ATIVIDADE DE VERIFICAÇÃO</mat-card-title>
-      <h5>Descrição:{{ atividadeVerificacao.descricao }}</h5><br>
-      <h5>Duração:{{ atividadeVerificacao.situacaoAprendizagem.descricao }}</h5><br>
-      <h5>Dificuldade:{{ situacaoAprendizagem.grauDificuldade.descricao }}</h5>
+  <div
+    style="display: flex; justify-content: center; align-items: center"
+  ></div>
+  <mat-card id="mat-card">
+    <!-- <mat-card-title
+      style="font-size: 16px; font-weight: bolder"
+      *ngIf="atividades !== null"
+      >
+    </mat-card-title> -->
 
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
-    >
-      Anexar
-    </button>
+    <mat-card-content>
+
+      <div>
+        <p class="titulo">Situação de aprendizagem:</p>
+        <p>{{ atividades[0].situacaoAprendizagem.descricao }}</p>
+      </div>
+
+      <div>
+        <p class="titulo">Atividade:</p>
+        <p>{{ atividades[0].descricao }}</p>
+      </div>
+
+      <div>
+        <p class="titulo">Início:</p>
+        <p>
+          {{
+            atividades[0].dataInicio
+              | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR"
+              | titlecase
+          }}
+        </p>
+      </div>
+
+      <div>
+        <p class="titulo">Término:</p>
+        <p>
+          {{
+            atividades[0].dataFim
+              | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR"
+              | titlecase
+          }}
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      >
+        Anexar
+      </button>
+    </mat-card-content>
 
     <!-- Modal -->
     <div
@@ -59,10 +88,9 @@
           <div class="modal-footer">
             <button
               mat-raised-button
-              color="primary"
               type="submit"
               (click)="enviarArquivo()"
-              [disabled]="!files"
+              [disabled]="!file"
             >
               Enviar
             </button>

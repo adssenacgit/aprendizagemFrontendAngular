@@ -1,0 +1,32 @@
+#mat-card{
+  margin-left: 3em;
+  margin-right: 3em;
+  background-color: #e5e5e5;
+  padding: 2em;
+  padding-bottom: 1em;
+  /* Rectangle 86 */
+
+
+background: #FFFFFF;
+box-shadow: 0.125rem 0.250rem 1rem rgba(0, 0, 0, 0.25);
+border-radius: 1rem;
+}
+
+button {
+  background-color: #004a8d;
+  border-radius: 6px;
+  border-style: none;
+  color: #ffffff;
+  font-family: "Mulish";
+}
+
+button:hover {
+  background: #f2f2f5;
+  color: #4787f3;
+  font-family: "Mulish";
+}
+
+.titulo{
+  font-weight: bolder;
+  margin-bottom: auto;
+}

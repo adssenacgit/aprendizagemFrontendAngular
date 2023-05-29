@@ -17,15 +17,17 @@ import { UnidadeCurricularService } from 'src/app/services/unidade-curricular.se
 })
 
 export class EstudoPrevioComponent implements OnInit {
+  visible: boolean;
   loading: boolean = true;
   selectedFile: File | null;
-  files: Set<File>;
+  // files: Set<File>;
+  file: File;
+  uintArrayFile: Uint8Array;
   idEstudanteUsuarioLogado: number;
   idAtividade: number;
   teste: string;
   inscricao: Subscription;
   atividades: Atividade[];
-  atividadeVerificacao: Atividade;
   idSituacao: number;
   situacaoAprendizagem: SituacaoAprendizagem;
 
@@ -47,7 +49,6 @@ export class EstudoPrevioComponent implements OnInit {
 
         this.obterAtividade();
 
-        this.obterSituacaoAprendizagem();
       }
     )
   }
@@ -57,39 +58,50 @@ export class EstudoPrevioComponent implements OnInit {
   }
 
   obterAtividade = () => {
-    this.atividadeService.ObterAtividadePorSituacaoId(this.idAtividade)
+    this.atividadeService.FiltrarAtividadebySituacaoAprendizagemId(this.idAtividade)
       .subscribe((resultado) => {
-        this.atividadeVerificacao = resultado;
-        console.log(this.atividadeVerificacao);
+        this.atividades = resultado;
+        console.log(this.atividades);
       });
   };
 
-  obterSituacaoAprendizagem = () => {
-    this.situacaoAprendizagemService.ObterSituacaoAprendizagemPorId(this.idSituacao)
-      .subscribe((resultado) => {
-        this.situacaoAprendizagem = resultado;
-        console.log(this.situacaoAprendizagem);
-      });
-  };
+  // onFileSelected($event: any) {
+  //   const selectedFile = $event.target.files;
+  //   const fileName = [];
+  //   this.files = new Set();
+  //   for (let index = 0; index < selectedFile.length; index++) {
+  //     fileName.push(selectedFile[index].name);
+  //     this.files.add(selectedFile[index]);
+  //   }
+  //   fileName.join(", ");
+  //   console.log($event.target.files);
+  // }
 
-  onFileSelected($event: any) {
-    const selectedFile = $event.target.files;
-    const fileName = [];
-    this.files = new Set();
-    for (let index = 0; index < selectedFile.length; index++) {
-      fileName.push(selectedFile[index].name);
-      this.files.add(selectedFile[index]);
-    }
-    fileName.join(", ");
-    console.log($event.target.files);
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.convertToBinaryAndSave(file);
+  }
+
+  convertToBinaryAndSave(file: File) {
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const binaryString: string | ArrayBuffer | null = reader.result;
+      const uintArray = new Uint8Array(binaryString as ArrayBuffer);
+      // Enviar os dados binários para o servidor
+      this.uintArrayFile = uintArray;
+      this.enviarArquivo();
+    };
+    reader.readAsArrayBuffer(file);
   }
 
   enviarArquivo() {
-    if (this.files && this.files.size > 0) {
-      this.atividadeService.CadastrarAtividade(this.files, this.idAtividade, this.idEstudanteUsuarioLogado)
+    if (this.uintArrayFile !== null) {
+      this.atividadeService.CadastrarAtividade(this.uintArrayFile, this.idAtividade, this.idEstudanteUsuarioLogado)
         .subscribe(() => { console.log("Upload concluído!") });
     }
   }
+
 
   ngOnDestroy(): void {
     this.inscricao.unsubscribe();
