@@ -40,12 +40,22 @@ export class AtividadeService {
     return this.https.get<Atividade[]>(apiUrl);
   }
 
-  CadastrarAtividade(atividade: Set<File>, atividadeId: number, usuarioId: number){
-    const formData = new FormData();
-    atividade.forEach(arquivo => formData.append('file', arquivo, arquivo.name));
+  // CadastrarAtividade(atividade: Set<File>, atividadeId: number, usuarioId: number){
+  //   const formData = new FormData();
+  //   // atividade.forEach(arquivo => formData.append('file', arquivo, arquivo.name));
 
-    const request = new HttpRequest('POST', `${this.urlAtividade}/${atividadeId}/${usuarioId}` , formData);
-    return this.https.request(request);
+  //   const request = new HttpRequest('POST', `${this.urlAtividade}/${atividadeId}/${usuarioId}` , formData);
+  //   return this.https.request(request);
+  // }
+
+  CadastrarAtividade(atividade: Uint8Array, atividadeId: number, usuarioId: number){
+    // const formData = new FormData();
+    // atividade.forEach(arquivo => formData.append('file', arquivo, arquivo.name));
+
+    // const request = new HttpRequest('POST', `${this.urlAtividade}/${atividadeId}/3b700ecc-cec9-4be4-8c00-48bced543861/${usuarioId}/` , { binaryData: Array.from(atividade) }, httpOptions);
+    // return this.https.request(request);
+    return this.https.post(`${this.urlAtividade}/${atividadeId}/${usuarioId}` , { binaryData: Array.from(atividade) }, httpOptions);
+
   }
 
   async formatarAtividades(questoes : Atividade[]) {
