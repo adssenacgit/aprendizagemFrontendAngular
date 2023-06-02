@@ -30,6 +30,8 @@ import { NovoBadgeComponent } from './components/Badge/novo-badge/novo-badge.com
 import { AtualizarBadgeComponent } from './components/Badge/atualizar-badge/atualizar-badge.component';
 import { ListagemUsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/listagem-usuario-badges/listagem-usuario-badges.component';
 import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-objetos-aprendizagem/lista-objetos-aprendizagem.component';
+import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
+import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
 
 const routes: Routes = [
   {
@@ -114,7 +116,13 @@ const routes: Routes = [
       },    
       {
         path: 'unidadeCurricular/objetosaprendizagem', component: ListaObjetosAprendizagem
-      }         
+      },
+      {
+        path: 'comunidade/comentario/:id', component: ComentarioComponent
+      },
+      {
+        path: 'comunidade/novapergunta', component: NovaPerguntaComponent
+      }
     ]
   },
   {

@@ -24,10 +24,10 @@ export class UsuarioListaUcComponent implements OnInit {
   ngOnInit(): void {
     this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
     this.grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe(resultado => {
-      this.grupos = resultado;  
+      this.grupos = resultado; 
       this.grupos.forEach((grupo) => 
         this.frequenciaService.ObterFrequenciaByGrupoIdByEstudanteId(grupo.id, this.idEstudanteUsuarioLogado).subscribe(resultado => {grupo.frequencia = resultado.frequencia})
-      )    
+      )
       this.loading = false;
     });    
   }

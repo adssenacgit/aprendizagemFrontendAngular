@@ -10,7 +10,20 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 export class HeaderComponent implements OnInit {
 
   idUsuarioLogado : string;
+  
+  sidebarVisible: boolean;
 
+  list = [
+    {
+      title: "Venha participar da superaula de Power BI",
+      date: "01/01/2001",
+    },
+    {
+      title: "Evento de carreira no auditório",
+      date: "01/01/2001",
+    }
+
+  ];
   constructor(
     private authGuardService: AuthGuardService) { }
 

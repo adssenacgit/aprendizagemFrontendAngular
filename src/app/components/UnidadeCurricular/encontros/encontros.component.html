@@ -196,19 +196,14 @@
           <ng-template pTemplate>
             <div class="col flex">
               <div *ngFor="let objetoAprendizagem of objetosAprendizagem">
-                <div class="col flex align-items-center justify-content-center">
-                  <h2> {{objetoAprendizagem.descricao}}</h2>
-                  <span class="pi pi-download"></span>
-                  <!-- <p>{{objeto.n}}</p> -->
-                  <p>Dificuldade: {{objetoAprendizagem.grauDificuldade.descricao}}  </p>
-                  <div *ngIf="objetoAprendizagem.status == 0; elseBlock">
-                    <p>Status: Inativo</p>
-                  </div>
-                  <div #elseBlock>
-                    <p>Status: Ativo</p>
-                  </div>
-
-                </div> 
+                <p-timeline [value]="objetosAprendizagem" >
+                  <ng-template pTemplate="content" let-objetoAprendizagem>
+                      {{ objetoAprendizagem.descricao }}
+                  </ng-template>
+                  <ng-template pTemplate="opposite" let-objetoAprendizagem>
+                      {{ objetoAprendizagem.grauDificuldade.descricao }}
+                  </ng-template>    
+                </p-timeline>
                 <!--
                 <p>{{objetoAprendizagem.id}} - {{objetoAprendizagem.descricao}}</p>
                 -->

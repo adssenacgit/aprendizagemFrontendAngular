@@ -20,7 +20,6 @@ export class ChapterListagemGeralComponent implements OnInit {
   ngOnInit(): void {
     this.chapterAssuntoService.ObterTodos().subscribe((data) => {
       this.chapterAssuntos = data;
-      console.log(data);
     });
   }
 }
