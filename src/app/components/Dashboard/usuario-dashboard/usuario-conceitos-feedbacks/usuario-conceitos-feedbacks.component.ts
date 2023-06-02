@@ -4,6 +4,7 @@ import { Grupo } from 'src/app/models/Grupo';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { RegistroAvaliacaoService } from 'src/app/services/registro-avaliacao.service';
 import { GrupoService } from 'src/app/services/grupo.service';
+import { AcompanhamentoService } from 'src/app/services/acompanhamento.service';
 
 
 @Component({
@@ -30,7 +31,6 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
     private registroAvaliacaoService : RegistroAvaliacaoService, 
     private acompanhamentoService : AcompanhamentoService,
     private grupoService: GrupoService,
-    private AcompanhamentoService: AcompanhamentoService,
     private authGuardService: AuthGuardService,
 
   ) 
@@ -55,5 +55,4 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
     //console.log(this.registrosAvaliacaoAtual);
     //console.log(this.idUsuarioLogado);
   }
-  
-
+}

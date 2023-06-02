@@ -1,3 +1,5 @@
+import { Acompanhamento } from "./Acompanhamento";
+
 
 export class AcompanhamentoComentario {
     id: number;
