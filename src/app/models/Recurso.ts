@@ -8,5 +8,4 @@ export class Recurso {
   dataCadastro: string;
   status:       number;
   usuarioId:    string;
-  usuario:      Usuario;
 }

@@ -23,7 +23,11 @@ export class UsuarioProximasAtividadesComponent implements OnInit {
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
-    this.atividadeService.ObterAtividadesRecentesPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado =>{
+    this.ObterAtividades();
+  }
+
+  ObterAtividades = () => {
+    this.atividadeService.ObterAtividadesRecentesPeloUsuarioId(this.idUsuarioLogado).subscribe((resultado) => {
       this.atividades = resultado;
     })
   }

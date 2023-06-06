@@ -35,5 +35,4 @@ export class RegistroAvaliacaoService {
     const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId/${estudanteId}/${grupoId}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);
   }
-
 }

@@ -24,3 +24,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .recesso-institucional {
     background-color: gray !important;
 }
+
+.p-button.p-fileupload-choose {
+    background-color: blue;
+    color: white;
+}

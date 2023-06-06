@@ -71,6 +71,10 @@ import { CardNotificacaoComponent } from './components/CardNotificacao/card-noti
 
 import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
 
+import { MensagensComponent } from './components/Dashboard/dashboard/mensagens/mensagens.component';
+import { CardContatoComponent } from './components/Dashboard/dashboard/mensagens/card-contato/card-contato.component';
+import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/meus-recursos.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -105,6 +109,10 @@ import { MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import Swal from 'sweetalert2';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import { ButtonModule } from 'primeng/button';
 import { ProgressBarModule } from 'primeng/progressbar';
@@ -128,6 +136,7 @@ import { SplitterModule } from 'primeng/splitter';
 import { AvatarModule } from 'primeng/avatar';
 import { ListboxModule } from 'primeng/listbox';
 import { SidebarModule } from 'primeng/sidebar';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -197,7 +206,10 @@ registerLocaleData(localeFR);
     ComentarioComponent,
     ListaObjetosAprendizagem,
     CardNotificacaoComponent,
-    NovaPerguntaComponent
+    NovaPerguntaComponent,
+    MensagensComponent,
+    CardContatoComponent,
+    MeusRecursosComponent
   ],
   imports: [
     BrowserModule,
@@ -260,7 +272,11 @@ registerLocaleData(localeFR);
     SplitterModule,
     AvatarModule,
     ListboxModule,
-    SidebarModule
+    SidebarModule,
+    DynamicDialogModule,
+    ConfirmDialogModule,
+    InputTextareaModule,
+    InputTextModule
   ],
   providers: [
     CursosService,

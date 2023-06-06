@@ -1,8 +1,13 @@
 <p-card
+  *ngFor="let comentario of comentarios.slice(0,1)"
+  header="{{comentario.texto}}"
+  subheader = "">
+</p-card>
+
+<p-card
 *ngFor="let comentario of comentarios"
-header="{{ comentario.chapterAssunto.usuario.nomeCompleto }}"
-subheader="{{ comentario.data }}"
->
+header="{{ comentario.texto }}"
+subheader="{{ comentario.data }}">
   <ng-template pTemplate="header">
     
   </ng-template>

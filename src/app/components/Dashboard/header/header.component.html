@@ -3,7 +3,8 @@
 	color="primary"
 	style="background-color: white; display: flex; flex-direction: row-reverse">
 	<div class="botoes__Menu">
-		<p-button icon="pi pi-bell" styleClass="p-button-warning" (click)="sidebarVisible = true"></p-button>
+        <p-button icon="pi pi-comments" styleClass="p-button-warning" (click)="sidebarVisible2 = true"></p-button>&nbsp;
+		<p-button icon="pi pi-bell" styleClass="p-button-warning" (click)="sidebarVisible = true"></p-button>&nbsp;
 		<app-menu-usuario></app-menu-usuario>
 	</div>
 </mat-toolbar>
@@ -24,4 +25,8 @@
             </div>
         </div>
     </ng-template>
+</p-sidebar>
+
+<p-sidebar [(visible)]="sidebarVisible2" position="right" styleClass="p-sidebar-md">
+    <app-mensagens></app-mensagens>
 </p-sidebar>

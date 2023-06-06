@@ -31,4 +31,20 @@ export class RecursoService {
     const apiUrl = `${this.apiUrl}/FiltrarRecursosByUsuarioId/${id}`;
     return this.http.get<Recurso[]>(apiUrl);
   }  
+
+  SalvarRecurso(recurso: Recurso): Observable<Recurso> {
+    const apiUrl = `${this.apiUrl}`;
+    return this.http.post<Recurso>(apiUrl, recurso, httpOptions);
+  }
+
+  DeletarRecurso(id: number): Observable<Recurso> {
+    const apiUrl = `${this.apiUrl}/${id}`;
+    return this.http.delete<Recurso>(apiUrl, httpOptions);
+  }
+
+  ObterRecursoPorId(id: number): Observable<Recurso> {
+    const apiUrl = `${this.apiUrl}/${id}`;
+    return this.http.get<Recurso>(apiUrl, httpOptions);
+  }
+
 }

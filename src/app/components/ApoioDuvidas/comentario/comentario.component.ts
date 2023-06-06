@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Comentario } from 'src/app/models/Comentario';
+import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
 
 import { ApoioDuvidasComponent } from '../apoio-duvidas.component';
@@ -13,7 +13,7 @@ import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 })
 export class ComentarioComponent implements OnInit {
 
-  comentarios: Comentario[] = [];
+  comentarios: ChapterAssuntoComentario[] = [];
 
   constructor(private route: ActivatedRoute, private comentarioService: ComentarioService, ) { }
 
@@ -25,4 +25,4 @@ export class ComentarioComponent implements OnInit {
   }
 
 }
-export { Comentario };
+export { ChapterAssuntoComentario };
