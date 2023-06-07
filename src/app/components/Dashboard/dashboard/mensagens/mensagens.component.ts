@@ -60,6 +60,7 @@ export class MensagensComponent implements OnInit {
     }
   ]
 
+  activeIndex = 0;
   chat = false;
   usuario : Usuario = new Usuario;
   idUsuarioLogado : string;
@@ -78,7 +79,12 @@ export class MensagensComponent implements OnInit {
   }
 
   toggleChat(){
-    this.chat = !this.chat;
+    this.chat = !this.chat
+    // if (this.chat == false){
+    //   this.chat = true
+    // }else{
+    //   this.chat = false
+    // }
   }
 
 }
