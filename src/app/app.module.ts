@@ -151,6 +151,7 @@ import localePT from '@angular/common/locales/pt';
 import localeES from '@angular/common/locales/es';
 import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
+import { CardMensagemComponent } from './components/Dashboard/dashboard/mensagens/card-mensagem/card-mensagem.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -209,7 +210,8 @@ registerLocaleData(localeFR);
     NovaPerguntaComponent,
     MensagensComponent,
     CardContatoComponent,
-    MeusRecursosComponent
+    MeusRecursosComponent,
+    CardMensagemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/models/Usuario';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-mensagens',
@@ -58,9 +61,20 @@ export class MensagensComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  usuario : Usuario = new Usuario;
+  idUsuarioLogado : string;
+
+  constructor(
+    private usuarioService : UsuariosService,
+    private authGuardService: AuthGuardService
+    ) { }
 
   ngOnInit(): void {
+    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+
+    this.usuarioService.ObterUsuarioPorId(this.idUsuarioLogado).subscribe(resultado=>{
+      this.usuario = resultado;
+    })
   }
 
 }
