@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/Usuario';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -9,7 +9,6 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   styleUrls: ['./mensagens.component.css']
 })
 export class MensagensComponent implements OnInit {
-
   list = [
     {
       nome: "Johnny",
@@ -61,6 +60,7 @@ export class MensagensComponent implements OnInit {
     }
   ]
 
+  chat = false;
   usuario : Usuario = new Usuario;
   idUsuarioLogado : string;
 
@@ -75,6 +75,10 @@ export class MensagensComponent implements OnInit {
     this.usuarioService.ObterUsuarioPorId(this.idUsuarioLogado).subscribe(resultado=>{
       this.usuario = resultado;
     })
+  }
+
+  toggleChat(){
+    this.chat = !this.chat;
   }
 
 }

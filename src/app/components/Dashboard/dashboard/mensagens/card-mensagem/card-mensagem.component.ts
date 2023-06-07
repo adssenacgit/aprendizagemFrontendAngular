@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardMensagemComponent implements OnInit {
   @Input() nome: String;
-  @Input() msg: String;
+  @Input() mensagemTexto: String;
   @Input() imagemContato: String;
   @Input() estatus: number = 0;
   constructor() { }

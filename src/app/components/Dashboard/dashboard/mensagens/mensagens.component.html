@@ -1,7 +1,5 @@
 <section>
-    <div class="container pt-3">
-      <div class="row"></div>
-
+    <div class="container pt-3" *ngIfElse="chat; else chat">
       <p-tabView>
         <p-tabPanel header="Ultimas Mensagens">
           <div class="card">
@@ -13,6 +11,7 @@
                     [msg]="item.msg"
                     [img]="item.img"
                     [unreaded]="item.unreaded"
+                    (click)="toggleChat()"
                   ></app-card-contato>
                 </li>
               </ul>
@@ -30,6 +29,7 @@
                     [msg]="item.msg"
                     [img]="item.img"
                     [unreaded]="item.unreaded"
+                    (click)="toggleChat()"
                   ></app-card-contato>
                 </div>
               </div>
@@ -46,6 +46,7 @@
                     [msg]="item.msg"
                     [img]="item.img"
                     [unreaded]="item.unreaded"
+                    (click)="toggleChat()"
                   ></app-card-contato>
                 </div>
               </div>
@@ -54,11 +55,12 @@
         </p-tabPanel>
       </p-tabView>
 
-        <div class="container py-5">
+        <ng-template #chat class="container py-5">
 
           <div class="row">
-
-
+            <i class="pi pi-arrow-left" (click)="toggleChat()"></i>
+            <div class="card">
+              <div class="card-body">
               <ul class="list-unstyled">
                 <li class="d-flex justify-content-between mb-4">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
@@ -117,10 +119,13 @@
                 <button type="button" class="btn btn-info btn-rounded float-end">Send</button>
               </ul>
 
-
+            </div>
+            </div>
 
           </div>
 
-        </div>
+        </ng-template>
     </div>
+
+    <app-card-mensagem></app-card-mensagem>
   </section>
