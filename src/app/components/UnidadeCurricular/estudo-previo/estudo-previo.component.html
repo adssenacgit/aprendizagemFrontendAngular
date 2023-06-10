@@ -5,13 +5,7 @@
   <div
     style="display: flex; justify-content: center; align-items: center"
   ></div>
-  <mat-card id="mat-card">
-    <!-- <mat-card-title
-      style="font-size: 16px; font-weight: bolder"
-      *ngIf="atividades !== null"
-      >
-    </mat-card-title> -->
-
+  <!-- <mat-card id="mat-card">
     <mat-card-content>
 
       <div>
@@ -56,7 +50,6 @@
       </button>
     </mat-card-content>
 
-    <!-- Modal -->
     <div
       class="modal fade"
       id="staticBackdrop"
@@ -98,5 +91,62 @@
         </div>
       </div>
     </div>
-  </mat-card>
+  </mat-card> -->
+
+<div class="card flex justify-content-center">
+  <p-card header="Atividade de verificação">
+    <div>
+      <p class="titulo">Situação de aprendizagem:</p>
+      <p>{{ atividades[0].situacaoAprendizagem.descricao }}</p>
+    </div>
+
+    <div>
+      <p class="titulo">Atividade:</p>
+      <p>{{ atividades[0].descricao }}</p>
+    </div>
+
+    <div>
+      <p class="titulo">Início:</p>
+      <p>
+        {{ atividades[0].dataInicio | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+      </p>
+    </div>
+
+    <div>
+      <p class="titulo">Término:</p>
+      <p>
+        {{ atividades[0].dataFim | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+      </p>
+    </div>
+
+    <!-- <p-fileUpload name="myfile[]" url="https://www.primefaces.org/cdn/api/upload.php" [multiple]="true" accept="image/*">
+      <ng-template pTemplate="toolbar">
+          <div class="py-3">Upload 3 Files</div>
+      </ng-template>
+      <ng-template let-file pTemplate="file">
+          <div>Custom UI to display a file</div>
+      </ng-template>
+      <ng-template pTemplate="content" let-files>
+          <div>Additional content.</div>
+      </ng-template>
+    </p-fileUpload> -->
+
+    <!-- <div class="card flex justify-content-center">
+      <p-toast></p-toast>
+      <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+          <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                  <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+              </ul>
+          </ng-template>
+      </p-fileUpload>
+    </div> -->
+
+      <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" [maxFileSize]="1000000" (onUpload)="onFileSelected($event)"></p-fileUpload>
+
+      <p>{{this.files}}</p>
+
+  </p-card>
 </div>
+</div>
+
