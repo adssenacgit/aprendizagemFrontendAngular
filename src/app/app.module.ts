@@ -41,6 +41,7 @@ import { UsuarioTrilhaCursoComponent } from './components/Dashboard/usuario-dash
 import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/usuario-recursos.component';
 
 import { UnidadeCurricularDescricaoComponent } from './components/UnidadeCurricular/descricao/unidade-curricular-descricao.component';
+import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
 
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { DialogIndicadoresComponent, EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
@@ -155,7 +156,7 @@ registerLocaleData(localeFR);
     NovoCursoComponent,
     AtualizarCursoComponent,
     DialogExclusaoCursosComponent,
-    ListagemBadgesComponent,    
+    ListagemBadgesComponent,
     DialogExclusaoBadgeComponent,
     NovoBadgeComponent,
     AtualizarBadgeComponent,
@@ -197,7 +198,8 @@ registerLocaleData(localeFR);
     ComentarioComponent,
     ListaObjetosAprendizagem,
     CardNotificacaoComponent,
-    NovaPerguntaComponent
+    NovaPerguntaComponent,
+    AtividadesComponent
   ],
   imports: [
     BrowserModule,
@@ -214,7 +216,7 @@ registerLocaleData(localeFR);
     MatDividerModule,
     MatSelectModule,
     MatGridListModule,
-    MatDialogModule,    
+    MatDialogModule,
     FormsModule,
     MatAutocompleteModule,
     MatPaginatorModule,
@@ -232,7 +234,7 @@ registerLocaleData(localeFR);
         tokenGetter: PegarTokenUsuario,
         allowedDomains: ['localhost:5099'],
         disallowedRoutes: []
-      }      
+      }
     }),
     MatSidenavModule,
     MatListModule,
@@ -267,8 +269,8 @@ registerLocaleData(localeFR);
     CursoTiposService,
     FuncoesService,
     OfertasService,
-    AuthGuardService,    
-    HttpClientModule, 
+    AuthGuardService,
+    HttpClientModule,
     {provide:LocationStrategy, useClass:HashLocationStrategy},
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
   ],
