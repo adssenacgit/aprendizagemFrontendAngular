@@ -33,6 +33,7 @@ import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-o
 import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
 import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
 import { UsuarioProximasAtividadesComponent } from './components/Dashboard/usuario-dashboard/usuario-proximas-atividades/usuario-proximas-atividades.component';
+import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,9 @@ const routes: Routes = [
       },
       {
         path: 'atividadeverificacao/:id', component: EstudoPrevioComponent
+      },
+      {
+        path: 'atividades', component: AtividadesComponent
       },
       {
         path: 'dashboard/administradordashboard', component: AdministradorDashboardComponent
