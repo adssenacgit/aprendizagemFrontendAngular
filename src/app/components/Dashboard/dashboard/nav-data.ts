@@ -15,7 +15,7 @@ export const navbarData = [
 		label: 'Badges',
 	},
 	{
-		routelink: 'tarefas',
+		routelink: 'atividades',
 		icon: 'fal fa-tasks',
 		label: 'Tarefas',
 	},
