@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Mensagem } from 'src/app/models/Mensagem';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-card-mensagem',
@@ -6,13 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card-mensagem.component.css']
 })
 export class CardMensagemComponent implements OnInit {
-  @Input() nome: String;
-  @Input() mensagemTexto: String;
-  @Input() imagemContato: String;
-  @Input() estatus: number = 0;
-  constructor() { }
+  idUsuarioLogado : string;
+  @Input() mensagem: Mensagem;
+
+
+  constructor(private authGuardService: AuthGuardService) { }
 
   ngOnInit(): void {
+    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
   }
 
 }

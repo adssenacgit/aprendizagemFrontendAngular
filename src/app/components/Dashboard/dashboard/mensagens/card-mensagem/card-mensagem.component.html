@@ -1,19 +1,33 @@
 <div class="d-flex justify-content-between mb-4">
-  <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
-    class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+  <img
+    *ngIf="mensagem.usuarioIdAutor != idUsuarioLogado"
+    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+    alt="avatar"
+    class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
+    width="60"
+  />
   <div>
-
     <div class="d-flex justify-content-between py-1 px-3">
       <p class="fw-bold mb-0 name">Brad Pitt</p>
-      <p class="text-muted small mb-0"><i class="far fa-clock"></i> 12 mins ago</p>
+      <p class="text-muted small mb-0">
+        <i class="far fa-clock"></i> 12 mins ago
+      </p>
     </div>
     <div class="card">
       <div class="card-body">
         <p class="mb-0">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
     </div>
   </div>
+
+  <img
+    *ngIf="mensagem.usuarioIdAutor == idUsuarioLogado"
+    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+    alt="avatar"
+    class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
+    width="60"
+  />
 </div>
