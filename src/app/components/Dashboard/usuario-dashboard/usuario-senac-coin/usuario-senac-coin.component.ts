@@ -16,6 +16,7 @@ export class UsuarioSenacCoinComponent implements OnInit {
   loading: boolean = true;
   senacCoinMovimentacoes : SenacCoinMovimentacao[]; 
   idUsuarioLogado : string;
+  value: string;
 
   constructor(
     private senacCoinService : SenacCoinService, 
