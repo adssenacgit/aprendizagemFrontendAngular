@@ -4,6 +4,7 @@ import { Chapter } from 'src/app/models/Chapter';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 import { Usuario } from 'src/app/models/Usuario';
 import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
+import { ChapterService } from 'src/app/services/chapter.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
@@ -15,12 +16,15 @@ export class NovaPerguntaComponent implements OnInit {
 
   form: FormGroup;
   submitted = false;
-  pergunta: ChapterAssunto;
+  pergunta: ChapterAssunto = new ChapterAssunto();
+  
 
 
 
   constructor(
     private fb:FormBuilder,private service: ChapterAssuntoService,private serviceUsuario: UsuariosService) { }
+
+    
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -29,7 +33,7 @@ export class NovaPerguntaComponent implements OnInit {
     
 
        
-   
+   // 3b700ecc-cec9-4be4-8c00-48bced543861 id maria estudante
  }    
  hasError(field: string) {
       return this.form.get(field)?.errors;
@@ -41,10 +45,13 @@ export class NovaPerguntaComponent implements OnInit {
     console.log(this.form.value);
     if(this.form.valid) {
       console.log("Submit");
+     
     
-
+      
       
       this.pergunta.descricao = this.form.value;
+
+     
 
 
       this.service.NovoChapterAssunto(this.pergunta).subscribe(
