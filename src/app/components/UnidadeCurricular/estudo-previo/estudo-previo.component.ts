@@ -21,16 +21,17 @@ export class EstudoPrevioComponent implements OnInit {
   loading: boolean = true;
   selectedFile: File | null;
   files: Set<File>;
-  // file: File;
+  filesName: string[];
   uploadedFiles: File[];
   uintArrayFile: Uint8Array;
   idEstudanteUsuarioLogado: number;
   idAtividade: number;
   teste: string;
   inscricao: Subscription;
-  atividades: Atividade[];
+  atividade: Atividade;
   idSituacao: number;
   situacaoAprendizagem: SituacaoAprendizagem;
+  atividadeTipoId: number;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -46,18 +47,19 @@ export class EstudoPrevioComponent implements OnInit {
 
     this.inscricao = this.route.params.subscribe(
       (params: any) => {
-        this.idAtividade = params['id']
-
+        this.idAtividade = params['id'];
         this.obterAtividade();
-
       }
     )
   }
 
   obterAtividade = () => {
-    this.atividadeService.FiltrarAtividadebySituacaoAprendizagemId(this.idAtividade)
+    this.atividadeService.ObterAtividadePorId(this.idAtividade)
       .subscribe((resultado) => {
-        this.atividades = resultado;
+        this.atividade = resultado;
+        this.atividadeTipoId = this.atividade.atividadeTipo.id
+        console.log(`Tipo da atividade: ${this.atividadeTipoId}`)
+        console.log(this.atividade)
       });
   };
 
@@ -75,14 +77,12 @@ export class EstudoPrevioComponent implements OnInit {
 
   onFileSelected($event: any) {
     const selectedFile = $event.target.files;
-    const fileName = [];
+
     this.files = new Set();
     for (let index = 0; index < selectedFile.length; index++) {
-      fileName.push(selectedFile[index].name);
+      this.filesName.push(selectedFile[index].name);
       this.files.add(selectedFile[index]);
     }
-    fileName.join(", ");
-    console.log($event.target.files);
     const file: File = $event.target.files[0];
     this.convertToBinaryAndSave(file);
   }
@@ -94,22 +94,20 @@ export class EstudoPrevioComponent implements OnInit {
       const uintArray = new Uint8Array(binaryString as ArrayBuffer);
       // Enviar os dados binários para o servidor
       this.uintArrayFile = uintArray;
-      if (this.uintArrayFile !== null) {
-        this.atividadeService.CadastrarAtividade(this.uintArrayFile, this.idAtividade, this.idEstudanteUsuarioLogado)
-          .subscribe(() => { console.log("Upload concluído!") });
-      }
     };
     reader.readAsArrayBuffer(file);
   }
 
-  onUpload($event: any) {
-    for(let file of $event.files) {
-        this.uploadedFiles.push(file);
+  saveToDatabase(){
+    if (this.uintArrayFile !== null) {
+      this.atividadeService.CadastrarAtividade(this.uintArrayFile, this.idAtividade, this.idEstudanteUsuarioLogado)
+        .subscribe(() => { console.log("Upload concluído!") });
     }
   }
 
-
-
+  ngOnChanges(){
+    this.atividadeTipoId;
+  }
 
   ngOnDestroy(): void {
     this.inscricao.unsubscribe();

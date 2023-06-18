@@ -30,3 +30,20 @@ button:hover {
   font-weight: bolder;
   margin-bottom: auto;
 }
+
+#card-flex{
+  display: flex;
+  justify-content: center;
+}
+
+.p-card .p-card-content{
+  padding: .25rem 0 .25rem .25rem;
+}
+
+.row{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2.5rem;
+}

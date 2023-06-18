@@ -1,10 +1,8 @@
 <!-- <div *ngIf="loading else carregado">
     <mat-progress-bar mode="buffer"></mat-progress-bar>
 </div> -->
-<div style="margin-top: 100px; background-color: white">
-  <div
-    style="display: flex; justify-content: center; align-items: center"
-  ></div>
+<div class="row">
+  <!-- <div style="display: flex; justify-content: center; align-items: center"></div> -->
   <!-- <mat-card id="mat-card">
     <mat-card-content>
 
@@ -92,61 +90,172 @@
       </div>
     </div>
   </mat-card> -->
+  <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
 
-<div class="card flex justify-content-center">
-  <p-card header="Atividade de verificação">
-    <div>
-      <p class="titulo">Situação de aprendizagem:</p>
-      <p>{{ atividades[0].situacaoAprendizagem.descricao }}</p>
+    <div class="card flex" *ngIf="atividadeTipoId===1">
+      <p-card>
+        <div>
+          <p class="titulo">Título:</p>
+          <p>{{ atividade.situacaoAprendizagem.titulo }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Situação de aprendizagem:</p>
+          <p>{{ atividade.situacaoAprendizagem.descricao }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Atividade:</p>
+          <p>{{ atividade.descricao }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Início:</p>
+          <p>
+            {{ atividade.dataInicio | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+          </p>
+        </div>
+
+        <div>
+          <p class="titulo">Término:</p>
+          <p>
+            {{ atividade.dataFim | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+          </p>
+        </div>
+        <div class="input-group">
+          <textarea class="form-control" aria-label="With textarea" placeholder="Digite aqui..."></textarea>
+        </div>
+
+        <p-button label="Enviar" (click)="saveToDatabase()" [disabled]="!files"></p-button>
+
+      </p-card>
     </div>
 
-    <div>
-      <p class="titulo">Atividade:</p>
-      <p>{{ atividades[0].descricao }}</p>
+    <!-- Atividade com Upload id=2-->
+    <div class="card flex" *ngIf="atividadeTipoId===2">
+      <p-card>
+
+        <div>
+          <p class="titulo">Título:</p>
+          <p>{{ atividade.situacaoAprendizagem.titulo }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Situação de aprendizagem:</p>
+          <p>{{ atividade.situacaoAprendizagem.descricao }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Atividade:</p>
+          <p>{{ atividade.descricao }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Início:</p>
+          <p>
+            {{ atividade.dataInicio | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+          </p>
+        </div>
+
+        <div>
+          <p class="titulo">Término:</p>
+          <p>
+            {{ atividade.dataFim | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+          </p>
+        </div>
+
+        <input
+          class="form-control"
+          type="file"
+          (change)="onFileSelected($event)"
+          multiple
+        />
+
+        <p *ngFor="let fileName of filesName">{{ fileName }}</p>
+
+        <p-button label="Enviar" (click)="saveToDatabase()" [disabled]="!files"></p-button>
+      </p-card>
     </div>
 
-    <div>
-      <p class="titulo">Início:</p>
-      <p>
-        {{ atividades[0].dataInicio | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
-      </p>
+    <!-- Apresentação oral id=3 -->
+    <div class="card flex" *ngIf="atividadeTipoId===3">
+      <p-card>
+
+        <div>
+          <p class="titulo">Título:</p>
+          <p>{{ atividade.situacaoAprendizagem.titulo }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Situação de aprendizagem:</p>
+          <p>{{ atividade.situacaoAprendizagem.descricao }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Atividade:</p>
+          <p>{{ atividade.descricao }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Início:</p>
+          <p>
+            {{ atividade.dataInicio | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+          </p>
+        </div>
+
+        <div>
+          <p class="titulo">Término:</p>
+          <p>
+            {{ atividade.dataFim | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+          </p>
+        </div>
+
+        <div>
+          <p>Apresentação oral id=3</p>
+        </div>
+      </p-card>
     </div>
 
-    <div>
-      <p class="titulo">Término:</p>
-      <p>
-        {{ atividades[0].dataFim | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
-      </p>
+    <!-- Atividade de multipla escolha id=4 -->
+    <div class="card flex" *ngIf="atividadeTipoId===4">
+      <p-card>
+
+        <div>
+          <p class="titulo">Título:</p>
+          <p>{{ atividade.situacaoAprendizagem.titulo }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Situação de aprendizagem:</p>
+          <p>{{ atividade.situacaoAprendizagem.descricao }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Atividade:</p>
+          <p>{{ atividade.descricao }}</p>
+        </div>
+
+        <div>
+          <p class="titulo">Início:</p>
+          <p>
+            {{ atividade.dataInicio | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+          </p>
+        </div>
+
+        <div>
+          <p class="titulo">Término:</p>
+          <p>
+            {{ atividade.dataFim | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }}
+          </p>
+        </div>
+
+        <div>
+          <form class="flex align-items-center gap-1">
+            <p-checkbox formControlName="city" value="New York" inputId="ny"></p-checkbox>
+            <label for="ny">New York</label>
+          </form>
+        </div>
+      </p-card>
     </div>
-
-    <!-- <p-fileUpload name="myfile[]" url="https://www.primefaces.org/cdn/api/upload.php" [multiple]="true" accept="image/*">
-      <ng-template pTemplate="toolbar">
-          <div class="py-3">Upload 3 Files</div>
-      </ng-template>
-      <ng-template let-file pTemplate="file">
-          <div>Custom UI to display a file</div>
-      </ng-template>
-      <ng-template pTemplate="content" let-files>
-          <div>Additional content.</div>
-      </ng-template>
-    </p-fileUpload> -->
-
-    <!-- <div class="card flex justify-content-center">
-      <p-toast></p-toast>
-      <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
-          <ng-template pTemplate="content">
-              <ul *ngIf="uploadedFiles.length">
-                  <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-              </ul>
-          </ng-template>
-      </p-fileUpload>
-    </div> -->
-
-      <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" [maxFileSize]="1000000" (onUpload)="onFileSelected($event)"></p-fileUpload>
-
-      <p>{{this.files}}</p>
-
-  </p-card>
+  </div>
 </div>
-</div>
-
