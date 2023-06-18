@@ -35,6 +35,12 @@ export class AtividadeService {
     return  this.https.get<Atividade>(apiUrl);
   }
 
+  ObterAtividadePorId (atividadeId: number) : Observable<Atividade>
+  {
+    const apiUrl = `${this.url}/${atividadeId}`
+    return  this.https.get<Atividade>(apiUrl);
+  }
+
   ObterAtividadesRecentesPeloUsuarioId(usuarioId : string){
     const apiUrl = `${this.url}`
     return this.https.get<Atividade[]>(apiUrl);
