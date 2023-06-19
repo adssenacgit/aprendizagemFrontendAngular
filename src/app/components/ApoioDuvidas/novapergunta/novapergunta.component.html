@@ -4,7 +4,7 @@
     <textarea class="form-control" id="descricao" rows="3" formControlName="descricao" [ngClass]="{ 'is-invalid': submitted && hasError('descricao')}"></textarea>
   </div>
   <div>
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Enviar</button>
-    <button type ="button"  class="btn btn-default" (click)="onCancel()">Cancelar</button>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()"routerLink="/dashboard/usuariodashboard" >Enviar</button>
+    <button type ="button"  class="btn btn-default" (click)="onCancel()"routerLink="/dashboard/usuariodashboard">Cancelar</button>
   </div>
 </form>

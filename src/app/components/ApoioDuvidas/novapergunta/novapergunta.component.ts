@@ -48,17 +48,19 @@ export class NovaPerguntaComponent implements OnInit {
      
     
       
-      
-      this.pergunta.descricao = this.form.value;
-
+      this.pergunta.descricao = this.form.value.descricao 
+      this.pergunta.contadorVisualizacao = 0
+      this.pergunta.status = 1
+      this.pergunta.verificacao = 0
+      this.pergunta.chapterId = 1
+      this.pergunta.usuarioId = "3b700ecc-cec9-4be4-8c00-48bced543861"
+      this.pergunta.usuarioIdVerificacao = "3b700ecc-cec9-4be4-8c00-48bced543861"
      
 
 
-      this.service.NovoChapterAssunto(this.pergunta).subscribe(
-        sucess => console.log('sucesso'),
-        error => console.error(error),
-        () => console.log('request completo')
-      );
+
+
+      this.service.NovoChapterAssunto(this.pergunta).subscribe();
     }
       
     }
