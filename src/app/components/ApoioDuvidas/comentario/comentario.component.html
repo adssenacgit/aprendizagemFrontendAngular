@@ -2,20 +2,27 @@
 
 <p-card 
 *ngFor="let comentario of comentarios"
-subheader="{{ comentario.data }}">
+subheader="{{ comentario.data}}">
+
   <ng-template pTemplate="header">
     
   </ng-template>
   <p>
+    
     {{ comentario.texto }}
   </p>
   <ng-template pTemplate="footer">
   </ng-template>
 </p-card>
 
-<div class="form-group">
-  <label for="exampleFormControlTextarea1">Comentario</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
-</div>
 
-<p-button id="perguntarbutton" label="Comentar"></p-button>
+<form class = "needs-validation" novalidate [formGroup]="form">
+  <div class="form-group">
+    <label for="comentario">Comentario</label>
+    <textarea class="form-control" id="comentario" rows="3" formControlName="comentario"></textarea>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Enviar </button>
+    <button type ="button"  class="btn btn-default" (click)="onCancel()"routerLink="/dashboard/usuariodashboard">Cancelar</button>
+  </div>
+</form>
