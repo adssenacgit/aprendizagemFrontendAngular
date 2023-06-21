@@ -1,5 +1,14 @@
 
 
+#paginacao {
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+    justify-content: center;
+    
+}
+
+
 
 .container{
     display: flex;
