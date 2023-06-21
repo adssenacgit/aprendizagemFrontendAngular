@@ -14,16 +14,16 @@
           <table class="table" >
             <thead>
               <tr>
-                <th scope="col">Unidade Curricular</th>
-                <th scope="col">Carga Horaria</th>
-                <th scope="col">Status</th>
+                <th scope="col" id="unidadeCurricularTitNome">Unidade Curricular</th>
+                <th scope="col" id="unidadeCurricularTitHora">Carga Horaria</th>
+                <th scope="col" id="unidadeCurricularTitStatus">Status</th>
               </tr>
             </thead>
             <tbody *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares">
               <tr>
-                <td>{{ unidadesCurriculares.nome }}</td>
-                <td>{{ unidadesCurriculares.horas }}</td>
-                <td>{{ unidadesCurriculares.id }}</td>
+                <td id="unidadeCurricularNome">{{ unidadesCurriculares.nome }}</td>
+                <td id="unidadeCurricularHoras">{{ unidadesCurriculares.horas }}</td>
+                <td id="unidadeCurricularID">{{ unidadesCurriculares.id }}</td>
               </tr>
             </tbody>
           </table>
