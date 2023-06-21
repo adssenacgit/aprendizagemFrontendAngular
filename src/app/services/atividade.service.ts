@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,6 +18,7 @@ const httpOptions = {
 export class AtividadeService {
 
   url = environment.apiServer + 'api/Atividade';
+  urlAtividade = environment.apiServer + 'api/Atividade/AtividadeEnviarArquivoByAtividadeIdByEstudanteId';
   constructor(private https: HttpClient) { }
 
   FiltrarAtividadebySituacaoAprendizagemId (id: number) : Observable<Atividade[]>
@@ -25,8 +26,8 @@ export class AtividadeService {
     const apiUrl = `${this.url}/FiltrarAtividadebySituacaoAprendizagemId/${id}`;
     return this.https.get<Atividade[]>(apiUrl);
   }
-//----
-//Atividade Estudo Prévio
+
+  //Atividade por situação de aprendizagem
   ObterAtividadePorSituacaoId (situacaoId: number) : Observable<Atividade[]>
   {
     const apiUrl = `${this.url}/FiltrarAtividadeBySituacaoAprendizagemId/${situacaoId}`
@@ -37,6 +38,17 @@ export class AtividadeService {
     const apiUrl = `${this.url}`
     return this.https.get<Atividade[]>(apiUrl);
   }
+
+  CadastrarAtividade(atividade: Uint8Array, atividadeId: number, usuarioId: number){
+    // const formData = new FormData();
+    // atividade.forEach(arquivo => formData.append('file', arquivo, arquivo.name));
+
+    // const request = new HttpRequest('POST', `${this.urlAtividade}/${atividadeId}/3b700ecc-cec9-4be4-8c00-48bced543861/${usuarioId}/` , { binaryData: Array.from(atividade) }, httpOptions);
+    // return this.https.request(request);
+    return this.https.post(`${this.urlAtividade}/${atividadeId}/${usuarioId}` , { binaryData: Array.from(atividade) }, httpOptions);
+
+  }
+
 
   async formatarAtividades(questoes : Atividade[]) {
     questoes.forEach((atividade) => {

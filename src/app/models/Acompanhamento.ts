@@ -4,6 +4,7 @@ import { ObjetoAprendizagem } from "./ObjetoAprendizagem";
 import { Participante } from "./Participante";
 import { SituacaoAprendizagem } from "./SituacaoAprendizagem";
 import { AvaliacaoConceito } from './AvaliacaoConceito';
+import { AcompanhamentoComentario } from './AcompanhamentoComentario';
 
 export class Acompanhamento {
     id: number;
@@ -25,4 +26,5 @@ export class Acompanhamento {
     badgeId : Number;
     badge : Badge;
     acompanhamentoDataBadge : string;
+    comentarios: AcompanhamentoComentario;
 }

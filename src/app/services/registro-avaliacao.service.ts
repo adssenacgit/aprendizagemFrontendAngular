@@ -35,8 +35,5 @@ export class RegistroAvaliacaoService {
     const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId/${estudanteId}/${grupoId}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);
   }
-  ObterAcompanhamentoPorGrupoIdeEstudanteId(grupoId: number, estudanteId: number) : Observable<RegistroAvaliacao[]>{
-    const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId/${grupoId}/${estudanteId}`;
-    return this.https.get<RegistroAvaliacao[]>(apiUrl);
-  }
+
 }

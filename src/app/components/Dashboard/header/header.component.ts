@@ -12,15 +12,16 @@ export class HeaderComponent implements OnInit {
   idUsuarioLogado : string;
   
   sidebarVisible: boolean;
+  sidebarVisible2: boolean;
 
   list = [
     {
-      title: "Venha participar da superaula de Power BI",
-      date: "01/01/2001",
+      title: "Venha participar da super aula de Power BI",
+      date: "01/06/2023",
     },
     {
       title: "Evento de carreira no auditório",
-      date: "01/01/2001",
+      date: "18/06/2023",
     }
 
   ];

@@ -1,0 +1,64 @@
+.card{
+    margin-top: 16px;
+}
+.card-recursos{
+    padding: 32px;
+    
+}
+.class-Button{
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+}
+
+.p-button.p-fileupload-choose {
+    background-color: black;
+    color: white;
+}
+
+.telaDePostagem{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    width: 100%;
+}
+
+.titulo{
+    margin: 16px;
+}
+
+label{
+    margin-bottom: 8px;
+}
+
+.labelComentario{
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.card-recursos{
+    display: flex;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+::ng-deep p-fileUpload {
+    width: 100%;
+    margin: 0px;
+}
+
+::ng-deep .p-fileupload-buttonbar {
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep .p-input-icon-left {
+    top: -55px
+}
+
+  

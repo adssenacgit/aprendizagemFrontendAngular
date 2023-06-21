@@ -5,7 +5,7 @@ export const navbarData = [
 		label: 'Dashboard',
 	},
 	{
-		routelink: 'mensagens',
+		routelink: 'mensagens/mensagens',
 		icon: 'fal fa-comments',
 		label: 'Mensagens',
 	},

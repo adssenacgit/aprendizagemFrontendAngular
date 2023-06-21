@@ -1,3 +1,4 @@
+import { MensagensComponent } from './components/Dashboard/dashboard/mensagens/mensagens.component';
 import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/usuario-recursos.component';
 import { ChapterListagemGeralComponent } from './components/Chapters/chapter-listagem-geral/chapter-listagem-geral.component';
 import { TimelineListaComponent } from './components/UnidadeCurricular/timeline/timeline-lista/timeline-lista.component';
@@ -122,7 +123,13 @@ const routes: Routes = [
       },
       {
         path: 'comunidade/novapergunta', component: NovaPerguntaComponent
-      }
+      },
+      {
+        path: 'mensagens/mensagens', component: MensagensComponent
+      },
+      {
+        path: 'atividadeverificacao/:id', component: EstudoPrevioComponent
+      },
     ]
   },
   {
