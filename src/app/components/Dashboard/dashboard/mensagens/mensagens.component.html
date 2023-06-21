@@ -2,16 +2,16 @@
   <div class="container pt-3" *ngIf="chat == false">
     <p-tabView>
       <p-tabPanel header="Ultimas Mensagens">
-        <div class="card">
+        <div class="card" *ngIf="contatos">
           <div class="card-body">
             <ul class="list-unstyled mb-0">
-              <li *ngFor="let item of list">
+              <li *ngFor="let item of contatos">
                 <app-card-contato
-                  [nome]="item.nome"
-                  [msg]="item.msg"
-                  [img]="item.img"
-                  [unreaded]="item.unreaded"
-                  (click)="toggleChat()"
+                  [nome]="item.nomeCompleto"
+                  [msg]="'oi'"
+                  [img]="item.foto"
+                  [unreaded]="0"
+                  (click)="toggleChat(item)"
                 ></app-card-contato>
               </li>
             </ul>
@@ -19,33 +19,16 @@
         </div>
       </p-tabPanel>
       <p-tabPanel header="Favoritos">
-        <div class="card">
+        <div class="card" *ngIf="contatos">
           <div class="card-body">
             <div class="list-unstyled mb-0">
-              <div *ngFor="let item of fav">
+              <div *ngFor="let item of contatos">
                 <app-card-contato
-                  [nome]="item.nome"
-                  [msg]="item.msg"
-                  [img]="item.img"
-                  [unreaded]="item.unreaded"
-                  (click)="toggleChat()"
-                ></app-card-contato>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-tabPanel>
-      <p-tabPanel header="Grupos">
-        <div class="card">
-          <div class="card-body">
-            <div class="list-unstyled mb-0">
-              <div *ngFor="let item of group">
-                <app-card-contato
-                  [nome]="item.nome"
-                  [msg]="item.msg"
-                  [img]="item.img"
-                  [unreaded]="item.unreaded"
-                  (click)="toggleChat()"
+                  [nome]="item.nomeCompleto"
+                  [msg]="'oi'"
+                  [img]="item.foto"
+                  [unreaded]="0"
+                  (click)="toggleChat(item)"
                 ></app-card-contato>
               </div>
             </div>
@@ -59,15 +42,15 @@
     <div id="arrow">
       <i class="pi pi-arrow-left"  (click)="toggleChat()"></i>
     </div>
-    <div class="row chatMensagens m-1">
-
-      <div class="card">
+    <div class="row chatMensagens m-1" *ngIf="mensagens">
+      <div class="card" >
         <div class="card-body">
           <ul class="list-unstyled">
-            <li *ngFor="let item of mensagens">
-              <app-card-mensagem ></app-card-mensagem>
+            <li *ngFor="let item of mensagens" >
+              <app-card-mensagem 
+              [mensagem]="item"
+              ></app-card-mensagem>
             </li>
-            <span class="align-self-center">Última mensagem</span>
           </ul>
         </div>
       </div>
@@ -83,7 +66,7 @@
           ></textarea>
         </div>
       </div>
-      <button type="button" class="btn btn-info btn-rounded float-end">
+      <button type="button" class="btn btn-info btn-rounded float-end" onclick="EnviarMensagem()">
         Enviar
       </button>
     </form>
