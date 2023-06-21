@@ -110,7 +110,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import Swal from 'sweetalert2';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
