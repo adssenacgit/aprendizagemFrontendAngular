@@ -17,14 +17,14 @@
           <td>{{ reg.avaliacaoConceito.descricao }}</td>
           <td>
             
-            <div class="card flex justify-content-center">
+            
               <p-button
                 (click)="showDialog(reg.comentario)"
                 icon="pi pi-external-link"
-                label="Mostrar"
-                style="width: 10px"
+                label="Abrir comentário do professor"
+                
               ></p-button>
-            </div>
+            
           </td>
         </tr>
       </ng-template>
@@ -42,5 +42,3 @@
 >
   {{ selectedComentario }}
 </p-dialog>
-/*
-*\
