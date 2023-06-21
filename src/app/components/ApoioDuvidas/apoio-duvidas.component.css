@@ -3,9 +3,13 @@
 #paginacao {
     display: flex;
     flex-direction: row;
-    padding: 2px;
+   
     justify-content: center;
     
+}
+
+#Proximo {
+    margin-left: 5px;
 }
 
 

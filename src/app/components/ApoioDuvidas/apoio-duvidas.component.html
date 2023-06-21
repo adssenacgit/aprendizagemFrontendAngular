@@ -24,8 +24,9 @@
   </ng-template>
 </p-card>
 <div id="paginacao">
-  <button  id ="Anterior"(click)="previousPage()" [disabled]="currentPage === 1"> <- </button>
-  <button id= "Proximo" (click)="nextPage()" [disabled]="endIndex >= chapterAssuntos.length"> -> </button>
+  <button class="btn btn-primary" id ="Anterior"(click)="previousPage()" [disabled]="currentPage === 1"> < </button>
+  <button class="btn btn-primary" id= "Proximo" (click)="nextPage()" [disabled]="endIndex >= chapterAssuntos.length"> > </button>
+  
 </div>
 
 </div>
