@@ -1,29 +1,23 @@
 <div class="row">
-  <p-timeline [value]="modulos" align="alternate" styleClass="customized-timeline">
+  <p-timeline [value]="modulosTotal" align="alternate" styleClass="customized-timeline">
     <ng-template pTemplate="content" let-modulo>
+      
       <p-card class="card flex" [header]="modulo.descricao" [subheader]="'Carga Horária: ' + modulo.cargaHoraria" style="display: flex; justify-content: flex-start;">
-        <!-- <div style="display: flex; justify-content: space-between;" *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares">
-          <p>
-            {{ unidadesCurriculares.nome }}
-          </p>
-          <p>
-            {{ unidadesCurriculares.horas }}
-          </p>
-        </div> -->
         <div>
           <table class="table" >
             <thead>
               <tr>
-                <th scope="col" id="unidadeCurricularTitNome">Unidade Curricular</th>
-                <th scope="col" id="unidadeCurricularTitHora">Carga Horaria</th>
-                <th scope="col" id="unidadeCurricularTitStatus">Status</th>
+                <th scope="col" style="text-align: left;">Unidade Curricular</th>
+                <th scope="col" style="text-align: center;">Carga Horaria</th>
+                <th scope="col" style="text-align: center;">Status</th>
               </tr>
             </thead>
             <tbody *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares">
               <tr>
-                <td id="unidadeCurricularNome">{{ unidadesCurriculares.nome }}</td>
-                <td id="unidadeCurricularHoras">{{ unidadesCurriculares.horas }}</td>
-                <td id="unidadeCurricularID">{{ unidadesCurriculares.id }}</td>
+                <td style="text-align: left;">{{ unidadesCurriculares.nome }}</td>
+                <td style="text-align: center;">{{ unidadesCurriculares.horas }}</td>
+                <td *ngIf="unidadesCurriculares.status == 1" style="text-align: center;"><img id="cadeado" src="https://cdn-icons-png.flaticon.com/512/2089/2089795.png" /></td>
+                <td *ngIf="unidadesCurriculares.status == 0 || unidadesCurriculares.status == null" style="text-align: center;"><img id="cadeado" src="https://cdn-icons-png.flaticon.com/512/64/64104.png?w=360" /></td>
               </tr>
             </tbody>
           </table>

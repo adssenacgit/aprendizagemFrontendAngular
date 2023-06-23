@@ -179,26 +179,7 @@ ul{
     }
 }
 
-#unidadeCurricularTitNome {
-    text-align: left;
-}
-
-#unidadeCurricularTitHora{
-    text-align: center;
-}
-
-#unidadeCurricularTitStatus {
-    text-align: center;
-}
-
-#unidadeCurricularNome {
-    text-align: left;
-}
-
-#unidadeCurricularHoras {
-    text-align: center;
-}
-
-#unidadeCurricularID {
-    text-align: center;
+#cadeado {
+    width: 30px;
+    height: 30px;
 }
