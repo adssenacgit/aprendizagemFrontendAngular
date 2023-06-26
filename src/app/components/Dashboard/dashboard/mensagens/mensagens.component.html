@@ -42,9 +42,9 @@
     <div id="arrow">
       <i class="pi pi-arrow-left"  (click)="toggleChat()"></i>
     </div>
-    <div class="row chatMensagens m-1" *ngIf="mensagens">
-      <div class="card" >
-        <div class="card-body">
+    <div class="row chatMensagens m-1" >
+      <div class="card" *ngIf="mensagens == []">
+        <div class="card-body" >
           <ul class="list-unstyled">
             <li *ngFor="let item of mensagens" >
               <app-card-mensagem 
@@ -55,10 +55,11 @@
         </div>
       </div>
     </div>
-    <form id="fixedDiv" action="">
+    <form id="fixedDiv" name="mensagemTexto" action="">
       <div class="bg-white mb-3 col-12">
         <div class="form-outline">
           <textarea
+          [(ngModel)]="mensagemTexto"
           placeholder="Digite sua mensagem"
             class="form-control"
             id="textAreaExample2"
@@ -66,7 +67,7 @@
           ></textarea>
         </div>
       </div>
-      <button type="button" class="btn btn-info btn-rounded float-end" onclick="EnviarMensagem()">
+      <button type="button" class="btn btn-info btn-rounded float-end" (click)="EnviarMensagem()">
         Enviar
       </button>
     </form>
