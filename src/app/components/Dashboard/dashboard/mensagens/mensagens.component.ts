@@ -1,5 +1,4 @@
-import { Component, ContentChildDecorator, Input, OnInit } from '@angular/core';
-import { isEmpty } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Estudante } from 'src/app/models/Estudante';
 import { Mensagem } from 'src/app/models/Mensagem';
 import { Usuario } from 'src/app/models/Usuario';
@@ -7,6 +6,8 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { EstudantesService } from 'src/app/services/estudante.service';
 import { MensagemService } from 'src/app/services/mensagem.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { conversa } from './mockdata';
+
 
 @Component({
   selector: 'app-mensagens',
@@ -30,10 +31,17 @@ export class MensagensComponent implements OnInit {
     private mensagemService : MensagemService,
     private estudanteService : EstudantesService,
     private authGuardService: AuthGuardService
-    ) { }
+    ) { 
+
+      // inserção de dados mockados
+      this.mensagens = conversa;
+      
+
+    }
 
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+    console.log("id",this.idUsuarioLogado)
 
     this.estudanteService.ObterEstudanteByUsuarioId(this.idUsuarioLogado).subscribe(resultado=>{
       this.estudante = resultado;
@@ -55,46 +63,46 @@ export class MensagensComponent implements OnInit {
     })
 
     })
-    console.log('contatos', this.contatos)
+    
   }
 
- 
 
   toggleChat(usuario?: Usuario){
     
     this.chat = !this.chat
-    if(usuario){
-      this.contatoSelecionado = usuario
+    // if(usuario){
+    //   this.contatoSelecionado = usuario
   
-      this.mensagemService.ObterMensagemPorUsuarioId(this.contatoSelecionado.id).subscribe(resultado => {
-        this.mensagens = resultado
-      })
-      this.mensagemService.ObterMensagemPorUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
-        resultado.forEach(mensagem => {
-          this.mensagens.push(mensagem)
-        });
-      })
+    //   this.mensagemService.ObterMensagemPorUsuarioId(this.contatoSelecionado.id).subscribe(resultado => {
+    //     this.mensagens = resultado
+    //   })
+    //   this.mensagemService.ObterMensagemPorUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
+    //     resultado.forEach(mensagem => {
+    //       this.mensagens.push(mensagem)
+    //     });
+    //   })
 
-      this.mensagens.sort((a, b) => {
-        const paramA = a.data; // Acesse o parâmetro desejado em cada objeto JSON
-        const paramB = b.data;
+    //   this.mensagens.sort((a, b) => {
+    //     const paramA = a.data; // Acesse o parâmetro desejado em cada objeto JSON
+    //     const paramB = b.data;
       
-        if (paramA < paramB) {
-          return -1; // Retorna um número negativo se a for menor que b
-        }
-        if (paramA > paramB) {
-          return 1; // Retorna um número positivo se a for maior que b
-        }
-        return 0; // Retorna zero se os parâmetros forem iguais
-      });
+    //     if (paramA < paramB) {
+    //       return -1; // Retorna um número negativo se a for menor que b
+    //     }
+    //     if (paramA > paramB) {
+    //       return 1; // Retorna um número positivo se a for maior que b
+    //     }
+    //     return 0; // Retorna zero se os parâmetros forem iguais
+    //   });
 
-    }
-    console.log("Mensagens",this.mensagens)
+    // }
+    console.log("mensagns", this.mensagens)
 
   }
 
   EnviarMensagem(){
     let mensagemEnviada: Mensagem = new Mensagem;
+    mensagemEnviada.id = 4
     mensagemEnviada.data = Date.now().toString();
     mensagemEnviada.mensagemTexto = this.mensagemTexto;
     mensagemEnviada.status = 0
@@ -102,13 +110,13 @@ export class MensagensComponent implements OnInit {
     mensagemEnviada.usuarioIdAutor = this.usuario.id;
     mensagemEnviada.usuario = this.contatoSelecionado;
     mensagemEnviada.usuarioId = this.contatoSelecionado.id;
-    console.log('foi', mensagemEnviada)
-    this.mensagemService.NovaMensagem(mensagemEnviada).subscribe(resultado => {
+    // console.log('foi', mensagemEnviada)
+    // this.mensagemService.NovaMensagem(mensagemEnviada).subscribe(resultado => {
 
-      this.mensagens.push(mensagemEnviada);
-      this.mensagemTexto = '';
+    //   this.mensagens.push(mensagemEnviada);
+    //   this.mensagemTexto = '';
       
-    })
+    // })
   }
 
 }

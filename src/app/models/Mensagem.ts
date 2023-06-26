@@ -3,7 +3,7 @@ import { Usuario } from "./Usuario";
 export class Mensagem {
   id: number;
   mensagemTexto: string;
-  data: String;
+  data: string;
   status: number;
   usuarioId: string;
   usuario: Usuario;
