@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    
+    <p-card header="Atividades">
+      <p-table [value]="atividades" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Descrição</th>
+            <th>Data de Início</th>
+            <th>Data de Término</th>
+            <th>Data de Entrega</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-atividade>
+          <tr
+            [routerLink]="[
+              '/atividadeverificacao',
+              this.atividade.situacaoAprendizagem.id
+            ]"
+          >
+            <td
+            [style.color]="
+              atividade.grauDificuldade.id === 4 ? '#F60103' : '#000000' ||
+              atividade.grauDificuldade.id === 3 ? '#F79303' : '#000000' ||
+              atividade.grauDificuldade.id === 2 ? '#F7E911' : '#000000' ||
+              atividade.grauDificuldade.id === 1 ? '#3CD014' : '#000000'
+            "
+            >{{ atividade.descricao }}</td>
+            <td>
+              {{
+                atividade.dataFim
+                  | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR"
+              }}
+            </td>
+            <td>
+              {{
+                atividade.dataInicio
+                  | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR"
+              }}
+            </td>
+            <!-- <td>{{ atividade.dataInicio }}</td> -->
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
