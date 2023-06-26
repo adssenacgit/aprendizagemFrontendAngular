@@ -21,6 +21,7 @@ export class AtividadeService {
   urlAtividade = environment.apiServer + 'api/Atividade/AtividadeEnviarArquivoByAtividadeIdByEstudanteId';
   constructor(private https: HttpClient) { }
 
+  //Atividades por situação de aprendizagem
   FiltrarAtividadebySituacaoAprendizagemId (id: number) : Observable<Atividade[]>
   {
     const apiUrl = `${this.url}/FiltrarAtividadebySituacaoAprendizagemId/${id}`;
@@ -28,10 +29,16 @@ export class AtividadeService {
   }
 
   //Atividade por situação de aprendizagem
-  ObterAtividadePorSituacaoId (situacaoId: number) : Observable<Atividade[]>
+  ObterAtividadePorSituacaoId (situacaoId: number) : Observable<Atividade>
   {
     const apiUrl = `${this.url}/FiltrarAtividadeBySituacaoAprendizagemId/${situacaoId}`
-    return  this.https.get<Atividade[]>(apiUrl);
+    return  this.https.get<Atividade>(apiUrl);
+  }
+
+  ObterAtividadePorId (atividadeId: number) : Observable<Atividade>
+  {
+    const apiUrl = `${this.url}/${atividadeId}`
+    return  this.https.get<Atividade>(apiUrl);
   }
 
   ObterAtividadesRecentesPeloUsuarioId(usuarioId : string){
@@ -39,16 +46,24 @@ export class AtividadeService {
     return this.https.get<Atividade[]>(apiUrl);
   }
 
-  CadastrarAtividade(atividade: Uint8Array, atividadeId: number, usuarioId: number){
+  // CadastrarAtividade(atividade: Set<File>, atividadeId: number, usuarioId: number){
+  //   const formData = new FormData();
+  //   // atividade.forEach(arquivo => formData.append('file', arquivo, arquivo.name));
+
+  //   const request = new HttpRequest('POST', `${this.urlAtividade}/${atividadeId}/${usuarioId}` , formData);
+  //   return this.https.request(request);
+  // }
+
+  CadastrarAtividade(atividade: Blob, atividadeId: number, usuarioId: number){
     // const formData = new FormData();
     // atividade.forEach(arquivo => formData.append('file', arquivo, arquivo.name));
 
     // const request = new HttpRequest('POST', `${this.urlAtividade}/${atividadeId}/3b700ecc-cec9-4be4-8c00-48bced543861/${usuarioId}/` , { binaryData: Array.from(atividade) }, httpOptions);
     // return this.https.request(request);
-    return this.https.post(`${this.urlAtividade}/${atividadeId}/${usuarioId}` , { binaryData: Array.from(atividade) }, httpOptions);
+
+    return this.https.post(`${this.urlAtividade}/${atividadeId}/${usuarioId}` , { atividade }, httpOptions);
 
   }
-
 
   async formatarAtividades(questoes : Atividade[]) {
     questoes.forEach((atividade) => {
@@ -61,7 +76,7 @@ export class AtividadeService {
           atividade.enunciado = enunciados[0];
           for (let index = 1; index < enunciados.length; index++) {
             atividade.alternativas?.push(enunciados[index]);
-          } 
+          }
         }
       }
     });
