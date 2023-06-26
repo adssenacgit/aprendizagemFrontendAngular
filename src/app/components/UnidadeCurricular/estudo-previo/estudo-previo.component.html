@@ -1,100 +1,152 @@
 <!-- <div *ngIf="loading else carregado">
     <mat-progress-bar mode="buffer"></mat-progress-bar>
 </div> -->
-<div style="margin-top: 100px; background-color: white">
-    <div style="display: flex; justify-content: center; align-items: center"></div>
-  <mat-card id="mat-card">
-    <!-- <mat-card-title
-      style="font-size: 16px; font-weight: bolder"
-      *ngIf="atividades !== null"
-      >
-    </mat-card-title> -->
-
+<div class="row">
+  <!-- <div style="display: flex; justify-content: center; align-items: center"></div> -->
+  <!-- <mat-card id="mat-card">
     <mat-card-content>
 
-        <div>
-          <p class="titulo">Situação de aprendizagem:</p>
-          <p>{{ atividades[0].situacaoAprendizagem.descricao }}</p>
-        </div>
-  
-        <div>
-          <p class="titulo">Atividade:</p>
-          <p>{{ atividades[0].descricao }}</p>
-        </div>
-  
-        <div>
-          <p class="titulo">Início:</p>
-          <p>
-            {{
-              atividades[0].dataInicio
-                | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR"
-                | titlecase
-            }}
-          </p>
-        </div>
-  
-        <div>
-          <p class="titulo">Término:</p>
-          <p>
-            {{
-              atividades[0].dataFim
-                | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR"
-                | titlecase
-            }}
-          </p>
-        </div>
-  
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
-        >
-          Anexar
-        </button>
-      </mat-card-content>
-  
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
+      <div>
+        <p class="titulo">Situação de aprendizagem:</p>
+        <p>{{ atividades[0].situacaoAprendizagem.descricao }}</p>
+      </div>
+
+      <div>
+        <p class="titulo">Atividade:</p>
+        <p>{{ atividades[0].descricao }}</p>
+      </div>
+
+      <div>
+        <p class="titulo">Início:</p>
+        <p>
+          {{
+            atividades[0].dataInicio
+              | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR"
+              | titlecase
+          }}
+        </p>
+      </div>
+
+      <div>
+        <p class="titulo">Término:</p>
+        <p>
+          {{
+            atividades[0].dataFim
+              | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR"
+              | titlecase
+          }}
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <input
-                class="form-control"
-                type="file"
-                (change)="onFileSelected($event)"
-                multiple
-              />
-              <label></label>
-            </div>
-            <div class="modal-footer">
-              <button
-                mat-raised-button
-                type="submit"
-                (click)="enviarArquivo()"
-                [disabled]="!file"
-              >
-                Enviar
-              </button>
-            </div>
+        Anexar
+      </button>
+    </mat-card-content>
+
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <input
+              class="form-control"
+              type="file"
+              (change)="onFileSelected($event)"
+              multiple
+            />
+            <label></label>
+          </div>
+          <div class="modal-footer">
+            <button
+              mat-raised-button
+              type="submit"
+              (click)="enviarArquivo()"
+              [disabled]="!file"
+            >
+              Enviar
+            </button>
           </div>
         </div>
       </div>
-    </mat-card>
+    </div>
+  </mat-card> -->
+  <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 col-12">
+      <p-card class="card flex">
+        <div>
+          <p class="titulo">Título:</p>
+          <p> {{ atividade.situacaoAprendizagem.titulo }} </p>
+        </div>
+        <div>
+          <p class="titulo">Situação de aprendizagem:</p>
+          <p> {{ atividade.situacaoAprendizagem.descricao }} </p>
+        </div>
+        <div>
+          <p class="titulo">Atividade:</p>
+          <p> {{ atividade.descricao }} </p>
+        </div>
+        <div>
+          <p class="titulo">Início:</p>
+          <p> {{ atividade.dataInicio | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }} </p>
+        </div>
+        <div>
+          <p class="titulo">Término:</p>
+          <p> {{ atividade.dataFim | date : "EEEE, HH:mm - dd/MM/yyyy " : " +0000" : "pt-BR" | titlecase }} </p>
+        </div>
+
+        <div *ngIf="atividadeTipoId===1">
+          <div class="input-group">
+            <textarea class="form-control" aria-label="With textarea" placeholder="Digite aqui..."></textarea>
+          </div>
+          <div class="button-send">
+            <p-button label="Enviar"></p-button>
+          </div>
+        </div>
+
+        <div *ngIf="atividadeTipoId===2">
+          <div>
+            <input class="form-control" type="file" (change)="onFileSelected($event)" multiple/>
+            <p *ngFor="let fileName of filesName">{{ fileName }}</p>
+          </div>
+          <div class="button-send">
+            <p-button label="Enviar" (click)="saveToDatabase()" [disabled]="!files"></p-button>
+          </div>
+        </div>
+
+        <div *ngIf="atividadeTipoId===3">
+          <p>Apresentação oral id=3</p>
+          <div class="button-send">
+            <p-button label="Enviar"></p-button>
+          </div>
+        </div>
+
+        <div *ngIf="atividadeTipoId===4">
+          <form class="flex align-items-center gap-1">
+            <p-checkbox formControlName="city" value="New York" inputId="ny"></p-checkbox>
+            <label for="ny">New York</label>
+          </form>
+          <div class="button-send">
+            <p-button label="Enviar"></p-button>
+          </div>
+        </div>
+      </p-card>
 </div>
