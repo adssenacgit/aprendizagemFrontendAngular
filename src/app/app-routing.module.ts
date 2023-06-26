@@ -1,4 +1,3 @@
-import { MensagensComponent } from './components/Dashboard/dashboard/mensagens/mensagens.component';
 import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/usuario-recursos.component';
 import { ChapterListagemGeralComponent } from './components/Chapters/chapter-listagem-geral/chapter-listagem-geral.component';
 import { TimelineListaComponent } from './components/UnidadeCurricular/timeline/timeline-lista/timeline-lista.component';
@@ -33,6 +32,9 @@ import { ListagemUsuarioBadgesComponent } from './components/Dashboard/usuario-d
 import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-objetos-aprendizagem/lista-objetos-aprendizagem.component';
 import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
 import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
+import { UsuarioProximasAtividadesComponent } from './components/Dashboard/usuario-dashboard/usuario-proximas-atividades/usuario-proximas-atividades.component';
+import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
+import { UsuarioMapaCursoComponent } from './components/Dashboard/usuario-dashboard/usuario-mapa-curso/usuario-mapa-curso.component';
 
 const routes: Routes = [
   {
@@ -42,10 +44,10 @@ const routes: Routes = [
     children:[
       {
         path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent
-      },         
+      },
       {
         path: 'unidadeCurricular/estudoprevio', component: EstudoPrevioComponent
-      },      
+      },
       {
         path: 'recurso/usuariorecursos', component: UsuarioRecursosComponent
       },
@@ -54,21 +56,30 @@ const routes: Routes = [
       },
       {
         path: 'timeline/detalhe/:id', component: TimelineDetalhesComponent
-      },        
+      },
       {
         path: 'unidadeCurricular/timelinelista', component: TimelineListaComponent
-      },    
+      },
       {
         path: 'unidadeCurricular/descricao/:id', component: UnidadeCurricularDescricaoComponent
-      },        
+      },
       {
         path: 'senacCoin/usuariosenaccoin', component: UsuarioSenacCoinComponent
-      },       
+      },
       {
         path: 'conceitos/usuarioconceitos', component: UsuarioConceitosFeedbacksComponent
-      },      
+      },
       {
         path: 'dashboard/usuariodashboard', component: UsuarioDashboardComponent
+      },
+      {
+        path: 'dashboard/usuariomapacurso', component: UsuarioMapaCursoComponent
+      },
+      {
+        path: 'atividadeverificacao/:id', component: EstudoPrevioComponent
+      },
+      {
+        path: 'atividades', component: AtividadesComponent
       },
       {
         path: 'dashboard/administradordashboard', component: AdministradorDashboardComponent
@@ -81,7 +92,7 @@ const routes: Routes = [
       },
       {
         path: 'badges/atualizarbadge/:id', component: AtualizarBadgeComponent
-      },      
+      },
       {
         path: 'cursos/listagemcursos', component: ListagemCursosComponent
       },
@@ -93,7 +104,7 @@ const routes: Routes = [
       },
       {
         path: 'curso/usuariotrilhacurso', component: UsuarioTrilhaCursoComponent
-      },      
+      },
       {
         path: 'funcoes/listagemfuncoes', component: ListagemFuncoesComponent
       },
@@ -105,16 +116,16 @@ const routes: Routes = [
       },
       {
         path: 'ofertas/listagemofertas', component: ListagemOfertasComponent
-      },      
+      },
       {
         path: 'ofertas/novaoferta', component: NovaOfertaComponent
       },
       {
         path: 'ofertas/atualizaroferta/:id', component: AtualizarOfertaComponent
-      },  
+      },
       {
         path: 'badges/listagemusuariobadges', component: ListagemUsuarioBadgesComponent
-      },    
+      },
       {
         path: 'unidadeCurricular/objetosaprendizagem', component: ListaObjetosAprendizagem
       },
@@ -123,13 +134,7 @@ const routes: Routes = [
       },
       {
         path: 'comunidade/novapergunta', component: NovaPerguntaComponent
-      },
-      {
-        path: 'mensagens/mensagens', component: MensagensComponent
-      },
-      {
-        path: 'atividadeverificacao/:id', component: EstudoPrevioComponent
-      },
+      }
     ]
   },
   {
