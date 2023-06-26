@@ -41,6 +41,7 @@ import { UsuarioTrilhaCursoComponent } from './components/Dashboard/usuario-dash
 import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/usuario-recursos.component';
 
 import { UnidadeCurricularDescricaoComponent } from './components/UnidadeCurricular/descricao/unidade-curricular-descricao.component';
+import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
 
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { DialogIndicadoresComponent, EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
@@ -70,10 +71,6 @@ import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-o
 import { CardNotificacaoComponent } from './components/CardNotificacao/card-notificacao.component';
 
 import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
-
-import { MensagensComponent } from './components/Dashboard/dashboard/mensagens/mensagens.component';
-import { CardContatoComponent } from './components/Dashboard/dashboard/mensagens/card-contato/card-contato.component';
-import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/meus-recursos.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
@@ -109,10 +106,6 @@ import { MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import Swal from 'sweetalert2';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import { ButtonModule } from 'primeng/button';
 import { ProgressBarModule } from 'primeng/progressbar';
@@ -136,7 +129,6 @@ import { SplitterModule } from 'primeng/splitter';
 import { AvatarModule } from 'primeng/avatar';
 import { ListboxModule } from 'primeng/listbox';
 import { SidebarModule } from 'primeng/sidebar';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -151,6 +143,8 @@ import localePT from '@angular/common/locales/pt';
 import localeES from '@angular/common/locales/es';
 import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
+import { UsuarioMapaCursoComponent } from './components/Dashboard/usuario-dashboard/usuario-mapa-curso/usuario-mapa-curso.component';
+import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/meus-recursos.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -164,7 +158,7 @@ registerLocaleData(localeFR);
     NovoCursoComponent,
     AtualizarCursoComponent,
     DialogExclusaoCursosComponent,
-    ListagemBadgesComponent,    
+    ListagemBadgesComponent,
     DialogExclusaoBadgeComponent,
     NovoBadgeComponent,
     AtualizarBadgeComponent,
@@ -207,9 +201,9 @@ registerLocaleData(localeFR);
     ListaObjetosAprendizagem,
     CardNotificacaoComponent,
     NovaPerguntaComponent,
-    MensagensComponent,
-    CardContatoComponent,
-    MeusRecursosComponent
+    AtividadesComponent,
+    UsuarioMapaCursoComponent,
+    MeusRecursosComponent,
   ],
   imports: [
     BrowserModule,
@@ -226,7 +220,7 @@ registerLocaleData(localeFR);
     MatDividerModule,
     MatSelectModule,
     MatGridListModule,
-    MatDialogModule,    
+    MatDialogModule,
     FormsModule,
     MatAutocompleteModule,
     MatPaginatorModule,
@@ -244,7 +238,7 @@ registerLocaleData(localeFR);
         tokenGetter: PegarTokenUsuario,
         allowedDomains: ['localhost:5099'],
         disallowedRoutes: []
-      }      
+      }
     }),
     MatSidenavModule,
     MatListModule,
@@ -273,18 +267,14 @@ registerLocaleData(localeFR);
     AvatarModule,
     ListboxModule,
     SidebarModule,
-    DynamicDialogModule,
-    ConfirmDialogModule,
-    InputTextareaModule,
-    InputTextModule
   ],
   providers: [
     CursosService,
     CursoTiposService,
     FuncoesService,
     OfertasService,
-    AuthGuardService,    
-    HttpClientModule, 
+    AuthGuardService,
+    HttpClientModule,
     {provide:LocationStrategy, useClass:HashLocationStrategy},
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
   ],
