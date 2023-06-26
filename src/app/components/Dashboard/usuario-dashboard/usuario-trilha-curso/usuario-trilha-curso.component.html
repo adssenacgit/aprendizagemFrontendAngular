@@ -1,60 +1,56 @@
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="main-timeline">
-                    <div class="timeline">
-                        <div class="timeline-icon"><span class="year">2021.1</span></div>
-                        <div class="timeline-content">
-                            <h3 class="title">Módulo 1</h3>
-                            <ul>
-                                <li>Instrodução a Programação</li>
-                                <li>Arquitetura de Computadores</li>
-                                <li>Redes de de Computadores</li>
-                                <li>Engenharia de Software I</li>
-                                <li>Tecnologia Web I</li>
-                                <li>Engenharia de Usabilidade</li>
-                                <li>Empreendedorismo e Inovação</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-icon"><span class="year">2021.2</span></div>
-                        <div class="timeline-content">
-                            <h3 class="title">Módulo 2</h3>
-                            <ul>
-                                <li>Programação I</li>
-                                <li>Tecnologia Web II</li>
-                                <li>Interface e Usabilidade</li>
-                                <li>Estrutura de Dados</li>
-                                <li>Engenharia de Software II</li>
-                                <li>Banco de Dados I</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-icon"><span class="year">2022.1</span></div>
-                        <div class="timeline-content">
-                            <h3 class="title">Módulo 3</h3>
-                            <ul>
-                                <li>Programação II</li>
-                                <li>Tecnologia Web III</li>
-                                <li>Banco de dados II</li>
-                                <li>Estatística</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-icon"><span class="year">2022.2</span></div>
-                        <div class="timeline-content">
-                            <h3 class="title">Módulo 4</h3>
-                            <ul>
-                                <li>Programação Web I</li>
-                                <li>Computação em Nuvem</li>
-                                <li>Sistemas Operacionais</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- <div class="row">
+  <p-timeline [value]="modulos" align="alternate" styleClass="customized-timeline">
+    <ng-template pTemplate="content" let-modulo>
+      <p-card class="card flex" [header]="modulo.descricao" [subheader]="'Carga Horária: ' + modulo.cargaHoraria" style="display: flex; justify-content: flex-start;">
+
+        <div>
+          <table class="table" >
+            <thead>
+              <tr>
+                <th style="display: flex; justify-content: flex-start;" scope="col">Unidade Curricular</th>
+                <th scope="col">Carga Horaria</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares">
+              <tr>
+                <td style="display: flex; justify-content: flex-start;">{{ unidadesCurriculares.nome }}</td>
+                <td>{{ unidadesCurriculares.horas }}</td>
+                <td>{{ unidadesCurriculares.id }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-    </div>
+
+      </p-card>
+
+    </ng-template>
+  </p-timeline>
+</div> -->
+
+<div class="row">
+  <p-timeline [value]="modulos" align="alternate" styleClass="customized-timeline">
+    <ng-template pTemplate="content" let-modulo>
+      <p-card class="card flex" [header]="modulo.descricao" [subheader]="'Carga Horária: ' + modulo.cargaHoraria" style="display: flex; justify-content: flex-start;">
+        <div>
+          <table class="table simplified-table">
+            <thead>
+              <tr>
+                <th scope="col" style="text-align: left; border: none;">Unidade Curricular</th>
+                <th scope="col" style="text-align: center; border: none;">Carga Horária</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares; let i = index">
+                <tr [ngClass]="{ 'gray-row': i % 2 === 0 }">
+                  <td style="text-align: left; border: none;">{{ unidadesCurriculares.nome }}</td>
+                  <td style="text-align: center; border: none;">{{ unidadesCurriculares.horas }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </p-card>
+    </ng-template>
+  </p-timeline>
+</div>
