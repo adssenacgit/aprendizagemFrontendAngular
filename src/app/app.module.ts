@@ -157,6 +157,7 @@ import localeES from '@angular/common/locales/es';
 import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 
 
 registerLocaleData(localePT);
@@ -219,7 +220,8 @@ registerLocaleData(localeFR);
     MeusRecursosComponent,
     AtividadesComponent,
     CardsSenacCoinComponent,
-    SideNavComponent
+    SideNavComponent,
+    AjudaComponent
   ],
   imports: [
     BrowserModule,
