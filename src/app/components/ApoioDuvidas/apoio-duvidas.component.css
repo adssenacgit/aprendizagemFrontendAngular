@@ -1,8 +1,21 @@
-#butaocheck {
-    margin-left: 1600px;
-    background-color: rgb(111, 184, 1);
+#paginacao {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+
 }
 
+#Proximo {
+    margin-left: 5px;
+}
+
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
 
 #curtidas {
     margin-left: 1000px;
@@ -11,4 +24,27 @@
 
 #addpergunta {
     margin-left: 700px;
+}
+
+:host ::ng-deep .p-card {
+    margin: 10px;
+    border-radius: 25px !important;
+    border: 2px solid #012544;
+}
+:host ::ng-deep .p-card-header {
+    border-radius: 25px 25px 0px 0px !important;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin: 0 auto;
+}
+:host ::ng-deep .p-card .p-card-subtitle {
+    color: black !important;
+}
+:host ::ng-deep .p-card .p-card-content {
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
 }

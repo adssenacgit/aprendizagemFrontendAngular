@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SenacCoin } from 'src/app/models/SenacCoin';
 import { Usuario } from 'src/app/models/Usuario';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { SenacCoinService } from 'src/app/services/senac-coin.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
@@ -12,10 +14,12 @@ export class UsuarioDadosComponent implements OnInit {
 
   usuario : Usuario = new Usuario;
   idUsuarioLogado : string;
+  senacCoin: SenacCoin;
 
   constructor(
     private usuarioService : UsuariosService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
+    private senacCoinService: SenacCoinService
     ) { }
 
   ngOnInit(): void {
@@ -23,6 +27,10 @@ export class UsuarioDadosComponent implements OnInit {
 
     this.usuarioService.ObterUsuarioPorId(this.idUsuarioLogado).subscribe(resultado=>{
       this.usuario = resultado;
+    })
+
+    this.senacCoinService.ObterSenacCoinPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
+      this.senacCoin = resultado;
     })
   }
 

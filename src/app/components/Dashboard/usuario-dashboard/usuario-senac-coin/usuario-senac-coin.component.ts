@@ -12,29 +12,35 @@ import { SenacCoinService } from 'src/app/services/senac-coin.service';
 })
 export class UsuarioSenacCoinComponent implements OnInit {
 
-  senacCoins : SenacCoin = new SenacCoin();
+  senacCoins: SenacCoin = new SenacCoin();
   loading: boolean = true;
-  senacCoinMovimentacoes : SenacCoinMovimentacao[]; 
-  idUsuarioLogado : string;
+  senacCoinMovimentacoes: SenacCoinMovimentacao[]; 
+  idUsuarioLogado: string;
+  value: string;
 
   constructor(
-    private senacCoinService : SenacCoinService, 
-    private senacCoinMovimentacao : SenacCoinMovimentacaoService,
-    private authGuardService: AuthGuardService ) { }
+    private senacCoinService: SenacCoinService, 
+    private senacCoinMovimentacao: SenacCoinMovimentacaoService,
+    private authGuardService: AuthGuardService
+    ) { }
 
   ngOnInit(): void {
    
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
-    this.senacCoinService.ObterSenacCoinPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado =>{
-      this.senacCoins = resultado;
-      this.loading = false;
-    });
+    this.senacCoinService
+      .ObterSenacCoinPeloUsuarioId(this.idUsuarioLogado)
+      .subscribe(resultado =>{
+        this.senacCoins = resultado;
+        this.loading = false;
+      });
 
-    this.senacCoinMovimentacao.ObterSenacCoinMovimentacaoPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado =>{
+    this.senacCoinMovimentacao
+      .ObterSenacCoinMovimentacaoPeloUsuarioId(this.idUsuarioLogado)
+      .subscribe(resultado =>{
         this.senacCoinMovimentacoes = resultado;
         this.loading = false;
-    }); 
+      }); 
 
   }
 }

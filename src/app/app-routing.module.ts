@@ -33,6 +33,7 @@ import { ListagemUsuarioBadgesComponent } from './components/Dashboard/usuario-d
 import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-objetos-aprendizagem/lista-objetos-aprendizagem.component';
 import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
 import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
+import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
 
 const routes: Routes = [
   {
@@ -42,10 +43,10 @@ const routes: Routes = [
     children:[
       {
         path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent
-      },         
+      },
       {
         path: 'unidadeCurricular/estudoprevio', component: EstudoPrevioComponent
-      },      
+      },
       {
         path: 'recurso/usuariorecursos', component: UsuarioRecursosComponent
       },
@@ -54,19 +55,19 @@ const routes: Routes = [
       },
       {
         path: 'timeline/detalhe/:id', component: TimelineDetalhesComponent
-      },        
+      },
       {
         path: 'unidadeCurricular/timelinelista', component: TimelineListaComponent
-      },    
+      },
       {
         path: 'unidadeCurricular/descricao/:id', component: UnidadeCurricularDescricaoComponent
-      },        
+      },
       {
         path: 'senacCoin/usuariosenaccoin', component: UsuarioSenacCoinComponent
-      },       
+      },
       {
         path: 'conceitos/usuarioconceitos', component: UsuarioConceitosFeedbacksComponent
-      },      
+      },
       {
         path: 'dashboard/usuariodashboard', component: UsuarioDashboardComponent
       },
@@ -81,7 +82,7 @@ const routes: Routes = [
       },
       {
         path: 'badges/atualizarbadge/:id', component: AtualizarBadgeComponent
-      },      
+      },
       {
         path: 'cursos/listagemcursos', component: ListagemCursosComponent
       },
@@ -93,7 +94,7 @@ const routes: Routes = [
       },
       {
         path: 'curso/usuariotrilhacurso', component: UsuarioTrilhaCursoComponent
-      },      
+      },
       {
         path: 'funcoes/listagemfuncoes', component: ListagemFuncoesComponent
       },
@@ -105,16 +106,16 @@ const routes: Routes = [
       },
       {
         path: 'ofertas/listagemofertas', component: ListagemOfertasComponent
-      },      
+      },
       {
         path: 'ofertas/novaoferta', component: NovaOfertaComponent
       },
       {
         path: 'ofertas/atualizaroferta/:id', component: AtualizarOfertaComponent
-      },  
+      },
       {
         path: 'badges/listagemusuariobadges', component: ListagemUsuarioBadgesComponent
-      },    
+      },
       {
         path: 'unidadeCurricular/objetosaprendizagem', component: ListaObjetosAprendizagem
       },
@@ -129,6 +130,9 @@ const routes: Routes = [
       },
       {
         path: 'atividadeverificacao/:id', component: EstudoPrevioComponent
+      },
+      {
+        path: 'atividades', component: AtividadesComponent
       },
     ]
   },

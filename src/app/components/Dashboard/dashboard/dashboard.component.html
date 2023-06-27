@@ -1,95 +1,36 @@
 <div class="container-fluid">
-	<div class="row flex-nowrap">
-		<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
-			<div class="logo-container">
-				<p-button
-					icon="pi pi-bars"
-					styleClass="p-button-warning"
-					(click)="toggleCollapse()"></p-button>
-				<!-- <button class="logo" (click)="toggleCollapse()">S</button> -->
-				<div class="logo-text" *ngIf="collapsed">Senac</div>
-				<button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
-					<i class="fal fa-times close-icon"></i>
-				</button>
-			</div>
-			<ul class="sidenav-nav">
-				<li class="sidenav-nav-item" *ngFor="let data of navData">
-					<a class="sidenav-nav-link" [routerLink]="[data.routelink]">
-						<i class="sidenav-link-icon" [class]="data.icon">
-							<span class="sidenav-link-text" *ngIf="collapsed">{{
-								data.label
-							}}</span>
-						</i>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div
-			class="container-fluid d-flex flex-fill"
-			style="flex-direction: column">
-			<app-header></app-header>
-			<router-outlet> </router-outlet>
-		</div>
-	</div>
-</div>
-
-
-<!--
-<app-header></app-header>
-<div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-2 col-xl-1 px-sm-2 px-0 bg-light">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white ">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Menu</span>
-                </a>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                        <a  routerLink="/dashboard/usuariodashboard" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Agenda</span></a>
-                    </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">UCs</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a  routerLink="/chapter/listar" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Chapters</span> </a>
-                    </li>
-                </ul>
-                <hr>
-            </div>
+        <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+          <div class="logo-container">
+            <p-button
+              icon="pi pi-bars"
+              styleClass="p-button-warning"
+              (click)="toggleCollapse()"
+            ></p-button>
+            <!-- <button class="logo" (click)="toggleCollapse()">S</button> -->
+            <div class="logo-text" *ngIf="collapsed">Senac</div>
+            <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+              <i class="fal fa-times close-icon"></i>
+            </button>
+          </div>
+          <ul class="sidenav-nav">
+            <li class="sidenav-nav-item" *ngFor="let data of navData">
+              <a class="sidenav-nav-link" [routerLink]="[data.routelink]">
+                <i class="sidenav-link-icon" [class]="data.icon">
+                  <span class="sidenav-link-text" *ngIf="collapsed">{{
+                    data.label
+                  }}</span>
+                </i>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div class="col">
-            <div class="container-fluid">
-            <router-outlet>
-
-            </router-outlet>
-            </div>
+        <div
+          class="container-fluid d-flex flex-fill"
+          style="flex-direction: column"
+        >
+          <app-header class="container-fluid"></app-header>
+          <router-outlet> </router-outlet>
         </div>
-    </div>
+     </div>
 </div>
--->

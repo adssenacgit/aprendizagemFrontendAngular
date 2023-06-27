@@ -75,6 +75,10 @@ import { MensagensComponent } from './components/Dashboard/dashboard/mensagens/m
 import { CardContatoComponent } from './components/Dashboard/dashboard/mensagens/card-contato/card-contato.component';
 import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/meus-recursos.component';
 
+import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
+
+import { CardsSenacCoinComponent } from './components/Dashboard/usuario-dashboard/cards-senac-coin/cards-senac-coin.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -137,6 +141,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { ListboxModule } from 'primeng/listbox';
 import { SidebarModule } from 'primeng/sidebar';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -151,6 +156,7 @@ import localePT from '@angular/common/locales/pt';
 import localeES from '@angular/common/locales/es';
 import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
+
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -209,7 +215,9 @@ registerLocaleData(localeFR);
     NovaPerguntaComponent,
     MensagensComponent,
     CardContatoComponent,
-    MeusRecursosComponent
+    MeusRecursosComponent,
+    AtividadesComponent,
+    CardsSenacCoinComponent
   ],
   imports: [
     BrowserModule,
@@ -276,7 +284,8 @@ registerLocaleData(localeFR);
     DynamicDialogModule,
     ConfirmDialogModule,
     InputTextareaModule,
-    InputTextModule
+    InputTextModule,
+    OverlayPanelModule
   ],
   providers: [
     CursosService,

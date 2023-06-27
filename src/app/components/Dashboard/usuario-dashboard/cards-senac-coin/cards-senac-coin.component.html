@@ -1,0 +1,76 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="cards col" *ngFor="let card of cardsData">
+    <div class="cardExterior card h-100">
+      <img
+        src="https://primefaces.org/cdn/primeng/images/usercard.png"
+        class="card-img-top"
+        alt="..."
+      />
+      <div
+        class="card-body"
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        "
+      >
+        <div class="titulos">
+          <h1 class="card-title">{{ card.name }}</h1>
+          <h2>R${{ card.price }}</h2>
+        </div>
+        <p class="card-text">{{ card.description }}</p>
+        <div class="botao d-grid gap-2 d-md-flex justify-content-md-end">
+          <!-- (click)="comprarItem(card)" -->
+          <button
+            class="btn btn-warning me-md-2"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Comprar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- (click)="comprarItem(card)" -->
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          Confirmação da Compra
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">...</div>
+      <!-- Inserir descrição dos Cards -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+        <button type="button" class="btn btn-warning">Comprar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <h3>Itens Comprados:</h3>
+<ul>
+  <li *ngFor="let item of itensComprados">{{ item.nome }} - R${{ item.preco }}</li>
+</ul> -->

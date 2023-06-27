@@ -1,3 +1,65 @@
+<mat-toolbar *ngIf="idUsuarioLogado" class="header-container" style="background-color: #092c4c">
+
+    <div style="
+        display: flex;
+        justify-content: space-around;
+        font-size: medium;
+        gap: 1.5rem;
+      "
+    >
+      <span><a routerLinkActive="active" routerLink="/dashboard/usuariodashboard">Início</a></span>
+      <span><a routerLinkActive="active" routerLink="/comunidade">Comunidades</a></span>
+      <span><a routerLinkActive="active" routerLink="/conceitos/usuarioconceitos">Conceitos</a></span>
+      <span><a routerLinkActive="active" routerLink="/recurso/usuariorecursos">Recursos Digitais</a></span>
+      <span><a routerLinkActive="active" routerLink="/curso/usuariotrilhacurso">Trilha do Curso</a></span>
+      <span><a routerLinkActive="active" routerLink="/senacCoin/usuariosenaccoin">Senac Coin</a></span>
+      <span><a routerLinkActive="active" routerLink="/requerimentoweb">Requerimento Web</a></span>
+      <span><a routerLinkActive="active" routerLink="/ajuda">Ajuda</a></span>
+    </div>
+    <div class="botoes__Menu">
+      <p-button
+        icon="pi pi-comments"
+        styleClass="p-button-warning"
+        (click)="sidebarVisible2 = true"
+      >
+      </p-button>
+      <p-button
+        icon="pi pi-bell"
+        styleClass="p-button-warning"
+        (click)="sidebarVisible = true"
+      >
+      </p-button>
+      <app-menu-usuario></app-menu-usuario>
+    </div>
+  </mat-toolbar>
+  
+  <p-sidebar [(visible)]="sidebarVisible" position="right">
+    <ng-template pTemplate="header">Notificações</ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li *ngFor="let item of list">
+              <app-card-notificacao
+                [title]="item.title"
+                [date]="item.date"
+              ></app-card-notificacao>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+  </p-sidebar>
+  
+  <p-sidebar
+    [(visible)]="sidebarVisible2"
+    position="right"
+    styleClass="p-sidebar-md"
+  >
+    <app-mensagens></app-mensagens>
+  </p-sidebar>
+
+<!--
 <mat-toolbar
 	*ngIf="idUsuarioLogado"
 	color="primary"
@@ -5,6 +67,7 @@
 	<div class="botoes__Menu">
         <p-button icon="pi pi-comments" styleClass="p-button-warning" (click)="sidebarVisible2 = true"></p-button>&nbsp;
 		<p-button icon="pi pi-bell" styleClass="p-button-warning" (click)="sidebarVisible = true"></p-button>&nbsp;
+        <p-button class="senacCoin" label="Senac Coin" icon="pi pi-dollar" styleClass="p-button-warning teste" badge="{{ senacCoins.saldo }}" badgeClass="p-badge-danger"></p-button>        
 		<app-menu-usuario></app-menu-usuario>
 	</div>
 </mat-toolbar>
@@ -30,3 +93,4 @@
 <p-sidebar [(visible)]="sidebarVisible2" position="right" styleClass="p-sidebar-md">
     <app-mensagens></app-mensagens>
 </p-sidebar>
+-->

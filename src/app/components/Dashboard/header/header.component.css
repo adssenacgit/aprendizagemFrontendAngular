@@ -6,7 +6,39 @@
 	height: 1.0rem;
 }
 
+.header-container{
+  justify-content: space-between;
+}
 .botoes__Menu {
 	display: flex;
 	align-items: center;
+}
+
+.nav-bar {
+  background: #092C4C;
+}
+
+span {
+  font-weight: 400;
+  font-size: large;
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a{
+  color: white;
+}
+a:link {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: #f7941d;
+}
+.active {
+  color: #f7941d;
 }

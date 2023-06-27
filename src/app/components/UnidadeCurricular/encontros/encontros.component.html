@@ -14,7 +14,7 @@
               <div class="container">
                 <h2>{{grupo.unidadeCurricular.nome}} - {{grupo.unidadeCurricular.horas}} horas </h2>
                 <h3>{{planejamentoUC.descricao}}</h3>
-                <h3>Professor: {{grupo.professor.usuario.nomeCompleto}}</h3>    
+                <h3>Professor: {{grupo.professor.usuario.nomeCompleto}}</h3>
               </div>
             </p-tabPanel>
             <p-tabPanel header="HeaderParticipantes">
@@ -23,7 +23,7 @@
                 <span>Participantes</span>
               </ng-template>
               <ol type="1">
-                <div *ngFor="let participante of participantes; let i = index" drag-scroll-item>                 
+                <div *ngFor="let participante of participantes; let i = index" drag-scroll-item>
                   <li>{{participante.usuario.nomeCompleto}} </li>
                 </div>
               </ol>
@@ -52,7 +52,7 @@
 
           </p-tabView>
 
-        </div>      
+        </div>
       </div>
       <div class="col-6">
         <div class="card-uc-descricao shadow-sm">
@@ -65,42 +65,42 @@
                 </ng-template>
 
                 <div class="container">
-                  <div class="row text-center">                
+                  <div class="row text-center">
                     <div class="col-4">
                       <h5>Atividades</h5>
                       <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise" valueTemplate="12/20"></p-knob>
                     </div>
                     <div class="col-4">
                       <h5>Avaliações</h5>
-                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>                  
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>
                     </div>
                     <div class="col-4">
                       <h5>Desafíos</h5>
-                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>                  
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>
                     </div>                 
                   </div>
                   <div class="row">
                     <div class="col-2" >
-                        <h5>Meu progresso</h5>
+                        <h4>Meu progresso</h4>
                     </div>
                     <div class="col-10">
-                      <div class="progress" style="margin-top: 0.5rem;">
-                        <div class="progress-bar" style="width:10%">10</div>
-                      </div>
+                      <p>{{((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)}}%</p>
+                      <p-progressBar [value]="((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)">
+                      </p-progressBar>
                     </div>                
                   </div>
                   <div class="row">
                     <div class="col-2">
-                      <h5>Progresso da UC</h5>
+                      <h4>Progresso da UC</h4>
                     </div>
                     <div class="col-10">
-                      <div class="progress" style="margin-top: 0.5rem;">
-                        <div class="progress-bar bg-success" style="width:15%">15</div>
-                      </div>            
+                      <p>{{((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)}}%</p>
+                      <p-progressBar [value]="((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)">
+                      </p-progressBar>          
                     </div>
                   </div>
     
-                </div>              
+                </div>
 
               </p-tabPanel>
               
@@ -116,14 +116,14 @@
                       <div class="card shadow-sm">
                         <div class="card-body">
                           <div class="divFoto">
-                            <img id="badge_img" src="{{getImage(badge.imagem)}}" width="120" height="100" />                                
+                            <img id="badge_img" src="{{getImage(badge.imagem)}}" width="120" height="100" />
                           </div>
                           <h5 style="text-align: center; margin: 0 0 0;">{{badge.descricao}}</h5>
                         </div>
                       </div>
                     </div>
                   </drag-scroll>
-                </div>       
+                </div>
 
               </p-tabPanel>
               
@@ -150,7 +150,7 @@
             <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
             <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
   </drag-scroll>
@@ -165,7 +165,7 @@
 </div>
 
 
-<div class="container">  
+<div class="container">
 
   <p-tabView styleClass="tabview-custom" style="width:100%;" >
 
@@ -180,15 +180,15 @@
         <p-splitter [panelSizes]="[25, 75]" styleClass="mb-5"><!--[style]="{ height: '300px' }"-->
           <ng-template pTemplate>
             <div class="col flex align-items-center justify-content-center" style="padding: 10px">
-      
+
               <p-accordion [activeIndex]="0">
 
-                <div *ngFor="let situacaoAprendizagem of situacoesAprendizagem; let i = index" drag-scroll-item>                 
+                <div *ngFor="let situacaoAprendizagem of situacoesAprendizagem; let i = index" drag-scroll-item>
                   <p-accordionTab (click)="ObterObjetosAprendizagem(situacaoAprendizagem.id, i)" header="{{situacaoAprendizagem.titulo}}">
                     <p>
                       {{situacaoAprendizagem.descricao}}
                     </p>
-                  </p-accordionTab>                  
+                  </p-accordionTab>
                 </div>
               </p-accordion>
             </div>
@@ -208,7 +208,7 @@
                   <div #elseBlock>
                     <p>Status: Ativo</p>
                   </div>
-                </div> 
+                </div>
 
                 <!--
                 <p-timeline [value]="objetosAprendizagem" >
@@ -217,16 +217,16 @@
                   </ng-template>
                   <ng-template pTemplate="opposite" let-objetoAprendizagem>
                       {{ objetoAprendizagem.grauDificuldade.descricao }}
-                  </ng-template>    
+                  </ng-template>
                 </p-timeline>
-                
+
                 <p>{{objetoAprendizagem.id}} - {{objetoAprendizagem.descricao}}</p>
                 -->
               </div>
             </div>
           </ng-template>
         </p-splitter>
-      </div>         
+      </div>
 
     </p-tabPanel>
 
@@ -238,7 +238,7 @@
 
       <div class="container">
 
-      </div>              
+      </div>
 
     </p-tabPanel>
 

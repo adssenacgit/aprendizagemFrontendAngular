@@ -21,6 +21,7 @@ export class AtividadeService {
   urlAtividade = environment.apiServer + 'api/Atividade/AtividadeEnviarArquivoByAtividadeIdByEstudanteId';
   constructor(private https: HttpClient) { }
 
+  //Atividades por situação de aprendizagem
   FiltrarAtividadebySituacaoAprendizagemId (id: number) : Observable<Atividade[]>
   {
     const apiUrl = `${this.url}/FiltrarAtividadebySituacaoAprendizagemId/${id}`;
@@ -32,6 +33,12 @@ export class AtividadeService {
   {
     const apiUrl = `${this.url}/FiltrarAtividadeBySituacaoAprendizagemId/${situacaoId}`
     return  this.https.get<Atividade[]>(apiUrl);
+  }
+
+  ObterAtividadePorId (atividadeId: number) : Observable<Atividade>
+  {
+    const apiUrl = `${this.url}/${atividadeId}`
+    return  this.https.get<Atividade>(apiUrl);
   }
 
   ObterAtividadesRecentesPeloUsuarioId(usuarioId : string){
@@ -61,7 +68,7 @@ export class AtividadeService {
           atividade.enunciado = enunciados[0];
           for (let index = 1; index < enunciados.length; index++) {
             atividade.alternativas?.push(enunciados[index]);
-          } 
+          }
         }
       }
     });

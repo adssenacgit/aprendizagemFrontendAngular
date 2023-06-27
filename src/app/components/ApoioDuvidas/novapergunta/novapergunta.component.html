@@ -1,21 +1,10 @@
-<form>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Título</label>
-      <input type="text" class="form-control" id="exampleFormControlInput1" required>
-    </div>
-    <select class="form-select" aria-label="Default select example" required>
-        <option selected>Selecione as Tags</option>
-        <option value="1">Banco de Dados</option>
-        <option value="2">Tec web</option>
-        <option value="3">Python</option>
-    </select>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Descrição</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="formFile" class="form-label">Default file input example</label>
-        <input class="form-control" type="file" id="formFile" >
-      </div>
-      <p-button id="perguntarbutton" label="Perguntar"></p-button>
-  </form>
+<form class = "needs-validation" novalidate [formGroup]="form">
+  <div class="form-group">
+    <label for="descricao">Pergunta</label>
+    <textarea class="form-control" id="descricao" rows="3" formControlName="descricao" [ngClass]="{ 'is-invalid': submitted && hasError('descricao')}"></textarea>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()"routerLink="/dashboard/usuariodashboard" >Enviar</button>
+    <button type ="button"  class="btn btn-default" (click)="onCancel()"routerLink="/dashboard/usuariodashboard">Cancelar</button>
+  </div>
+</form>
