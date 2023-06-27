@@ -1,4 +1,4 @@
-<div class="card">
+<div class="container-fluid">
     <p-table
       #dt1
       [value]="grupos"
@@ -12,9 +12,9 @@
     >
       <ng-template pTemplate="header">
         <tr>
-          <th style="min-width: 12rem">
+          <th style="min-width: 8rem">
             <div class="flex justify-content-center align-items-center">
-              Modulo
+              Módulo
               <p-columnFilter
                 type="text"
                 field="modulo.descricao"
@@ -22,7 +22,7 @@
               ></p-columnFilter>
             </div>
           </th>
-          <th style="min-width: 12rem">
+          <th style="min-width: 15rem">
             <div class="flex justify-content-center align-items-center">
               Nome
               <p-columnFilter
@@ -32,7 +32,7 @@
               ></p-columnFilter>
             </div>
           </th>
-          <th style="min-width: 12rem">
+          <th style="min-width: 8rem">
             <div class="flex justify-content-center align-items-center">
               Horas
               <p-columnFilter
@@ -52,12 +52,12 @@
               ></p-columnFilter>
             </div>
           </th>
-          <th style="min-width: 8rem">
+          <th style="min-width: 10rem">
             <div class="flex justify-content-center align-items-center">
               Activity
             </div>
           </th>
-          <th style="min-width: 8rem">
+          <th style="min-width: 10rem">
             <div class="flex justify-content-center align-items-center">
               Frequencia
             </div>
@@ -103,7 +103,7 @@
           <td>
             <p-progressBar
               [value]="grupo.frequencia"
-              [showValue]="false"
+              [showValue]="true"
             ></p-progressBar>
           </td>
           <td class="text-center">

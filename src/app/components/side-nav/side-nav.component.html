@@ -1,0 +1,29 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+  <div class="logo-container">
+    <p-button
+      icon="pi pi-bars"
+      styleClass="p-button-warning"
+      (click)="toggleCollapse()"
+    ></p-button>
+    <!-- <button class="logo" (click)="toggleCollapse()">S</button> -->
+    <!-- <div class="logo-text" *ngIf="collapsed">Senac</div> -->
+    <span *ngIf="collapsed">
+      <img style="width: 4rem; margin-left: 1.5rem;" src="../../../../assets/img/senac-logo.png" />
+    </span>
+    <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fal fa-times close-icon"></i>
+    </button>
+  </div>
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of navData">
+      <a class="sidenav-nav-link" [routerLink]="[data.routelink]">
+        <i class="sidenav-link-icon" [class]="data.icon">
+
+        </i>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{
+          data.label
+        }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

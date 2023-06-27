@@ -1,0 +1,102 @@
+.mat-sidenav {
+	padding: 50px;
+}
+
+.sidenav {
+	background: #092c4c;
+	transition: all 0.5s ease;
+	z-index: 1;
+	width: 6rem;
+	height: 100%;
+	box-shadow: 0.063rem 0 0.5rem 0 #06223b;
+}
+.logo-container {
+	display: flex;
+	align-items: center;
+	padding: 1rem 1rem;
+	width: 100%;
+}
+
+.logo {
+	background: #fff;
+	text-align: center;
+	width: 3rem;
+	min-width: 3rem;
+	border-radius: 0.313rem;
+	padding: 0.313rem;
+	font-size: 24px;
+	font-weight: 900;
+	cursor: pointer;
+	border: none;
+}
+.logo-text {
+	margin-left: 1.5rem;
+	font-size: 30px;
+	font-weight: 700;
+	color: #fff;
+}
+
+.btn-close {
+	margin-left: 1.5rem;
+	cursor: pointer;
+	width: 2rem;
+	height: 2rem;
+	background: transparent;
+	border: none;
+}
+
+.close-icon {
+	color: #ffff;
+	font-size: 30px;
+}
+
+.sidenav-collapsed {
+	width: 14rem;
+	transition: all 0.5s ease;
+}
+
+.sidenav-nav {
+	list-style-type: none;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: auto;
+	cursor: pointer;
+}
+
+.sidenav-nav-item {
+	width: 100%;
+	margin-bottom: 0.625rem;
+}
+
+.sidenav-nav-link {
+	margin-top: 0.625rem;
+	display: flex;
+	align-items: center;
+	height: 3rem;
+	color: #fff;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.sidenav-link-icon {
+	font-size: 30px;
+	width: 2rem;
+	min-width: 2rem;
+	text-align: center;
+	/* background-color: orange; */
+}
+
+.sidenav-link-text {
+	margin-left: 1rem;
+	font-size: 20px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.sidenav-nav-link:hover {
+	background-color: #f7941d;
+	border: 3px solid #f7941d;
+	scale: 1.1;
+	transition: all 0.5s ease;
+}

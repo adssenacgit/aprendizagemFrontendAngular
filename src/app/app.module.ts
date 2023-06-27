@@ -156,6 +156,7 @@ import localePT from '@angular/common/locales/pt';
 import localeES from '@angular/common/locales/es';
 import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 
 registerLocaleData(localePT);
@@ -170,7 +171,7 @@ registerLocaleData(localeFR);
     NovoCursoComponent,
     AtualizarCursoComponent,
     DialogExclusaoCursosComponent,
-    ListagemBadgesComponent,    
+    ListagemBadgesComponent,
     DialogExclusaoBadgeComponent,
     NovoBadgeComponent,
     AtualizarBadgeComponent,
@@ -217,7 +218,8 @@ registerLocaleData(localeFR);
     CardContatoComponent,
     MeusRecursosComponent,
     AtividadesComponent,
-    CardsSenacCoinComponent
+    CardsSenacCoinComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -234,7 +236,7 @@ registerLocaleData(localeFR);
     MatDividerModule,
     MatSelectModule,
     MatGridListModule,
-    MatDialogModule,    
+    MatDialogModule,
     FormsModule,
     MatAutocompleteModule,
     MatPaginatorModule,
@@ -252,7 +254,7 @@ registerLocaleData(localeFR);
         tokenGetter: PegarTokenUsuario,
         allowedDomains: ['localhost:5099'],
         disallowedRoutes: []
-      }      
+      }
     }),
     MatSidenavModule,
     MatListModule,
@@ -292,8 +294,8 @@ registerLocaleData(localeFR);
     CursoTiposService,
     FuncoesService,
     OfertasService,
-    AuthGuardService,    
-    HttpClientModule, 
+    AuthGuardService,
+    HttpClientModule,
     {provide:LocationStrategy, useClass:HashLocationStrategy},
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
   ],
