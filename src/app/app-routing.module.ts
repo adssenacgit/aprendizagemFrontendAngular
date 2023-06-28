@@ -34,6 +34,9 @@ import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-o
 import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
 import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
 import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
+import { ApoioDuvidasComponent } from './components/ApoioDuvidas/apoio-duvidas.component';
+import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
+import { UsuarioRequerimentoWebComponent } from './components/Dashboard/usuario-dashboard/usuario-requerimento-web/usuario-requerimento-web.component';
 
 const routes: Routes = [
   {
@@ -134,6 +137,15 @@ const routes: Routes = [
       {
         path: 'atividades', component: AtividadesComponent
       },
+      {
+        path: 'comunidade', component: ApoioDuvidasComponent
+      },
+      {
+        path: 'requerimentoweb', component: UsuarioRequerimentoWebComponent
+      },
+      {
+        path: 'ajuda', component: AjudaComponent
+      }
     ]
   },
   {

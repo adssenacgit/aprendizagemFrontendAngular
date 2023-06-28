@@ -20,10 +20,6 @@ export class UsuarioBadgesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //criando array de 3 badges vazios
-    this.badges.push(this.badge);
-    this.badges.push(this.badge);
-    this.badges.push(this.badge);
 
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 

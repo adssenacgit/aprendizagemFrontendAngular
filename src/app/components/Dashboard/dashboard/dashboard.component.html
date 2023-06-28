@@ -1,36 +1,14 @@
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
-          <div class="logo-container">
-            <p-button
-              icon="pi pi-bars"
-              styleClass="p-button-warning"
-              (click)="toggleCollapse()"
-            ></p-button>
-            <!-- <button class="logo" (click)="toggleCollapse()">S</button> -->
-            <div class="logo-text" *ngIf="collapsed">Senac</div>
-            <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
-              <i class="fal fa-times close-icon"></i>
-            </button>
-          </div>
-          <ul class="sidenav-nav">
-            <li class="sidenav-nav-item" *ngFor="let data of navData">
-              <a class="sidenav-nav-link" [routerLink]="[data.routelink]">
-                <i class="sidenav-link-icon" [class]="data.icon">
-                  <span class="sidenav-link-text" *ngIf="collapsed">{{
-                    data.label
-                  }}</span>
-                </i>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div
-          class="container-fluid d-flex flex-fill"
-          style="flex-direction: column"
-        >
-          <app-header class="container-fluid"></app-header>
-          <router-outlet> </router-outlet>
-        </div>
-     </div>
+<div class="container-fluid" style="padding: 0">
+  <div class="flex-row">
+    <app-side-nav></app-side-nav>
+    <div
+      class="container-fluid d-flex flex-fill"
+      style="flex-direction: column; padding: 0"
+    >
+      <app-header></app-header>
+      <div style="padding: 1.5rem">
+        <router-outlet> </router-outlet>
+      </div>
+    </div>
+  </div>
 </div>
