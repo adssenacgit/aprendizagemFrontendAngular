@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApoioDuvidasComponent } from '../apoio-duvidas.component';
@@ -19,13 +20,16 @@ export class ComentarioComponent implements OnInit {
   comentario: ChapterAssuntoComentario = new ChapterAssuntoComentario();
 
   comentarios: ChapterAssuntoComentario[] = [];
+  idUsuarioLogado : string;
 
   constructor(
     private fb:FormBuilder,
     private route: ActivatedRoute, 
-    private comentarioService: ComentarioService, ) { }
+    private comentarioService: ComentarioService, private authGuardService: AuthGuardService ) { }
 
   ngOnInit() {
+
+    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
     let id = this.route.snapshot.params["id"]
     this.comentarioService.FiltrarChapterAssuntoComentarioPorId(id).subscribe((data)=>{
       this.comentario.chapterAssuntoId= id;
@@ -39,9 +43,26 @@ export class ComentarioComponent implements OnInit {
 
   onSubmit() {
 
-    this.comentario.texto = this.form.value.comentario
+    var date;
+    date = new Date();
+    date = date.getUTCFullYear() + '-' +
+        ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
+        ('00' + date.getUTCDate()).slice(-2) + ' ' + 
+        ('00' + date.getUTCHours()).slice(-2) + ':' + 
+        ('00' + date.getUTCMinutes()).slice(-2) + ':' + 
+        ('00' + date.getUTCSeconds()).slice(-2);
+    
 
-    console.log(this.comentarioService.NovoChapterAssuntoComentario(this.comentario))
+
+    this.comentario.texto = this.form.value.comentario;
+    this.comentario.data = date;
+    this.comentario.usuarioId = this.idUsuarioLogado;
+//    this.comentarioService.NovoChapterAssuntoComentario(this.comentario)
+    debugger;
+    this.comentarioService.NovoChapterAssuntoComentario(this.comentario).subscribe((data)=>{
+
+    });
+
   }
 
   onCancel() {

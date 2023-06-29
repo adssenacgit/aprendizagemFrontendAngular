@@ -181,10 +181,10 @@
           <ng-template pTemplate>
             <div class="col flex align-items-center justify-content-center" style="padding: 10px">
 
-              <p-accordion [activeIndex]="0">
+              <p-accordion class="acc" [activeIndex]="0">
 
                 <div *ngFor="let situacaoAprendizagem of situacoesAprendizagem; let i = index" drag-scroll-item>
-                  <p-accordionTab (click)="ObterObjetosAprendizagem(situacaoAprendizagem.id, i)" header="{{situacaoAprendizagem.titulo}}">
+                  <p-accordionTab id="acc" (click)="ObterObjetosAprendizagem(situacaoAprendizagem.id, i)" header="{{situacaoAprendizagem.titulo}}">
                     <p>
                       {{situacaoAprendizagem.descricao}}
                     </p>

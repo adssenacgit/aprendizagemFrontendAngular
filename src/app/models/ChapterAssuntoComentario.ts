@@ -7,6 +7,7 @@ export class ChapterAssuntoComentario {
     pai: number;
     chapterAssuntoComentarioReferenciaPai: String;
     chapterAssuntoId: number;
-    chapterAssunto: ChapterAssunto; 
+    chapterAssunto: ChapterAssunto;
+    usuarioId: String;
 }
       

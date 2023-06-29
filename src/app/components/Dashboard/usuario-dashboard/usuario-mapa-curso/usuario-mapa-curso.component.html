@@ -1,0 +1,37 @@
+<div class="row">
+    <p-timeline [value]="modulos" align="alternate" styleClass="customized-timeline">
+      <ng-template pTemplate="content" let-modulo>
+        <p-card class="card flex" [header]="modulo.descricao" [subheader]="'Carga Horária: ' + modulo.cargaHoraria" style="display: flex; justify-content: flex-start;">
+          <div>
+            <table class="table simplified-table">
+              <thead>
+                <tr>
+                  <th scope="col" style="text-align: left; border: none;">Unidade Curricular</th>
+                  <th scope="col" style="text-align: center; border: none;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares; let i = index">
+                  <tr [ngClass]="{ 'gray-row': i % 2 === 0 }">
+                    <td style="text-align: left; border: none;">{{ unidadesCurriculares.nome }}</td>
+                    <td *ngIf="modulo.id === 1" style="text-align: center">
+                      <img
+                        id="cadeado"
+                        src="https://cdn-icons-png.flaticon.com/512/2089/2089795.png"
+                      />
+                    </td>
+                    <td *ngIf="modulo.id !== 1" style="text-align: center">
+                      <img
+                        id="cadeado"
+                        src="https://cdn-icons-png.flaticon.com/512/64/64104.png?w=360"
+                      />
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </p-card>
+      </ng-template>
+    </p-timeline>
+  </div>
