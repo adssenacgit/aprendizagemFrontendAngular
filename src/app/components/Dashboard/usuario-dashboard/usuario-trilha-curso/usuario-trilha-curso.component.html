@@ -1,7 +1,10 @@
 <div class="row">
     <p-timeline [value]="modulos" align="alternate" styleClass="customized-timeline">
       <ng-template pTemplate="content" let-modulo>
-        <p-card class="card flex" [header]="modulo.descricao" [subheader]="'Carga Horária: ' + modulo.cargaHoraria" style="display: flex; justify-content: flex-start;">
+        <p style="font-weight: bold;">{{modulo.descricao}}</p>
+        <p>Carga horária: {{modulo.cargaHoraria}}h</p>
+        <!-- <p-card class="card flex" header="modulo.descricao" subheader="'Carga Horária: ' + modulo.cargaHoraria" style="display: flex; justify-content: flex-start;"> -->
+
           <!-- <div style="display: flex; justify-content: space-between;" *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares">
             <p>
               {{ unidadesCurriculares.nome }}
@@ -10,6 +13,7 @@
               {{ unidadesCurriculares.horas }}
             </p>
           </div> -->
+
           <div>
             <table class="table" >
               <thead>
@@ -28,8 +32,8 @@
               </tbody>
             </table>
           </div>
-        </p-card>
+        <!-- </p-card> -->
 
     </ng-template>
   </p-timeline>
-</div>          
+</div>
