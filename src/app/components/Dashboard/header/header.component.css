@@ -1,9 +1,9 @@
 :host ::ng-deep .p-button-warning {
 	background: #f7941d;
 	padding: 20px;
-	margin: 20px;
+	/* margin: 20px; */
 	width: 2rem;
-	height: 1.0rem;
+	height: 1rem;
 }
 
 .header-container{
@@ -11,6 +11,8 @@
 }
 .botoes__Menu {
 	display: flex;
+  gap: 1rem;
+  justify-content: space-around;
 	align-items: center;
 }
 
