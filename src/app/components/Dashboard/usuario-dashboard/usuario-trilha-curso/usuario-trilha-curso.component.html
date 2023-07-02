@@ -1,35 +1,75 @@
-<div class="row">
-    <p-timeline [value]="modulos" align="alternate" styleClass="customized-timeline">
-      <ng-template pTemplate="content" let-modulo>
-        <p-card class="card flex" [header]="modulo.descricao" [subheader]="'Carga Horária: ' + modulo.cargaHoraria" style="display: flex; justify-content: flex-start;">
-          <!-- <div style="display: flex; justify-content: space-between;" *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares">
-            <p>
-              {{ unidadesCurriculares.nome }}
-            </p>
-            <p>
-              {{ unidadesCurriculares.horas }}
-            </p>
-          </div> -->
-          <div>
-            <table class="table" >
-              <thead>
-                <tr>
-                  <th scope="col">Unidade Curricular</th>
-                  <th scope="col">Carga Horaria</th>
-                  <th scope="col">Status</th>
+<!-- <div class="row">
+  <p-timeline [value]="modulos" align="alternate" styleClass="customized-timeline">
+    <ng-template pTemplate="content" let-modulo>
+      <p-card class="card flex" [header]="modulo.descricao" [subheader]="'Carga Horária: ' + modulo.cargaHoraria" style="display: flex; justify-content: flex-start;">
+        <div>
+          <table class="table simplified-table">
+            <thead>
+              <tr>
+                <th scope="col" style="text-align: left; border: none;">Unidade Curricular</th>
+                <th scope="col" style="text-align: center; border: none;">Carga Horária</th>
+                <th scope="col" style="text-align: center; border: none;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares; let i = index">
+                <tr [ngClass]="{ 'gray-row': i % 2 === 0 }">
+                  <td style="text-align: left; border: none;">{{ unidadesCurriculares.nome }}</td>
+                  <td style="text-align: center; border: none;">{{ unidadesCurriculares.horas }}</td>
+                  <td *ngIf="modulo.id === 1" style="text-align: center">
+                    <img
+                      id="cadeado"
+                      src="https://cdn-icons-png.flaticon.com/512/2089/2089795.png"
+                    />
+                  </td>
+                  <td *ngIf="modulo.id !== 1" style="text-align: center">
+                    <img
+                      id="cadeado"
+                      src="https://cdn-icons-png.flaticon.com/512/64/64104.png?w=360"
+                    />
+                  </td>
                 </tr>
-              </thead>
-              <tbody *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares">
-                <tr>
-                  <td>{{ unidadesCurriculares.nome }}</td>
-                  <td>{{ unidadesCurriculares.horas }}</td>
-                  <td>{{ unidadesCurriculares.id }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </p-card>
-
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </p-card>
     </ng-template>
   </p-timeline>
-</div>          
+</div> -->
+
+<p-timeline [value]="modulos" align="alternate" styleClass="customized-timeline">
+  <ng-template pTemplate="content" let-modulo>
+      <p-card class="card flex" [header]="'Módulo: '+modulo.id" [subheader]="'Carga Horária '+modulo.cargaHoraria">
+        <table class="table simplified-table">
+          <thead>
+            <tr>
+              <th scope="col" style="text-align: left; border: none;">Unidade Curricular</th>
+              <th scope="col" style="text-align: center; border: none;">Carga Horária</th>
+              <th scope="col" style="text-align: center; border: none;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares; let i = index">
+              <tr [ngClass]="{ 'gray-row': i % 2 === 0 }">
+                <td style="text-align: left; border: none;">{{ unidadesCurriculares.nome }}</td>
+                <td style="text-align: center; border: none;">{{ unidadesCurriculares.horas }}</td>
+                <td *ngIf="modulo.id === 1" style="text-align: center">
+                  <img
+                    id="cadeado"
+                    src="https://cdn-icons-png.flaticon.com/512/2089/2089795.png"
+                  />
+                </td>
+                <td *ngIf="modulo.id !== 1" style="text-align: center">
+                  <img
+                    id="cadeado"
+                    src="https://cdn-icons-png.flaticon.com/512/64/64104.png?w=360"
+                  />
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </p-card>
+  </ng-template>
+</p-timeline>
