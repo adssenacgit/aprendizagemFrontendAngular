@@ -22,7 +22,9 @@ export class NovaPerguntaComponent implements OnInit {
 
   ngOnInit(): void {
       this.form = this.fb.group({
+        titulo: [null,[Validators.required,Validators.minLength(5)]],
         descricao: [null,[Validators.required,Validators.minLength(5)]]
+        
       });  
      // 3b700ecc-cec9-4be4-8c00-48bced543861 id maria estudante
   }
@@ -36,6 +38,8 @@ export class NovaPerguntaComponent implements OnInit {
     console.log(this.form.value);
     if(this.form.valid) {
       console.log("Submit");
+
+      this.pergunta.titulo = this.form.value.titulo
 
       this.pergunta.descricao = this.form.value.descricao 
       this.pergunta.contadorVisualizacao = 0

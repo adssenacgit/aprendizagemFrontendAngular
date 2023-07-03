@@ -1,7 +1,6 @@
 #paginacao {
     display: flex;
     flex-direction: row;
-
     justify-content: center;
 
 }
@@ -17,34 +16,43 @@
     flex-direction: column;
 }
 
+#comentarios {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
 #curtidas {
-    margin-left: 1000px;
-    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #addpergunta {
-    margin-left: 700px;
+    display: flex;
+    justify-content: center;
+}
+:host ::ng-deep .p-card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
-:host ::ng-deep .p-card {
+:host ::ng-deep .p-card-body {
+    height: 180px;
     margin: 10px;
-    border-radius: 25px !important;
+    border-radius: 0px !important;
     border: 2px solid #012544;
 }
 :host ::ng-deep .p-card-header {
-    border-radius: 25px 25px 0px 0px !important;
     color: white;
-    font-size: 20px;
     font-weight: bold;
     text-align: center;
     padding: 10px;
-    margin: 0 auto;
 }
 :host ::ng-deep .p-card .p-card-subtitle {
     color: black !important;
 }
 :host ::ng-deep .p-card .p-card-content {
-    font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     color: black;
 }

@@ -21,6 +21,10 @@ export class ComentarioComponent implements OnInit {
 
   comentarios: ChapterAssuntoComentario[] = [];
   idUsuarioLogado : string;
+  currentPage: number = 1;
+  itemsPerPage: number = 3;
+  startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
+  endIndex: number = this.currentPage * this.itemsPerPage;  
 
   constructor(
     private fb:FormBuilder,
@@ -40,6 +44,25 @@ export class ComentarioComponent implements OnInit {
       comentario: [null,[Validators.required,Validators.minLength(5)]]
     });
   }
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updatePage();
+    }
+  }
+
+  nextPage() {
+    const totalPages = Math.ceil(this.comentarios.length / this.itemsPerPage);
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
+      this.updatePage();
+    }
+  }
+
+  updatePage() {
+    this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.endIndex = Math.min(this.currentPage * this.itemsPerPage, this.comentarios.length);
+  }  
 
   onSubmit() {
 
@@ -62,6 +85,7 @@ export class ComentarioComponent implements OnInit {
     this.comentarioService.NovoChapterAssuntoComentario(this.comentario).subscribe((data)=>{
 
     });
+    window.location.reload()
 
   }
 
