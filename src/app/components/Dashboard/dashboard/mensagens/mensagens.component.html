@@ -8,7 +8,7 @@
               <li *ngFor="let item of contatos">
                 <app-card-contato
                   [nome]="item.nomeCompleto"
-                  [msg]="'oi'"
+                  [msg]="''"
                   [img]="item.foto"
                   [unreaded]="0"
                   (click)="toggleChat(item)"
@@ -25,7 +25,7 @@
               <div *ngFor="let item of contatos">
                 <app-card-contato
                   [nome]="item.nomeCompleto"
-                  [msg]="'oi'"
+                  [msg]="''"
                   [img]="item.foto"
                   [unreaded]="0"
                   (click)="toggleChat(item)"
