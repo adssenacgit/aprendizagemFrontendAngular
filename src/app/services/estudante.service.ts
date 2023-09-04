@@ -42,10 +42,10 @@ export class EstudantesService {
     return this.https.get<Estudante[]>(apiUrl);
   }
 
-  ObterEstudanteByUsuarioId (usuarioId: string) :  Observable<Estudante[]>
+  ObterEstudanteByUsuarioId (usuarioId: string) :  Observable<Estudante>
   {
     const apiUrl = `${this.url}/FiltrarEstudanteByUsuarioId/${usuarioId}`;
-    return this.https.get<Estudante[]>(apiUrl);
+    return this.https.get<Estudante>(apiUrl);
   }
 
   Novoestudante (estudante: Estudante): Observable<any>

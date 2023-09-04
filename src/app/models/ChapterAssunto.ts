@@ -3,6 +3,7 @@ import { Usuario } from "./Usuario";
 
 export class ChapterAssunto {
     id: number;
+    titulo:string;
     descricao: string;
     contadorVisualizacao: number;
     status: number; 

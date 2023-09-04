@@ -1,6 +1,5 @@
 body{
-    min-height: 100vh;
-    
+    min-height: 100vh;    
 }
 
 ul{
@@ -177,4 +176,9 @@ ul{
         z-index: -1;
         transform: translate(-50%,0);
     }
+}
+
+#cadeado {
+    width: 25px;
+    height: 25px;
 }

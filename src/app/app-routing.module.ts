@@ -37,6 +37,7 @@ import { AtividadesComponent } from './components/UnidadeCurricular/atividades/a
 import { ApoioDuvidasComponent } from './components/ApoioDuvidas/apoio-duvidas.component';
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 import { UsuarioRequerimentoWebComponent } from './components/Dashboard/usuario-dashboard/usuario-requerimento-web/usuario-requerimento-web.component';
+import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
 
 const routes: Routes = [
   {
@@ -145,6 +146,9 @@ const routes: Routes = [
       },
       {
         path: 'ajuda', component: AjudaComponent
+      },
+      {
+        path: 'noticias', component: UsuarioNoticiasComponent
       }
     ]
   },

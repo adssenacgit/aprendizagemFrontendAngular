@@ -1,57 +1,90 @@
 <section>
-    <div class="container pt-3">
-      <div class="row"></div>
+  <div class="container pt-3" *ngIf="chat == false">
+    <p-tabView>
+      <p-tabPanel header="Ultimas Mensagens">
+        <div class="card" *ngIf="contatos">
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+              <li *ngFor="let item of contatos">
+                <app-card-contato
+                  [nome]="item.nomeCompleto"
+                  [msg]="''"
+                  [img]="item.foto"
+                  [unreaded]="0"
+                  (click)="toggleChat(item)"
+                ></app-card-contato>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Favoritos">
+        <div class="card" *ngIf="contatos">
+          <div class="card-body">
+            <div class="list-unstyled mb-0">
+              <div *ngFor="let item of contatos">
+                <app-card-contato
+                  [nome]="item.nomeCompleto"
+                  [msg]="''"
+                  [img]="item.foto"
+                  [unreaded]="0"
+                  (click)="toggleChat(item)"
+                ></app-card-contato>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
 
-      <p-tabView>
-        <p-tabPanel header="Ultimas Mensagens">          
-          <div class="card">
-            <div class="card-body">
-              <ul class="list-unstyled mb-0">
-                <li *ngFor="let item of list">
-                  <app-card-contato
-                    [nome]="item.nome"
-                    [msg]="item.msg"
-                    [img]="item.img"
-                    [unreaded]="item.unreaded"
-                  ></app-card-contato>
-                </li>
-              </ul>
-  
-            </div>
-          </div>  
-        </p-tabPanel>
-        <p-tabPanel header="Favoritos">
-          <div class="card">
-            <div class="card-body">
-              <div class="list-unstyled mb-0">
-                <div *ngFor="let item of fav">
-                  <app-card-contato
-                    [nome]="item.nome"
-                    [msg]="item.msg"
-                    [img]="item.img"
-                    [unreaded]="item.unreaded"
-                  ></app-card-contato>
-                </div>
-              </div>
-            </div>
-          </div>
-        </p-tabPanel>
-        <p-tabPanel header="Grupos">
-          <div class="card">
-            <div class="card-body">
-              <div class="list-unstyled mb-0">
-                <div *ngFor="let item of group">
-                  <app-card-contato
-                    [nome]="item.nome"
-                    [msg]="item.msg"
-                    [img]="item.img"
-                    [unreaded]="item.unreaded"
-                  ></app-card-contato>
-                </div>
-              </div>
-            </div>
-          </div>
-        </p-tabPanel>
-      </p-tabView>
+  <div *ngIf="chat == true" class="container py-5">
+    <div id="arrow">
+      <i class="pi pi-arrow-left"  (click)="toggleChat()"></i>
     </div>
-  </section>
+    <div class="row chatMensagens m-1" >
+      <div class="card" >
+        <div class="card-body" >
+          <ul class="list-unstyled">
+            <li *ngFor="let item of mensagens" >
+              <app-card-mensagem 
+              [mensagem]="item"
+              ></app-card-mensagem>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <form id="fixedDiv" name="mensagemTexto" action="">
+      <div class="bg-white mb-3 col-12">
+        <div class="form-outline">
+          <textarea
+          [(ngModel)]="mensagemTexto"
+          placeholder="Digite sua mensagem"
+            class="form-control"
+            id="textAreaExample2"
+            rows="4"
+          ></textarea>
+        </div>
+      </div>
+      <button type="button" class="btn btn-info btn-rounded float-end" (click)="EnviarMensagem()">
+        Enviar
+      </button>
+    </form>
+  </div>
+
+</section>
+
+<script>
+  window.addEventListener("scroll", function() {
+  var fixedDiv = document.getElementById("fixedDiv");
+  var rect = fixedDiv.getBoundingClientRect();
+  var isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+  if (isVisible) {
+    fixedDiv.style.visibility = "visible";
+  } else {
+    fixedDiv.style.visibility = "hidden";
+  }
+});
+</script>

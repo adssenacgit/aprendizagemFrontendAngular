@@ -1,5 +1,5 @@
 <p-card
-  *ngFor="let comentario of comentarios"
+*ngFor="let comentario of comentarios.slice(startIndex, endIndex)"
   header="{{ comentario.chapterAssunto.usuario.nomeCompleto }}"
   subheader="{{ comentario.data }}">
   <ng-template pTemplate="header">
@@ -19,6 +19,11 @@
   </div>
   <div>
     <button type="submit" class="btn btn-primary" (click)="onSubmit()">Enviar </button>
-    <button type ="button"  class="btn btn-default" (click)="onCancel()"routerLink="/dashboard/usuariodashboard">Cancelar</button>
+    <button type ="button"  class="btn btn-default" (click)="onCancel()"routerLink="/comunidade">Cancelar</button>
   </div>
 </form>
+
+<div id="paginacao">
+  <button class="btn btn-primary" id ="Anterior"(click)="previousPage()" [disabled]="currentPage === 1"> < </button>
+  <button class="btn btn-primary" id= "Proximo" (click)="nextPage()" [disabled]="endIndex >= comentarios.length"> > </button>
+</div>

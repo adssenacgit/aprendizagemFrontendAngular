@@ -1,0 +1,30 @@
+
+#fixedDiv {
+    position: fixed;
+    bottom: 0;
+    width: 555px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .chatMensagens{
+    padding-bottom: 115px;
+  }
+  
+  #arrow{
+    position: fixed;
+    top: 0;
+    text-align: left;
+    padding: 20px;
+    margin-top: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+  }
+  
+  #arrow :hover{
+    background-color: #d1d1d1;
+  
+  
+  }

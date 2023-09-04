@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Chapter } from 'src/app/models/Chapter';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 import { Usuario } from 'src/app/models/Usuario';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
 import { ChapterService } from 'src/app/services/chapter.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -18,10 +19,11 @@ export class NovaPerguntaComponent implements OnInit {
   pergunta: ChapterAssunto = new ChapterAssunto();
 
   constructor(
-    private fb:FormBuilder,private service: ChapterAssuntoService,private serviceUsuario: UsuariosService) { }
+    private fb:FormBuilder,private service: ChapterAssuntoService, private serviceUsuario: UsuariosService, private authGuardService: AuthGuardService) { }
 
   ngOnInit(): void {
       this.form = this.fb.group({
+        titulo: [null,[Validators.required,Validators.minLength(5)]],
         descricao: [null,[Validators.required,Validators.minLength(5)]]
       });  
      // 3b700ecc-cec9-4be4-8c00-48bced543861 id maria estudante
@@ -37,13 +39,13 @@ export class NovaPerguntaComponent implements OnInit {
     if(this.form.valid) {
       console.log("Submit");
 
+      this.pergunta.titulo = this.form.value.titulo
       this.pergunta.descricao = this.form.value.descricao 
       this.pergunta.contadorVisualizacao = 0
       this.pergunta.status = 1
       this.pergunta.verificacao = 0
       this.pergunta.chapterId = 1
-      this.pergunta.usuarioId = "3b700ecc-cec9-4be4-8c00-48bced543861"
-      this.pergunta.usuarioIdVerificacao = "3b700ecc-cec9-4be4-8c00-48bced543861"
+      this.pergunta.usuarioId = this.authGuardService.getIdUsuarioLogado()
 
       this.service.NovoChapterAssunto(this.pergunta).subscribe();
     }

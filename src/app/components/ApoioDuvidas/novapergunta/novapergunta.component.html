@@ -1,10 +1,15 @@
 <form class = "needs-validation" novalidate [formGroup]="form">
   <div class="form-group">
+    <label for="titulo">Titulo</label>
+    <input class="form-control" id="titulo" rows="3" formControlName="titulo" [ngClass]="{ 'is-invalid': submitted && hasError('titulo')}">
+  </div>
+
+  <div class="form-group">
     <label for="descricao">Pergunta</label>
     <textarea class="form-control" id="descricao" rows="3" formControlName="descricao" [ngClass]="{ 'is-invalid': submitted && hasError('descricao')}"></textarea>
   </div>
   <div>
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()"routerLink="/dashboard/usuariodashboard" >Enviar</button>
-    <button type ="button"  class="btn btn-default" (click)="onCancel()"routerLink="/dashboard/usuariodashboard">Cancelar</button>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()"routerLink="/comunidade" >Enviar</button>
+    <button type ="button"  class="btn btn-default" (click)="onCancel()"routerLink="/comunidade">Cancelar</button>
   </div>
 </form>

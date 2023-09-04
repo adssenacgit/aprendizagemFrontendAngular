@@ -23,7 +23,9 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   idEstudanteUsuarioLogado : number;
   dialogVisible = false;
   acompanhamento: Acompanhamento[] = [];
+  selectedComentario: string;
 
+  
   constructor(
     private registroAvaliacaoService : RegistroAvaliacaoService, 
     private acompanhamentoService : AcompanhamentoService,
@@ -55,7 +57,9 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
     });
   }
 
-  showDialog() {
+  showDialog(comentario: string) {
+    this.dialogVisible = true;
+    this.selectedComentario = comentario;
     this.dialogVisible = true;
   }
 

@@ -79,6 +79,10 @@ import { AtividadesComponent } from './components/UnidadeCurricular/atividades/a
 
 import { CardsSenacCoinComponent } from './components/Dashboard/usuario-dashboard/cards-senac-coin/cards-senac-coin.component';
 
+import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
+
+import { CardMensagemComponent } from './components/Dashboard/dashboard/mensagens/card-mensagem/card-mensagem.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -159,7 +163,6 @@ import localeFR from '@angular/common/locales/fr';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 
-
 registerLocaleData(localePT);
 registerLocaleData(localeES);
 registerLocaleData(localeDE);
@@ -221,7 +224,9 @@ registerLocaleData(localeFR);
     AtividadesComponent,
     CardsSenacCoinComponent,
     SideNavComponent,
-    AjudaComponent
+    AjudaComponent,
+    UsuarioNoticiasComponent,
+    CardMensagemComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ export class ApoioDuvidasComponent implements OnInit {
   
   chapterAssuntos: ChapterAssunto[];
   currentPage: number = 1;
-  itemsPerPage: number = 4;
+  itemsPerPage: number = 3;
   startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
   endIndex: number = this.currentPage * this.itemsPerPage;  
 

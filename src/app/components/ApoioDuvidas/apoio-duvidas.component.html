@@ -6,7 +6,7 @@
 <div class="container">
 <p-card
   *ngFor="let pergunta of chapterAssuntos.slice(startIndex, endIndex)"
-  header="{{ pergunta.chapter.nome }}"
+  header="{{ pergunta.titulo }}"
   subheader="{{ pergunta.usuario.nomeCompleto }}"
 >
   <ng-template pTemplate="header">
@@ -15,10 +15,13 @@
   <p>
     {{ pergunta.descricao }}
   </p>
+  <p-button id="comentarios" routerLink="/comunidade/comentario/{{pergunta.id}}"><i class="pi pi-comment"></i></p-button>  
   <ng-template pTemplate="footer">
+    <!--
     <p-button id="comentarios" routerLink="/comunidade/comentario/{{pergunta.id}}"><i class="pi pi-comment"></i></p-button>
     <p-button id="curtidas"><i class="pi pi-thumbs-up"></i></p-button>
     <p-button id="visualizacoes">{{ pergunta.contadorVisualizacao }}<i class="pi pi-eye"></i></p-button>
+    -->
   </ng-template>
 </p-card>
 <div id="paginacao">
