@@ -24,6 +24,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@sweetalert2/ngx-sweetalert2": "^12.1.0",
     "jwt-decode": "^3.1.2",
+    "ngx-bootstrap": "^0.0.1",
     "ngx-drag-scroll": "^14.0.1",
     "ngx-mask": "^13.1.1",
     "primeflex": "^3.3.0",
@@ -36,7 +37,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.9",
-    "@angular/cli": "^14.2.9",
+    "@angular/cli": "^14.2.12",
     "@angular/compiler-cli": "^14.2.10",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",

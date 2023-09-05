@@ -8,7 +8,7 @@ import { GrupoService } from './../../../services/grupo.service';
 import { CompetenciaService } from './../../../services/competencia.service';
 import { UnidadeCurricularService } from './../../../services/unidade-curricular.service';
 import { AuthGuardService } from './../../../services/auth-guard.service';
-import { Component, Inject, OnInit, ViewChild,  ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Encontro } from 'src/app/models/Encontro';
 import { EncontroService } from 'src/app/services/encontro.service';
@@ -27,6 +27,8 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
+// import { AccordionModule } from 'ngx-bootstrap/accordion';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-encontros',
@@ -34,34 +36,40 @@ import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
   styleUrls: ['./encontros.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
+// @NgModule({
+//   imports: [BrowserAnimationsModule,
+//     AccordionModule.forRoot(),]
+// })
+
 export class EncontrosComponent implements OnInit {
 
-  idEstudanteUsuarioLogado : number;
+  idEstudanteUsuarioLogado: number;
   grupoId: number;
   loading: boolean = true;
 
-  encontros: Encontro[];
+  encontros: Encontro[] = [];
 
   leftNavDisabled = false;
   rightNavDisabled = false;
 
-  grupo: Grupo= new Grupo();
+  grupo: Grupo = new Grupo();
   unidadeCurricular: UnidadeCurricular = new UnidadeCurricular();
-  competencias: Competencia[]=[];
-  competenciaIndicadores: CompetenciaIndicador[]=[];
-  bibliografias: Bibliografia[]=[];
-  participantes: Estudante[]=[];
-  situacoesAprendizagem: SituacaoAprendizagem[]=[];
-  objetosAprendizagem: ObjetoAprendizagem[]=[];
+  competencias: Competencia[] = [];
+  competenciaIndicadores: CompetenciaIndicador[] = [];
+  bibliografias: Bibliografia[] = [];
+  participantes: Estudante[] = [];
+  situacoesAprendizagem: SituacaoAprendizagem[] = [];
+  objetosAprendizagem: ObjetoAprendizagem[] = [];
   planejamentoUC: PlanejamentoUC = new PlanejamentoUC();
-  badges: Badge[]=[];
+  badges: Badge[] = [];
 
   statusAtividades: number = 5;
 
-  @ViewChild('nav', {read: DragScrollComponent}) ds: DragScrollComponent;
+  @ViewChild('nav', { read: DragScrollComponent }) ds: DragScrollComponent;
 
   constructor(
-    private route : ActivatedRoute,
+    private route: ActivatedRoute,
     private encontroService: EncontroService,
     private grupoService: GrupoService,
     private unidadeCurricularService: UnidadeCurricularService,
@@ -76,7 +84,7 @@ export class EncontrosComponent implements OnInit {
     private authGuardService: AuthGuardService,
     private sanitizer: DomSanitizer,
     private dialog: MatDialog
-  ) {  }
+  ) { }
 
   ngOnInit(): void {
     this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
@@ -88,7 +96,7 @@ export class EncontrosComponent implements OnInit {
 
   }
 
-  getImage(baseImage:string) : any{
+  getImage(baseImage: string): any {
 
     let objectURL = 'data:image/png;base64,' + atob(baseImage);
     return objectURL;
@@ -96,16 +104,24 @@ export class EncontrosComponent implements OnInit {
 
   ObterEncontros = () => {
     this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe(resultado => {
-        this.encontros = resultado;
-        this.ObterSituacoesAprendizagem(this.encontros[0].id, 0);
-        this.loading = false;
+      this.encontros = resultado;
+      this.encontros.forEach(encontro => {
+        this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe(situacao => 
+          { encontro.situacaoAprendizagem = situacao;
+                        this.loading = false}
+        )
       });
+      // this.ObterSituacoesAprendizagem(this.encontros[0].id, 0);
+
+      this.loading = false;
+    });
   };
 
-  ObterDetalhesUC = ()=> {
+
+  ObterDetalhesUC = () => {
     this.grupoService.ObterGrupoPeloId(this.grupoId).subscribe(resultado => {
       this.grupo = resultado;
-      
+
       this.unidadeCurricularService.ObterUnidadeCurricularPeloId(this.grupo.unidadeCurricularId).subscribe(
         (uc: UnidadeCurricular) => {
           this.unidadeCurricular = uc;
@@ -123,10 +139,10 @@ export class EncontrosComponent implements OnInit {
           this.competenciaIndicadores = competenciaIndicadores;
         }
       );
-      
+
       this.bibliografiaService.FiltrarbibliografiaByUnidadeCurricularId(this.grupo.unidadeCurricularId).subscribe(
         (bibliografias: Bibliografia[]) => {
-          this.bibliografias = bibliografias;          
+          this.bibliografias = bibliografias;
         }
       );
 
@@ -144,44 +160,50 @@ export class EncontrosComponent implements OnInit {
 
       this.estudantesService.ObterEstudanteByGrupoId(this.grupo.id).subscribe(
         (participantes: Estudante[]) => {
-          this.participantes = participantes;          
+          this.participantes = participantes;
         }
       );
+
+      this.situacaoAprendizagemService.ObterSituacaoAprendizagem().subscribe(
+        (situacoesAprendizagem: SituacaoAprendizagem[]) => {
+          this.situacoesAprendizagem = situacoesAprendizagem;
+        }
+      )
 
       this.loading = false;
     });
   }
 
-  ObterSituacoesAprendizagem = (idEncontro: number, i:number) => {
+  ObterSituacoesAprendizagem = (idEncontro: number, i: number) => {
 
-    this.objetosAprendizagem=[];
+    this.objetosAprendizagem = [];
 
-    for(var j=0; j< this.encontros.length; j=j+1){
-      this.encontros[j].selecionado=0;  
+    for (var j = 0; j < this.encontros.length; j = j + 1) {
+      this.encontros[j].selecionado = 0;
     }
 
-    this.encontros[i].selecionado=1;
+    this.encontros[i].selecionado = 1;
 
     this.loading = true;
     this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
-        this.situacoesAprendizagem = resultado;
-        this.loading = false;
-      });
+      this.situacoesAprendizagem = resultado;
+      this.loading = false;
+    });
   };
 
-  ObterObjetosAprendizagem = (idSituacaoAprendizagem: number, i:number) => {
+  ObterObjetosAprendizagem = (idSituacaoAprendizagem: number, i: number) => {
 
-    for(var j=0; j< this.situacoesAprendizagem.length; j=j+1){
-      this.situacoesAprendizagem[j].selecionado=0;  
+    for (var j = 0; j < this.situacoesAprendizagem.length; j = j + 1) {
+      this.situacoesAprendizagem[j].selecionado = 0;
     }
 
-    this.situacoesAprendizagem[i].selecionado=1;
+    this.situacoesAprendizagem[i].selecionado = 1;
 
     this.loading = true;
     this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorSituacaoAprendizagemId(idSituacaoAprendizagem).subscribe(resultado => {
-        this.objetosAprendizagem = resultado;
-        this.loading = false;
-      });
+      this.objetosAprendizagem = resultado;
+      this.loading = false;
+    });
   };
 
   //Comandos do scroll de encontros
@@ -195,8 +217,7 @@ export class EncontrosComponent implements OnInit {
     this.ds.moveTo(index);
   }
 
-  AbrirDialog(id : any, descricaoCompetencia: any): void 
-  {
+  AbrirDialog(id: any, descricaoCompetencia: any): void {
     this.dialog.open(DialogIndicadoresComponent, {
       data: {
         id: id,
@@ -212,19 +233,19 @@ export class EncontrosComponent implements OnInit {
   templateUrl: './dialog-indicadores.html'
 })
 
-export class DialogIndicadoresComponent{
+export class DialogIndicadoresComponent {
 
-  competenciaIndicadores: CompetenciaIndicador[]=[];
+  competenciaIndicadores: CompetenciaIndicador[] = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dados: any,
     private competenciaIndicadorService: CompetenciaIndicadorService
-    ) { }
+  ) { }
 
-    ngOnInit(): void {
-      this.competenciaIndicadorService.FiltrarCompetenciaIndicadoresByUnidadeCurricularId(this.dados.id).subscribe(resultado => {
-          this.competenciaIndicadores = resultado;
-      });
-    }        
-  
+  ngOnInit(): void {
+    this.competenciaIndicadorService.FiltrarCompetenciaIndicadoresByUnidadeCurricularId(this.dados.id).subscribe(resultado => {
+      this.competenciaIndicadores = resultado;
+    });
+  }
+
 }

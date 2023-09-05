@@ -2,6 +2,7 @@ import { EncontroStatus } from './EncontroStatus';
 import { DiaLetivo } from './DiaLetivo';
 import { EncontroTipo } from './EncontroTipo';
 import { Grupo } from './Grupo';
+import { SituacaoAprendizagem } from './SituacaoAprendizagem';
 
 export class Encontro {
   id: number;
@@ -18,4 +19,5 @@ export class Encontro {
   encontroTipo: EncontroTipo;
   encontroStatus: EncontroStatus;
   selecionado : number;
+  situacaoAprendizagem: SituacaoAprendizagem[];
 }

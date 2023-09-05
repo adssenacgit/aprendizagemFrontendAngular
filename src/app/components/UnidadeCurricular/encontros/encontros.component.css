@@ -4,6 +4,10 @@
     margin-bottom: 0.5rem;
   }
 
+  .accordion-item h2{
+    margin: 0;
+  }
+  
   .card {
     /*height: 4rem;*/
     width: 10rem;
@@ -12,6 +16,10 @@
     margin-top: 0.5rem;
   }
   
+  .border-primary{
+    border: 10px;
+  }
+
   .card-title {
     white-space: nowrap;
     overflow: hidden;
