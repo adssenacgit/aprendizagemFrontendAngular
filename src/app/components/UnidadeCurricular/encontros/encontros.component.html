@@ -56,8 +56,8 @@
       </div>
       <div class="col-6">
         <div class="card-uc-descricao shadow-sm">
-          <div class="d-flex align-items-start flex-column" >
-            <p-tabView styleClass="tabview-custom" style="width:100%;" >
+          <div class="d-flex align-items-start flex-column">
+            <p-tabView styleClass="tabview-custom" style="width:100%;">
               <p-tabPanel header="HeaderStatusParticipacao">
                 <ng-template pTemplate="header">
                   <i class="pi pi-chips"></i>
@@ -68,26 +68,30 @@
                   <div class="row text-center">
                     <div class="col-4">
                       <h5>Atividades</h5>
-                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise" valueTemplate="12/20"></p-knob>
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"
+                        valueTemplate="12/20"></p-knob>
                     </div>
                     <div class="col-4">
                       <h5>Avaliações</h5>
-                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray"
+                        rangeColor="MediumTurquoise"></p-knob>
                     </div>
                     <div class="col-4">
                       <h5>Desafíos</h5>
-                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>
-                    </div>                 
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray"
+                        rangeColor="MediumTurquoise"></p-knob>
+                    </div>
                   </div>
                   <div class="row">
-                    <div class="col-2" >
-                        <h4>Meu progresso</h4>
+                    <div class="col-2">
+                      <h4>Meu progresso</h4>
                     </div>
                     <div class="col-10">
-                      <p>{{((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)}}%</p>
-                      <p-progressBar [value]="((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)">
+                      <p>{{((this.encontroCursados.length * 100) / (this.encontros.length)).toFixed(2)}}%</p>
+                      <p-progressBar
+                        [value]="((this.encontroCursados.length * 100) / (this.encontroCursados.length)).toFixed(2)">
                       </p-progressBar>
-                    </div>                
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-2">
@@ -95,15 +99,16 @@
                     </div>
                     <div class="col-10">
                       <p>{{((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)}}%</p>
-                      <p-progressBar [value]="((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)">
-                      </p-progressBar>          
+                      <p-progressBar
+                        [value]="((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)">
+                      </p-progressBar>
                     </div>
                   </div>
-    
+
                 </div>
 
               </p-tabPanel>
-              
+
               <p-tabPanel header="HeaderBadges">
                 <ng-template pTemplate="header">
                   <i class="pi pi-chips"></i>
@@ -126,7 +131,7 @@
                 </div>
 
               </p-tabPanel>
-              
+
             </p-tabView>
 
           </div>
@@ -134,34 +139,40 @@
       </div>
     </div>
   </div>
-  
-    <div class="accordion accordion" id="accordionExample">
-      <div *ngFor="let encontro of encontros; let i = index" class="accordion-item">
-        <h2 class="accordion-header" [id]="'heading' + i">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i">
-            <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
-            <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
-          </button>
-        </h2>
-        <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionExample">
-          <div class="accordion-body d-flex">
-            
-            
-              <div *ngFor="let situacaoAprend of encontro.situacaoAprendizagem; let i = index" class="card">
-                <div class="card-body">
-                  <h5 class="card-title">{{situacaoAprend.titulo}}</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-                  
-            
 
+  <div class="accordion accordion" id="accordionExample">
+    <div *ngFor="let encontro of encontros; let i = index" class="accordion-item">
+      <h2 class="accordion-header" [id]="'heading' + i">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i">
+          <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
+          <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
+        </button>
+      </h2>
+      <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body d-flex">
+
+
+          <div *ngFor="let situacaoAprend of encontro.situacaoAprendizagem; let i = index" class="card">
+            <div style="display: flex;
+            flex-direction: column;
+            justify-content: space-between;" class="card-body">
+              <h5 class="card-title">{{situacaoAprend.titulo}}</h5>
+              <p class="card-text">{{situacaoAprend.descricao}}</p>
+
+              <button *ngFor="let atividade of situacaoAprend.atividades; let i = index" type="button" class="btn btn-primary">Mais...</button>
+
+            </div>
           </div>
+
+
+
         </div>
       </div>
-    </div>       
-    <!-- <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 7rem; width:100%;">
+    </div>
+  </div>
+  <!-- <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 7rem; width:100%;">
     <div *ngFor="let encontro of encontros; let i = index" drag-scroll-item>
       <div *ngIf="encontro.selecionado==1">
         <div class="card shadow-sm border border-primary" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
@@ -192,7 +203,7 @@
 </div>
 
 
-<div class="container">
+<!-- <div class="container">
 
   <p-tabView styleClass="tabview-custom" style="width:100%;" >
 
@@ -204,7 +215,7 @@
 
       <div class="container">
 
-        <p-splitter [panelSizes]="[25, 75]" styleClass="mb-5"><!--[style]="{ height: '300px' }"-->
+        <p-splitter [panelSizes]="[25, 75]" styleClass="mb-5">[style]="{ height: '300px' }"
           <ng-template pTemplate>
             <div class="col flex align-items-center justify-content-center" style="padding: 10px">
 
@@ -226,18 +237,18 @@
 
                 <div class="col flex align-items-center justify-content-center">
                   <h2> {{objetoAprendizagem.descricao}}</h2>
-                  <span class="pi pi-download"></span>
-                  <!-- <p>{{objeto.n}}</p> -->
-                  <p>Dificuldade: {{objetoAprendizagem.grauDificuldade.descricao}}  </p>
+                  <span class="pi pi-download"></span> -->
+<!-- <p>{{objeto.n}}</p> -->
+<!-- <p>Dificuldade: {{objetoAprendizagem.grauDificuldade.descricao}}  </p>
                   <div *ngIf="objetoAprendizagem.status == 0; elseBlock">
                     <p>Status: Inativo</p>
                   </div>
                   <div #elseBlock>
                     <p>Status: Ativo</p>
                   </div>
-                </div>
+                </div> -->
 
-                <!--
+<!--
                 <p-timeline [value]="objetosAprendizagem" >
                   <ng-template pTemplate="content" let-objetoAprendizagem>
                       {{ objetoAprendizagem.descricao }}
@@ -248,7 +259,7 @@
                 </p-timeline>
 
                 <p>{{objetoAprendizagem.id}} - {{objetoAprendizagem.descricao}}</p>
-                -->
+                
               </div>
             </div>
           </ng-template>
@@ -270,5 +281,4 @@
     </p-tabPanel>
 
   </p-tabView>
-</div>
-
+</div>-->

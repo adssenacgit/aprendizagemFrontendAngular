@@ -20,4 +20,5 @@ export class Encontro {
   encontroStatus: EncontroStatus;
   selecionado : number;
   situacaoAprendizagem: SituacaoAprendizagem[];
+  EncontroStatus: any;
 }

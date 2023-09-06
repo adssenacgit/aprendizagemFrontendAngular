@@ -27,6 +27,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
+import { EncontroStatus } from 'src/app/models/EncontroStatus';
 // import { AccordionModule } from 'ngx-bootstrap/accordion';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -60,9 +61,11 @@ export class EncontrosComponent implements OnInit {
   bibliografias: Bibliografia[] = [];
   participantes: Estudante[] = [];
   situacoesAprendizagem: SituacaoAprendizagem[] = [];
+  situacaoAprendizagem: SituacaoAprendizagem;
   objetosAprendizagem: ObjetoAprendizagem[] = [];
   planejamentoUC: PlanejamentoUC = new PlanejamentoUC();
   badges: Badge[] = [];
+  encontroCursados : number[] = [];
 
   statusAtividades: number = 5;
 
@@ -93,6 +96,7 @@ export class EncontrosComponent implements OnInit {
     this.ObterEncontros();
     //this.ds.moveTo(8);
     this.ObterDetalhesUC();
+    this.ObterEncontrosCursados();
 
   }
 
@@ -102,6 +106,16 @@ export class EncontrosComponent implements OnInit {
     return objectURL;
   }
 
+  ObterEncontrosCursados = () =>{
+    // this.encontroStatus = this.encontros.map((a) => a.encontroStatus.statusCursada);
+    this.encontros.forEach(encontro => {
+      this.encontroCursados.push(encontro.encontroStatus.statusCursada);
+      
+    })
+
+    console.log(this.encontros)
+  }
+
   ObterEncontros = () => {
     
     this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe(resultado => {
@@ -109,6 +123,7 @@ export class EncontrosComponent implements OnInit {
       this.encontros.forEach(encontro => {
         this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe(situacao => 
           { encontro.situacaoAprendizagem = situacao;
+            
                         this.loading = false}
         )
       });
