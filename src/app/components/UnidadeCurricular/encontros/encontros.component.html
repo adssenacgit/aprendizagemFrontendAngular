@@ -1,159 +1,191 @@
 <div class="container">
-  <div class="row">
-    <div class="d-flex bd-highlight" style="height: 100%;">
-      <div class="col-6">
-        <div class="card-uc-descricao shadow-sm">
-          <p-tabView styleClass="tabview-custom">
+	<div class="row">
+		<div class="d-flex bd-highlight" style="height: 100%">
+			<div class="col-6">
+				<div class="card-uc-descricao shadow-sm">
+					<p-tabView styleClass="tabview-custom">
+						<p-tabPanel header="DescriçãoDaUC">
+							<ng-template pTemplate="header">
+								<i class="pi pi-book"></i>
+								<span>Descrição da UC</span>
+							</ng-template>
 
-            <p-tabPanel header="DescriçãoDaUC">
-              <ng-template pTemplate="header">
-                <i class="pi pi-book"></i>
-                <span>Descrição da UC</span>
-              </ng-template>
+							<div class="container">
+								<h2>{{ grupo.unidadeCurricular.nome }} - {{ grupo.unidadeCurricular.horas }} horas</h2>
+								<h3>{{ planejamentoUC.descricao }}</h3>
+								<h3>Professor: {{ grupo.professor.usuario.nomeCompleto }}</h3>
+							</div>
+						</p-tabPanel>
+						<p-tabPanel header="HeaderParticipantes">
+							<ng-template pTemplate="header">
+								<i class="pi pi-user"></i>
+								<span>Participantes</span>
+							</ng-template>
+							<ol type="1">
+								<div *ngFor="let participante of participantes; let i = index" drag-scroll-item>
+									<li>{{ participante.usuario.nomeCompleto }}</li>
+								</div>
+							</ol>
+						</p-tabPanel>
+						<p-tabPanel header="HeaderCompetencias">
+							<ng-template pTemplate="header">
+								<i class="pi pi-skills"></i>
+								<span>Competências</span>
+							</ng-template>
+							<!-- Carrossel de competencias  -->
+							<div class="accordion" id="accordionExample">
+								<div *ngFor="let indicador of competenciaIndicadores; let i = index" class="accordion-item">
+									<h2 class="accordion-header" [id]="'heading' + i">
+										<button
+											(click)="ObterObjetosAprendizagemPorCompetencia(indicador.id, i)"
+											class="accordion-button collapsed"
+											type="button"
+											data-bs-toggle="collapse"
+											[attr.data-bs-target]="'#collapse' + i"
+											aria-expanded="false"
+											[attr.aria-controls]="'collapse' + i">
+											{{ indicador.descricao }}
+										</button>
+									</h2>
+									<div
+										*ngFor="let objetoAprendizagem of objetosAprendizagemCompetencia"
+										[id]="'collapse' + i"
+										class="accordion-collapse"
+										[attr.aria-labelledby]="'heading' + i"
+										data-bs-parent="#accordionExample">
+										<div class="accordion-body">
+											<strong>{{ objetoAprendizagem.descricao }}</strong>
+											<p>Dificuldade: {{ objetoAprendizagem.grauDificuldade.descricao }}</p>
+											<div *ngIf="objetoAprendizagem.status == 0; elseBlock">
+												<p>Status: Inativo</p>
+											</div>
+											<div #elseBlock>
+												<p>Status: Ativo</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</p-tabPanel>
+					</p-tabView>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card-uc-descricao shadow-sm">
+					<div class="d-flex align-items-start flex-column">
+						<p-tabView styleClass="tabview-custom" style="width: 100%">
+							<p-tabPanel header="HeaderStatusParticipacao">
+								<ng-template pTemplate="header">
+									<i class="pi pi-chips"></i>
+									<span>Status de Participação</span>
+								</ng-template>
 
-              <div class="container">
-                <h2>{{grupo.unidadeCurricular.nome}} - {{grupo.unidadeCurricular.horas}} horas </h2>
-                <h3>{{planejamentoUC.descricao}}</h3>
-                <h3>Professor: {{grupo.professor.usuario.nomeCompleto}}</h3>
-              </div>
-            </p-tabPanel>
-            <p-tabPanel header="HeaderParticipantes">
-              <ng-template pTemplate="header">
-                <i class="pi pi-user"></i>
-                <span>Participantes</span>
-              </ng-template>
-              <ol type="1">
-                <div *ngFor="let participante of participantes; let i = index" drag-scroll-item>
-                  <li>{{participante.usuario.nomeCompleto}} </li>
-                </div>
-              </ol>
-            </p-tabPanel>
-            <p-tabPanel header="HeaderCompetencias">
-              <ng-template pTemplate="header">
-                <i class="pi pi-skills"></i>
-                <span>Competências</span>
-              </ng-template>
-              <!-- Carrossel de competencias  -->
-            <div class="accordion" id="accordionExample">
-              <div *ngFor="let indicador of competenciaIndicadores; let i = index" class="accordion-item">
-                <h2 class="accordion-header" [id]="'heading' + i">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i">
-                    {{indicador.descricao}}
-                  </button>
-                </h2>
-                <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the {{i+1}} item's accordion body.</strong>
-                  </div>
-                </div>
-              </div>
-            </div>            
-            </p-tabPanel>
-          </p-tabView>
+								<div class="container">
+									<div class="row text-center">
+										<div class="col-4">
+											<h5>Atividades</h5>
+											<p-knob
+												[(ngModel)]="statusAtividades"
+												valueColor="SlateGray"
+												rangeColor="MediumTurquoise"
+												valueTemplate="12/20"></p-knob>
+										</div>
+										<div class="col-4">
+											<h5>Avaliações</h5>
+											<p-knob
+												[(ngModel)]="statusAtividades"
+												valueColor="SlateGray"
+												rangeColor="MediumTurquoise"></p-knob>
+										</div>
+										<div class="col-4">
+											<h5>Desafíos</h5>
+											<p-knob
+												[(ngModel)]="statusAtividades"
+												valueColor="SlateGray"
+												rangeColor="MediumTurquoise"></p-knob>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-2">
+											<h4>Meu progresso</h4>
+										</div>
+										<div class="col-10">
+											<p>{{ ((this.situacoesAprendizagem.length * 100) / this.encontros.length).toFixed(2) }}%</p>
+											<p-progressBar
+												[value]="((this.situacoesAprendizagem.length * 100) / this.encontros.length).toFixed(2)">
+											</p-progressBar>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-2">
+											<h4>Progresso da UC</h4>
+										</div>
+										<div class="col-10">
+											<p>{{ ((this.encontros.length * 100) / this.unidadeCurricular.horas).toFixed(2) }}%</p>
+											<p-progressBar
+												[value]="((this.encontros.length * 100) / this.unidadeCurricular.horas).toFixed(2)">
+											</p-progressBar>
+										</div>
+									</div>
+								</div>
+							</p-tabPanel>
 
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="card-uc-descricao shadow-sm">
-          <div class="d-flex align-items-start flex-column" >
-            <p-tabView styleClass="tabview-custom" style="width:100%;" >
-              <p-tabPanel header="HeaderStatusParticipacao">
-                <ng-template pTemplate="header">
-                  <i class="pi pi-chips"></i>
-                  <span>Status de Participação</span>
-                </ng-template>
+							<p-tabPanel header="HeaderBadges">
+								<ng-template pTemplate="header">
+									<i class="pi pi-chips"></i>
+									<span>Badges da UC</span>
+								</ng-template>
 
-                <div class="container">
-                  <div class="row text-center">
-                    <div class="col-4">
-                      <h5>Atividades</h5>
-                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise" valueTemplate="12/20"></p-knob>
-                    </div>
-                    <div class="col-4">
-                      <h5>Avaliações</h5>
-                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>
-                    </div>
-                    <div class="col-4">
-                      <h5>Desafíos</h5>
-                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>
-                    </div>                 
-                  </div>
-                  <div class="row">
-                    <div class="col-2" >
-                        <h4>Meu progresso</h4>
-                    </div>
-                    <div class="col-10">
-                      <p>{{((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)}}%</p>
-                      <p-progressBar [value]="((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)">
-                      </p-progressBar>
-                    </div>                
-                  </div>
-                  <div class="row">
-                    <div class="col-2">
-                      <h4>Progresso da UC</h4>
-                    </div>
-                    <div class="col-10">
-                      <p>{{((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)}}%</p>
-                      <p-progressBar [value]="((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)">
-                      </p-progressBar>          
-                    </div>
-                  </div>
-    
-                </div>
-
-              </p-tabPanel>
-              
-              <p-tabPanel header="HeaderBadges">
-                <ng-template pTemplate="header">
-                  <i class="pi pi-chips"></i>
-                  <span>Badges da UC</span>
-                </ng-template>
-
-                <div class="container">
-                  <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 13rem;">
-                    <div *ngFor="let badge of badges; let i = index" drag-scroll-item>
-                      <div class="card shadow-sm">
-                        <div class="card-body">
-                          <div class="divFoto">
-                            <img id="badge_img" src="{{getImage(badge.imagem)}}" width="120" height="100" />
-                          </div>
-                          <h5 style="text-align: center; margin: 0 0 0;">{{badge.descricao}}</h5>
-                        </div>
-                      </div>
-                    </div>
-                  </drag-scroll>
-                </div>
-
-              </p-tabPanel>
-              
-            </p-tabView>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 7rem; width:100%;">
-    <div *ngFor="let encontro of encontros; let i = index" drag-scroll-item>
-      <div *ngIf="encontro.selecionado==1">
-        <div class="card shadow-sm border-warning" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
-          <div class="card-body">
-            <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
-            <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="encontro.selecionado!=1">
-        <div class="card shadow-sm" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
-          <div class="card-body">
-            <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
-            <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </drag-scroll>
-  <!--
+								<div class="container">
+									<drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 13rem">
+										<div *ngFor="let badge of badges; let i = index" drag-scroll-item>
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<div class="divFoto">
+														<img id="badge_img" src="{{ getImage(badge.imagem) }}" width="120" height="100" />
+													</div>
+													<h5 style="text-align: center; margin: 0 0 0">{{ badge.descricao }}</h5>
+												</div>
+											</div>
+										</div>
+									</drag-scroll>
+								</div>
+							</p-tabPanel>
+						</p-tabView>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 7rem; width: 100%">
+		<div *ngFor="let encontro of encontros; let i = index" drag-scroll-item>
+			<div *ngIf="encontro.selecionado == 1">
+				<div class="card shadow-sm border-warning" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
+					<div class="card-body">
+						<h1 style="text-align: center; margin: 0 0 0">
+							{{ encontro.diaLetivo.dialetivo | date : 'dd MMM' : '' : 'pt-BR' }}
+						</h1>
+						<h4 style="text-align: center; margin: 0 0 0">
+							{{ encontro.diaLetivo.dialetivo | date : 'EEEE' : '' : 'pt-BR' }}
+						</h4>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="encontro.selecionado != 1">
+				<div class="card shadow-sm" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
+					<div class="card-body">
+						<h1 style="text-align: center; margin: 0 0 0">
+							{{ encontro.diaLetivo.dialetivo | date : 'dd MMM' : '' : 'pt-BR' }}
+						</h1>
+						<h4 style="text-align: center; margin: 0 0 0">
+							{{ encontro.diaLetivo.dialetivo | date : 'EEEE' : '' : 'pt-BR' }}
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</drag-scroll>
+	<!--
   <div class="settings-container">
     <button mat-raised-button color="primary"  (click)="moveTo(0)">first</button>
     <button mat-raised-button color="primary"  [disabled]="leftNavDisabled" (click)="moveLeft()">left</button>
@@ -163,71 +195,62 @@
   -->
 </div>
 
-
 <div class="container">
+	<p-tabView styleClass="tabview-custom" style="width: 100%">
+		<p-tabPanel header="Header V">
+			<ng-template pTemplate="header">
+				<i class="pi pi-chips"></i>
+				<span>Planejamento do Encontro</span>
+			</ng-template>
 
-  <p-tabView styleClass="tabview-custom" style="width:100%;" >
+			<div class="container">
+				<p-splitter [panelSizes]="[25, 75]" styleClass="mb-5"
+					><!--[style]="{ height: '300px' }"-->
+					<ng-template pTemplate>
+						<div class="col flex align-items-center justify-content-center" style="padding: 10px">
+							<p-accordion class="acc" [activeIndex]="0">
+								<div *ngFor="let situacaoAprendizagem of situacoesAprendizagem; let i = index" drag-scroll-item>
+									<p-accordionTab
+										id="acc"
+										(click)="ObterObjetosAprendizagem(situacaoAprendizagem.id, i)"
+										header="{{ situacaoAprendizagem.titulo }}">
+										<p>
+											{{ situacaoAprendizagem.descricao }}
+										</p>
+									</p-accordionTab>
+								</div>
+							</p-accordion>
+						</div>
+					</ng-template>
+					<ng-template pTemplate>
+						<div class="col flex">
+							<div *ngFor="let objetoAprendizagem of objetosAprendizagem">
+								<div class="col flex align-items-center justify-content-center">
+									<h2>{{ objetoAprendizagem.descricao }}</h2>
+									<span class="pi pi-download"></span>
+									<!-- <p>{{objeto.n}}</p> -->
+									<p>Dificuldade: {{ objetoAprendizagem.grauDificuldade.descricao }}</p>
+									<div *ngIf="objetoAprendizagem.status == 0; elseBlock">
+										<p>Status: Inativo</p>
+									</div>
+									<div #elseBlock>
+										<p>Status: Ativo</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</ng-template>
+				</p-splitter>
+			</div>
+		</p-tabPanel>
 
-    <p-tabPanel header="Header V">
-      <ng-template pTemplate="header">
-        <i class="pi pi-chips"></i>
-        <span>Planejamento do Encontro</span>
-      </ng-template>
+		<p-tabPanel header="Header VI">
+			<ng-template pTemplate="header">
+				<i class="pi pi-chips"></i>
+				<span>Forum da UC</span>
+			</ng-template>
 
-      <div class="container">
-
-        <p-splitter [panelSizes]="[25, 75]" styleClass="mb-5"><!--[style]="{ height: '300px' }"-->
-          <ng-template pTemplate>
-            <div class="col flex align-items-center justify-content-center" style="padding: 10px">
-
-              <p-accordion class="acc" [activeIndex]="0">
-
-                <div *ngFor="let situacaoAprendizagem of situacoesAprendizagem; let i = index" drag-scroll-item>
-                  <p-accordionTab id="acc" (click)="ObterObjetosAprendizagem(situacaoAprendizagem.id, i)" header="{{situacaoAprendizagem.titulo}}">
-                    <p>
-                      {{situacaoAprendizagem.descricao}}
-                    </p>
-                  </p-accordionTab>
-                </div>
-              </p-accordion>
-            </div>
-          </ng-template>
-          <ng-template pTemplate>
-            <div class="col flex">
-              <div *ngFor="let objetoAprendizagem of objetosAprendizagem">
-
-                <div class="col flex align-items-center justify-content-center">
-                  <h2> {{objetoAprendizagem.descricao}}</h2>
-                  <span class="pi pi-download"></span>
-                  <!-- <p>{{objeto.n}}</p> -->
-                  <p>Dificuldade: {{objetoAprendizagem.grauDificuldade.descricao}}  </p>
-                  <div *ngIf="objetoAprendizagem.status == 0; elseBlock">
-                    <p>Status: Inativo</p>
-                  </div>
-                  <div #elseBlock>
-                    <p>Status: Ativo</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </p-splitter>
-      </div>
-
-    </p-tabPanel>
-
-    <p-tabPanel header="Header VI">
-      <ng-template pTemplate="header">
-        <i class="pi pi-chips"></i>
-        <span>Forum da UC</span>
-      </ng-template>
-
-      <div class="container">
-
-      </div>
-
-    </p-tabPanel>
-
-  </p-tabView>
+			<div class="container"></div>
+		</p-tabPanel>
+	</p-tabView>
 </div>
-
