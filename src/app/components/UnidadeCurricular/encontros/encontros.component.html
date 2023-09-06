@@ -34,22 +34,21 @@
                 <span>Competências</span>
               </ng-template>
               <!-- Carrossel de competencias  -->
-              <p-carousel [value]="competencias" [numVisible]="1" [numScroll]="1" [circular]="false">
-                <ng-template let-competencia pTemplate="item">
-                  <div class="border-1 surface-border border-round m-2 text-center py-5 px-1">
-                    <h4 class="mb-1">{{ competencia.descricao }}</h4>
-                    <br>
-                    <button mat-mini-fab color="primary"
-                      (click)="AbrirDialog(competencia.unidadeCurricularId, competencia.descricao)">
-                      <mat-icon>list</mat-icon>
-                    </button>
+            <div class="accordion" id="accordionExample">
+              <div *ngFor="let indicador of competenciaIndicadores; let i = index" class="accordion-item">
+                <h2 class="accordion-header" [id]="'heading' + i">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i">
+                    {{indicador.descricao}}
+                  </button>
+                </h2>
+                <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <strong>This is the {{i+1}} item's accordion body.</strong>
                   </div>
-                </ng-template>
-              </p-carousel>
-
+                </div>
+              </div>
+            </div>            
             </p-tabPanel>
-
-
           </p-tabView>
 
         </div>
@@ -209,19 +208,6 @@
                     <p>Status: Ativo</p>
                   </div>
                 </div>
-
-                <!--
-                <p-timeline [value]="objetosAprendizagem" >
-                  <ng-template pTemplate="content" let-objetoAprendizagem>
-                      {{ objetoAprendizagem.descricao }}
-                  </ng-template>
-                  <ng-template pTemplate="opposite" let-objetoAprendizagem>
-                      {{ objetoAprendizagem.grauDificuldade.descricao }}
-                  </ng-template>
-                </p-timeline>
-
-                <p>{{objetoAprendizagem.id}} - {{objetoAprendizagem.descricao}}</p>
-                -->
               </div>
             </div>
           </ng-template>

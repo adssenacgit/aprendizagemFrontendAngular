@@ -26,4 +26,9 @@ export class ObjetoAprendizagemService {
     const apiUrl = `${this.url}/FiltrarObjetoAprendizagemBySituacaoAprendizagemId/${id}`;
     return this.https.get<ObjetoAprendizagem[]>(apiUrl);
   }
+  FiltrarObjetoAprendizagemPorIndicadorCompetenciaId (id: number) : Observable<ObjetoAprendizagem[]>
+  {
+    const apiUrl = `${this.url}/FiltrarObjetoAprendizagemByIndicadorCompetenciaId/${id}`;
+    return this.https.get<ObjetoAprendizagem[]>(apiUrl);
+  }
 }
