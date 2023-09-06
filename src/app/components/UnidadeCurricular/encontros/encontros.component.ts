@@ -103,6 +103,7 @@ export class EncontrosComponent implements OnInit {
   }
 
   ObterEncontros = () => {
+    
     this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe(resultado => {
       this.encontros = resultado;
       this.encontros.forEach(encontro => {

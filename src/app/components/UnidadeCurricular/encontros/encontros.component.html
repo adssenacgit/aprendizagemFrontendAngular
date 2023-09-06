@@ -144,12 +144,12 @@
           </button>
         </h2>
         <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
+          <div class="accordion-body d-flex">
             
             
-              <div class="card">
+              <div *ngFor="let situacaoAprend of encontro.situacaoAprendizagem; let i = index" class="card">
                 <div class="card-body">
-                  <h5 class="card-title">{{i.situacaoAprendizagem.titulo}}</h5>
+                  <h5 class="card-title">{{situacaoAprend.titulo}}</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
