@@ -9,6 +9,16 @@
 								<i class="pi pi-book"></i>
 								<span>Descrição da UC</span>
 							</ng-template>
+	<div class="row">
+		<div class="d-flex bd-highlight" style="height: 100%">
+			<div class="col-6">
+				<div class="card-uc-descricao shadow-sm">
+					<p-tabView styleClass="tabview-custom">
+						<p-tabPanel header="DescriçãoDaUC">
+							<ng-template pTemplate="header">
+								<i class="pi pi-book"></i>
+								<span>Descrição da UC</span>
+							</ng-template>
 
 							<div class="container">
 								<h2>{{ grupo.unidadeCurricular.nome }} - {{ grupo.unidadeCurricular.horas }} horas</h2>
@@ -279,6 +289,11 @@
 
     </p-tabPanel>
 
+		<p-tabPanel header="Header VI">
+			<ng-template pTemplate="header">
+				<i class="pi pi-chips"></i>
+				<span>Forum da UC</span>
+			</ng-template>
 		<p-tabPanel header="Header VI">
 			<ng-template pTemplate="header">
 				<i class="pi pi-chips"></i>
