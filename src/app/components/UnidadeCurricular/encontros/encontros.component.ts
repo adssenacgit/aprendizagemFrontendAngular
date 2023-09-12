@@ -61,9 +61,10 @@ export class EncontrosComponent implements OnInit {
 	participantes: Estudante[] = [];
 	situacoesAprendizagem: SituacaoAprendizagem[] = [];
 	objetosAprendizagem: ObjetoAprendizagem[] = [];
+	objetosAprendizagemCompetencia: ObjetoAprendizagem[] = [];
 	planejamentoUC: PlanejamentoUC = new PlanejamentoUC();
 	badges: Badge[] = [];
-
+	encontroCursados: number[] = [];
 	statusAtividades: number = 5;
 
 	@ViewChild('nav', { read: DragScrollComponent }) ds: DragScrollComponent;
@@ -89,9 +90,7 @@ export class EncontrosComponent implements OnInit {
 	ngOnInit(): void {
 		this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
 		this.grupoId = this.route.snapshot.params['id'];
-		//this.grupoId = 7;
 		this.ObterEncontros();
-		//this.ds.moveTo(8);
 		this.ObterDetalhesUC();
 		this.ObterEncontrosCursados();
 	}
@@ -104,8 +103,21 @@ export class EncontrosComponent implements OnInit {
 	ObterEncontros = () => {
 		this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe((resultado) => {
 			this.encontros = resultado;
-			this.ObterSituacoesAprendizagem(this.encontros[0].id, 0);
+			this.encontros.forEach((encontro) => {
+				this.situacaoAprendizagemService
+					.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id)
+					.subscribe((situacao) => {
+						encontro.situacaoAprendizagem = situacao;
+						this.loading = false;
+					});
+			});
 			this.loading = false;
+		});
+	};
+
+	ObterEncontrosCursados = () => {
+		this.encontros.forEach((encontro) => {
+			this.encontroCursados.push(encontro.encontroStatus.statusCursada);
 		});
 	};
 
@@ -183,6 +195,22 @@ export class EncontrosComponent implements OnInit {
 			.FiltrarObjetoAprendizagemPorSituacaoAprendizagemId(idSituacaoAprendizagem)
 			.subscribe((resultado) => {
 				this.objetosAprendizagem = resultado;
+				this.loading = false;
+			});
+	};
+
+	ObterObjetosAprendizagemPorCompetencia = (idIndicadorCompetencia: number, i: number) => {
+		for (var j = 0; j < this.competenciaIndicadores.length; j = j + 1) {
+			this.competenciaIndicadores[j].selecionado = 0;
+		}
+
+		this.competenciaIndicadores[i].selecionado = 1;
+
+		this.loading = true;
+		this.objetoAprendizagemService
+			.FiltrarObjetoAprendizagemPorIndicadorCompetenciaId(idIndicadorCompetencia)
+			.subscribe((resultado) => {
+				this.objetosAprendizagemCompetencia = resultado;
 				this.loading = false;
 			});
 	};

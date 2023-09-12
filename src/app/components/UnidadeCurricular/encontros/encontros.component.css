@@ -1,6 +1,3 @@
-#accordionExample h2 {
-	margin: 0px;
-}
 .card-uc-descricao {
 	width: 100%;
 	margin-top: 2rem;
@@ -35,19 +32,10 @@
 	text-overflow: ellipsis;
 	font-family: 'Noto Sans SC', sans-serif;
 }
-/*
-  drag-scroll {
-    height: 7rem;
-    width: 100%;
-  }
-*/
+
 scroll-badge {
 	height: 5rem;
 	width: 100%;
-}
-
-ngb-carousel {
-	margin-top: -115px;
 }
 
 @media screen and (min-width: 1400px) {

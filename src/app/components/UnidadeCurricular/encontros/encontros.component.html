@@ -9,16 +9,6 @@
 								<i class="pi pi-book"></i>
 								<span>Descrição da UC</span>
 							</ng-template>
-	<div class="row">
-		<div class="d-flex bd-highlight" style="height: 100%">
-			<div class="col-6">
-				<div class="card-uc-descricao shadow-sm">
-					<p-tabView styleClass="tabview-custom">
-						<p-tabPanel header="DescriçãoDaUC">
-							<ng-template pTemplate="header">
-								<i class="pi pi-book"></i>
-								<span>Descrição da UC</span>
-							</ng-template>
 
 							<div class="container">
 								<h2>{{ grupo.unidadeCurricular.nome }} - {{ grupo.unidadeCurricular.horas }} horas</h2>
@@ -69,7 +59,7 @@
 											</div>
 											<ng-template #elseBlock>
 												<p>Status: Ativo</p>
-											</div>
+											</ng-template>
 										</div>
 									</div>
 								</div>
@@ -194,7 +184,6 @@
 						<div style="display: flex; flex-direction: column; justify-content: space-between" class="card-body">
 							<h5 class="card-title">{{ situacaoAprend.titulo }}</h5>
 							<p class="card-text">{{ situacaoAprend.descricao }}</p>
-
 							<button
 								*ngFor="let atividade of situacaoAprend.atividades; let i = index"
 								type="button"
@@ -207,104 +196,4 @@
 			</div>
 		</div>
 	</div>
-	<!-- <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 7rem; width:100%;">
-    <div *ngFor="let encontro of encontros; let i = index" drag-scroll-item>
-      <div *ngIf="encontro.selecionado==1">
-        <div class="card shadow-sm border border-primary" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
-          <div class="card-body">
-            <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
-            <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="encontro.selecionado!=1">
-        <div class="card shadow-sm" (click)="ObterSituacoesAprendizagem(encontro.id, i)">
-          <div class="card-body">
-            <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
-            <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </drag-scroll> -->
-	<!--
-  <div class="settings-container">
-    <button mat-raised-button color="primary"  (click)="moveTo(0)">first</button>
-    <button mat-raised-button color="primary"  [disabled]="leftNavDisabled" (click)="moveLeft()">left</button>
-    <button mat-raised-button color="primary"  [disabled]="rightNavDisabled" (click)="moveRight()">right</button>
-    <button mat-raised-button color="primary"  (click)="moveTo(encontros.length - 1)">last</button>
-  </div>
-  -->
 </div>
-
-<!-- <div class="container">
-
-  <p-tabView styleClass="tabview-custom" style="width:100%;" >
-
-    <p-tabPanel header="Header V">
-      <ng-template pTemplate="header">
-        <i class="pi pi-chips"></i>
-        <span>Planejamento do Encontro</span>
-      </ng-template>
-
-      <div class="container">
-
-        <p-splitter [panelSizes]="[25, 75]" styleClass="mb-5">[style]="{ height: '300px' }"
-          <ng-template pTemplate>
-            <div class="col flex align-items-center justify-content-center" style="padding: 10px">
-
-              <p-accordion class="acc" [multiple]="false" [activeIndex]="0">
-
-                <div *ngFor="let situacaoAprendizagem of situacoesAprendizagem; let i = index" drag-scroll-item>
-                  <p-accordionTab id="acc" (click)="ObterObjetosAprendizagem(situacaoAprendizagem.id, i)" header="{{situacaoAprendizagem.titulo}}">
-                    <p>
-                      {{situacaoAprendizagem.descricao}}
-                    </p>
-                  </p-accordionTab>
-                </div>
-              </p-accordion>
-            </div>
-          </ng-template>
-          <ng-template pTemplate>
-            <div class="col flex">
-              <div *ngFor="let objetoAprendizagem of objetosAprendizagem">
-
-                <div class="col flex align-items-center justify-content-center">
-                  <h2> {{objetoAprendizagem.descricao}}</h2>
-                  <span class="pi pi-download"></span> -->
-<!-- <p>{{objeto.n}}</p> -->
-<!-- <p>Dificuldade: {{objetoAprendizagem.grauDificuldade.descricao}}  </p>
-                  <div *ngIf="objetoAprendizagem.status == 0; elseBlock">
-                    <p>Status: Inativo</p>
-                  </div>
-                  <div #elseBlock>
-                    <p>Status: Ativo</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </p-splitter>
-      </div>
-
-    </p-tabPanel>
-
-		<p-tabPanel header="Header VI">
-			<ng-template pTemplate="header">
-				<i class="pi pi-chips"></i>
-				<span>Forum da UC</span>
-			</ng-template>
-		<p-tabPanel header="Header VI">
-			<ng-template pTemplate="header">
-				<i class="pi pi-chips"></i>
-				<span>Forum da UC</span>
-			</ng-template>
-
-      <div class="container">
-
-      </div>
-
-    </p-tabPanel>
-
-  </p-tabView>
-</div>-->
