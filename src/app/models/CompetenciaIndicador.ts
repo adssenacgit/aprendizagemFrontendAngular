@@ -6,4 +6,5 @@ export class CompetenciaIndicador {
     status: string;
     competenciaId: number;
     competencia: Competencia;
+    selecionado: number;
 }

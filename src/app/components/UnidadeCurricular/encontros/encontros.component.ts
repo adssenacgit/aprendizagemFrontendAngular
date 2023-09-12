@@ -27,6 +27,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
+
 import { EncontroStatus } from 'src/app/models/EncontroStatus';
 // import { AccordionModule } from 'ngx-bootstrap/accordion';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -66,7 +67,7 @@ export class EncontrosComponent implements OnInit {
   planejamentoUC: PlanejamentoUC = new PlanejamentoUC();
   badges: Badge[] = [];
   encontroCursados : number[] = [];
-
+  objetosAprendizagemCompetencia: ObjetoAprendizagem[] = [];
   statusAtividades: number = 5;
 
   @ViewChild('nav', { read: DragScrollComponent }) ds: DragScrollComponent;
@@ -221,6 +222,21 @@ export class EncontrosComponent implements OnInit {
       this.loading = false;
     });
   };
+
+  ObterObjetosAprendizagemPorCompetencia = (idIndicadorCompetencia: number, i: number) => {
+		for (var j = 0; j < this.competenciaIndicadores.length; j = j + 1) {
+			this.competenciaIndicadores[j].selecionado = 0;
+		}
+
+		this.competenciaIndicadores[i].selecionado = 1;
+
+		this.loading = true;
+		this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorIndicadorCompetenciaId(idIndicadorCompetencia)
+			.subscribe((resultado) => {
+				this.objetosAprendizagemCompetencia = resultado;
+				this.loading = false;
+			});
+	};
 
   //Comandos do scroll de encontros
   moveLeft() {

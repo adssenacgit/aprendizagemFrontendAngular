@@ -7,6 +7,10 @@
   .accordion-item h2{
     margin: 0;
   }
+
+  .comp{
+    margin: 10px;
+  }
   
   .card {
     /*height: 4rem;*/

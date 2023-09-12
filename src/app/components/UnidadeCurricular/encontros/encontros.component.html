@@ -33,19 +33,38 @@
                 <i class="pi pi-skills"></i>
                 <span>Competências</span>
               </ng-template>
-              <!-- Carrossel de competencias  -->
-              <p-carousel [value]="competencias" [numVisible]="1" [numScroll]="1" [circular]="false">
-                <ng-template let-competencia pTemplate="item">
-                  <div class="border-1 surface-border border-round m-2 text-center py-5 px-1">
-                    <h4 class="mb-1">{{ competencia.descricao }}</h4>
-                    <br>
-                    <button mat-mini-fab color="primary"
-                      (click)="AbrirDialog(competencia.unidadeCurricularId, competencia.descricao)">
-                      <mat-icon>list</mat-icon>
-                    </button>
-                  </div>
-                </ng-template>
-              </p-carousel>
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+								<div *ngFor="let indicador of competenciaIndicadores; let i = index" class="accordion-item comp">
+									<h2 class="accordion-header">
+										<button
+											(click)="ObterObjetosAprendizagemPorCompetencia(indicador.id, i)"
+											class="accordion-button collapsed"
+											type="button"
+											data-bs-toggle="collapse"
+											[attr.data-bs-target]="'#flush-collapse' + i"
+											aria-expanded="false"
+											[attr.aria-controls]="'flush-collapse' + i"
+											style="border: 2px solid #005594; border-radius: 10px; color: #005594; background-color: #ffffff">
+											{{ indicador.descricao }}
+										</button>
+									</h2>
+									<div
+										[id]="'flush-collapse' + i"
+										class="accordion-collapse collapse"
+										data-bs-parent="#accordionFlushExample">
+										<div *ngFor="let objetoAprendizagem of objetosAprendizagemCompetencia" class="accordion-body">
+											<strong>{{ objetoAprendizagem.descricao }}</strong>
+											<p>Dificuldade: {{ objetoAprendizagem.grauDificuldade.descricao }}</p>
+											<div *ngIf="objetoAprendizagem.status == 0; else elseBlock">
+												<p>Status: Inativo</p>
+											</div>
+											<ng-template #elseBlock>
+												<p>Status: Ativo</p>
+											</ng-template>
+										</div>
+									</div>
+								</div>
+							</div>
 
             </p-tabPanel>
 
