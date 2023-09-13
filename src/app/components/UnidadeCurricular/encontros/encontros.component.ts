@@ -26,9 +26,10 @@ import { Estudante } from 'src/app/models/Estudante';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
+import { AtividadeService } from 'src/app/services/atividade.service';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
-
 import { EncontroStatus } from 'src/app/models/EncontroStatus';
+import { Atividade } from 'src/app/models/Atividade';
 // import { AccordionModule } from 'ngx-bootstrap/accordion';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -64,6 +65,7 @@ export class EncontrosComponent implements OnInit {
 	objetosAprendizagemCompetencia: ObjetoAprendizagem[] = [];
 	planejamentoUC: PlanejamentoUC = new PlanejamentoUC();
 	badges: Badge[] = [];
+	atividades: Atividade[] = [];
 	encontroCursados: number[] = [];
 	statusAtividades: number = 5;
 
@@ -82,6 +84,7 @@ export class EncontrosComponent implements OnInit {
 		private estudantesService: EstudantesService,
 		private situacaoAprendizagemService: SituacaoAprendizagemService,
 		private objetoAprendizagemService: ObjetoAprendizagemService,
+		private atividadeService: AtividadeService,
 		private authGuardService: AuthGuardService,
 		private sanitizer: DomSanitizer,
 		private dialog: MatDialog
@@ -114,6 +117,21 @@ export class EncontrosComponent implements OnInit {
 			this.loading = false;
 		});
 	};
+
+	// ObterEncontrosAtividades = () => {
+	// 	this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe((resultado) => {
+	// 		this.encontros = resultado;
+	// 		this.encontros.forEach((encontro) => {
+	// 			this.situacaoAprendizagemService
+	// 				.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id)
+	// 				.subscribe((situacao) => {
+	// 					encontro.situacaoAprendizagem = situacao;
+	// 					this.loading = false;
+	// 				});
+	// 		});
+	// 		this.loading = false;
+	// 	});
+	// };
 
 	ObterEncontrosCursados = () => {
 		this.encontros.forEach((encontro) => {
@@ -179,6 +197,19 @@ export class EncontrosComponent implements OnInit {
 		this.loading = true;
 		this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe((resultado) => {
 			this.situacoesAprendizagem = resultado;
+			this.loading = false;
+		});
+	};
+
+	ObterAtividades = (idSituacaoAprendizagem: number, i: number) => {
+		for (var j = 0; j < this.situacoesAprendizagem.length; j = j + 1) {
+			this.situacoesAprendizagem[j].selecionado = 0;
+		}
+		this.situacoesAprendizagem[i].selecionado = 1;
+
+		this.loading = true;
+		this.atividadeService.FiltrarAtividadebySituacaoAprendizagemId(idSituacaoAprendizagem).subscribe((resultado) => {
+			this.atividades = resultado;
 			this.loading = false;
 		});
 	};

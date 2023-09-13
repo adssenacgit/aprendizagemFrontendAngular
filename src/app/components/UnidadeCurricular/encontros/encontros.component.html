@@ -194,6 +194,20 @@
 					</div>
 				</div>
 			</div>
+			<div
+				[id]="'collapse' + i"
+				class="accordion-collapse collapse"
+				[attr.aria-labelledby]="'heading' + i"
+				data-bs-parent="#accordionExample">
+				<div class="accordion-body d-flex">
+					<div *ngFor="let ativ of atividades; let i = index" class="card">
+						<div style="display: flex; flex-direction: column; justify-content: space-between" class="card-body">
+							<h5 class="card-title">{{ atividades.id }}</h5>
+							<p class="card-text">{{ atividades.descricao }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
