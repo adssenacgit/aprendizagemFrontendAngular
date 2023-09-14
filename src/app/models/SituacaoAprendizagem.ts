@@ -19,5 +19,5 @@ export class SituacaoAprendizagem {
     badge:Badge
     objetosAprendizagem: ObjetoAprendizagem[];
     atividades: Atividade[];
-    selecionado : number;
+    selecionado? : number;
 }
