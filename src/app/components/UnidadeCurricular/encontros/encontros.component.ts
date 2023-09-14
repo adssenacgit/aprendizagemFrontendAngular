@@ -30,6 +30,7 @@ import { AtividadeService } from 'src/app/services/atividade.service';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 import { EncontroStatus } from 'src/app/models/EncontroStatus';
 import { Atividade } from 'src/app/models/Atividade';
+import { ThisReceiver } from '@angular/compiler';
 // import { AccordionModule } from 'ngx-bootstrap/accordion';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -96,6 +97,7 @@ export class EncontrosComponent implements OnInit {
 		this.ObterEncontros();
 		this.ObterDetalhesUC();
 		this.ObterEncontrosCursados();
+		
 	}
 
 	getImage(baseImage: string): any {
@@ -111,27 +113,16 @@ export class EncontrosComponent implements OnInit {
 					.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id)
 					.subscribe((situacao) => {
 						encontro.situacaoAprendizagem = situacao;
+						situacao.forEach((aaaa) => {
+							this.ObterAtividades(aaaa)
+							this.ObterObjetosAprendizagem(aaaa)
+						})
 						this.loading = false;
 					});
 			});
 			this.loading = false;
 		});
 	};
-
-	// ObterEncontrosAtividades = () => {
-	// 	this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe((resultado) => {
-	// 		this.encontros = resultado;
-	// 		this.encontros.forEach((encontro) => {
-	// 			this.situacaoAprendizagemService
-	// 				.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id)
-	// 				.subscribe((situacao) => {
-	// 					encontro.situacaoAprendizagem = situacao;
-	// 					this.loading = false;
-	// 				});
-	// 		});
-	// 		this.loading = false;
-	// 	});
-	// };
 
 	ObterEncontrosCursados = () => {
 		this.encontros.forEach((encontro) => {
@@ -201,31 +192,20 @@ export class EncontrosComponent implements OnInit {
 		});
 	};
 
-	ObterAtividades = (idSituacaoAprendizagem: number, i: number) => {
-		for (var j = 0; j < this.situacoesAprendizagem.length; j = j + 1) {
-			this.situacoesAprendizagem[j].selecionado = 0;
-		}
-		this.situacoesAprendizagem[i].selecionado = 1;
-
+	ObterAtividades = (situacaoAprendizagem: SituacaoAprendizagem) => {
 		this.loading = true;
-		this.atividadeService.FiltrarAtividadebySituacaoAprendizagemId(idSituacaoAprendizagem).subscribe((resultado) => {
-			this.atividades = resultado;
-			this.loading = false;
+		this.atividadeService.FiltrarAtividadebySituacaoAprendizagemId(situacaoAprendizagem.id)
+			.subscribe((resultado) => {
+				situacaoAprendizagem.atividades = resultado;
+				this.loading = false;
 		});
 	};
 
-	ObterObjetosAprendizagem = (idSituacaoAprendizagem: number, i: number) => {
-		for (var j = 0; j < this.situacoesAprendizagem.length; j = j + 1) {
-			this.situacoesAprendizagem[j].selecionado = 0;
-		}
-
-		this.situacoesAprendizagem[i].selecionado = 1;
-
+	ObterObjetosAprendizagem = (situacaoAprendizagem: SituacaoAprendizagem) => {
 		this.loading = true;
-		this.objetoAprendizagemService
-			.FiltrarObjetoAprendizagemPorSituacaoAprendizagemId(idSituacaoAprendizagem)
+		this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorSituacaoAprendizagemId(situacaoAprendizagem.id)
 			.subscribe((resultado) => {
-				this.objetosAprendizagem = resultado;
+				situacaoAprendizagem.objetosAprendizagem = resultado;
 				this.loading = false;
 			});
 	};

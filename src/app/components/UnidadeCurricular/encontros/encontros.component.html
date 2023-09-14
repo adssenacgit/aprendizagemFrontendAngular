@@ -165,7 +165,8 @@
 					data-bs-toggle="collapse"
 					[attr.data-bs-target]="'#collapse' + i"
 					aria-expanded="false"
-					[attr.aria-controls]="'collapse' + i">
+					[attr.aria-controls]="'collapse' + i"
+					>
 					<h1 style="text-align: center; margin: 0 0 0">
 						{{ encontro.diaLetivo.dialetivo | date : 'dd MMM' : '' : 'pt-BR' }}
 					</h1>
@@ -178,32 +179,25 @@
 				[id]="'collapse' + i"
 				class="accordion-collapse collapse"
 				[attr.aria-labelledby]="'heading' + i"
-				data-bs-parent="#accordionExample">
-				<div class="accordion-body d-flex">
+				data-bs-parent="#accordionExample"
+				>
+				<div class="accordion-body d-flex" >
 					<div *ngFor="let situacaoAprend of encontro.situacaoAprendizagem; let i = index" class="card">
-						<div style="display: flex; flex-direction: column; justify-content: space-between" class="card-body">
+						<div style="display: flex; flex-direction: column; justify-content: space-betwe0en" class="card-body">
 							<h5 class="card-title">{{ situacaoAprend.titulo }}</h5>
 							<p class="card-text">{{ situacaoAprend.descricao }}</p>
 							<button
-								*ngFor="let atividade of situacaoAprend.atividades; let i = index"
 								type="button"
-								class="btn btn-primary">
-								Mais...
+								class="btn btn-primary"
+								style="display: flex; margin-top: 20px; padding: 10px 15px;flex-direction: column;" *ngFor="let atividade of situacaoAprend.atividades; let i = index">
+								{{atividade.descricao}}
 							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div
-				[id]="'collapse' + i"
-				class="accordion-collapse collapse"
-				[attr.aria-labelledby]="'heading' + i"
-				data-bs-parent="#accordionExample">
-				<div class="accordion-body d-flex">
-					<div *ngFor="let ativ of atividades; let i = index" class="card">
-						<div style="display: flex; flex-direction: column; justify-content: space-between" class="card-body">
-							<h5 class="card-title">{{ atividades.id }}</h5>
-							<p class="card-text">{{ atividades.descricao }}</p>
+							<button
+								type="button"
+								class="btn btn-secondary"
+								style="display: flex; margin-top: 20px; padding: 10px 15px;flex-direction: column;" *ngFor="let objetos of situacaoAprend.objetosAprendizagem; let i = index">
+								{{objetos.descricao}}
+							</button>
 						</div>
 					</div>
 				</div>
