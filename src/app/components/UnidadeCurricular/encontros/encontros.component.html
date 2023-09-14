@@ -164,23 +164,26 @@
       <h2 class="accordion-header" [id]="'heading' + i">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
           [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i">
-          <h1 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
-          <h4 style="text-align: center; margin: 0 0 0;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
+          <h1 style="margin: 0">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
+          <h4 style="margin:0 5px;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
+          <p style="margin: 0 30px">{{encontro.observacao}}</p>
+          <div *ngIf="encontro.presenca">
+            <mat-icon>done_outline</mat-icon>
+          </div>
+          
         </button>
       </h2>
       <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i"
         data-bs-parent="#accordionExample">
         <div class="accordion-body d-flex">
+          
 
 
           <div *ngFor="let situacaoAprend of encontro.situacaoAprendizagem; let i = index" class="card">
             <div style="display: flex;
-            flex-direction: column;
-            justify-content: space-between;" class="card-body">
+            flex-direction: column;" class="card-body">
               <h5 class="card-title">{{situacaoAprend.titulo}}</h5>
               <p class="card-text">{{situacaoAprend.descricao}}</p>
-
-              <button *ngFor="let atividade of situacaoAprend.atividades; let i = index" type="button" class="btn btn-primary">Mais...</button>
 
             </div>
           </div>

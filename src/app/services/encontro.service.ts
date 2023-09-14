@@ -63,4 +63,10 @@ export class EncontroService {
     const apiUrl = `${this.url}/ObterStatusEncontro/${idEncontro}/${idUsuario}`;
     return this.https.get<EncontroStatus>(apiUrl, httpOptions);
   }
+
+  ObterEncontrosPorGrupoIdPorUserId(grupoId: number ,idUsuario: string): Observable<Encontro>{
+    const apiUrl = `${this.url}FilterByGrupoIdByEstudanteId/${grupoId}/${idUsuario}`;
+    return this.https.get<Encontro>(apiUrl, httpOptions);
+    
+  }
 }

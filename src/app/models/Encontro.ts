@@ -6,7 +6,7 @@ import { SituacaoAprendizagem } from './SituacaoAprendizagem';
 
 export class Encontro {
   id: number;
-  descricao: string;
+  observacao: string;
   horaInicio: Date;
   horaFim: Date;
   local: string;
@@ -19,6 +19,8 @@ export class Encontro {
   encontroTipo: EncontroTipo;
   encontroStatus: EncontroStatus;
   selecionado : number;
+  presenca: number;
   situacaoAprendizagem: SituacaoAprendizagem[];
   EncontroStatus: any;
+  Lecionado: boolean;
 }

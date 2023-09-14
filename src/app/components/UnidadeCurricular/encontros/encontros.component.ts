@@ -98,6 +98,7 @@ export class EncontrosComponent implements OnInit {
     //this.ds.moveTo(8);
     this.ObterDetalhesUC();
     this.ObterEncontrosCursados();
+    // this.encontros = this.sortArrayOfObjects(this.encontros)
 
   }
 
@@ -117,10 +118,11 @@ export class EncontrosComponent implements OnInit {
     console.log(this.encontros)
   }
 
+
   ObterEncontros = () => {
-    
+    const rola = document.querySelector(".accordion-item");
     this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe(resultado => {
-      this.encontros = resultado;
+      this.encontros = resultado.reverse();
       this.encontros.forEach(encontro => {
         this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe(situacao => 
           { encontro.situacaoAprendizagem = situacao;
@@ -129,10 +131,31 @@ export class EncontrosComponent implements OnInit {
         )
       });
       // this.ObterSituacoesAprendizagem(this.encontros[0].id, 0);
-
       this.loading = false;
     });
   };
+
+  // sortArrayOfObjects = (arr: Encontro[], order = 'descending') => {
+  //   const sortedArr = arr.sort((encontro1, encontro2) => {
+  //     if (encontro1.Ordem < encontro2.Ordem) {
+  //       return -1;
+  //     }
+  //     if (encontro1.Ordem > encontro2.Ordem) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   });
+  
+  //   if (order === 'descending') {
+  //     return sortedArr.reverse();
+  //   }
+  
+  //   return sortedArr;
+  // };
+
+  // ObterPresenca = () => {
+  //   this.encontroService.ObterEncontrosPorGrupoIdPorUserId(this.grupoId, this.idEstudanteUsuarioLogado)
+  // }
 
 
   ObterDetalhesUC = () => {
