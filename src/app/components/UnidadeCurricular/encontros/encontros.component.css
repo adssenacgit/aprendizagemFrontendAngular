@@ -60,12 +60,3 @@
     }
   }
 
-.p-splitter-panel-nested {
-    display: flex;
-    flex-direction: column;
-}
-
- .p-accordion .p-accordion-header .p-accordion-header-link{
-    background-color: #3f51b5 !important;
-    color: white !important;
-  }

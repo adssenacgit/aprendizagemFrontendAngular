@@ -31,7 +31,7 @@ export class UsuarioTrilhaCursoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+
     this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
 
     this.ObterModulos();
@@ -39,7 +39,9 @@ export class UsuarioTrilhaCursoComponent implements OnInit {
   }
 
   ObterModulos = () => {
-    this.moduloService.ObterModulosPorEstudanteId(this.idEstudanteUsuarioLogado).pipe(
+    //this.moduloService.ObterModulosPorEstudanteId(this.idEstudanteUsuarioLogado).pipe(
+    // o endpoint correto a ser usado é esse acima, porém não está retornando nada (corrigir backend)
+    this.moduloService.ObterModulos().pipe(
       delay(500),
       catchError((error) => {
         this.errorService.onError('Erro ao carregar unidades curriculares.');
