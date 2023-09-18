@@ -1,6 +1,7 @@
 <div class="loginFormulario" fxLayout="row" fxLayoutAlign="center end">
     <div class="divFormulario">
-        <h1>Faça seu login</h1>
+        <img src="./../../../../../assets/img/senac-logo.png" height="50" alt="logo">
+        <h1>Sistema de Aprendizagem</h1>
         <mat-divider></mat-divider>
 
         <div class="cardErros" *ngIf="erros.length > 0">
@@ -10,7 +11,7 @@
                         Algo deu errado!
                     </mat-card-title>
                 </mat-card-header>
-                
+
                 <mat-divider></mat-divider>
 
                 <mat-card-content>
@@ -26,36 +27,34 @@
         <div class="formulario">
             <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
                 <div>
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>CPF</mat-label>
-                        <input type="text" formControlName="cpf" placeholder="Digite seu CPF" matInput required maxlength="11" />
+                        <input type="text" formControlName="cpf" placeholder="Digite seu CPF" matInput required minlength="11" maxlength="11" />
                         <mat-error *ngIf="propriedade.cpf.touched && propriedade.cpf.invalid">
                             <sup>*</sup> Digite seu CPF
                         </mat-error>
                         <mat-error *ngIf="propriedade.cpf.errors?.maxlength">
                             <sup>*</sup> Use 11 dígitos
-                        </mat-error>                        
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div>
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Senha</mat-label>
                         <input type="password" formControlName="senha" placeholder="Digite seua Senha" matInput required minlength="3" maxlength="20" />
                         <mat-error *ngIf="propriedade.senha.touched && propriedade.senha.invalid">
-                            <sup>*</sup> Digite seua Senha
+                            <sup>*</sup> Digite sua Senha
                         </mat-error>
                         <mat-error *ngIf="propriedade.senha.errors?.maxlength">
                             <sup>*</sup> Use no máximo 20 dígitos
-                        </mat-error>                        
+                        </mat-error>
                     </mat-form-field>
                 </div>
-
-                <br/><br/><br/>
 
                 <mat-divider></mat-divider>
                 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" class="botoes">
                     <div>
-                        <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid">
+                        <button type="submit" mat-raised-button color="primary" [disabled]="formulario.invalid">
                             Login
                         </button>
                     </div>
