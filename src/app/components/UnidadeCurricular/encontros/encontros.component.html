@@ -51,7 +51,7 @@
 									<div
 										[id]="'flush-collapse' + i"
 										class="accordion-collapse collapse"
-										data-bs-parent="#accordionFlushExample">
+                  >
 										<div *ngFor="let objetoAprendizagem of objetosAprendizagemCompetencia" class="accordion-body">
 											<strong>{{ objetoAprendizagem.descricao }}</strong>
 											<p>Dificuldade: {{ objetoAprendizagem.grauDificuldade.descricao }}</p>
@@ -99,7 +99,6 @@
                         <h4>Meu progresso</h4>
                     </div>
                     <div class="col-10">
-                      <p>{{((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)}}%</p>
                       <p-progressBar [value]="((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)">
                       </p-progressBar>
                     </div>
@@ -109,7 +108,6 @@
                       <h4>Progresso da UC</h4>
                     </div>
                     <div class="col-10">
-                      <p>{{((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)}}%</p>
                       <p-progressBar [value]="((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)">
                       </p-progressBar>
                     </div>
@@ -168,7 +166,6 @@
 				[id]="'collapse' + i"
 				class="accordion-collapse collapse"
 				[attr.aria-labelledby]="'heading' + i"
-				data-bs-parent="#accordionExample"
 				>
 				<div class="accordion-body d-flex" >
 					<div *ngFor="let situacaoAprend of encontro.situacaoAprendizagem; let i = index" class="card">
