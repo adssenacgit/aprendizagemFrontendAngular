@@ -1,5 +1,5 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="cards col" *ngFor="let card of cardsData">
+  <div class="cards col" *ngFor="let senacCoin of $senacCoins">
     <div class="cardExterior card h-100">
       <img
         src="https://primefaces.org/cdn/primeng/images/usercard.png"
@@ -15,10 +15,10 @@
         "
       >
         <div class="titulos">
-          <h1 class="card-title">{{ card.name }}</h1>
-          <h2>R${{ card.price }}</h2>
+          <h1 class="card-title">{{ senacCoin.saldo }}</h1>
+          <h2>R${{ senacCoin.saldo }}</h2>
         </div>
-        <p class="card-text">{{ card.description }}</p>
+        <p class="card-text">{{ senacCoin }}</p>
         <div class="botao d-grid gap-2 d-md-flex justify-content-md-end">
           <!-- (click)="comprarItem(card)" -->
           <button
@@ -69,8 +69,3 @@
     </div>
   </div>
 </div>
-
-<!-- <h3>Itens Comprados:</h3>
-<ul>
-  <li *ngFor="let item of itensComprados">{{ item.nome }} - R${{ item.preco }}</li>
-</ul> -->
