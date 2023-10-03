@@ -1,9 +1,11 @@
 :host ::ng-deep .p-button-warning {
-	background: #f7941d;
-	padding: 20px;
+	background: #F2994A;
+  color: black;
+	padding: 17px;
 	/*margin: 20px;*/
 	width: 2rem;
 	height: 1rem;
+  border-radius: 20px;
 }
 
 .header-container{
@@ -11,9 +13,10 @@
 }
 .botoes__Menu {
 	display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: space-around;
 	align-items: center;
+
 }
 
 .nav-bar {
@@ -21,9 +24,12 @@
 }
 
 span {
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: large;
+  font-size: 18px;
   color: white;
+  padding-left: 45px;
+  padding-top: 5px;
 }
 
 .spacer {
@@ -39,8 +45,8 @@ a:link {
 }
 
 a:hover {
-  color: #f7941d;
+  color: #F2994A;
 }
 .active {
-  color: #f7941d;
+  color: #F2994A;
 }

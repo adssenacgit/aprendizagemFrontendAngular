@@ -1,3 +1,5 @@
+
+
 *,
 *::before,
 *::after {
@@ -7,7 +9,7 @@
 }
 
 .card {
-	width: 20rem;
+	width: 10rem;
 	border-radius: 1rem;
 	background: white;
 	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
@@ -27,17 +29,19 @@
 	border-radius: 1rem;
 }
 
-.card .card__header {
-	margin-bottom: 3rem;
+.card__header {
+	margin-bottom: 2rem;
+	margin-right: 10rem;
+	margin-top: -1.5rem;
 	color: #092c4c;
 }
 
 .card__body {
-	padding: 0px 10px;
+	padding: 0px 50px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 80%;
+	width:100%;
 	scale: 1.5;
 	color: orange;
 }

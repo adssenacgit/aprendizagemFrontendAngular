@@ -22,11 +22,21 @@ p {
 	color: #092c4c;
 }
 
-.dashboard-usuario-card {
+  .dashboard-usuario-card-badges {
 	border-radius: 1rem;
-	  background: white;
-	  box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
-	  border: transparent;
+	background: white;
+	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
+	border: transparent;
 	padding: 2rem;
+	margin-bottom: 30px;
+  }
+
+  .dashboard-usuario-card-coin {
+	border-radius: 1rem;
+	background: white;
+	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
+	border: transparent;
+	padding: 2rem;
+	margin-bottom: 20px;
   }
   
