@@ -105,7 +105,7 @@ export class EncontrosComponent implements OnInit {
   ObterDetalhesUC = ()=> {
     this.grupoService.ObterGrupoPeloId(this.grupoId).subscribe(resultado => {
       this.grupo = resultado;
-      
+
       this.unidadeCurricularService.ObterUnidadeCurricularPeloId(this.grupo.unidadeCurricularId).subscribe(
         (uc: UnidadeCurricular) => {
           this.unidadeCurricular = uc;
@@ -123,10 +123,10 @@ export class EncontrosComponent implements OnInit {
           this.competenciaIndicadores = competenciaIndicadores;
         }
       );
-      
+
       this.bibliografiaService.FiltrarbibliografiaByUnidadeCurricularId(this.grupo.unidadeCurricularId).subscribe(
         (bibliografias: Bibliografia[]) => {
-          this.bibliografias = bibliografias;          
+          this.bibliografias = bibliografias;
         }
       );
 
@@ -144,7 +144,7 @@ export class EncontrosComponent implements OnInit {
 
       this.estudantesService.ObterEstudanteByGrupoId(this.grupo.id).subscribe(
         (participantes: Estudante[]) => {
-          this.participantes = participantes;          
+          this.participantes = participantes;
         }
       );
 
@@ -157,13 +157,13 @@ export class EncontrosComponent implements OnInit {
     this.objetosAprendizagem=[];
 
     for(var j=0; j< this.encontros.length; j=j+1){
-      this.encontros[j].selecionado=0;  
+      this.encontros[j].selecionado=0;
     }
 
     this.encontros[i].selecionado=1;
 
     this.loading = true;
-    this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
+    this.situacaoAprendizagemService.filtrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
         this.situacoesAprendizagem = resultado;
         this.loading = false;
       });
@@ -172,7 +172,7 @@ export class EncontrosComponent implements OnInit {
   ObterObjetosAprendizagem = (idSituacaoAprendizagem: number, i:number) => {
 
     for(var j=0; j< this.situacoesAprendizagem.length; j=j+1){
-      this.situacoesAprendizagem[j].selecionado=0;  
+      this.situacoesAprendizagem[j].selecionado=0;
     }
 
     this.situacoesAprendizagem[i].selecionado=1;
@@ -195,7 +195,7 @@ export class EncontrosComponent implements OnInit {
     this.ds.moveTo(index);
   }
 
-  AbrirDialog(id : any, descricaoCompetencia: any): void 
+  AbrirDialog(id : any, descricaoCompetencia: any): void
   {
     this.dialog.open(DialogIndicadoresComponent, {
       data: {
@@ -225,6 +225,6 @@ export class DialogIndicadoresComponent{
       this.competenciaIndicadorService.FiltrarCompetenciaIndicadoresByUnidadeCurricularId(this.dados.id).subscribe(resultado => {
           this.competenciaIndicadores = resultado;
       });
-    }        
-  
+    }
+
 }
