@@ -20,16 +20,50 @@ export class SituacaoAprendizagemService {
   url = environment.apiServer + 'api/SituacaoAprendizagem';
   constructor(private https: HttpClient) { }
 
-  FiltrarSituacoesAprendizagemPorEncontroId (id: number) : Observable<SituacaoAprendizagem[]>
+  ObterSituacaoAprendizagemPorId (id: number) : Observable<SituacaoAprendizagem>
+  {
+    const apiUrl = `${this.url}/${id}`;
+    return this.https.get<SituacaoAprendizagem>(apiUrl);
+  }
+
+  criarSituacaoAprendizagem(situacao: SituacaoAprendizagem): Observable<SituacaoAprendizagem> {
+    return this.https.post<SituacaoAprendizagem>(this.url, situacao);
+  }
+
+  obterSituacoesAprendizagem(): Observable<SituacaoAprendizagem[]> {
+    return this.https.get<SituacaoAprendizagem[]>(this.url);
+  }
+
+  atualizarSituacaoAprendizagem(id: number, situacao: SituacaoAprendizagem): Observable<SituacaoAprendizagem> {
+    return this.https.put<SituacaoAprendizagem>(`${this.url}/${id}`, situacao);
+  }
+
+  excluirSituacaoAprendizagem(id: number): Observable<void> {
+    return this.https.delete<void>(`${this.url}/${id}`);
+  }
+
+  filtrarSituacoesAprendizagemPorEncontroId (id: number) : Observable<SituacaoAprendizagem[]>
   {
     const apiUrl = `${this.url}/FiltrarSituacoesAprendizagemPorEncontroId/${id}`;
     return this.https.get<SituacaoAprendizagem[]>(apiUrl);
   }
 
-  ObterSituacaoAprendizagemPorId (id: number) : Observable<SituacaoAprendizagem>
+  filtrarSituacoesAprendizagemPorDescricao (descricao: string) : Observable<SituacaoAprendizagem[]>
   {
-    const apiUrl = `${this.url}/${id}`;
-    return this.https.get<SituacaoAprendizagem>(apiUrl);
+    const apiUrl = `${this.url}/FiltrarSituacaoAprendizagem/${descricao}`;
+    return this.https.get<SituacaoAprendizagem[]>(apiUrl);
+  }
+
+  filtrarAtividadesEObjetosPorSitucacaoId(id: number) : Observable<SituacaoAprendizagem[]>
+  {
+    const apiUrl = `${this.url}/FiltrarAtividadesEObjetosBySituacaoAprendizagemId/${id}`;
+    return this.https.get<SituacaoAprendizagem[]>(apiUrl);
+  }
+
+  filtrarSituacaoAprendizagemAtividadesEObjetosByEncontroId(id: number) :  Observable<SituacaoAprendizagem[]>
+  {
+    const apiUrl = `${this.url}/FiltrarSituacaoAprendizagemAtividadesEObjetosByEncontroId/${id}`;
+    return this.https.get<SituacaoAprendizagem[]>(apiUrl);
   }
 
 }
