@@ -162,6 +162,7 @@ import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
+import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -226,7 +227,8 @@ registerLocaleData(localeFR);
     SideNavComponent,
     AjudaComponent,
     UsuarioNoticiasComponent,
-    CardMensagemComponent
+    CardMensagemComponent,
+    UsuarioUnidadeCurricularComponent
   ],
   imports: [
     BrowserModule,
