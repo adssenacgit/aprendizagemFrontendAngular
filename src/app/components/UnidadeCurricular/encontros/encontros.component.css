@@ -1,17 +1,30 @@
-  .card-uc-descricao {    
+  .card-uc-descricao {
     width: 100%;
     margin-top: 2.0rem;
     margin-bottom: 0.5rem;
   }
 
+  .accordion-item h2 {
+    margin: 0;
+  }
+
+  .comp {
+    margin: 10px;
+  }
+
   .card {
     /*height: 4rem;*/
-    width: 10rem;
+    width: 300px;
+    height: auto;
     margin-right: 0.3em;
     margin-left: 0.3rem;
     margin-top: 0.5rem;
   }
-  
+
+  .border-primary {
+    border: 10px;
+  }
+
   .card-title {
     white-space: nowrap;
     overflow: hidden;
@@ -29,7 +42,7 @@
     height: 5rem;
     width: 100%;
   }
-  
+
   ngb-carousel {
     margin-top: -115px;
   }
@@ -47,13 +60,3 @@
     }
   }
 
-.p-splitter-panel-nested {
-    display: flex;
-    flex-direction: column;
-}
-  
- .p-accordion .p-accordion-header .p-accordion-header-link{
-    background-color: #3f51b5 !important;
-    color: white !important;
-  }
-  

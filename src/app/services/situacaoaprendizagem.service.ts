@@ -32,4 +32,9 @@ export class SituacaoAprendizagemService {
     return this.https.get<SituacaoAprendizagem>(apiUrl);
   }
 
+  ObterSituacaoAprendizagem() : Observable<SituacaoAprendizagem[]> {
+    const apiUrl = `${this.url}`;
+    return this.https.get<SituacaoAprendizagem[]>(apiUrl);
+  }
+
 }
