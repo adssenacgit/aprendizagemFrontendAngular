@@ -1,1 +1,51 @@
-<p>usuario-unidade-curricular works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <app-card-info-grupo [grupo]="grupo" [planejamentoUc]="planejamentoUc"></app-card-info-grupo>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <app-info-docente [professor]="grupo.professor"></app-info-docente>
+        </div>
+        <div class="col">
+          <app-progresso></app-progresso>
+        </div>
+        <div class="col">
+          <p>BADGES</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <app-link [link]="'Aulas'"></app-link>
+        </div>
+        <div class="col">
+          <app-link [link]="'Aulas'"></app-link>
+        </div>
+        <div class="col">
+          <app-link [link]="'Aulas'"></app-link>
+        </div>
+        <div class="col">
+          <app-link [link]="'Aulas'"></app-link>
+        </div>
+        <div class="col">
+          <app-link [link]="'Aulas'"></app-link>
+        </div>
+        <div class="col">
+          <app-link [link]="'Aulas'"></app-link>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-3">
+      encontros e materiais
+    </div>
+    <div class="col">
+      visualizador dos arquivos e aulas
+    </div>
+
+  </div>
+</div>

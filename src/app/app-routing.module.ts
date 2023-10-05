@@ -38,6 +38,7 @@ import { ApoioDuvidasComponent } from './components/ApoioDuvidas/apoio-duvidas.c
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 import { UsuarioRequerimentoWebComponent } from './components/Dashboard/usuario-dashboard/usuario-requerimento-web/usuario-requerimento-web.component';
 import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
+import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,9 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuardService],
     children:[
+      {
+        path: 'grupo/:id', component: UsuarioUnidadeCurricularComponent
+      },
       {
         path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent
       },

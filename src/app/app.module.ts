@@ -163,6 +163,10 @@ import localeFR from '@angular/common/locales/fr';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
+import { CardInfoGrupoComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/card-info-grupo/card-info-grupo.component';
+import { LinkComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/link/link.component';
+import { ProgressoComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/progresso/progresso.component';
+import { InfoDocenteComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/info-docente/info-docente.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -228,7 +232,11 @@ registerLocaleData(localeFR);
     AjudaComponent,
     UsuarioNoticiasComponent,
     CardMensagemComponent,
-    UsuarioUnidadeCurricularComponent
+    UsuarioUnidadeCurricularComponent,
+    CardInfoGrupoComponent,
+    LinkComponent,
+    ProgressoComponent,
+    InfoDocenteComponent
   ],
   imports: [
     BrowserModule,

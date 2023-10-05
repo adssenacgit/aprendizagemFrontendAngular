@@ -1,0 +1,14 @@
+.header-grupo-container {
+
+}
+.box {
+  background-color: aliceblue;
+  border: 1px grey;
+  height: 5vh;
+}
+
+.box-main {
+  background-color: aquamarine;
+  border: 1px grey;
+  height: 10vh;
+}
