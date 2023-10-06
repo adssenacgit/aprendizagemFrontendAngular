@@ -39,6 +39,7 @@ import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario
 import { UsuarioRequerimentoWebComponent } from './components/Dashboard/usuario-dashboard/usuario-requerimento-web/usuario-requerimento-web.component';
 import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
 import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
+import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/encontros.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,25 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children:[
       {
-        path: 'grupo/:id', component: UsuarioUnidadeCurricularComponent
+        path: 'grupo/:id',
+        component: UsuarioUnidadeCurricularComponent,
+        children: [
+          {
+            path: 'encontros', component: EncontrosListaComponent
+          },
+          {
+            path: 'tarefas', component: EncontrosListaComponent
+          },
+          {
+            path: 'conceitos', component: EncontrosListaComponent
+          },
+          {
+            path: 'forum', component: EncontrosListaComponent
+          },
+          {
+            path: 'participantes', component: EncontrosListaComponent
+          }
+        ],
       },
       {
         path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent

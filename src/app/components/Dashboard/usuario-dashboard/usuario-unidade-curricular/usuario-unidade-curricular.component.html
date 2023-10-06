@@ -20,19 +20,19 @@
             </div>
             <div class="row h-100">
               <div class="col">
-                <app-link [link]="'Aulas'"></app-link>
+                <app-link [titulo]="'Aulas'" [link]="'encontros'"></app-link>
               </div>
               <div class="col">
-                <app-link [link]="'Tarefas'"></app-link>
+                <app-link [titulo]="'Tarefas'" [link]="'tarefas'"></app-link>
               </div>
               <div class="col">
-                <app-link [link]="'Conceitos'"></app-link>
+                <app-link [titulo]="'Conceitos'" [link]="'conceitos'"></app-link>
               </div>
               <div class="col">
-                <app-link [link]="'Fórum'"></app-link>
+                <app-link [titulo]="'Fórum'" [link]="'forum'"></app-link>
               </div>
               <div class="col">
-                <app-link [link]="'Participantes'"></app-link>
+                <app-link [titulo]="'Participantes'" [link]="'participantes'"></app-link>
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@
         <app-lista-encontros *ngIf="!isLoading" [encontros]="encontros"></app-lista-encontros>
     </div>
     <div class="col-9">
-      file preview
+      <app-doc-viewer></app-doc-viewer>
     </div>
   </div>
 </div>

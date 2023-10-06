@@ -7,9 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LinkComponent implements OnInit {
 
-  links: string[] = ['Aulas', 'Tarefas', 'Conceitos', 'Fórum', 'Competências', 'Participantes', 'Badges']
-
   @Input() link: string;
+  @Input() titulo: String;
+  @Input() icone: string;
 
 
   constructor() { }

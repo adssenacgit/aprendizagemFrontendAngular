@@ -170,6 +170,7 @@ import { InfoDocenteComponent } from './components/Dashboard/usuario-dashboard/u
 import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/encontros.component';
 import { CardObjetoAprendizagemComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-objeto-aprendizagem/card-objeto-aprendizagem.component';
 import { CardAtividadeComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-atividade/card-atividade.component';
+import { DocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/doc-viewer/doc-viewer.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -242,7 +243,8 @@ registerLocaleData(localeFR);
     ProgressoComponent,
     InfoDocenteComponent,
     CardObjetoAprendizagemComponent,
-    CardAtividadeComponent
+    CardAtividadeComponent,
+    DocViewerComponent
   ],
   imports: [
     BrowserModule,
