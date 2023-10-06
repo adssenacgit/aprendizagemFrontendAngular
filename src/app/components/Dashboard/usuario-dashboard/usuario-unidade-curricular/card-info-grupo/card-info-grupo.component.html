@@ -4,16 +4,35 @@
     <h2>Sobre este curso</h2>
     <p>{{planejamentoUc.descricao}}</p>
   </div>
-  <div class="info d-sm-flex align-items-center justify-content-evenly">
-    <div class="">Detalhes da UC</div>
+  <div class="info d-sm-flex align-items-center justify-content-between">
+    <div class="detalhes-uc">Detalhes da UC</div>
+
     <div>
-      <div>Competências</div>
-      <div>Carga Horária: {{grupo.unidadeCurricular.horas}}h</div>
-      <div>{{grupo.unidadeCurricular.modulo.descricao}}</div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined">schedule</mat-icon>
+        <div>Carga Horária: {{grupo.unidadeCurricular.horas}}h
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined">school</mat-icon>
+        <div>
+          {{grupo.unidadeCurricular.modulo.descricao}}
+        </div>
+      </div>
     </div>
     <div>
-      <div>Bibliografia</div>
-      <div>Planejamento da UC</div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined">playlist_add_check_circle</mat-icon>
+        <div>Competências</div>
+      </div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined">auto_stories</mat-icon>
+        <div>Bibliografia</div>
+      </div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined">space_dashboard</mat-icon>
+        <div>Planejamento da UC</div>
+      </div>
     </div>
   </div>
 </div>

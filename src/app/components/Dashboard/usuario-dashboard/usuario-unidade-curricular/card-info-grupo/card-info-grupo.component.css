@@ -1,6 +1,4 @@
-* {
-  font-family: 'PoppinsRegular';
-}
+
 
 h1 {
   font-family: 'PoppinsSemiBold';
@@ -12,4 +10,24 @@ h2 {
   font-family: 'PoppinsSemiBold';
   letter-spacing: -0.05rem;
   font-size: 20px !important;
+}
+
+.detalhes-uc {
+  font-family: 'PoppinsSemiBold';
+  font-size: 14px;
+  color: #004A8D;
+  letter-spacing: -0.04rem;
+}
+
+p {
+  font-family: 'PoppinsRegular';
+  font-size: 14px;
+}
+
+.icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  /* width: 20px;
+  height: 20px; */
 }
