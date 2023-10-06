@@ -1,4 +1,4 @@
-<mat-calendar
+<!-- <mat-calendar
 	[minDate]="minDate"
 	[maxDate]="maxDate"
 	[dateClass]="dateClass()"
@@ -7,4 +7,9 @@
 		box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
 		border-radius: 16px;"
 >
-</mat-calendar>
+</mat-calendar> -->
+
+	<div>
+		<p-calendar class="min-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true" style="margin-left: -20%;"></p-calendar>
+	</div>
+

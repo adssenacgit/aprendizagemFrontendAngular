@@ -19,6 +19,7 @@ export class UsuarioCalendarioAcademicoComponent implements OnInit {
 
   minDate: any; //=  "2022-08-01T18:30:00.000Z"; 
   maxDate: any; //=  "2022-12-30T18:30:00.000Z";
+  date: Date[] | undefined;
 
   diasLetivos     : Date[]= [];
   inicioPeriodo   : Date[]= [];

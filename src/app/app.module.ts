@@ -103,6 +103,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CalendarModule } from 'primeng/calendar';
+import { PanelModule } from 'primeng/panel';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
@@ -255,6 +257,8 @@ registerLocaleData(localeFR);
     MatProgressSpinnerModule,
     MatExpansionModule,
     FlexLayoutModule,
+    CalendarModule,
+    PanelModule,
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({
       config:{

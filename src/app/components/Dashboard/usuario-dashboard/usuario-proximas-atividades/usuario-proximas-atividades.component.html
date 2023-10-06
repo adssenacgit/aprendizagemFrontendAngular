@@ -1,22 +1,23 @@
-<div class="card flex" style="height:364px">
-	<p-listbox [options]="atividades" [(ngModel)]="selectedAtividade" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '550px' }" [style]="{ width: '100%' }">
-		<ng-template pTemplate="header">
-			<b routelink="atividades" >Tarefas pendentes</b>
-		</ng-template>
-		<ng-template let-atividade pTemplate="item" id="atividade">
-			<li [routerLink]="['/atividadeverificacao', this.atividade.situacaoAprendizagem.id]">
-			  <div class="flex align-items-center gap-2">
-				<h4 class="header"><b>Entrega: {{atividades[0].dataFim | date:"dd/MM/yyyy HH:mm":"+0000"}}</b></h4>
-				<div
-				[style.color]="
-				  atividade.grauDificuldade.id === 4 ? '#F60103' : '#000000' ||
-				  atividade.grauDificuldade.id === 3 ? '#F79303' : '#000000' ||
-				  atividade.grauDificuldade.id === 2 ? '#F7E911' : '#000000' ||
-				  atividade.grauDificuldade.id === 1 ? '#3CD014' : '#000000'
-				"
-				>{{ atividade.descricao }}</div>
-			  </div>
-			</li>
-			</ng-template>
-		</p-listbox>
-	</div>
+<div class="card flex" style="height: 50px;">
+	<p-listbox [options]="atividades" [(ngModel)]="selectedAtividade" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '400px' }" [style]="{ width: '100%' }">
+	  <ng-template pTemplate="header">
+		<b routelink="atividades">Proximas tarefas</b>
+	  </ng-template>
+	  <ng-template let-atividade pTemplate="item" id="atividade">
+		<li [routerLink]="['/atividadeverificacao', this.atividade.situacaoAprendizagem.id]">
+		  <div class="flex align-items-center gap-2">
+			<h4 class="header" style="font-size: 16px;"><b>Entrega: {{atividades[0].dataFim | date:"dd/MM/yyyy HH:mm":"+0000"}}</b></h4>
+			<div
+			  [style.color]="
+				atividade.grauDificuldade.id === 4 ? '#F60103' : 
+				atividade.grauDificuldade.id === 3 ? '#F79303' :
+				atividade.grauDificuldade.id === 2 ? '#F7E911' :
+				atividade.grauDificuldade.id === 1 ? '#3CD014' : '#000000'"
+			  style="font-size: 14px;"
+			>{{ atividade.descricao }}</div>
+		  </div>
+		</li>
+	  </ng-template>
+	</p-listbox>
+  </div>
+  
