@@ -7,6 +7,7 @@ import { Encontro } from 'src/app/models/Encontro';
 import { EncontroService } from 'src/app/services/encontro.service';
 import { PlanejamentoUC } from 'src/app/models/PlanejamentoUC';
 import { PlanejamentoUcService } from 'src/app/services/planejamento-uc.service';
+import { SituacaoAprendizagemService } from 'src/app/services/situacaoaprendizagem.service';
 
 @Component({
   selector: 'app-usuario-unidade-curricular',
@@ -20,39 +21,63 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
   grupo: Grupo;
   encontros: Encontro[];
   planejamentoUc: PlanejamentoUC;
+  isLoading: boolean = true;
 
   constructor(
     private authGuardService : AuthGuardService,
     private route : ActivatedRoute,
     private grupoService: GrupoService,
     private encontroService: EncontroService,
-    private planejamentoUcService: PlanejamentoUcService
+    private planejamentoUcService: PlanejamentoUcService,
+    private situacaoApredizagemService: SituacaoAprendizagemService,
     ) { }
 
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.grupoId = this.route.snapshot.params['id'];
     this.estudanteId = this.authGuardService.getIdEstudanteUsuarioLogado();
-    this.grupoService.ObterGrupoPeloId(this.grupoId)
-      .subscribe({
-        next: (response) => {
-          this.grupo = response;
-          console.log(this.grupo);
-        }
-      });
-    this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.estudanteId)
-      .subscribe({
-        next: (response) => {
-          this.encontros = response;
-        }
-      });
-      this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
-      .subscribe({
-        next: (response) => {
-          this.planejamentoUc = response;
-        }
-      });
+    try {
+      this.grupoService.ObterGrupoPeloId(this.grupoId)
+        .subscribe({
+          next: (response) => {
+            this.grupo = response;
+          }
+        });
+      this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.estudanteId)
+        .subscribe({
+          next: (response) => {
+            this.encontros = response;
+            this.encontros.forEach((encontro, index) => {
+              this.situacaoApredizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe({
+                next: (response) => {
+                  encontro.situacoesAprendizagem = response;
+                  this.encontros[index] = encontro;
+                  encontro.situacoesAprendizagem.forEach((situacao, index2) => {
+                    this.situacaoApredizagemService.filtrarAtividadesEObjetosBySituacaoAprendizagemId(situacao.id)
+                      .subscribe({
+                        next: (response) => {
+                          this.encontros[index].situacoesAprendizagem[index2] = response;
+                        }
+                      })
+                  })
+
+
+
+                }
+              })
+            })
+          }
+        });
+        this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
+        .subscribe({
+          next: (response) => {
+            this.planejamentoUc = response;
+          }
+        });
+    } finally {
+        this.isLoading = false
+      }
   }
 
 

@@ -4,11 +4,19 @@
 .box {
   background-color: aliceblue;
   border: 1px grey;
-  height: 5vh;
+  height: 100%;
 }
 
 .box-main {
   background-color: aquamarine;
   border: 1px grey;
-  height: 10vh;
+  height: 100%;
+}
+
+.header {
+  height: 25%;
+}
+
+.page-container {
+  height: 100vh;
 }

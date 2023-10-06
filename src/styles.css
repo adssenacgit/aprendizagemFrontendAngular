@@ -7,6 +7,11 @@ html, body { height: 100%; }
   src: url('../src/assets/fonts/Poppins/Poppins-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: url('../src/assets/fonts/Poppins/Poppins-SemiBold.ttf');
+}
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .dia-feriado {

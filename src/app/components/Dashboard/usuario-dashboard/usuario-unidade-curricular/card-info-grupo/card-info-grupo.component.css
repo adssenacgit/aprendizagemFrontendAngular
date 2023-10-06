@@ -1,15 +1,15 @@
 * {
-  font-family: PoppinsRegular;
+  font-family: 'PoppinsRegular';
 }
 
 h1 {
-  font-size: 32;
+  font-family: 'PoppinsSemiBold';
+  letter-spacing: -0.05rem;
   color: #004A8D;
 }
 
-p {
-  font-family: PoppinsRegular;
-  font-size: 14;
+h2 {
+  font-family: 'PoppinsSemiBold';
+  letter-spacing: -0.05rem;
+  font-size: 20px !important;
 }
-
-

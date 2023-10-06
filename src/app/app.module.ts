@@ -167,6 +167,9 @@ import { CardInfoGrupoComponent } from './components/Dashboard/usuario-dashboard
 import { LinkComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/link/link.component';
 import { ProgressoComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/progresso/progresso.component';
 import { InfoDocenteComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/info-docente/info-docente.component';
+import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/encontros.component';
+import { CardObjetoAprendizagemComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-objeto-aprendizagem/card-objeto-aprendizagem.component';
+import { CardAtividadeComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-atividade/card-atividade.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -212,6 +215,7 @@ registerLocaleData(localeFR);
     ChapterListagemGeralComponent,
     EstudoPrevioComponent,
     EncontrosComponent,
+    EncontrosListaComponent,
     DialogIndicadoresComponent,
     UsuarioArquivosPrivadosComponent,
     UsuarioDadosComponent,
@@ -236,7 +240,9 @@ registerLocaleData(localeFR);
     CardInfoGrupoComponent,
     LinkComponent,
     ProgressoComponent,
-    InfoDocenteComponent
+    InfoDocenteComponent,
+    CardObjetoAprendizagemComponent,
+    CardAtividadeComponent
   ],
   imports: [
     BrowserModule,

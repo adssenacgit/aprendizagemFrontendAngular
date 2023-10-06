@@ -1,51 +1,51 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-5">
-      <app-card-info-grupo [grupo]="grupo" [planejamentoUc]="planejamentoUc"></app-card-info-grupo>
+<div *ngIf="!isLoading" class="container page-container">
+  <div class="row gy-2">
+      <div class="header">
+        <div class="row">
+        <div class="col-md-5">
+          <app-card-info-grupo *ngIf="grupo && planejamentoUc" [grupo]="grupo" [planejamentoUc]="planejamentoUc"></app-card-info-grupo>
+        </div>
+        <div class="col">
+          <div class="vstack gap-2 h-100">
+            <div class="row h-100">
+                <div class="col">
+                  <app-info-docente *ngIf="grupo" [professor]="grupo.professor"></app-info-docente>
+                </div>
+                <div class="col">
+                  <app-progresso></app-progresso>
+                </div>
+                <div class="col">
+                  <div class="box">BADGES</div>
+                </div>
+            </div>
+            <div class="row h-100">
+              <div class="col">
+                <app-link [link]="'Aulas'"></app-link>
+              </div>
+              <div class="col">
+                <app-link [link]="'Tarefas'"></app-link>
+              </div>
+              <div class="col">
+                <app-link [link]="'Conceitos'"></app-link>
+              </div>
+              <div class="col">
+                <app-link [link]="'Fórum'"></app-link>
+              </div>
+              <div class="col">
+                <app-link [link]="'Participantes'"></app-link>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col">
-          <app-info-docente [professor]="grupo.professor"></app-info-docente>
-        </div>
-        <div class="col">
-          <app-progresso></app-progresso>
-        </div>
-        <div class="col">
-          <p>BADGES</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <app-link [link]="'Aulas'"></app-link>
-        </div>
-        <div class="col">
-          <app-link [link]="'Aulas'"></app-link>
-        </div>
-        <div class="col">
-          <app-link [link]="'Aulas'"></app-link>
-        </div>
-        <div class="col">
-          <app-link [link]="'Aulas'"></app-link>
-        </div>
-        <div class="col">
-          <app-link [link]="'Aulas'"></app-link>
-        </div>
-        <div class="col">
-          <app-link [link]="'Aulas'"></app-link>
-        </div>
-      </div>
-
-    </div>
-
   </div>
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-3">
-      encontros e materiais
+        <app-lista-encontros *ngIf="!isLoading" [encontros]="encontros"></app-lista-encontros>
     </div>
-    <div class="col">
-      visualizador dos arquivos e aulas
+    <div class="col-9">
+      file preview
     </div>
-
   </div>
 </div>

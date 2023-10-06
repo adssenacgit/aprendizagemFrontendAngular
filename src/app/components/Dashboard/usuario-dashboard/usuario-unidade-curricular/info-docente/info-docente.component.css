@@ -1,3 +1,10 @@
-.info-docente-container{
-  background-color: antiquewhite;
+h3 {
+  font-family: 'PoppinsSemiBold';
+  color: #004A8D;
+  font-size: 18px;
+}
+
+p {
+  font-family: 'PoppinsRegular';
+  font-size: 14px;
 }
