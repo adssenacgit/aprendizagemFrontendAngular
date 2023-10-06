@@ -1,10 +1,10 @@
-<div class="link-container h-100 border rounded">
+<div *ngIf="icone && link != undefined" class="link-container h-100 border rounded">
   <div class="link-info-container h-100 p-3 d-flex flex-column justify-content-between">
     <div class="align-self-end">
-      icone
+      <mat-icon class="material-symbols-outlined">{{icone}}</mat-icon>
     </div>
     <div class="align-self-start">
-      {{titulo}}
+      <p>{{titulo}}</p>
     </div>
   </div>
 </div>
