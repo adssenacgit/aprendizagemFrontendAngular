@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocViewerComponent implements OnInit {
 
+  pdfSrc = 'http://www.pdf995.com/samples/pdf.pdf';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  contentLoaded() {
+    console.log('File loaded');
   }
 
 }

@@ -171,6 +171,7 @@ import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboar
 import { CardObjetoAprendizagemComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-objeto-aprendizagem/card-objeto-aprendizagem.component';
 import { CardAtividadeComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-atividade/card-atividade.component';
 import { DocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/doc-viewer/doc-viewer.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -312,7 +313,8 @@ registerLocaleData(localeFR);
     ConfirmDialogModule,
     InputTextareaModule,
     InputTextModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    NgxDocViewerModule
   ],
   providers: [
     CursosService,
