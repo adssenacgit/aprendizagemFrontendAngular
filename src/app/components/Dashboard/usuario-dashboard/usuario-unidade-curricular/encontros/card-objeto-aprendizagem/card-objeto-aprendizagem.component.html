@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center align-items-center">
   <div></div>
   <p>{{objeto.descricao}}</p>
-  <div>{{objeto.id}}</div>
+  <div (click)="enviarArquivoParaODocViewer(objeto.arquivo)">{{objeto.id}}</div>
 </div>
