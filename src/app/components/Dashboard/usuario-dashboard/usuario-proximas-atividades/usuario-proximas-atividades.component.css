@@ -12,9 +12,6 @@
 	border-radius: 1rem;
 	background: white;
 	border: transparent;
-	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
-	position: relative;
-	color: #434343;
 }
 
 .card .card__header {

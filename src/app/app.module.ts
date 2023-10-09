@@ -148,6 +148,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { SidebarModule } from 'primeng/sidebar';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DropdownModule } from 'primeng/dropdown';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -259,6 +260,7 @@ registerLocaleData(localeFR);
     FlexLayoutModule,
     CalendarModule,
     PanelModule,
+    DropdownModule,
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({
       config:{

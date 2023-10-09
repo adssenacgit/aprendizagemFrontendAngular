@@ -8,7 +8,7 @@
 	box-sizing: border-box;
 }
 
-.card {
+/* .card {
 	width: 10rem;
 	border-radius: 1rem;
 	background: white;
@@ -16,7 +16,7 @@
 	border: transparent;
 	position: relative;
 	color: #434343;
-}
+} */
 
 .card__container {
 	display: flex;

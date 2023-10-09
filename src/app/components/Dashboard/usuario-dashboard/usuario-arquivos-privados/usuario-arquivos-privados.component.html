@@ -1,12 +1,13 @@
-<div class="card flex ">
-	<p-listbox [options]="recursos" [(ngModel)]="selectedRecurso" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '250px' }" [style]="{ width: '20rem' }">
-		<ng-template pTemplate="header">
-			<b>Arquivos Privados</b>
-		</ng-template>		
-		<ng-template let-recurso pTemplate="item">
-			<div class="flex align-items-center gap-2">				
-				<div><i class="pi pi-file" style="font-size: 1rem; width: 18px" ></i>{{ recurso.nomeArquivo }}</div>
-			</div>
-		</ng-template>
-	</p-listbox>	
-</div>
+<p-panel p-panel [style]="{ width: '40%','box-shadow': '8px 3px 22px 10px rgba(150, 150, 150, 0.11)'}" styleClass="no-border">
+	<ng-template pTemplate="header">
+		<b>Arquivos Privados</b>
+	  </ng-template> 
+	<p-listbox [options]="recursos" [(ngModel)]="selectedRecurso" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '100px' }" [style]="{ width: '100%', 'border-color': 'transparent'}">  
+	  <ng-template let-recurso pTemplate="item">
+		<div class="flex align-items-center gap-2">       
+		  <div><i class="pi pi-file" style="font-size: 1rem; width: 18px"></i>{{ recurso.nomeArquivo }}</div>
+		</div>
+	  </ng-template>
+	</p-listbox>
+  </p-panel>
+  
