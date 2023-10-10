@@ -24,14 +24,14 @@
 	align-items: center;
 	padding: 0rem;
 	width: 100%;
-	height: 100%;
+	height: 70px;
 	background: white;
 	border-radius: 1rem;
 }
 
 .card__header {
 	margin-bottom: 2rem;
-	margin-right: 10rem;
+	margin-right: 15rem;
 	margin-top: -1.5rem;
 	color: #092c4c;
 }

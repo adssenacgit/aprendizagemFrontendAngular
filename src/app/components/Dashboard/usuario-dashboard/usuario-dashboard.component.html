@@ -1,15 +1,15 @@
 <div class="container-fluid">
   <div style="display:flex ; flex-direction: row; justify-content: space-around; margin-top: 30px;">
     <div>
-      <div class="dashboard-usuario-card-badges">
-        <app-usuario-badges></app-usuario-badges>
+      <div style="margin-bottom: 40px;">
+        <app-usuario-proximas-atividades></app-usuario-proximas-atividades>
       </div>
-      <div class="dashboard-usuario-card-coin">
-        <app-usuario-dados></app-usuario-dados>
+      <div>
+        <app-usuario-arquivos-privados></app-usuario-arquivos-privados>
       </div>
     </div>
     <div>
-      <div>
+      <div  style="margin-left: -50%; margin-top: 20px">
         <app-usuario-calendario-academico></app-usuario-calendario-academico>
       </div>
     </div>
@@ -17,19 +17,15 @@
       <div>
         <app-menu-usuario></app-menu-usuario>
       </div>
+      <div class="dashboard-usuario-card-coin">
+        <app-usuario-dados></app-usuario-dados>
+      </div>
+      <div class="dashboard-usuario-card-badges">
+        <app-usuario-badges></app-usuario-badges>
+      </div>
     </div>
   </div>
   <div style="margin-top: 1rem;">
     <app-usuario-lista-uc></app-usuario-lista-uc>
-  </div>
-  <div>
-    <div style="margin-top: 30px;">
-      <app-usuario-proximas-atividades></app-usuario-proximas-atividades>
-    </div>
-  </div>
-  <div>
-    <div style="margin-top: -205px;; margin-left: 35%;">
-      <app-usuario-arquivos-privados></app-usuario-arquivos-privados>
-    </div>
   </div>
 </div>

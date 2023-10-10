@@ -1,9 +1,9 @@
-<p-panel [style]="{ width: '30%','box-shadow': '8px 3px 22px 10px rgba(150, 150, 150, 0.11)'}" styleClass="no-border">
+<p-panel [style]="{ width: '50%', 'margin-left': '13px', 'box-shadow': '8px 3px 22px 10px rgba(150, 150, 150, 0.11)'}" styleClass="no-border">
 	<ng-template pTemplate="header">
 	  <b [routerLink]="['/atividades']">Proximas atividades</b>
 	</ng-template>
 	<ng-template pTemplate="content">
-	  <p-listbox [options]="atividades" [(ngModel)]="selectedAtividade" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '100px' }" [style]="{ width: '100%', 'border-color': 'transparent' }" styleClass="no-border">
+	  <p-listbox [options]="atividades" [(ngModel)]="selectedAtividade" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '110px' }" [style]="{ width: '100%', 'border-color': 'transparent' }" styleClass="no-border">
 		<ng-template let-atividade pTemplate="item" id="atividade">
 		  <li [routerLink]="['/atividadeverificacao', atividade.situacaoAprendizagem.id]">
 			<div class="flex align-items-center gap-2">
