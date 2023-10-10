@@ -30,7 +30,7 @@
 </p-card>
 <div id="paginacao">
   <button class="btn btn-primary" id ="Anterior"(click)="previousPage()" [disabled]="currentPage === 1"> < </button>
-  <button *ngFor="let i of totalPages" id="i" (click)="irParaPagina(i)" class="btn btn-primary"> {{i}} </button>
+  <button *ngFor="let i of totalPages" id="i" (click)="irParaPagina(i)" class="btn btn-primary" style="margin:0 5px ;"> {{i}} </button>
   <button class="btn btn-primary" id= "Proximo" (click)="nextPage()" [disabled]="endIndex >= chapterAssuntos.length"> > </button>
 </div>
 </div>
