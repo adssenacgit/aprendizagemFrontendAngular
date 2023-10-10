@@ -1,6 +1,12 @@
 * {
   font-family: 'PoppinsRegular';
 }
+
+.acc-header {
+  background-color: #E0E0E0;
+  border-bottom: 1px solid black;
+}
+
 .accordion-header-container{
   display: flex;
 }
@@ -11,7 +17,7 @@
 }
 
 .encontros-container {
-  max-height: 900px;
+  max-height: 95vh;
 }
 
 span {

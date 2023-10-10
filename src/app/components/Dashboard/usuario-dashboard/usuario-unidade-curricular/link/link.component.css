@@ -8,3 +8,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.active {
+  background-color: #EF8F2F;
+}
+
+.link-container:hover {
+  background-color: #EF8F2F;
+}

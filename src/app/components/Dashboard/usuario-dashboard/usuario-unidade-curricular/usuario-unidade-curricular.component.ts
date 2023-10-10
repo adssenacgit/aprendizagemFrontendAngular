@@ -23,6 +23,15 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
   planejamentoUc: PlanejamentoUC;
   isLoading: boolean = true;
 
+  totalSituacoesAprendizagem: number = 0;
+  totalObjetosAprendizagem: number = 0;
+  totalAtividades: number = 0;
+  totalSituacoesAprendizagemAcompanhadas: number = 0;
+  totalObjetosAprendizagemAcompanhadas: number = 0;
+  totalAtividadesAcompanhadas: number = 0;
+  progressoUC: number = 0;
+  progressoAluno: number = 0;
+
   constructor(
     private authGuardService : AuthGuardService,
     private route : ActivatedRoute,
@@ -61,12 +70,20 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
                         }
                       })
                   })
-
-
-
                 }
-              })
+              });
+              this.totalSituacoesAprendizagem += encontro.encontroStatus.totalSituacaoAprendizagem;
+              this.totalObjetosAprendizagem += encontro.encontroStatus.totalObjetoAprendizagem;
+              this.totalAtividades += encontro.encontroStatus.totalAtividade;
+              this.totalSituacoesAprendizagemAcompanhadas += encontro.encontroStatus.totalSituacaoAprendizagemAcompanhadas;
+              this.totalObjetosAprendizagemAcompanhadas += encontro.encontroStatus.totalObjetoAprendizagemAcompanhadas;
+              this.totalAtividadesAcompanhadas += encontro.encontroStatus.totalAtividadeAcompanhadas;
             })
+            let temp = 0
+            temp += this.totalSituacoesAprendizagem + this.totalObjetosAprendizagem + this.totalAtividades
+            console.log(temp)
+            this.progressoUC = (temp / temp) * 100
+            this.progressoAluno = ((this.totalSituacoesAprendizagemAcompanhadas + this.totalObjetosAprendizagemAcompanhadas + this.totalAtividadesAcompanhadas) / this.progressoUC) * 100
           }
         });
         this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
@@ -76,7 +93,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
           }
         });
     } finally {
-        this.isLoading = false
+        this.isLoading = false;
       }
   }
 

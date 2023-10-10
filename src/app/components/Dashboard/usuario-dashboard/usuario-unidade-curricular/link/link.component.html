@@ -1,5 +1,5 @@
-<div *ngIf="icone && link != undefined" class="link-container h-100 border rounded">
-  <a routerLinkActive="active" routerLink="{{currentRoute + link}}">
+<a routerLinkActive="active" routerLink="{{currentRoute + link}}">
+    <div *ngIf="icone && link != undefined" class="link-container h-100 border rounded">
     <div class="link-info-container h-100 p-3 d-flex flex-column justify-content-between">
       <div class="align-self-end">
         <mat-icon class="material-symbols-outlined">{{icone}}</mat-icon>
@@ -8,5 +8,5 @@
         <p>{{titulo}}</p>
       </div>
     </div>
+  </div>
   </a>
-</div>

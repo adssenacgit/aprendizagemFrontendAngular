@@ -1,6 +1,7 @@
 import { PlanejamentoUC } from 'src/app/models/PlanejamentoUC';
 import { Component, Input, OnInit } from '@angular/core';
 import { Grupo } from 'src/app/models/Grupo';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card-info-grupo',
@@ -9,12 +10,17 @@ import { Grupo } from 'src/app/models/Grupo';
 })
 export class CardInfoGrupoComponent implements OnInit {
 
+
   @Input() grupo: Grupo;
   @Input() planejamentoUc :PlanejamentoUC;
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
 }

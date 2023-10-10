@@ -1,3 +1,10 @@
 .progresso-container {
   height: 100%;
 }
+
+p {
+  margin: 0;
+  font-family: 'PoppinsSemiBold';
+  font-size: 14px;
+  color: #004A8D;
+}

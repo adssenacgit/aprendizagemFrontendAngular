@@ -31,3 +31,12 @@ p {
   /* width: 20px;
   height: 20px; */
 }
+
+.info-link {
+  color: blue;
+  text-decoration: underline;
+}
+
+.info-link:hover {
+  cursor: pointer;
+}

@@ -19,8 +19,8 @@ export class EncontrosListaComponent implements OnChanges{
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.encontros != undefined) {
-      console.log(this.encontros)
-    }
+    // if(this.encontros != undefined) {
+    //   console.log(this.encontros)
+    // }
   }
 }

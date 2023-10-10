@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data-service.service';
 
 @Component({
@@ -18,15 +18,18 @@ export class DocViewerComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.currentData
-    .subscribe(data => {
-      this.arquivoDataString = this.decodeBase64ToDataUrl(data);
-    })
+      .subscribe(data => {
+        this.arquivoDataString = data;
+        console.log(this.arquivoDataString)
+        if(this.arquivoDataString.length > 0)
+          this.arquivoDataString = this.decodeBase64ToDataUrl(data);
+      })
 
   }
 
   contentLoaded() {
-    console.log(this.arquivoDataString)
-    console.log('File loaded');
+    // console.log(this.arquivoDataString)
+    // console.log('File loaded');
   }
 
   decodeBase64ToDataUrl(base64String: string) {
