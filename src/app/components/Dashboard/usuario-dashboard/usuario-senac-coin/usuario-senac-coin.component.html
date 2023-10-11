@@ -1,13 +1,4 @@
-    <div style= "width: 240px; height: 80px; align-items: center; justify-content: center;" class="card flex">
-        <p-inputMask style="display: flex; justify-content: center; justify-content: space-around;"
-         mask="999-99-9999" 
-        [(ngModel)]="value" [disabled]="true">
-        <i class="pi pi-credit-card" style="font-size: 60px;"></i>
-            <h1>{{ senacCoins.saldo }}</h1>
-        </p-inputMask>
-    </div>
-
-    <div class="col-md-12 teste">
+<div class="col-md-12 teste">
         <p-accordion [multiple]="true">
           <p-accordionTab header="Movimentações">
             <p-table
@@ -17,7 +8,7 @@
               [rows]="10"
               [showCurrentPageReport]="true"
               [rowsPerPageOptions]="[10, 25, 50]"
-              [loading]="loading"
+              [loading]="isLoading"
               [paginator]="true"
               currentPageReportTemplate="Apresentando {first} para {last} de {totalRecords} registros"
             >
@@ -84,5 +75,7 @@
           <app-cards-senac-coin
             class="container-fluid"
             style="display: flex; flex-direction: row"
+            [$senacCoins]="senacCoins"
+            [$senacCoinMovimentacoes]="senacCoinMovimentacoes"
           ></app-cards-senac-coin>
-        </div>                    
+</div>
