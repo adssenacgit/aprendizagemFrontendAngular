@@ -1,4 +1,5 @@
 import { Chapter } from "./Chapter";
+import { ChapterTag } from "./ChapterTag";
 import { Usuario } from "./Usuario";
 
 export class ChapterAssunto {
@@ -10,7 +11,9 @@ export class ChapterAssunto {
     verificacao: number;
     chapterId: number;
     usuarioId: string
-    usuarioIdVerificacao: string
-    usuario: Usuario
-    chapter:Chapter
+    usuarioIdVerificacao: string;
+    usuario: Usuario;
+    chapter:Chapter;
+    totalComentarios: number;
+    chapterTag: ChapterTag[];
 }
