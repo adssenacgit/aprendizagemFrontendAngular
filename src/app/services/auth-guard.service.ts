@@ -50,6 +50,21 @@ export class AuthGuardService implements CanActivate {
     //  return false;
   }
 
+  VerificarProfessor(): boolean {
+
+    const token = String(sessionStorage.getItem('TokenUsuarioLogado'));
+
+    const tokenUsuario = this.getDecodedAccessToken(token);
+
+    const decodedRole = tokenUsuario['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+
+    if(decodedRole === 'Professor'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   getIdUsuarioLogado(): string {
     //const token = String(localStorage.getItem('TokenUsuarioLogado'));
     const token = String(sessionStorage.getItem('TokenUsuarioLogado'));

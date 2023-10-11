@@ -25,12 +25,12 @@ export class EncontroService {
     return this.https.get<Encontro[]>(apiUrl);
   }
 
-  ObterEncontroPeloId(encontroId: Encontro['id']): Observable<Encontro> {
+  ObterEncontroPorId(encontroId: Encontro['id']): Observable<Encontro> {
     const apiUrl = `${this.url}/${encontroId}`;
     return this.https.get<Encontro>(apiUrl);
   }
 
-  ObterEncontroPorGrupoId(grupoId: number, estudanteId: number): Observable<Encontro[]> {
+  ObterEncontroPorGrupoIdPorEstudanteId(grupoId: number, estudanteId: number): Observable<Encontro[]> {
     const apiUrl = `${this.url}/FilterByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
     return this.https.get<Encontro[]>(apiUrl);
   }

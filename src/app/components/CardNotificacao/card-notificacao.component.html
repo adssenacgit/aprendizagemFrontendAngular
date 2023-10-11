@@ -1,11 +1,11 @@
-<div class="p-2 border-bottom">
+<div class="p-2 border-bottom" *ngFor="let notificacao of $notificacoes">
     <a href="#!" class="d-flex justify-content-between">
         <div class="pt-1">
-            <p class="fw-bold mb-0">{{title}}</p>
+            <p class="fw-bold mb-0">{{notificacao.notificacaoTexto}}</p>
         </div>
 
         <div class="pt-1">
-            <p class="small text-muted mb-1">{{date}}</p>
+            <p class="small text-muted mb-1">{{notificacao.data | date : 'dd/MM/yyyy'}}</p>
         </div>
     </a>
 </div>

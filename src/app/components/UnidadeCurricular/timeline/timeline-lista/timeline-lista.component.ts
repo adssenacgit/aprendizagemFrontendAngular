@@ -72,7 +72,7 @@ export class TimelineListaComponent implements OnInit {
   }
 
   ObterEncontros = () => {
-    this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).pipe(
+    this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.idEstudanteUsuarioLogado).pipe(
         delay(500),
         catchError((error) => {
           this.errorService.onError('Erro ao carregar encontros da unidade curricular.');

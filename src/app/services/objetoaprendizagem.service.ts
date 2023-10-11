@@ -61,4 +61,3 @@ export class ObjetoAprendizagemService {
     return this.https.get<ObjetoAprendizagem[]>(apiUrl);
   }
 
-}

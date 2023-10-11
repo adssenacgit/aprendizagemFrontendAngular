@@ -29,5 +29,11 @@ export class SenacCoinService {
   {
     const apiUrl = `${this.apiUrl}/FiltrarSenacCoinByUsuarioId/${id}`;
     return this.http.get<SenacCoin>(apiUrl);
-  }  
+  }
+
+  ObterSenacCoinPeloEstudanteNome(nome: string): Observable<SenacCoin[]>
+  {
+    const apiUrl = `${this.apiUrl}/FiltrarSenacCoin/${nome}`;
+    return this.http.get<SenacCoin[]>(apiUrl);
+  }
 }
