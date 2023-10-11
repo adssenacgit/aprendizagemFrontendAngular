@@ -95,8 +95,8 @@
 					<h1>Top contribuidores</h1>
 				</div>
 				<div *ngFor="let i of rankComentarios" class="card-body">
-					<img class="user-image" src="{{ 'data:image/png;base64,' + usuario.foto }}" />
-					<p >{{i.usuario.nomeCompleto}}</p>
+					<img class="user-image" src="{{ 'data:image/png;base64,' + i.usuario.foto }}" />
+					<p >{{i.usuario.nome}}</p>
           <p >{{i.count}}</p>
 				</div>
 			</div>

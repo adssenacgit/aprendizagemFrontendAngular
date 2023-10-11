@@ -31,7 +31,7 @@ export class ApoioDuvidasComponent implements OnInit {
 	usuario: Usuario = new Usuario();
 	idUsuarioLogado: string;
   chapterTagTodos: ChapterTag[];
-  rankComentarios: { valor : {foto: string; nome:string}; count: number }[] = [];
+  rankComentarios: { usuario: { foto: string; nome: string }; count: number }[] = [];
   
 
 	constructor(
@@ -64,15 +64,24 @@ export class ApoioDuvidasComponent implements OnInit {
     this.chapterTagService.ObterTodos().subscribe((data) => {
       this.chapterTagTodos = data;
     })
-// voltar daqui
-    // this.comentarioService.ObterTodos().subscribe((data) =>{
-    //   const frequencyMap = new Map< [string,string], number>();
-    //   data.forEach((item) => {
-    //   frequencyMap.set(, (frequencyMap.get([item.usuario.foto, item.usuario.nomeCompleto]) || 0) + 1);
-    // });
-    //   this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuario, count]) => ({ usuario., count }));
-    //   this.rankComentarios.sort((a, b) => b.count - a.count).slice(0,3);
-    // })
+
+    this.comentarioService.ObterTodos().subscribe((data) =>{
+      const frequencyMap = new Map();
+      data.forEach((item) => {
+	  const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
+      frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
+	  
+	});
+    //   this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuario, count]) => ({usuario, count }));
+
+	  this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
+		usuario: JSON.parse(usuarioKey),
+		count,
+	  }));
+
+      this.rankComentarios.sort((a, b) => b.count - a.count)
+	  this.rankComentarios =  this.rankComentarios.slice(0,3);
+    })
 
 
 	}
