@@ -118,6 +118,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { BadgeModule } from 'primeng/badge';
 import Swal from 'sweetalert2';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
@@ -172,6 +173,7 @@ import { CardObjetoAprendizagemComponent } from './components/Dashboard/usuario-
 import { CardAtividadeComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-atividade/card-atividade.component';
 import { DocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/doc-viewer/doc-viewer.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { BadgesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/badges-uc/badges-uc.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -245,7 +247,8 @@ registerLocaleData(localeFR);
     InfoDocenteComponent,
     CardObjetoAprendizagemComponent,
     CardAtividadeComponent,
-    DocViewerComponent
+    DocViewerComponent,
+    BadgesUcComponent
   ],
   imports: [
     BrowserModule,
@@ -314,7 +317,8 @@ registerLocaleData(localeFR);
     InputTextareaModule,
     InputTextModule,
     OverlayPanelModule,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    BadgeModule
   ],
   providers: [
     CursosService,

@@ -8,6 +8,8 @@ import { EncontroService } from 'src/app/services/encontro.service';
 import { PlanejamentoUC } from 'src/app/models/PlanejamentoUC';
 import { PlanejamentoUcService } from 'src/app/services/planejamento-uc.service';
 import { SituacaoAprendizagemService } from 'src/app/services/situacaoaprendizagem.service';
+import { BadgeService } from 'src/app/services/badge.service';
+import { Badge } from 'src/app/models/Badge';
 
 @Component({
   selector: 'app-usuario-unidade-curricular',
@@ -20,6 +22,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
   estudanteId: number;
   grupo: Grupo;
   encontros: Encontro[];
+  badges: Badge[];
   planejamentoUc: PlanejamentoUC;
   isLoading: boolean = true;
 
@@ -38,7 +41,8 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
     private grupoService: GrupoService,
     private encontroService: EncontroService,
     private planejamentoUcService: PlanejamentoUcService,
-    private situacaoApredizagemService: SituacaoAprendizagemService,
+    private situacaoAprendizagemService: SituacaoAprendizagemService,
+    private badgeService: BadgeService,
     ) { }
 
 
@@ -58,12 +62,12 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
           next: (response) => {
             this.encontros = response;
             this.encontros.forEach((encontro, index) => {
-              this.situacaoApredizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe({
+              this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe({
                 next: (response) => {
                   encontro.situacoesAprendizagem = response;
                   this.encontros[index] = encontro;
                   encontro.situacoesAprendizagem.forEach((situacao, index2) => {
-                    this.situacaoApredizagemService.filtrarAtividadesEObjetosBySituacaoAprendizagemId(situacao.id)
+                    this.situacaoAprendizagemService.filtrarAtividadesEObjetosBySituacaoAprendizagemId(situacao.id)
                       .subscribe({
                         next: (response) => {
                           this.encontros[index].situacoesAprendizagem[index2] = response;
@@ -87,11 +91,15 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
           }
         });
         this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
-        .subscribe({
-          next: (response) => {
-            this.planejamentoUc = response;
-          }
-        });
+          .subscribe({
+            next: (response) => {
+              this.planejamentoUc = response;
+            }
+          });
+        this.badgeService.ObterBadgesPeloGrupoId(this.grupoId)
+          .subscribe({
+            next: (res) => this.badges = res
+          })
     } finally {
         this.isLoading = false;
       }
