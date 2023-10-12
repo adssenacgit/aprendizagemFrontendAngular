@@ -11,6 +11,8 @@ export class CardAtividadeComponent {
   @Input()
   atividade: Atividade;
 
+  checked: boolean = true;
+
   constructor() { }
 
 

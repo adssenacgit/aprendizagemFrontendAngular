@@ -15,6 +15,7 @@ export class CardObjetoAprendizagemComponent implements OnInit{
 
   arquivoData: File;
   teste: string
+  checked: boolean = false;
 
   constructor(
     private dataService: DataService

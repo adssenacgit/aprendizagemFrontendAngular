@@ -40,3 +40,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: blue;
     color: white;
 }
+
+.container-shadow{
+  box-shadow: 2px 2px 2px 0px rgba(25, 24, 25, 0.15);
+}

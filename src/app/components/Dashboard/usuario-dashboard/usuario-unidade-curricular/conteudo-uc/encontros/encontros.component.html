@@ -13,12 +13,12 @@
           </div>
         </div>
         <div [attr.id]="'panelsStayOpen-collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'panelsStayOpen-heading' + i">
-          <div class="accordion-body">
+          <div class="accordion-body conteudo-encontro">
             <div *ngIf="encontro.situacoesAprendizagem.length > 0; else semSituacao">
               <div *ngFor="let sit of encontro.situacoesAprendizagem">
                 <div *ngIf="sit.objetosAprendizagem != null; else semObjetos">
                   <div *ngFor="let obj of sit.objetosAprendizagem" >
-                    <div class="border-bottom border-1 m-1">
+                    <div class="border-bottom border-1 w-100">
                       <app-card-objeto-aprendizagem [objeto]="obj"></app-card-objeto-aprendizagem>
                     </div>
                   </div>

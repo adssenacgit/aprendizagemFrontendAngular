@@ -22,6 +22,9 @@
 
 span {
   font-size: 12px;
-
 }
 
+.conteudo-encontro {
+  padding: 5px;
+  width: 100%;
+}

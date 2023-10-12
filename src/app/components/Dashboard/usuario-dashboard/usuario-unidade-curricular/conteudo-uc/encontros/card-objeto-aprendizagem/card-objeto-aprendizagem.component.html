@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-center align-items-center">
-  <div></div>
+<div class="w-100 d-flex justify-content-center gap-2 align-items-center p-1">
+  <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
   <p>{{objeto.descricao}}</p>
   <div (click)="enviarArquivoParaODocViewer(objeto.arquivo)">{{objeto.id}}</div>
 </div>
