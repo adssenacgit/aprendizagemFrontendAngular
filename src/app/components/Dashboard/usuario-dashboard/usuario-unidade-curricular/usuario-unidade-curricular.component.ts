@@ -76,6 +76,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
                   })
                 }
               });
+              this.encontroService.setEncontros(this.encontros);
               this.totalSituacoesAprendizagem += encontro.encontroStatus.totalSituacaoAprendizagem;
               this.totalObjetosAprendizagem += encontro.encontroStatus.totalObjetoAprendizagem;
               this.totalAtividades += encontro.encontroStatus.totalAtividade;

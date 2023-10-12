@@ -39,7 +39,12 @@ import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario
 import { UsuarioRequerimentoWebComponent } from './components/Dashboard/usuario-dashboard/usuario-requerimento-web/usuario-requerimento-web.component';
 import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
 import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
-import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/encontros.component';
+import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/encontros.component';
+import { ConteudoUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/conteudo-uc.component';
+import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/tarefas-uc/tarefas-uc.component';
+import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
+import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
+import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
 
 const routes: Routes = [
   {
@@ -51,20 +56,21 @@ const routes: Routes = [
         path: 'grupo/:id',
         component: UsuarioUnidadeCurricularComponent,
         children: [
+          { path: "", redirectTo:"aulas", pathMatch: "full" },
           {
-            path: 'encontros', component: EncontrosListaComponent
+            path: 'aulas', component: ConteudoUcComponent
           },
           {
-            path: 'tarefas', component: EncontrosListaComponent
+            path: 'tarefas', component: TarefasUcComponent
           },
           {
-            path: 'conceitos', component: EncontrosListaComponent
+            path: 'conceitos', component: ConceitosUcComponent
           },
           {
-            path: 'forum', component: EncontrosListaComponent
+            path: 'forum', component: ForumUcComponent
           },
           {
-            path: 'participantes', component: EncontrosListaComponent
+            path: 'participantes', component: ParticipantesUcComponent
           }
         ],
       },

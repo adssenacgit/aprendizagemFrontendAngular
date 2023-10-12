@@ -168,12 +168,17 @@ import { CardInfoGrupoComponent } from './components/Dashboard/usuario-dashboard
 import { LinkComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/link/link.component';
 import { ProgressoComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/progresso/progresso.component';
 import { InfoDocenteComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/info-docente/info-docente.component';
-import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/encontros.component';
-import { CardObjetoAprendizagemComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-objeto-aprendizagem/card-objeto-aprendizagem.component';
-import { CardAtividadeComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/encontros/card-atividade/card-atividade.component';
-import { DocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/doc-viewer/doc-viewer.component';
+import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/encontros.component';
+import { CardObjetoAprendizagemComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/card-objeto-aprendizagem/card-objeto-aprendizagem.component';
+import { CardAtividadeComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/card-atividade/card-atividade.component';
+import { DocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/doc-viewer/doc-viewer.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { BadgesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/badges-uc/badges-uc.component';
+import { ConteudoUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/conteudo-uc.component';
+import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/tarefas-uc/tarefas-uc.component';
+import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
+import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
+import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -248,7 +253,12 @@ registerLocaleData(localeFR);
     CardObjetoAprendizagemComponent,
     CardAtividadeComponent,
     DocViewerComponent,
-    BadgesUcComponent
+    BadgesUcComponent,
+    ConteudoUcComponent,
+    TarefasUcComponent,
+    ConceitosUcComponent,
+    ParticipantesUcComponent,
+    ForumUcComponent
   ],
   imports: [
     BrowserModule,

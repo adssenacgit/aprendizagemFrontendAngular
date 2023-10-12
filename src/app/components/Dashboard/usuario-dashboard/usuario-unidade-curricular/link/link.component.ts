@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-link',
@@ -11,14 +10,12 @@ export class LinkComponent implements OnInit {
   @Input() link: string;
   @Input() titulo: String;
   @Input() icone: string;
-  currentRoute: string;
+
 
   constructor(
-    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.currentRoute = this.router.url
   }
 
 }

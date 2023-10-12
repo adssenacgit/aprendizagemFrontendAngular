@@ -1,10 +1,8 @@
 <div class="border rounded p-3 h-100">
-  <div>
-    <p>Badges da UC</p>
-    <div class="d-flex justify-content-center align-items-center p-overlay-badge h-100" >
+  <p>Badges da UC</p>
+    <div class="d-flex justify-content-center align-items-center p-overlay-badge h-75" >
       <img *ngFor="let badge of badges.slice(0,3)" style="width: 3rem" src="{{'data:image/png;base64,' + badge.imagem}}"/>
       <!-- <p-badge badgeDisabled="numOfBadges == 0" iconPos="bottom" class="numero-badges" value="+{{numOfBadges}}" severity="warning">
       </p-badge> -->
     </div>
-  </div>
 </div>
