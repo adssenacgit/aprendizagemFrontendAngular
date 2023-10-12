@@ -82,8 +82,8 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
             let temp = 0
             temp += this.totalSituacoesAprendizagem + this.totalObjetosAprendizagem + this.totalAtividades
             console.log(temp)
-            this.progressoUC = (temp / temp) * 100
-            this.progressoAluno = ((this.totalSituacoesAprendizagemAcompanhadas + this.totalObjetosAprendizagemAcompanhadas + this.totalAtividadesAcompanhadas) / this.progressoUC) * 100
+            this.progressoUC = Math.round((temp / temp) * 100)
+            this.progressoAluno = Math.round(((this.totalSituacoesAprendizagemAcompanhadas + this.totalObjetosAprendizagemAcompanhadas + this.totalAtividadesAcompanhadas) / this.progressoUC) * 100)
           }
         });
         this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
