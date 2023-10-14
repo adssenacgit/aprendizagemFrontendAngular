@@ -2,3 +2,11 @@ p {
   margin: 0;
   padding: 0;
 }
+
+.selected {
+  background-color: #E2E8F0;
+}
+
+.not-selected {
+  background-color: white;
+}

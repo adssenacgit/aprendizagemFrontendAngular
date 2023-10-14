@@ -16,6 +16,7 @@ export class CardObjetoAprendizagemComponent implements OnInit{
   arquivoData: File;
   teste: string
   checked: boolean = false;
+  selected: boolean = false;
 
   constructor(
     private dataService: DataService
@@ -28,6 +29,7 @@ export class CardObjetoAprendizagemComponent implements OnInit{
   enviarArquivoParaODocViewer(dataBase64: string) {
     // var file = this.decodeBase64ToFile(dataBase64)
     this.dataService.setData(dataBase64);
+    this.selected = true;
   }
 
   decodeBase64ToFile(base64String: string) {

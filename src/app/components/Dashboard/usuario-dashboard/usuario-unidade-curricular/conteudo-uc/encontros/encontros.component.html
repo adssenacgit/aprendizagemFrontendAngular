@@ -25,7 +25,7 @@
                 </div>
                 <div *ngIf="sit.atividades != null; else semAtividades">
                   <div *ngFor="let atv of sit.atividades">
-                    <div class="border-bottom border-1 m-1">
+                    <div class="border-bottom border-1 w-100">
                       <app-card-atividade [atividade]="atv"></app-card-atividade>
                     </div>
                   </div>
