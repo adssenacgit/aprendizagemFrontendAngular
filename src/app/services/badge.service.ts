@@ -38,6 +38,12 @@ export class BadgeService {
     return this.https.get<BadgeRetorno>(apiUrl);
   }
 
+  ObterBadgesPeloEstudanteId(estudanteId: number): Observable<Badge[]>
+  {
+    const apiUrl:string = `${this.url}/FiltrarBadgeByEstudanteId/${estudanteId}`;
+    return this.https.get<Badge[]>(apiUrl);
+  }
+
   ObterBadgesRecentesPeloUsuarioId(usuarioId: string): Observable<Badge[]>
   {
     const apiUrl = `${this.url}`;
@@ -55,7 +61,7 @@ export class BadgeService {
 
   ExcluirBadge(badgeId: number): Observable<any>{
     const apiUrl = `${this.url}/${badgeId}`;
-    return this.https.delete<Badge>(apiUrl, httpOptions);    
+    return this.https.delete<Badge>(apiUrl, httpOptions);
   }
 
   FiltrarBadges(descricaoBadge: string) : Observable<Badge[]>
