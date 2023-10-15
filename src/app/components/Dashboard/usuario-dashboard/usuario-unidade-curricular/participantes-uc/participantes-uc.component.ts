@@ -26,9 +26,11 @@ export class ParticipantesUcComponent implements OnInit {
     if(this.grupoId != undefined){
       this.estudanteService.ObterEstudanteByGrupoId(this.grupoId)
         .subscribe({
-          next: (res => this.participantes = res)
+          next: (res => {
+            this.participantes = res
+          })
         })
-      console.log(this.participantes)
+
     }
   }
 

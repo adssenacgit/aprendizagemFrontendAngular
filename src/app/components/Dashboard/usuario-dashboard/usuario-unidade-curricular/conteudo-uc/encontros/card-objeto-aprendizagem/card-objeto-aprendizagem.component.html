@@ -1,7 +1,8 @@
 <div
-  class="w-100 d-flex justify-content-center gap-2 align-items-center p-1"
-  [ngClass]="selected ? 'selected' : 'not-selected'">
+  (click)="enviarArquivoParaODocViewer(objeto.arquivo)"
+  class="d-flex justify-content-center gap-2 align-items-center p-1 select"
+>
   <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
   <p>{{objeto.descricao}}</p>
-  <div (click)="enviarArquivoParaODocViewer(objeto.arquivo)">{{objeto.id}}</div>
+  <mat-icon class="material-symbols-outlined">file_open</mat-icon>
 </div>

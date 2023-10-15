@@ -3,10 +3,11 @@ p {
   padding: 0;
 }
 
-.selected {
-  background-color: #E2E8F0;
+.mat-icon {
+  overflow: visible;
 }
 
-.not-selected {
-  background-color: white;
+.select:hover {
+  cursor: pointer;
+
 }
