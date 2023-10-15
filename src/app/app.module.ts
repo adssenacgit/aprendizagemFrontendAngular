@@ -147,6 +147,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { SidebarModule } from 'primeng/sidebar';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { InputMaskModule } from "primeng/inputmask";
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -328,7 +329,8 @@ registerLocaleData(localeFR);
     InputTextModule,
     OverlayPanelModule,
     NgxDocViewerModule,
-    BadgeModule
+    BadgeModule,
+    InputMaskModule,
   ],
   providers: [
     CursosService,
