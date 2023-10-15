@@ -1,34 +1,137 @@
-:host ::ng-deep .p-card-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+* {
+  margin: 0;
+}
+#container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 100px;
+  overflow-x: hidden;
+}
+#side-info {
+  margin-left: 30px;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0px 20px 0px;
+}
+.filter {
+  color: black;
+  border: none !important;
+  height: 40px;
+  background-color: white;
+}
+.filter:hover {
+  background-color: #f1ebeb;
+}
+.back-btn {
+  background-color: #1660a5;
+  border: #1660a5;
+  height: 40px;
+  color: white;
+}
+.question-header h3,
+h4 {
+  margin: 0;
+}
+.question-header h3 {
+  font-size: 25px;
+  font-weight: bold;
+}
+.question-text {
+  margin-top: 10px;
+  padding: 0px 16px;
+}
+.question-text p {
+  font-size: 15px;
+}
+.question-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  padding: 4px;
+}
+.question-actions button {
+  margin: 0px 5px;
+}
+.form-group label {
+  margin: 10px 10px 20px 0px;
+  font-weight: bold;
+  font-size: 25px;
+  color: #1660a5;
+}
+.action-buttons {
+  margin-top: 10px;
+}
+.action-buttons .btn {
+  margin-right: 10px;
+}
+.action-send {
+  background-color: #1660a5;
+}
+.action-cancel {
+  background-color: #f38c0d;
+  color: white;
 }
 
-:host ::ng-deep .p-card-body {
-    height: 180px;
-    margin: 10px;
-    border-radius: 0px !important;
-    border: 2px solid #012544;
-}    
-
-:host ::ng-deep .p-card-header {
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px;
+.question-card {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  border-top: 2px solid #1660a531;
+  padding: 5px;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-header h1 {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+.card-header p {
+  margin: 0;
+}
+.card-text {
+  font-size: 20px;
+  color: #1660a5;
+}
+.tags-card .btn {
+  height: 28px;
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1.5px solid #bcb4b4;
+}
+.tags-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 286px;
+}
+.tags-card p {
+  margin: 0;
+}
+.tags-card i {
+  margin-right: 5px;
 }
 
-:host ::ng-deep .p-card .p-card-subtitle {
-    color: black !important;
+.pagination {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  justify-content: center;
 }
 
-:host ::ng-deep .p-card .p-card-content {
-    font-weight: 500;
-    color: black;
-}
-#paginacao {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
+.active {
+  background-color: #1660a5;
+  color: #fff;
 }
