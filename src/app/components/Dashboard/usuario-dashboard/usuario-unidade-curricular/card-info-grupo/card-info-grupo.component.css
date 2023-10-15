@@ -40,3 +40,8 @@ p {
 .info-link:hover {
   cursor: pointer;
 }
+
+button {
+  background-color: transparent;
+  border: none;
+}

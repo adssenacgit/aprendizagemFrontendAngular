@@ -22,8 +22,9 @@ export class CardInfoGrupoComponent implements OnInit {
   @Input() planejamentoUc :PlanejamentoUC;
 
   competencias: Competencia[];
-  bibliografias: Bibliografia[];
+  bibliografia: Bibliografia[];
   competenciaIndicadores: CompetenciaIndicador[];
+  isLoading: boolean = true;
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -41,19 +42,20 @@ export class CardInfoGrupoComponent implements OnInit {
   }
 
   public obterCompetencias() {
-    this.competenciaService.filterByUnidadeCurricularId(this.grupo.unidadeCurricularId).subscribe(
-      (competencias: Competencia[]) => {
-        this.competencias = competencias;
-      }
-    );
-    this.obterCompetenciaIndicadores();
+    if(this.isLoading){
+      this.competenciaService.filterByUnidadeCurricularId(this.grupo.unidadeCurricularId).subscribe(
+        (competencias: Competencia[]) => {
+          this.competencias = competencias;
+        }
+      );
+      this.obterCompetenciaIndicadores();
+    }
   }
 
   public obterBibliografia() {
     this.bibliografiaService.FiltrarbibliografiaByUnidadeCurricularId(this.grupo.unidadeCurricularId).subscribe(
-      (bibliografias: Bibliografia[]) => {
-        this.bibliografias = bibliografias;
-        console.log(this.bibliografias)
+      (response: Bibliografia[]) => {
+        this.bibliografia = response;
       }
     );
   }
@@ -64,21 +66,21 @@ export class CardInfoGrupoComponent implements OnInit {
         next: (res => {
           this.competenciaIndicadores = res
           this.obterObjetosPorCompetenciaIndicador();
-        })
+        }),
+        complete: (() => this.isLoading = false)
       });
   }
 
   public obterObjetosPorCompetenciaIndicador() {
-    this.competenciaIndicadores.forEach(
-      (competenciaIndicador => {
-        this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorIndicadorCompetenciaId(competenciaIndicador.id)
-          .subscribe({
-            next: (res => {
-              competenciaIndicador.objetosAprendizagem = res;
+      this.competenciaIndicadores.forEach(
+        (competenciaIndicador => {
+          this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorIndicadorCompetenciaId(competenciaIndicador.id)
+            .subscribe({
+              next: (res => {
+                competenciaIndicador.objetosAprendizagem = res;
+              })
             })
-          })
-      })
-    )
-    console.log(this.competenciaIndicadores)
+        })
+      )
   }
 }

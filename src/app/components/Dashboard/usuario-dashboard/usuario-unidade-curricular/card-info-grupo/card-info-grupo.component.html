@@ -24,17 +24,20 @@
       <div class="d-flex align-items-center">
         <mat-icon class="icon material-symbols-outlined">playlist_add_check_circle</mat-icon>
         <div class="info-link">
-          <a (click)="obterCompetencias()">
+          <button class="info-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCompetencias"
+          (click)="obterCompetencias()">
             Competências
-          </a>
+          </button>
         </div>
       </div>
       <div class="d-flex align-items-center">
         <mat-icon class="icon material-symbols-outlined">auto_stories</mat-icon>
         <div class="info-link">
-          <a (click)="obterBibliografia()">
+          <button class="info-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBibliografia"
+          (click)="obterBibliografia()">
             Bibliografia
-          </a>
+          </button>
+          <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Enable backdrop (default)</button> -->
         </div>
       </div>
       <div class="d-flex align-items-center">
@@ -46,5 +49,51 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+<!-- off canvas bibliografia -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasBibliografia" aria-labelledby="offcanvasWithBackdropLabel">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasWithBackdropLabel">Bibliografia</h3>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p *ngFor="let livro of bibliografia">
+      {{livro.nome}}
+    </p>
+  </div>
+</div>
+
+<!-- off canvas competencias -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCompetencias" aria-labelledby="offcanvasWithBackdropLabel">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasWithBackdropLabel">Competências</h3>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div *ngFor="let competencia of competencias">
+      <p>
+        {{competencia.descricao}}
+      </p>
+    </div>
+
+    <ul *ngIf="!isLoading">
+      <li *ngFor="let indicador of competenciaIndicadores">
+        {{indicador.descricao}}
+          <ol>
+            <li *ngFor="let obj of indicador.objetosAprendizagem">
+              {{obj.descricao}}
+            </li>
+          </ol>
+      </li>
+    </ul>
+
+    <div *ngIf="isLoading" class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
   </div>
 </div>
