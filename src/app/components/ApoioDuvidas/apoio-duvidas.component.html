@@ -42,12 +42,12 @@
               <img class="user-image" src="{{ 'data:image/png;base64,' + usuario.foto }}" />
               <div class="question-texts">
                 <h4>{{ pergunta.usuario.nomeCompleto }}</h4>
-                <h5>Informações estudante</h5>
+                <h5>{{ pergunta.dataCadastro }}</h5>
               </div>
             </div>
             <div class="question-actions">
               <button type="button" class="btn btn-light">
-                <p>40</p>
+                <p>{{pergunta.totalComentarios}}</p>
                 <i class="bi bi-chat"></i>
               </button>
               <button type="button" class="btn btn-light">
@@ -55,7 +55,7 @@
                 <i class="bi bi-hand-thumbs-up"></i>
               </button>
               <button type="button" class="btn btn-light">
-                <p>40</p>
+                <p>{{ pergunta.contadorVisualizacao }}</p>
                 <i class="bi bi-eye"></i>
               </button>
             </div>
@@ -64,7 +64,7 @@
             <h1 routerLink="/comunidade/comentario/{{ pergunta.id }}">
               {{ pergunta.titulo }}
             </h1>
-            <h4 class="author">{{ pergunta.usuario.nomeCompleto }}</h4>
+            <!-- <h4 class="author">{{ pergunta.usuario.nomeCompleto }}</h4> -->
             <h3>
               {{ pergunta.descricao }}
             </h3>
