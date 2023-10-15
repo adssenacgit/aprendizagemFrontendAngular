@@ -1,4 +1,4 @@
-<a routerLink="{{'./' + link}}">
+<a [routerLink]="['./' + link]">
   <div *ngIf="icone && link != undefined" routerLinkActive="active" class="link-container h-100 border rounded container-shadow">
     <div class="link-info-container h-100 p-3 d-flex flex-column justify-content-between">
       <div class="align-self-end">

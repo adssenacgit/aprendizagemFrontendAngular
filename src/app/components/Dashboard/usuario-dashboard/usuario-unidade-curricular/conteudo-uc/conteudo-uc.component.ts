@@ -17,9 +17,8 @@ export class ConteudoUcComponent implements OnInit {
   ngOnInit(): void {
     this.encontroService.currentData
       .subscribe({
-        next: (encontros) => this.encontros = encontros
+        next: (response) => this.encontros = response
       })
-
   }
 
 }

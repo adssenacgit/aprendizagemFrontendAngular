@@ -49,6 +49,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.grupoId = this.route.snapshot.params['id'];
+    this.grupoService.setGrupoId(this.grupoId);
     this.estudanteId = this.authGuardService.getIdEstudanteUsuarioLogado();
     try {
       this.grupoService.ObterGrupoPeloId(this.grupoId)

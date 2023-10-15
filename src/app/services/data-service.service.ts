@@ -15,4 +15,14 @@ export class DataService {
     this.dataSource.next(data);
   }
 
+  private myObject: any;
+
+  setObject(obj: any): void {
+    this.myObject = obj;
+  }
+
+  getObject(): any {
+    return this.myObject;
+  }
+
 }

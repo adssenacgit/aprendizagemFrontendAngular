@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Encontro } from 'src/app/models/Encontro';
+import { EncontroService } from 'src/app/services/encontro.service';
 
 @Component({
   selector: 'app-tarefas-uc',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TarefasUcComponent implements OnInit {
 
-  constructor() { }
+  encontros: Encontro[]
+
+  constructor(
+    private encontroService: EncontroService
+  ) { }
 
   ngOnInit(): void {
+    this.encontroService.currentData
+      .subscribe({
+        next: (response) => this.encontros = response
+      })
   }
 
 }

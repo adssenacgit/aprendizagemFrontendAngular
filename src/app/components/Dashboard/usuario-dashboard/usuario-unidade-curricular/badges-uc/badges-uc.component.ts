@@ -16,7 +16,10 @@ export class BadgesUcComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.badges.length > 3 ? this.numOfBadges = this.badges.length - 3 : this.numOfBadges = 0
+    if(this.badges) {
+      this.badges.length > 3 ? this.numOfBadges = this.badges.length - 3 : this.numOfBadges = 0;
+      this.badges = this.badges.slice(0,3);
+    }
   }
 
 }

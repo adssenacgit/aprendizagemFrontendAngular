@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="this.encontros">
   <div class="encontros-container overflow-scroll">
     <div class="accordion">
       <div class="accordion-item" *ngFor="let encontro of encontros; index as i">
@@ -13,8 +13,8 @@
           </div>
         </div>
         <div [attr.id]="'panelsStayOpen-collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'panelsStayOpen-heading' + i">
-          <div class="accordion-body conteudo-encontro">
-            <div *ngIf="encontro.situacoesAprendizagem.length > 0; else semSituacao">
+          <div class="accordion-body">
+            <div *ngIf="encontro.situacoesAprendizagem != null && encontro.situacoesAprendizagem.length > 0; else semSituacao">
               <div *ngFor="let sit of encontro.situacoesAprendizagem">
                 <div *ngIf="sit.objetosAprendizagem != null; else semObjetos">
                   <div *ngFor="let obj of sit.objetosAprendizagem" >
@@ -24,9 +24,9 @@
                   </div>
                 </div>
                 <div *ngIf="sit.atividades != null; else semAtividades">
-                  <div *ngFor="let atv of sit.atividades">
+                  <div *ngFor="let atividade of sit.atividades">
                     <div class="border-bottom border-1 w-100">
-                      <app-card-atividade [atividade]="atv"></app-card-atividade>
+                      <app-card-atividade [atividade]="atividade"></app-card-atividade>
                     </div>
                   </div>
                 </div>
