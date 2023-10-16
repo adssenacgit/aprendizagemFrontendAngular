@@ -181,5 +181,12 @@ h3 {
 }
 
 #Anterior {
-	margin-right: 5px;
+    margin-right: 5px;
+}
+
+
+
+.container{
+    display: flex;
+    flex-direction: column;
 }
