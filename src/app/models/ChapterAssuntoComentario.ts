@@ -1,13 +1,15 @@
 import { ChapterAssunto } from "./ChapterAssunto";
+import { Usuario } from "./Usuario";
 
 export class ChapterAssuntoComentario {
     id: number;
-    texto: String;
-    data: String;
+    texto: string;
+    data: string;
     pai: number;
-    chapterAssuntoComentarioReferenciaPai: String;
+    chapterAssuntoComentarioReferenciaPai: string;
     chapterAssuntoId: number;
     chapterAssunto: ChapterAssunto;
-    usuarioId: String;
+    usuarioId: string;
+    usuario: Usuario;
 }
       
