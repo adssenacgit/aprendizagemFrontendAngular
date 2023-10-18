@@ -10,4 +10,3 @@ export class ChapterAssuntoComentario {
     chapterAssunto: ChapterAssunto;
     usuarioId: String;
 }
-      

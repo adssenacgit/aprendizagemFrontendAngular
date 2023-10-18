@@ -17,11 +17,11 @@ export class ApoioDuvidasComponent implements OnInit {
   chapterAssuntos: ChapterAssunto[];
   chapterAssuntosTodos: ChapterAssunto[];
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 8;
   startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
   endIndex: number = this.currentPage * this.itemsPerPage;
   totalPages: number[];
-  usuario: Usuario = new Usuario();
+  usuario: Usuario;
   idUsuarioLogado: string;
 
   constructor(

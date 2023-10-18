@@ -42,6 +42,7 @@ h4 {
 .question-text {
   margin-top: 10px;
   padding: 0px 16px;
+  font-size: 16px;
 }
 .question-text p {
   font-size: 15px;

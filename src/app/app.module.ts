@@ -181,6 +181,7 @@ import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usu
 import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
 import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
+import { CardTopicoComunidadeComponent } from './components/ApoioDuvidas/card-topico-comunidade/card-topico-comunidade.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -260,7 +261,8 @@ registerLocaleData(localeFR);
     TarefasUcComponent,
     ConceitosUcComponent,
     ParticipantesUcComponent,
-    ForumUcComponent
+    ForumUcComponent,
+    CardTopicoComunidadeComponent
   ],
   imports: [
     BrowserModule,
