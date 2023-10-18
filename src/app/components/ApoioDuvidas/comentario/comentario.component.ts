@@ -1,12 +1,10 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApoioDuvidasComponent } from '../apoio-duvidas.component';
-import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 
 @Component({
   selector: 'app-comentarios',
@@ -111,6 +109,10 @@ export class ComentarioComponent implements OnInit {
     }
   }
 
+  onDelete() {
+
+  }
+
   onSubmit() {
     var date;
     date = new Date();
@@ -130,12 +132,14 @@ export class ComentarioComponent implements OnInit {
     this.comentario.texto = this.form.value.comentario;
     this.comentario.data = date;
     this.comentario.usuarioId = this.idUsuarioLogado;
-    //    this.comentarioService.NovoChapterAssuntoComentario(this.comentario)
-    debugger;
+
     this.comentarioService
       .NovoChapterAssuntoComentario(this.comentario)
-      .subscribe((data) => {});
-    window.location.reload();
+      .subscribe({
+        next: (() => {
+          location.reload()
+        })
+      });
   }
 
   onCancel() {
