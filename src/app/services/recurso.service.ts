@@ -31,6 +31,10 @@ export class RecursoService {
     const apiUrl = `${this.apiUrl}/FiltrarRecursosByUsuarioId/${id}`;
     return this.http.get<Recurso[]>(apiUrl);
   }  
+  
+  AtualizarRecurso(id:number, recurso: Recurso): Observable<Recurso> {
+    return this.http.put<Recurso>((`${this.apiUrl}/${id}`),recurso);
+  }
 
   SalvarRecurso(recurso: Recurso): Observable<Recurso> {
     const apiUrl = `${this.apiUrl}`;

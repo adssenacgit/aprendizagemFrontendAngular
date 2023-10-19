@@ -26,13 +26,11 @@ import { Estudante } from 'src/app/models/Estudante';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
-import { AtividadeService } from 'src/app/services/atividade.service';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
+import { AtividadeService } from 'src/app/services/atividade.service';
 import { EncontroStatus } from 'src/app/models/EncontroStatus';
 import { Atividade } from 'src/app/models/Atividade';
 import { ThisReceiver } from '@angular/compiler';
-// import { AccordionModule } from 'ngx-bootstrap/accordion';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
 	selector: 'app-encontros',
@@ -50,7 +48,7 @@ export class EncontrosComponent implements OnInit {
 	grupoId: number;
 	loading: boolean = true;
 
-	encontros: Encontro[] = [];
+  encontros: Encontro[] = [];
 
 	leftNavDisabled = false;
 	rightNavDisabled = false;
@@ -106,7 +104,7 @@ export class EncontrosComponent implements OnInit {
 	}
 
 	ObterEncontros = () => {
-		this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe((resultado) => {
+		this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe((resultado) => {
 			this.encontros = resultado;
 			this.encontros.forEach((encontro) => {
 				this.situacaoAprendizagemService

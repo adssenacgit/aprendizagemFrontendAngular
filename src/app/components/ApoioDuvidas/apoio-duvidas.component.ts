@@ -19,16 +19,6 @@ import { ComentarioService } from 'src/app/services/comentario.service';
 	styleUrls: ['./apoio-duvidas.component.css'],
 })
 export class ApoioDuvidasComponent implements OnInit {
-<<<<<<< HEAD
-  busca: string;
-  chapterAssuntos: ChapterAssunto[];
-  chapterAssuntosTodos: ChapterAssunto[];
-  currentPage: number = 1;
-  itemsPerPage: number = 3;
-  startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
-  endIndex: number = this.currentPage * this.itemsPerPage;
-  totalPages : number[];
-=======
 	busca: string;
 	chapterAssuntos: ChapterAssunto[];
 	chapterAssuntosTodos: ChapterAssunto[];
@@ -43,7 +33,6 @@ export class ApoioDuvidasComponent implements OnInit {
   chapterTagTodos: ChapterTag[];
   rankComentarios: { usuario: { foto: string; nome: string }; count: number }[] = [];
   
->>>>>>> da21fa073a65aea61f06786e8ec4d34d42eb1a0f
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -55,23 +44,6 @@ export class ApoioDuvidasComponent implements OnInit {
     private comentarioService: ComentarioService,
 	) {}
 
-<<<<<<< HEAD
-  ngOnInit(): void {
-    this.chapterAssuntoService.ObterTodos().subscribe((data) => {
-      this.chapterAssuntosTodos = data;
-      this.chapterAssuntos = data;
-      this.calculateTotalPages(false);
-
-    });
-
-    
-  }
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePage();
-    }
-=======
 	ngOnInit(): void {
 		this.chapterAssuntoService.ObterTodos().subscribe((data) => {
 			this.chapterAssuntosTodos = data;
@@ -146,7 +118,6 @@ export class ApoioDuvidasComponent implements OnInit {
 			(value) => value.chapter.nome.toLowerCase().includes(busca.toLowerCase()));
 		this.currentPage = 1;
 		this.calculateTotalPages(true);
->>>>>>> da21fa073a65aea61f06786e8ec4d34d42eb1a0f
   }
 
 	irParaPagina(i: number) {
@@ -154,49 +125,6 @@ export class ApoioDuvidasComponent implements OnInit {
 		this.updatePage();
 	}
 
-<<<<<<< HEAD
-  updatePage() {
-    this.startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    this.endIndex = Math.min(this.currentPage * this.itemsPerPage, this.chapterAssuntos.length);
-  }
-
-  filtraPorTitulo(busca: string) {
-    this.chapterAssuntos = this.chapterAssuntosTodos.filter(value => value.titulo.toLowerCase().includes(busca) 
-                          || value.descricao.toLowerCase().includes(busca))
-    this.currentPage = 1;
-    this.calculateTotalPages(true)
-  }
-
-  irParaPagina(i: number){
-    this.currentPage = i
-    this.updatePage();
-  }
-
-  calculateTotalPages(filtrado : boolean) {
-    if (!filtrado) {
-    const itemsPerPage = this.itemsPerPage;
-    if (itemsPerPage > 0) {
-      const totalItems = this.chapterAssuntosTodos.length;
-      const pageCount = Math.ceil(totalItems / itemsPerPage);
-  
-      this.totalPages = Array.from({ length: pageCount }, (_, index) => (index + 1));
-    } else {
-      console.error("O número de itens por página não está definido ou é inválido.");
-    }
-  } else {
-    const itemsPerPage = this.itemsPerPage;
-    if (itemsPerPage > 0) {
-      const totalItems = this.chapterAssuntos.length;
-      const pageCount = Math.ceil(totalItems / itemsPerPage);
-  
-      this.totalPages = Array.from({ length: pageCount }, (_, index) => (index + 1));
-    } else {
-      console.error("O número de itens por página não está definido ou é inválido.");
-    }
-  }
-}
-
-=======
 	calculateTotalPages(filtrado: boolean) {
 		if (!filtrado) {
 			const itemsPerPage = this.itemsPerPage;
@@ -220,5 +148,4 @@ export class ApoioDuvidasComponent implements OnInit {
 			}
 		}
 	}
->>>>>>> da21fa073a65aea61f06786e8ec4d34d42eb1a0f
 }

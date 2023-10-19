@@ -181,7 +181,6 @@ h3 {
 }
 
 #Anterior {
-<<<<<<< HEAD
     margin-right: 5px;
 }
 
@@ -190,7 +189,4 @@ h3 {
 .container{
     display: flex;
     flex-direction: column;
-=======
-	margin-right: 5px;
->>>>>>> da21fa073a65aea61f06786e8ec4d34d42eb1a0f
 }
