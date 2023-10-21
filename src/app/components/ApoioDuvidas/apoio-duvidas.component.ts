@@ -6,6 +6,11 @@ import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service'
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usuario } from 'src/app/models/Usuario';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { ChapterService } from 'src/app/services/chapter.service';
+import { ComentarioService } from 'src/app/services/comentario.service';
+import { ChapterTag } from 'src/app/models/ChapterTag';
+import { Chapter } from 'src/app/models/Chapter';
+import { ChapterTagService } from 'src/app/services/chapter-tag.service';
 
 @Component({
   selector: 'app-apoio-duvidas',
@@ -16,6 +21,7 @@ export class ApoioDuvidasComponent implements OnInit {
   busca: string;
   chapterAssuntos: ChapterAssunto[];
   chapterAssuntosTodos: ChapterAssunto[];
+  chapterTodos: Chapter[];
   currentPage: number = 1;
   itemsPerPage: number = 8;
   startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
@@ -23,12 +29,17 @@ export class ApoioDuvidasComponent implements OnInit {
   totalPages: number[];
   usuario: Usuario;
   idUsuarioLogado: string;
+  chapterTagTodos: ChapterTag[];
+  rankComentarios: { usuario: { foto: string; nome: string }; count: number }[] = [];
 
   constructor(
     private _route: ActivatedRoute,
     private chapterAssuntoService: ChapterAssuntoService,
     private usuarioService: UsuariosService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
+    private chapterService: ChapterService,
+    private chapterTagService: ChapterTagService,
+    private comentarioService: ComentarioService,
   ) {}
 
   ngOnInit(): void {
@@ -40,12 +51,39 @@ export class ApoioDuvidasComponent implements OnInit {
 
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
+    this.chapterService.ObterTodos().subscribe((data)=>{
+      this.chapterTodos = data
+    })
+
+    this.chapterTagService.ObterTodos().subscribe((data) => {
+      this.chapterTagTodos = data;
+    })
+
+    this.comentarioService.ObterTodos().subscribe((data) =>{
+      const frequencyMap = new Map();
+      data.forEach((item) => {
+	  const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
+      frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
+
+	});
+    //   this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuario, count]) => ({usuario, count }));
+
+	  this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
+		usuario: JSON.parse(usuarioKey),
+		count,
+	  }));
+
+      this.rankComentarios.sort((a, b) => b.count - a.count)
+	  this.rankComentarios =  this.rankComentarios.slice(0,3);
+    })
+
     this.usuarioService
       .ObterUsuarioPorId(this.idUsuarioLogado)
       .subscribe((resultado) => {
         this.usuario = resultado;
       });
   }
+
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -79,6 +117,13 @@ export class ApoioDuvidasComponent implements OnInit {
     );
     this.currentPage = 1;
     this.calculateTotalPages(true);
+  }
+
+  filtraPorChapter(busca: string){
+    this.chapterAssuntos = this.chapterAssuntosTodos.filter(
+			(value) => value.chapter.nome.toLowerCase().includes(busca.toLowerCase()));
+		this.currentPage = 1;
+		this.calculateTotalPages(true);
   }
 
   irParaPagina(i: number) {
