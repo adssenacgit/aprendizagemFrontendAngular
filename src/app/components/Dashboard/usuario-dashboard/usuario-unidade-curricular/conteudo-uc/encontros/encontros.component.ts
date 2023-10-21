@@ -7,7 +7,7 @@ import { Encontro } from 'src/app/models/Encontro';
   templateUrl: './encontros.component.html',
   styleUrls: ['./encontros.component.css']
 })
-export class EncontrosListaComponent implements OnChanges{
+export class EncontrosListaComponent {
 
 
   @Input()
@@ -17,10 +17,4 @@ export class EncontrosListaComponent implements OnChanges{
 
   constructor(
   ) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // if(this.encontros != undefined) {
-    //   console.log(this.encontros)
-    // }
-  }
 }

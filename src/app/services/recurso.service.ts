@@ -18,6 +18,7 @@ const httpOptions = {
 export class RecursoService {
 
     apiUrl = environment.apiServer + 'api/Recurso';
+    javaUrl = 'http://localhost:8080/recurso';
 
   constructor(private http: HttpClient) { }
 
@@ -30,8 +31,14 @@ export class RecursoService {
   {
     const apiUrl = `${this.apiUrl}/FiltrarRecursosByUsuarioId/${id}`;
     return this.http.get<Recurso[]>(apiUrl);
-  }  
-  
+  }
+
+  ObterRecursoPeloUsuarioIdJava(id : string): Observable<Recurso[]>
+  {
+    const apiUrl = `${this.javaUrl}/filtrarRecursosByUsuarioId/${id}`;
+    return this.http.get<Recurso[]>(apiUrl);
+  }
+
   AtualizarRecurso(id:number, recurso: Recurso): Observable<Recurso> {
     return this.http.put<Recurso>((`${this.apiUrl}/${id}`),recurso);
   }
@@ -49,6 +56,13 @@ export class RecursoService {
   ObterRecursoPorId(id: number): Observable<Recurso> {
     const apiUrl = `${this.apiUrl}/${id}`;
     return this.http.get<Recurso>(apiUrl, httpOptions);
+  }
+
+  ObterRecursoPorIdJava(id: number): Observable<Blob> {
+    const apiUrl = `${this.javaUrl}/${id}`;
+    return this.http.get<Blob>(apiUrl, {
+      responseType: 'blob' as 'json'
+    });
   }
 
 }

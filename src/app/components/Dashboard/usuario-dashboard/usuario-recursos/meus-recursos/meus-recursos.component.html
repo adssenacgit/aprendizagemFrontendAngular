@@ -1,69 +1,108 @@
 <p-confirmDialog></p-confirmDialog>
 
-<div class="flex justify-content-end align-items-center" style="height: 100px;">
+<div class="flex justify-content-end align-items-center" style="height: 100px">
   <div class="p-input-icon-right">
-      <i class="pi pi-search"></i>
-      <input type="text" [(ngModel)]="filtro" (input)="filtrarRecursos()" pInputText placeholder="Buscar recursos"  >
+    <i class="pi pi-search"></i>
+    <input
+      type="text"
+      [(ngModel)]="filtro"
+      (input)="filtrarRecursos()"
+      pInputText
+      placeholder="Buscar recursos"
+    />
   </div>
 </div>
-<p-scrollPanel [style]="{ width: '100%', height: '65vh' }">
-    <p-table [columns]="cols" [value]="filteredItems" [(selection)]="selectedRecursos" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header" let-columns>
-        <tr>
-          <th style="width: 4rem">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-          </th>
-          <th *ngFor="let col of columns">
-            {{ col.header }}
-          </th>
-          <th>
-            Download
-          </th>
-          <th>
-            Excluir
-          </th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-          <td>
-            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-          </td>
-          <td *ngFor="let col of columns">
-            {{ rowData[col.field] }}
-          </td>
-          <td>
-            <p-button icon="pi pi-download" (click)="ondownload(rowData)" styleClass="p-button-secondary p-button-text"></p-button>
-          </td>
-          <td>
-            <p-button icon="pi pi-trash" (click)=" confirm2(rowData)" styleClass="p-button-danger p-button-text"></p-button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-scrollPanel>
+<p-scrollPanel [style]="{ width: '100%', height: '40vh' }">
+  <p-table
+    [columns]="cols"
+    [value]="filteredItems"
+    [(selection)]="selectedRecursos"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 4rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+        <th>Download</th>
+        <th>Excluir</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+        <td *ngFor="let col of columns" (click)="displayFile(rowData)">
+          {{ rowData[col.field] }}
+        </td>
+        <td>
+          <p-button
+            icon="pi pi-download"
+            (click)="ondownload(rowData)"
+            styleClass="p-button-secondary p-button-text"
+          ></p-button>
+        </td>
+        <td>
+          <p-button
+            icon="pi pi-trash"
+            (click)="confirm2(rowData)"
+            styleClass="p-button-danger p-button-text"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-scrollPanel>
 
-  <div class="card-recursos flex justify-content-flex-end class-Button">
-    <p-button label="+ Novo"  (click)="showDialog()" ></p-button>
-  </div>
+<div class="card-recursos flex justify-content-flex-end class-Button">
+  <p-button label="+ Novo" (click)="showDialog()"></p-button>
+</div>
 
-  <div class="telaDePostagem"  >
-    <p-dialog header="Upload de arquivos" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+<div class="telaDePostagem">
+  <p-dialog
+    header="Upload de arquivos"
+    [(visible)]="visible"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <div class="field">
+      <label for="descricao">Comentário</label>
+      <input
+        type="textarea"
+        id="descricao"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        [(ngModel)]="descricao"
+        required
+      />
+    </div>
 
-      <div class="field">
-        <label for="descricao">Comentário</label>
-        <input type="textarea" id="descricao"  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" [(ngModel)]="descricao" required>
-      </div>
+    <div class="telaDePostagem flex-row justify-content-around">
+      <p-fileUpload
+        name="uploadedFiles[]"
+        [customUpload]="true"
+        [multiple]="true"
+        (uploadHandler)="onUpload($event)"
+        chooseLabel="Escolher Arquivo"
+      >
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">
+              {{ file.name }} - {{ file.size }} bytes
+            </li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </div>
+  </p-dialog>
+</div>
 
-      <div class=" telaDePostagem flex-row justify-content-around ">
-          <p-fileUpload name="uploadedFiles[]" [customUpload]="true" [multiple]="true" (uploadHandler)="onUpload($event)" chooseLabel="Escolher Arquivo" >
-            <ng-template pTemplate="content">
-                <ul *ngIf="uploadedFiles.length">
-                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                </ul>
-            </ng-template>
-          </p-fileUpload>
-      </div>
-
-    </p-dialog>
-  </div>
+<!-- <app-recurso-doc-viewer
+  [recursoURL]="recursoURL"
+  [viewer]="viewer"
+></app-recurso-doc-viewer> -->

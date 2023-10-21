@@ -20,10 +20,11 @@ interface UploadEvent {
   styleUrls: ['./meus-recursos.component.css'],
   providers: [DialogService ,ConfirmationService]
 })
-export class MeusRecursosComponent implements OnInit ,OnDestroy{
+export class MeusRecursosComponent implements OnInit, OnDestroy{
 
   ref: DynamicDialogRef;
 
+  recurso: Recurso;
   recursos: Recurso[];
   uploadedFiles: any[] = [];
   loading: boolean = true;
@@ -44,6 +45,8 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
 
   filtro: string;
   checkboxSelected = false;
+  recursoURL: string;
+  viewer: string = 'pdf'
 
   constructor(
     private dialogService: DialogService,
@@ -54,14 +57,15 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
-    this.recursoService.ObterRecursoPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
+    this.recursoService.ObterRecursoPeloUsuarioIdJava(this.idUsuarioLogado).subscribe(resultado => {
       this.recursos = resultado;
       this.filteredItems = this.recursos; // Inicializa filteredItems com os mesmos valores de recursos
     });
 
     this.cols = [
       { field: 'nomeArquivo', header: 'Nome' },
-      { field: 'descricao', header: 'Descrição' }
+      { field: 'descricao', header: 'Descrição' },
+      { field: 'mimeType', header: 'Mime Type'}
     ];
   }
 
@@ -99,10 +103,11 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
 
 
       const recurso = {
-        id: 7,
+        id: 0,
         descricao: this.descricao,
         nomeArquivo: file.name,
         arquivo: formatAquivo,
+        mimeType: file.type,
         dataCadastro: new Date().toISOString(),
         status: 1,
         usuarioId: this.idUsuarioLogado,
@@ -177,11 +182,43 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
 
 
   ondownload(event: any) {
-    const arquivo = event.arquivo
-    const nomeArquivo = event.nomeArquivo
+    this.recursoService.ObterRecursoPorIdJava(event.id).subscribe({
+      next: (response => {
+        this.downloadFile(response, event.nomeArquivo)
+        // this.decodeBase64ToFile(this.recurso.arquivo, this.recurso.nomeArquivo);
+      }),
+    })
+    // const arquivo = event.arquivo
+    // const nomeArquivo = event.nomeArquivo
 
-    this.decodeBase64ToFile(arquivo, nomeArquivo);
+    // this.decodeBase64ToFile(this.recurso.arquivo, this.recurso.nomeArquivo);
 
+  }
+
+  displayFile(event: any) {
+    this.recursoService.ObterRecursoPorIdJava(event.id).subscribe({
+      next: (response => {
+        if(response.type.match('application/pdf')){
+          this.viewer = 'pdf'
+        } else if (response.type.match('application/vnd.openxmlformats-officedocument.wordprocessingml.document')){
+          this.viewer = 'mammoth'
+        } else (this.viewer = 'url')
+        console.log(this.viewer)
+        this.recursoURL = URL.createObjectURL(response)
+        // this.decodeBase64ToFile(this.recurso.arquivo, this.recurso.nomeArquivo);
+      }),
+    })
+  }
+
+  downloadFile(recursoBlob: Blob, fileName: string) {
+    const url = URL.createObjectURL(recursoBlob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   decodeBase64ToFile(base64String: string, fileName: string) {
@@ -213,5 +250,10 @@ export class MeusRecursosComponent implements OnInit ,OnDestroy{
       return recurso.nomeArquivo.toLowerCase().includes(filtro) ||
              recurso.descricao.toLowerCase().includes(filtro);
     });
+  }
+
+  contentLoaded() {
+    // console.log(this.arquivoDataString)
+    // console.log('File loaded');
   }
 }

@@ -28,3 +28,8 @@ span {
   padding: 0;
   width: 100%;
 }
+
+.situacao-titulo {
+  font-family: 'PoppinsSemiBold';
+  font-size: 12px;
+}
