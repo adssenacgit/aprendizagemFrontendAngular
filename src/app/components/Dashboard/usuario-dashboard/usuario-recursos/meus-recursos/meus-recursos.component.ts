@@ -256,4 +256,31 @@ export class MeusRecursosComponent implements OnInit, OnDestroy{
     // console.log(this.arquivoDataString)
     // console.log('File loaded');
   }
+
+  getTipoArquivoDoMimeType(mimeType: string) {
+    switch (mimeType) {
+      case "image/jpeg":
+      case "image/jpg":
+      case "image/png":
+      case "image/gif":
+      case "image/bmp":
+        return "Imagem";
+      case "application/pdf":
+        return "PDF";
+      case "text/plain":
+      case "application/txt":
+        return "Documento de Texto";
+      case "application/msword":
+      case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        return "Documento do Word";
+      case "application/vnd.ms-excel":
+      case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+        return "Planilha do Excel";
+      case "application/vnd.ms-powerpoint":
+      case "application/vnd.openxmlformats-officedocument.presentationml.presentation":
+        return "Apresentação do PowerPoint";
+      default:
+        return "Desconhecido";
+    }
+  }
 }
