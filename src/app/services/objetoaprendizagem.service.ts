@@ -1,4 +1,3 @@
-import { Encontro } from './../models/Encontro';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -61,3 +60,4 @@ export class ObjetoAprendizagemService {
     return this.https.get<ObjetoAprendizagem[]>(apiUrl);
   }
 
+}
