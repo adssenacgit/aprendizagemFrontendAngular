@@ -80,4 +80,8 @@ export class RecursoService {
     return this.http.put<Recurso>(apiUrl, statusAtualizado);
   }
 
+  AtualizarRecursoNomeJava(id: number, nomeAtualizado: string) {
+    const apiUrl = `${this.javaUrl}/atualizarRecursoNome/${id}/`;
+    return this.http.put<Recurso>(apiUrl, nomeAtualizado);
+  }
 }

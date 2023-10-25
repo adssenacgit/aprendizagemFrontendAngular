@@ -219,11 +219,9 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
   }
 
   onEdit(nomeArquivoAtualizado: string, recurso: Recurso) {
-    const recursoAtualizado = {...recurso, nomeArquivo: nomeArquivoAtualizado, usuarioId: this.idUsuarioLogado}
-    console.log(recursoAtualizado)
-    this.recursoService.AtualizarRecurso(recursoAtualizado.id, recursoAtualizado).subscribe({
+    this.recursoService.AtualizarRecursoNomeJava(recurso.id, nomeArquivoAtualizado).subscribe({
       next: (response) => {
-        this.toggleDialogUpload();
+        this.editVisible = !this.editVisible;
         Swal.fire({
           title: 'Sucesso!',
           text: 'Seu recurso foi renomeado com sucesso.',

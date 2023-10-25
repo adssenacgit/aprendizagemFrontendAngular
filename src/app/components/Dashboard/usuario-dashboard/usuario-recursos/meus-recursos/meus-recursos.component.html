@@ -20,21 +20,21 @@
     [value]="filteredItems"
     [(selection)]="selectedRecursos"
   >
-    <ng-template pTemplate="header" let-columns>
+    <ng-template pTemplate="header" class="header-container">
       <tr>
         <th>
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th>Nome</th>
+        <th pSortableColumn="nomeArquivo">Nome <p-sortIcon field="nomeArquivo"></p-sortIcon></th>
         <th>Descrição</th>
         <th>Tipo</th>
         <th>Tamanho</th>
-        <th>Criado em</th>
+        <th pSortableColumn="dataCadastro">Criado em <p-sortIcon field="dataCadastro"></p-sortIcon></th>
         <th *ngIf="modoExibicao === 'publico'">Proprietário</th>
         <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <ng-template pTemplate="body" let-rowData>
       <tr>
         <td>
           <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
@@ -157,7 +157,7 @@
         [(ngModel)]="nomeArquivo"
         required
       />
-      <button (click)="onEdit(nomeArquivo, recurso)">salvar</button>
+      <p-button (click)="onEdit(nomeArquivo, recurso)" label="Salvar"></p-button>
     </div>
   </p-dialog>
 </div>
