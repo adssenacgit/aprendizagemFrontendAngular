@@ -185,7 +185,7 @@ export class EncontrosComponent implements OnInit {
     this.encontros[i].selecionado=1;
 
     this.loading = true;
-    this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
+    this.situacaoAprendizagemService.filtrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
         this.situacoesAprendizagem = resultado;
         this.loading = false;
       });
@@ -193,8 +193,9 @@ export class EncontrosComponent implements OnInit {
 
   ObterSituacosAprendizagem = (idEncontro: number, i: number) => {
 
-    for(var j=0; j< this.encontros.length; j=j+1){
-      this.encontros[j].selecionado=0;
+    for(var j=0; j< this.situacoesAprendizagem.length; j=j+1){
+      this.situacoesAprendizagem[j].selecionado=0;
+
     }
 
     this.encontros[i].selecionado=1;

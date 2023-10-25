@@ -88,7 +88,7 @@ export class TimelineListaComponent implements OnInit {
   showDialogDetalheEncontro(encontroId: number){
     this.displayDetalheEncontro = true;
 
-    this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontroId).subscribe(resultado =>{
+    this.situacaoAprendizagemService.filtrarSituacoesAprendizagemPorEncontroId(encontroId).subscribe(resultado =>{
       this.situacoesAprendizagem = resultado;
       this.loading = false;
     })
