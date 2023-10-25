@@ -1,14 +1,10 @@
 <div class="container-fluid" style="padding: 0">
-  <!-- <div class="flex-row"> -->
-    <!-- <app-side-nav></app-side-nav> -->
-    <!-- <div
-      class="container-fluid d-flex flex-fill"
-      style="flex-direction: column; padding: 0"
-    > -->
-      <app-header></app-header>
-      <div style="padding: 1.5rem">
-        <router-outlet> </router-outlet>
-      </div>
-    <!-- </div> -->
-  <!-- </div> -->
+	<div class="flex-row">
+		<div class="container-fluid d-flex flex-fill" style="flex-direction: column; padding: 0">
+			<app-header></app-header>
+			<div class="wrapper" style="padding: 1.5rem">
+				<router-outlet> </router-outlet>
+			</div>
+		</div>
+	</div>
 </div>

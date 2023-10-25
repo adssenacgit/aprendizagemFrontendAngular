@@ -25,7 +25,6 @@
     "@sweetalert2/ngx-sweetalert2": "^12.1.0",
     "bootstrap-icons": "^1.11.1",
     "jwt-decode": "^3.1.2",
-    "mammoth": "^1.6.0",
     "ngx-doc-viewer": "^14.0.0",
     "ngx-drag-scroll": "^14.0.1",
     "ngx-mask": "^13.1.1",
@@ -34,13 +33,13 @@
     "primeng": "^14.2.0",
     "quill": "^1.3.7",
     "rxjs": "~7.4.0",
-    "sweetalert2": "^11.7.9",
+    "sweetalert2": "^11.6.10",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.9",
-    "@angular/cli": "^14.2.9",
+    "@angular/cli": "^16.2.8",
     "@angular/compiler-cli": "^14.2.10",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",

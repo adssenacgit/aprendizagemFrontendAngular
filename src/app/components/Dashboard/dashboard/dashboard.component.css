@@ -2,6 +2,14 @@
 	padding: 50px;
 }
 
+.container-fluid {
+	height: 100%;
+}
+
+.wrapper {
+	height: 100%;
+}
+
 .sidenav {
 	background: #092c4c;
 	transition: all 0.5s ease;
