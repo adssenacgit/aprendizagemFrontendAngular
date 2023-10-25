@@ -1,4 +1,5 @@
 import { Chapter } from "./Chapter";
+import { ChapterTag } from "./ChapterTag";
 import { Usuario } from "./Usuario";
 
 export class ChapterAssunto {
@@ -15,4 +16,5 @@ export class ChapterAssunto {
     usuario: Usuario
     chapter:Chapter;
     totalComentarios: number;
+    chapterTag: ChapterTag[];
 }

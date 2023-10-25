@@ -35,12 +35,18 @@
 #search .filter:hover {
   background-color: #f1ebeb;
 }
+.dropdown-item {
+  cursor: pointer;
+}
 #side-info {
   margin-left: 20px;
 }
 .vertical-stack {
   display: flex;
   flex-direction: column !important;
+}
+.chapters-text {
+  cursor: pointer;
 }
 .card-header {
   display: flex;
@@ -95,9 +101,6 @@
   border-bottom: none;
   border-radius: 0;
   border-top: 2px solid #e4e4e4;
-}
-.question-info {
-  /* width: 275px; */
 }
 .question-data {
   display: flex;

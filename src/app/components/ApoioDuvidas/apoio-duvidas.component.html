@@ -40,8 +40,8 @@
             <i class="bi bi-filter"></i> Filtros
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item">Mais recentes</a></li>
-            <li><a class="dropdown-item">Mais antigos</a></li>
+            <li><a (click)="ordernarPorData('decrescente')" class="dropdown-item">Mais recentes</a></li>
+            <li><a (click)="ordernarPorData('crescente')" class="dropdown-item">Mais antigos</a></li>
             <li><a class="dropdown-item">Mais respondidos</a></li>
             <li><a class="dropdown-item">Mais curtidos</a></li>
             <li>
@@ -70,15 +70,13 @@
           <h1>Chapter</h1>
           <p><a class="link-opacity-100" href="#">ver todos</a></p>
         </div>
-        <div class="card-body">
-          <p class="card-text">Banco de Dados</p>
-          <p class="card-text">Spring Boot</p>
-          <p class="card-text">Angular</p>
-          <p class="card-text">Projeto Integrador</p>
-          <p class="card-text">Design de Interfaces</p>
+        <div class="card-body chapters-text" *ngIf="chapterTodos">
+          <a *ngFor="let i of chapterTodos" class="card-text" [(ngModel)]="busca" (click)="filtraPorChapter(i.nome)">{{
+            i.nome }}<br /></a>
         </div>
       </div>
       <div
+        *ngIf="chapterTagTodos"
         class="card border-gray mb-3 vertical-stack"
         style="max-width: 18rem"
       >
@@ -86,38 +84,10 @@
           <h1>Tags</h1>
           <p><a class="link-opacity-100" href="#">ver todos</a></p>
         </div>
-        <div class="card-body tags-card">
-          <button type="button" class="btn btn-light">
+        <div class="card-body tags-card" >
+          <button *ngFor="let i of chapterTagTodos" type="button" class="btn btn-light">
             <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
+            <p>{{ i.descricao }}</p>
           </button>
         </div>
       </div>

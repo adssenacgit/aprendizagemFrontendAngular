@@ -55,27 +55,26 @@ export class ApoioDuvidasComponent implements OnInit {
       this.chapterTodos = data
     })
 
-    this.chapterTagService.ObterTodos().subscribe((data) => {
-      this.chapterTagTodos = data;
+    this.chapterTagService.ObterTodos().subscribe({
+      next: (data) => this.chapterTagTodos = data
     })
 
-    this.comentarioService.ObterTodos().subscribe((data) =>{
-      const frequencyMap = new Map();
-      data.forEach((item) => {
-	  const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
-      frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
-
-	});
+    // this.comentarioService.ObterTodos().subscribe((data) =>{
+      // const frequencyMap = new Map();
+      // data.forEach((item) => {
+	    //   const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
+      //   frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
+	    // });
     //   this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuario, count]) => ({usuario, count }));
 
-	  this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
-		usuario: JSON.parse(usuarioKey),
-		count,
-	  }));
+      // this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
+      //   usuario: JSON.parse(usuarioKey),
+      //   count,
+      // }));
 
-      this.rankComentarios.sort((a, b) => b.count - a.count)
-	  this.rankComentarios =  this.rankComentarios.slice(0,3);
-    })
+    //   this.rankComentarios.sort((a, b) => b.count - a.count)
+	  //   this.rankComentarios =  this.rankComentarios.slice(0,3);
+    // })
 
     this.usuarioService
       .ObterUsuarioPorId(this.idUsuarioLogado)
@@ -107,6 +106,22 @@ export class ApoioDuvidasComponent implements OnInit {
       this.currentPage * this.itemsPerPage,
       this.chapterAssuntos.length
     );
+  }
+
+  ordernarPorData(order: string) {
+    if (order == 'decrescente') {
+      this.chapterAssuntos.sort(
+        (a, b) =>
+          new Date(b.dataCadastro).getDate() -
+          new Date(a.dataCadastro).getDate()
+      );
+    } else if (order == 'crescente') {
+      this.chapterAssuntos.sort(
+        (a, b) =>
+          new Date(a.dataCadastro).getDate() -
+          new Date(b.dataCadastro).getDate()
+      );
+    }
   }
 
   filtraPorTitulo(busca: string) {
