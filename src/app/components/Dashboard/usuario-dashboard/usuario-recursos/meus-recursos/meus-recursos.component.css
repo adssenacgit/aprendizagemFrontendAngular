@@ -3,7 +3,7 @@
 }
 .card-recursos{
     padding: 32px;
-    
+
 }
 .class-Button{
     display: flex;
@@ -61,4 +61,27 @@ label{
     top: -55px
 }
 
-  
+th {
+  font-family: 'PoppinsSemiBold';
+  color: #004A8D;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+td {
+  font-family: 'PoppinsRegular';
+  font-size: 14px;
+}
+
+.public-icon {
+  font-size: 20px;
+}
+
+.action-button {
+  cursor: pointer;
+}
+
+.action-button:hover {
+  color: #004A8D;
+}

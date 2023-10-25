@@ -23,6 +23,7 @@
     "@angular/router": "^14.2.10",
     "@auth0/angular-jwt": "^5.0.2",
     "@sweetalert2/ngx-sweetalert2": "^12.1.0",
+    "bootstrap-icons": "^1.11.1",
     "jwt-decode": "^3.1.2",
     "mammoth": "^1.6.0",
     "ngx-doc-viewer": "^14.0.0",
