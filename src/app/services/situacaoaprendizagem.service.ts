@@ -77,4 +77,9 @@ export class SituacaoAprendizagemService {
     return this.https.get<SituacaoAprendizagem[]>(apiUrl);
   }
 
+  filtrarAtividadesEObjetosBySituacaoAprendizagemId(id: number): Observable<SituacaoAprendizagem> {
+    const apiUrl = `${this.url}/FiltrarAtividadesEObjetosBySituacaoAprendizagemId/${id}`;
+    return this.https.get<SituacaoAprendizagem>(apiUrl);
+  }
+
 }

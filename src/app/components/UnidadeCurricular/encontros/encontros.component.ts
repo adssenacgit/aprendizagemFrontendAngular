@@ -106,7 +106,7 @@ export class EncontrosComponent implements OnInit {
           this.situacaoAprendizagemService
             .FiltrarSituacoesAprendizagemPorEncontroId(encontro.id)
             .subscribe((situacao) => {
-              encontro.situacaoAprendizagem = situacao;
+              encontro.situacoesAprendizagem = situacao;
               situacao.forEach((aaaa) => {
                 this.ObterAtividades(aaaa)
                 this.ObterObjetosAprendizagem(aaaa)

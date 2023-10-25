@@ -6,9 +6,8 @@ export class UnidadeCurricular {
     nome: string;
     nomeCurto: string;
     horas: number;
-    modulo: number;
     ordem: number;
     moduloId: number;
-    omodulo: Modulo;
+    modulo: Modulo;
     status: number;
 }

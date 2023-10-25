@@ -168,7 +168,7 @@
 				[attr.aria-labelledby]="'heading' + i"
 				>
 				<div class="accordion-body d-flex" >
-					<div *ngFor="let situacaoAprend of encontro.situacaoAprendizagem; let i = index" class="card">
+					<div *ngFor="let situacaoAprend of encontro.situacoesAprendizagem; let i = index" class="card">
 						<div style="display: flex; flex-direction: column;" class="card-body">
 							<h5 class="card-title">{{ situacaoAprend.titulo }}</h5>
 							<p class="card-text">{{ situacaoAprend.descricao }}</p>
