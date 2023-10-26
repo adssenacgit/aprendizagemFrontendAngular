@@ -1,101 +1,115 @@
 <p-confirmDialog></p-confirmDialog>
-<div class="input-group mb-3 search-bar">
-  <input
-    type="text"
-    [(ngModel)]="filtro"
-    (input)="filtrarRecursos()"
-    pInputText
-    placeholder="Buscar recursos"
-  />
-  <span
-    class="input-group-text"
-    id="basic-addon1"
-    style="background-color: #1660a5; color: white"
-    ><i class="fas fa-search"></i
-  ></span>
-</div>
-<p-scrollPanel [style]="{ width: '100%', height: '80%' }">
-  <p-table
-    scrollHeight="100%"
-    [value]="filteredItems"
-    [(selection)]="selectedRecursos"
-  >
-    <ng-template pTemplate="header" class="header-container">
-      <tr>
-        <th>
-          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-        </th>
-        <th pSortableColumn="nomeArquivo">Nome <p-sortIcon field="nomeArquivo"></p-sortIcon></th>
-        <th>Descrição</th>
-        <th>Tipo</th>
-        <th>Tamanho</th>
-        <th pSortableColumn="dataCadastro">Criado em <p-sortIcon field="dataCadastro"></p-sortIcon></th>
-        <th *ngIf="modoExibicao === 'publico'">Proprietário</th>
-        <th></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData>
-      <tr>
-        <td>
-          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-        </td>
-        <td>
-          <div class="d-flex align-items-center gap-2">
-            <i *ngIf="rowData.status == 2" class="pi pi-users public-icon" pTooltip="Arquivo Público" tooltipPosition="top"></i>
-            <p class="mb-0">{{ rowData.nomeArquivo }}</p>
-          </div>
-        </td>
-        <td>
-          {{rowData.descricao}}
-        </td>
-        <td>
-          {{getTipoArquivoDoMimeType(rowData.mimeType)}}
-        </td>
-        <td>
-          Implementar
-        </td>
-        <td>
-          {{formatarDataComHora(rowData.dataCadastro)}}
-        </td>
-        <td *ngIf="modoExibicao === 'publico'">
-          {{rowData.usuario.nomeCompleto}}
-        </td>
-        <td>
-          <div class="d-flex gap-2">
-            <div
-              pTooltip="Download" tooltipPosition="top"
-              (click)="ondownload(rowData)"
-            >
-              <i class="pi action-button pi-download"></i>
+<div class="vstack gap-2 h-100">
+  <div class="row">
+    <div class="input-group search-bar">
+      <input
+        type="text"
+        [(ngModel)]="filtro"
+        (input)="filtrarRecursos()"
+        pInputText
+        placeholder="Buscar recursos"
+      />
+      <span
+        class="input-group-text"
+        id="basic-addon1"
+        style="background-color: #1660a5; color: white"
+        ><i class="fas fa-search"></i
+      ></span>
+    </div>
+  </div>
+  <div class="row">
+    <p-table
+      [scrollable]="true" scrollHeight="60vh"
+      [tableStyle]="{'min-width': '50rem'}"
+      [value]="filteredItems"
+      [(selection)]="selectedRecursos"
+    >
+      <ng-template pTemplate="header" class="header-container">
+        <tr>
+          <th>
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pSortableColumn="nomeArquivo">Nome <p-sortIcon field="nomeArquivo"></p-sortIcon></th>
+          <th>Descrição</th>
+          <th>Tipo</th>
+          <th>Tamanho</th>
+          <th pSortableColumn="dataCadastro">Criado em <p-sortIcon field="dataCadastro"></p-sortIcon></th>
+          <th *ngIf="modoExibicao === 'publico'">Proprietário</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+          </td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <i  *ngIf="rowData.status == 2" class="pi pi-users public-icon" pTooltip="Arquivo Público" tooltipPosition="top"></i>
+              <i class=""></i>
+              <p class="mb-0">{{ rowData.nomeArquivo }}</p>
             </div>
-            <div *ngIf="modoExibicao === 'privado'" class="d-flex gap-2">
-              <div
-                pTooltip="Compartilhar" tooltipPosition="top"
-                (click)="confirmShare(rowData)"
-              >
-                <i class="pi action-button pi-share-alt"></i>
+          </td>
+          <td>
+            {{rowData.descricao}}
+          </td>
+          <td>
+            {{getTipoArquivoDoMimeType(rowData.mimeType)}}
+          </td>
+          <td>
+            Implementar
+          </td>
+          <td>
+            {{formatarDataComHora(rowData.dataCadastro)}}
+          </td>
+          <td *ngIf="modoExibicao === 'publico'">
+            <div class="proprietario-info d-flex">
+              <div>
+                <img class="user-image" src="{{'data:image/png;base64,' + rowData.usuario.foto}}" />
               </div>
-              <div
-                pTooltip="Renomear" tooltipPosition="top"
-              >
-                <i class="pi action-button pi-pencil" (click)="toggleDialogEdit(rowData)"></i>
-              </div>
-              <div
-                pTooltip="Excluir" tooltipPosition="top"
-                (click)="confirmDelete(rowData)"
-              >
-              <i class="pi action-button pi-trash"></i>
+              <div>
+                {{rowData.usuario.nomeCompleto}}
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</p-scrollPanel>
-
-<div class="card-recursos flex justify-content-flex-end class-Button">
-  <p-button label="+ Novo" (click)="toggleDialogUpload()"></p-button>
+          </td>
+          <td>
+            <div class="d-flex gap-2">
+              <div
+                pTooltip="Download" tooltipPosition="top"
+                (click)="ondownload(rowData)"
+              >
+                <i class="pi action-button pi-download"></i>
+              </div>
+              <div *ngIf="modoExibicao === 'privado'" class="d-flex gap-2">
+                <div
+                  pTooltip="Compartilhar" tooltipPosition="top"
+                  (click)="confirmShare(rowData)"
+                >
+                  <i class="pi action-button pi-share-alt"></i>
+                </div>
+                <div
+                  pTooltip="Renomear" tooltipPosition="top"
+                >
+                  <i class="pi action-button pi-pencil" (click)="toggleDialogEdit(rowData)"></i>
+                </div>
+                <div
+                  pTooltip="Excluir" tooltipPosition="top"
+                  (click)="confirmDelete(rowData)"
+                >
+                <i class="pi action-button pi-trash"></i>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="row">
+    <div class="card-recursos flex justify-content-center class-Button">
+      <p-button label="+ Novo" (click)="toggleDialogUpload()"></p-button>
+    </div>
+  </div>
 </div>
 
 <div class="telaDePostagem">
@@ -108,13 +122,12 @@
     [resizable]="false"
   >
     <div class="field">
-      <label for="descricao">Comentário</label>
+      <label for="descricao">Descrição do arquivo</label>
       <input
         type="textarea"
         id="descricao"
         class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
         [(ngModel)]="descricao"
-        required
       />
     </div>
 
@@ -122,7 +135,7 @@
       <p-fileUpload
         name="uploadedFiles[]"
         [customUpload]="true"
-        [multiple]="true"
+        [multiple]="false"
         (uploadHandler)="onUpload($event)"
         chooseLabel="Escolher Arquivo"
       >
@@ -144,7 +157,6 @@
     header="Renomear arquivo"
     [(visible)]="editVisible"
     [modal]="true"
-
     [draggable]="false"
     [resizable]="false"
   >

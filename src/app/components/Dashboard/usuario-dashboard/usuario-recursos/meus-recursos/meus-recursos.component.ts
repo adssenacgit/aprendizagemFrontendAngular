@@ -2,10 +2,8 @@ import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges } from '@
 import { Recurso } from 'src/app/models/Recurso';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { RecursoService } from 'src/app/services/recurso.service';
-import { FileUploadModule } from 'primeng/fileupload';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import Swal from 'sweetalert2';
-import { Usuario } from 'src/app/models/Usuario';
 import { ConfirmationService } from 'primeng/api';
 
 
@@ -27,35 +25,27 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
   editing: boolean = false;
   ref: DynamicDialogRef;
 
+  idUsuarioLogado: string;
   recurso: Recurso;
   uploadedFiles: any[] = [];
-  loading: boolean = true;
-  idUsuarioLogado: string;
   maxFileSize: number = 1000000;
-  usuario: Usuario;
   uploadVisible: boolean = false;
   editVisible: boolean = false;
   filteredItems: Recurso[];
-  cols: any[];
+  filtro: string;
   selectedRecursos: Recurso[] = [];
-
-  botaoUp:FileUploadModule;
 
   descricao : string = '' ;
   nomeArquivo: string= '';
 
-  atividade:any;
-
-  filtro: string;
-  checkboxSelected = false;
-  recursoURL: string;
-  viewer: string = 'pdf'
+  //recursoURL: string;
+  //viewer: string = 'pdf'
 
   constructor(
-    private dialogService: DialogService,
     private recursoService : RecursoService,
     private authGuardService: AuthGuardService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.filteredItems = this.recursos;
@@ -63,31 +53,15 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
 
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
-
-    this.filteredItems = this.recursos; // Inicializa filteredItems com os mesmos valores de recursos
+    this.filteredItems = this.recursos;
     console.log(this.filteredItems)
-    this.cols = [
-      { field: 'nomeArquivo', header: 'Nome' },
-      { field: 'descricao', header: 'Descrição' },
-      { field: 'this.getTipoArquivoDoMimeType(mimeType)', header: 'Tipo'},
-      { field: 'descricao', header: 'Tamanho'},
-      { field: 'dataCadastro', header: 'Última atualização'},
-      { field: 'descricao', header: 'Ações'}
-    ];
-  }
-
-  teladepostagem(){
-    return true
   }
 
   ngOnDestroy() {
     this.selectedRecursos = [];
-    if (this.ref) {
-        this.ref.close();
-    }
+    if (this.ref)
+      this.ref.close();
   }
-
-  // testes
 
   toggleDialogUpload() {
     this.uploadVisible = !this.uploadVisible;
@@ -110,7 +84,6 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
       const arquivo = e.target?.result as string;
       const formatAquivo = arquivo.split(',')[1];
 
-
       const recurso = {
         id: 0,
         descricao: this.descricao,
@@ -122,7 +95,7 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
         usuarioId: this.idUsuarioLogado,
       };
 
-      this.recursoService.SalvarRecurso(recurso).subscribe({
+      this.recursoService.SalvarRecursoJava(recurso).subscribe({
         next: (response) => {
           this.toggleDialogUpload();
           Swal.fire({
@@ -145,7 +118,7 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
             confirmButtonText: 'OK',
             focusConfirm: false
           });
-        }
+        },
       });
     };
 
@@ -172,36 +145,67 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
 
   onShare(recurso: Recurso) {
     const id: number = recurso.id
-    const status: number = 2
-    this.recursoService.AtualizarRecursoStatusJava(id, status).subscribe({
-      next: (response) => {
-        Swal.fire({
-          title: 'Sucesso!',
-          text: 'Seu recurso foi compartilhado com sucesso.',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          console.log(response);
-          location.reload();
-        });
-      }
-    });
+    if(recurso.status === 1){
+      const status: number = 2
+      this.recursoService.AtualizarRecursoStatusJava(id, status).subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Seu recurso foi compartilhado.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(() => {
+            location.reload();
+          });
+        }
+      });
+    }
+    else {
+      const status: number = 1
+      this.recursoService.AtualizarRecursoStatusJava(id, status).subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Seu recurso não está mais sendo compartilhado.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(() => {
+            location.reload();
+          });
+        }
+      });
+    }
   }
 
   confirmShare(rowData: Recurso) {
-    console.log(rowData)
-    this.confirmationService.confirm({
-      message: 'Deseja tornar este recurso público?',
-      header: 'Confirmação de compartilhamento',
-      icon: 'pi pi-info-circle',
-      acceptLabel: 'Sim',
-      rejectLabel: 'Não',
-      accept: () => {
-        this.onShare(rowData);
-      },
-      rejectButtonStyleClass: 'p-button-danger',
-      acceptButtonStyleClass: 'p-button-success'
-    });
+    if(rowData.status === 1){
+      this.confirmationService.confirm({
+        message: 'Deseja tornar este recurso público?',
+        header: 'Confirmação de compartilhamento',
+        icon: 'pi pi-info-circle',
+        acceptLabel: 'Sim',
+        rejectLabel: 'Não',
+        accept: () => {
+          this.onShare(rowData);
+        },
+        rejectButtonStyleClass: 'p-button-danger',
+        acceptButtonStyleClass: 'p-button-success'
+      });
+    }
+    else {
+      this.confirmationService.confirm({
+        message: 'Deseja tornar este recurso privado?',
+        header: 'Parar de compartilhar',
+        icon: 'pi pi-info-circle',
+        acceptLabel: 'Sim',
+        rejectLabel: 'Não',
+        accept: () => {
+          this.onShare(rowData);
+        },
+        rejectButtonStyleClass: 'p-button-danger',
+        acceptButtonStyleClass: 'p-button-success'
+      });
+    }
   }
   confirmDelete(rowData: any) {
     this.confirmationService.confirm({

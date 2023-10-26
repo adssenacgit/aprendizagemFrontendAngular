@@ -8,17 +8,22 @@
 }
 
 .content-container {
-  height: 80%;
+  height: 85%;
 }
 
 .arquivo-nav {
-  width: 90%;
-  background-color: #b8d3ff;
+  width: 70%;
+  padding: 0.5rem;
+  /* background-color: #b8d3ff; */
+  background-color: white;
   text-align: center;
-  padding: 2px;
   align-self: center;
-  font-family: 'PoppinsRegular';
+  font-family: 'PoppinsLight';
   cursor: pointer;
+}
+
+.selected {
+  background-color: #b8d3ff;
 }
 
 p {
