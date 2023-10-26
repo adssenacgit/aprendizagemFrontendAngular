@@ -24,10 +24,7 @@ export class UsuarioRecursosComponent implements OnInit {
 
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
-    this.recursoService.ObterRecursoPeloUsuarioIdJava(this.idUsuarioLogado).subscribe(resultado => {
-      this.modoExibicao = 'privado'
-      this.recursos = resultado;
-    });
+    this.obterMeusRecursos();
   }
 
   obterMeusRecursos() {
