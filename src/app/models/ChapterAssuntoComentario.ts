@@ -3,12 +3,12 @@ import { Usuario } from "./Usuario";
 
 export class ChapterAssuntoComentario {
     id: number;
-    texto: string;
-    data: string;
+    texto: String;
+    data: String;
     pai: number;
-    chapterAssuntoComentarioReferenciaPai: string;
+    chapterAssuntoComentarioReferenciaPai: String;
     chapterAssuntoId: number;
     chapterAssunto: ChapterAssunto;
-    usuarioId: string;
+    usuarioId: String;
     usuario: Usuario;
 }

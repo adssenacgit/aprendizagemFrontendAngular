@@ -64,12 +64,6 @@ export class EncontroService {
     return this.https.get<EncontroStatus>(apiUrl, httpOptions);
   }
 
-  ObterEncontrosPorGrupoIdPorUserId(grupoId: number ,idEstudante: string): Observable<Encontro>{
-    const apiUrl = `${this.url}FilterByGrupoIdByEstudanteId/${grupoId}/${idEstudante}`;
-    return this.https.get<Encontro>(apiUrl, httpOptions);
-
-  }
-
   private encontroSource = new BehaviorSubject<Encontro[]>([])
   currentData = this.encontroSource.asObservable();
   setEncontros(data: Encontro[]) {
