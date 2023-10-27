@@ -12,7 +12,8 @@ import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 export class UsuarioRecursosComponent implements OnInit {
 
   recursos: Recurso[]
-  value: number = 30;
+  armazenamentoUsado: number = 0;
+  armazenamentoUsadoEmMb: number = 0;
   modoExibicao: string ='privado'
 
   idUsuarioLogado : string;
@@ -36,6 +37,9 @@ export class UsuarioRecursosComponent implements OnInit {
         } else {
           this.recursos = []
         }
+      },
+      complete: () => {
+        this.calcularArmazenamentoUsado(this.recursos)
       }
     });
   }
@@ -53,8 +57,18 @@ export class UsuarioRecursosComponent implements OnInit {
     });
   }
 
-  teladepostagem(){
-    return true
-  }
+  calcularArmazenamentoUsado (recursos: Recurso[]) {
 
+    recursos.length > 0 ? recursos.map((recurso) => this.armazenamentoUsado += recurso.tamanho) : 'this.armazenamentoUsadoEmMb = 0;'
+    this.armazenamentoUsadoEmMb = Math.ceil(this.armazenamentoUsado * (10 ** -6));
+    // if(recursos.length > 0){
+    //   for (let recurso of recursos) {
+    //     this.armazenamentoUsado += recurso.tamanho
+    //   }
+    //   this.armazenamentoUsadoEmMb = Math.ceil(this.armazenamentoUsado * (10 ** -6));
+    // }
+    // else {
+    //   this.armazenamentoUsadoEmMb = 0;
+    // }
+  }
 }
