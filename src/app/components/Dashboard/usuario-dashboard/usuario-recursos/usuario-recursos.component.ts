@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Recurso } from 'src/app/models/Recurso';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { RecursoService } from 'src/app/services/recurso.service';
@@ -12,8 +12,8 @@ import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 export class UsuarioRecursosComponent implements OnInit {
 
   recursos: Recurso[]
-  armazenamentoUsado: number = 0;
-  armazenamentoUsadoEmMb: number = 0;
+  armazenamentoUsado: number;
+  armazenamentoUsadoEmMb: number;
   modoExibicao: string ='privado'
 
   idUsuarioLogado : string;
@@ -58,6 +58,8 @@ export class UsuarioRecursosComponent implements OnInit {
   }
 
   calcularArmazenamentoUsado (recursos: Recurso[]) {
+    this.armazenamentoUsado = 0;
+    this.armazenamentoUsadoEmMb = 0;
 
     recursos.length > 0 ? recursos.map((recurso) => this.armazenamentoUsado += recurso.tamanho) : 'this.armazenamentoUsadoEmMb = 0;'
     this.armazenamentoUsadoEmMb = Math.ceil(this.armazenamentoUsado * (10 ** -6));
