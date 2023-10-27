@@ -64,7 +64,6 @@ export class EncontroService {
     return this.https.get<EncontroStatus>(apiUrl, httpOptions);
   }
 
-
   private encontroSource = new BehaviorSubject<Encontro[]>([])
   currentData = this.encontroSource.asObservable();
   setEncontros(data: Encontro[]) {
