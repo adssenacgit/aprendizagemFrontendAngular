@@ -90,6 +90,7 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
         nomeArquivo: file.name,
         arquivo: formatAquivo,
         mimeType: file.type,
+        tamanho: file.size,
         dataCadastro: new Date().toISOString(),
         status: 1,
         usuarioId: this.idUsuarioLogado,
