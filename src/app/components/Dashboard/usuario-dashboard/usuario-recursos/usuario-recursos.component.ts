@@ -28,16 +28,28 @@ export class UsuarioRecursosComponent implements OnInit {
   }
 
   obterMeusRecursos() {
-    this.recursoService.ObterRecursoPeloUsuarioIdJava(this.idUsuarioLogado).subscribe(resultado => {
-      this.modoExibicao = 'privado'
-      this.recursos = resultado;
+    this.recursoService.ObterRecursoPeloUsuarioIdJava(this.idUsuarioLogado).subscribe({
+      next: (resultado) => {
+        this.modoExibicao = 'privado'
+        if (resultado != null){
+          this.recursos = resultado;
+        } else {
+          this.recursos = []
+        }
+      }
     });
   }
 
   obterRecursosPublicos() {
-    this.recursoService.ObterRecursoPublicosJava().subscribe(resultado => {
-      this.modoExibicao = 'publico'
-      this.recursos = resultado;
+    this.recursoService.ObterRecursoPublicosJava().subscribe({
+      next: (resultado) => {
+        this.modoExibicao = 'publico'
+        if (resultado != null){
+          this.recursos = resultado;
+        } else {
+          this.recursos = []
+        }
+      }
     });
   }
 
