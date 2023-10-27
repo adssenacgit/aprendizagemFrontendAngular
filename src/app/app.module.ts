@@ -149,6 +149,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InputMaskModule } from "primeng/inputmask";
 import { EditorModule } from 'primeng/editor';
+import { MatChipsModule } from '@angular/material/chips';
+
+
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -183,6 +186,7 @@ import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboa
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 import { CardTopicoComunidadeComponent } from './components/ApoioDuvidas/card-topico-comunidade/card-topico-comunidade.component';
 import { RecursoDocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/recurso-doc-viewer/recurso-doc-viewer.component';
+import { CardAvisoComponent } from './components/ApoioDuvidas/novapergunta/card-aviso/card-aviso.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -264,7 +268,8 @@ registerLocaleData(localeFR);
     ParticipantesUcComponent,
     ForumUcComponent,
     CardTopicoComunidadeComponent,
-    RecursoDocViewerComponent
+    RecursoDocViewerComponent,
+    CardAvisoComponent
   ],
   imports: [
     BrowserModule,
@@ -337,6 +342,7 @@ registerLocaleData(localeFR);
     BadgeModule,
     InputMaskModule,
     EditorModule,
+    MatChipsModule,
   ],
   providers: [
     CursosService,

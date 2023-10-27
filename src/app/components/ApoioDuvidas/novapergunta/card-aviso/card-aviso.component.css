@@ -1,0 +1,35 @@
+::ng-deep .card-pergunta .p-card {
+  background-color: #E7EFFC;
+  border: 1px solid #829EEA;
+  color: #122B4B;
+
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border-radius: 100%;
+  border-color: #122B4B;
+  background-color: #E7EFFC;
+  color: #122B4B;
+}
+
+.sub-header{
+  color: #122B4B;
+  font-weight: 500;
+  font-size: larger;
+  padding-bottom: 10px;
+}
+
+.etapas {
+  color: #122B4B;
+  font-weight: 600;
+  font-size: large;
+}
+
+.lista {
+  font-size: medium;
+  font-weight: 500;
+  color: #122B4B;
+}
