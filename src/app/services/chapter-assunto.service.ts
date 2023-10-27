@@ -31,6 +31,11 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto>(apiUrl);
   }
 
+  ObterChapterAssuntosByChapterId (chapterId: number): Observable<ChapterAssunto[]> {
+    const apiUrl = `${this.url}/filterByChapterId/${chapterId}`;
+    return this.https.get<ChapterAssunto[]>(apiUrl);
+  }
+
   NovoChapterAssunto (chapter: ChapterAssunto): Observable<any>
   {
     return this.https.post<ChapterAssunto>(this.url, chapter, httpOptions);
