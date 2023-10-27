@@ -105,7 +105,7 @@
       </ng-template>
     </p-table>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="modoExibicao === 'privado'">
     <div class="card-recursos flex justify-content-center class-Button">
       <p-button label="+ Novo" (click)="toggleDialogUpload()"></p-button>
     </div>
