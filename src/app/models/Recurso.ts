@@ -8,5 +8,6 @@ export class Recurso {
   mimeType: string;
   dataCadastro: string;
   status:       number;
+  tamanho: number;
   usuarioId:    string;
 }
