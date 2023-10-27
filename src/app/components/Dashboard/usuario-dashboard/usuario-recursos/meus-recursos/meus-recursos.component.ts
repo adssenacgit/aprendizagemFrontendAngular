@@ -54,7 +54,6 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
     this.filteredItems = this.recursos;
-    console.log(this.filteredItems)
   }
 
   ngOnDestroy() {
@@ -76,23 +75,20 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
   onUpload(event: UploadEvent) {
     const file = event.files[0];
     const reader = new FileReader();
-    console.log(file.type)
-    console.log(file.name)
-    console.log(file.size)
 
     reader.onload = (e) => {
       const arquivo = e.target?.result as string;
       const formatAquivo = arquivo.split(',')[1];
 
-      const recurso = {
+      const recurso: Recurso = {
         id: 0,
         descricao: this.descricao,
         nomeArquivo: file.name,
         arquivo: formatAquivo,
         mimeType: file.type,
-        tamanho: file.size,
         dataCadastro: new Date().toISOString(),
         status: 1,
+        tamanho: file.size,
         usuarioId: this.idUsuarioLogado,
       };
 
@@ -106,7 +102,6 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
             confirmButtonText: 'OK',
             focusConfirm: false
           }).then(() => {
-            console.log(response);
             location.reload();
           });
         },
@@ -137,7 +132,6 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
           icon: 'success',
           confirmButtonText: 'OK'
         }).then(() => {
-          console.log(response);
           location.reload();
         });
       }
@@ -234,7 +228,6 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
           confirmButtonText: 'OK',
           focusConfirm: false
         }).then(() => {
-          console.log(response);
           location.reload();
         });
       },
@@ -283,7 +276,6 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
 
   downloadFile(recursoBlob: Blob, fileName: string) {
     const url = URL.createObjectURL(recursoBlob);
-
     const link = document.createElement('a');
     link.href = url;
     link.download = fileName;
@@ -302,7 +294,6 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
 
     const blob = new Blob([byteArray], { type: 'application/octet-stream' });
     const url = URL.createObjectURL(blob);
-
     const link = document.createElement('a');
     link.href = url;
     link.download = fileName;
@@ -311,13 +302,9 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
     document.body.removeChild(link);
   }
 
-
-
   filtrarRecursos() {
-    const filtro = this.filtro.toLowerCase(); // Converter o filtro para minúsculas para comparar de forma insensível a maiúsculas e minúsculas
-
+    const filtro = this.filtro.toLowerCase();
     this.filteredItems = this.recursos.filter((recurso: Recurso) => {
-      // Aplicar a lógica de filtro desejada aqui
       return recurso.nomeArquivo.toLowerCase().includes(filtro) ||
              recurso.descricao.toLowerCase().includes(filtro);
     });
@@ -409,4 +396,16 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
 
+  formatarTamanhoArquivo(bytes: number) {
+    if (!bytes) {
+      return '0 B'
+    }
+    else if (bytes < 1000) {
+        return bytes + " B";
+    } else if (bytes < 1000 * 1000) {
+        return (bytes / 1000).toFixed(2) + " KB";
+    } else {
+        return (bytes / (1000 * 1000)).toFixed(2) + " MB";
+    }
+  }
 }

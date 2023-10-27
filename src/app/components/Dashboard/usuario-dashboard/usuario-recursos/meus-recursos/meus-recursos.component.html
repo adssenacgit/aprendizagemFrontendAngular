@@ -32,7 +32,7 @@
           <th pSortableColumn="nomeArquivo">Nome <p-sortIcon field="nomeArquivo"></p-sortIcon></th>
           <th>Descrição</th>
           <th>Tipo</th>
-          <th>Tamanho</th>
+          <th pSortableColumn="tamanho">Tamanho<p-sortIcon field="tamanho"></p-sortIcon></th>
           <th pSortableColumn="dataCadastro">Criado em <p-sortIcon field="dataCadastro"></p-sortIcon></th>
           <th *ngIf="modoExibicao === 'publico'">Proprietário</th>
           <th></th>
@@ -57,7 +57,7 @@
             {{getTipoArquivoDoMimeType(rowData.mimeType)}}
           </td>
           <td>
-            Implementar
+            {{formatarTamanhoArquivo(rowData.tamanho)}}
           </td>
           <td>
             {{formatarDataComHora(rowData.dataCadastro)}}
