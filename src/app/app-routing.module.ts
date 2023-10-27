@@ -23,6 +23,7 @@ import { ListagemOfertasComponent } from './components/Oferta/listagem-ofertas/l
 import { AtualizarOfertaComponent } from './components/Oferta/atualizar-oferta/atualizar-oferta.component';
 import { UsuarioDashboardComponent } from './components/Dashboard/usuario-dashboard/usuario-dashboard.component';
 import { AdministradorDashboardComponent } from './components/Dashboard/administrador-dashboard/administrador-dashboard.component';
+import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
 import { TimelineDetalhesComponent } from './components/UnidadeCurricular/timeline/timeline-detalhes/timeline-detalhes.component';
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
@@ -106,6 +107,9 @@ const routes: Routes = [
       },
       {
         path: 'dashboard/administradordashboard', component: AdministradorDashboardComponent
+      },
+      {
+        path: 'dashboard/professordashboard', component: ProfessorDashboardComponent
       },
       {
         path: 'badges/listagembadges', component: ListagemBadgesComponent

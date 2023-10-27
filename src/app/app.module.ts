@@ -183,6 +183,8 @@ import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboa
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 import { CardTopicoComunidadeComponent } from './components/ApoioDuvidas/card-topico-comunidade/card-topico-comunidade.component';
 import { RecursoDocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/recurso-doc-viewer/recurso-doc-viewer.component';
+import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
+
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -264,7 +266,9 @@ registerLocaleData(localeFR);
     ParticipantesUcComponent,
     ForumUcComponent,
     CardTopicoComunidadeComponent,
-    RecursoDocViewerComponent
+    RecursoDocViewerComponent,
+    ProfessorDashboardComponent,
+
   ],
   imports: [
     BrowserModule,

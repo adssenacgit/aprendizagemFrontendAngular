@@ -50,10 +50,12 @@ export class LoginUsuarioComponent implements OnInit {
 
       if (this.authGuard.VerificarAdministrador()){
         this.router.navigate(['/dashboard/administradordashboard']);
-      }else {
+      } else if (this.authGuard.VerificarProfessor()){
+        this.router.navigate(['/dashboard/professordashboard'])
+      } else {
         this.router.navigate(['/dashboard/usuariodashboard']);
       }
-
+      
     },
     (err) => {
       if (err.status === 400){
