@@ -1,44 +1,84 @@
-<p-accordion [multiple]="true">
-  <p-accordionTab
-    *ngFor="let reg of registrosAvaliacaoAtual | keyvalue"
-    header="{{ reg.key }}"
-  >
-    <p-table [value]="reg.value" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Avaliação</th>
-          <th>Conceito</th>
-          <th>Feedbacks</th>
-        </tr>
+<div class="p-grid-flex">
+  <section *ngFor="let registroAvaliacao of registrosAvaliacoes | keyvalue">
+    <p-card [header]="registroAvaliacao.key"
+            [style]="{ 'min-width': '35rem', 'max-width': '30rem', 'max-height': '30rem' }">
+      <ng-container *ngIf="registroAvaliacao.value && registroAvaliacao.value.length > 0; else emptyList">
+        <p-table [value]="registroAvaliacao.value" [tableStyle]="{ 'min-width': '30rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Avaliação</th>
+              <th>Conceito</th>
+              <th>Atividades</th>
+              <th>Feedbacks</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-registroAvaliacaoAtual>
+            <tr>
+              <td>{{ registroAvaliacaoAtual.avaliacaoTipo.descricao }}</td>
+              <td>{{ registroAvaliacaoAtual.avaliacaoConceito.descricao }}</td>
+              <td>
+                <p-button
+                  (click)="showDialogAtividade(registroAvaliacaoAtual.comentario)"
+                  icon="pi pi-search"
+                ></p-button>
+              </td>
+              <td>
+                <p-button
+                  (click)="showDialogFeedback(registroAvaliacaoAtual.comentario)"
+                  icon="pi pi-search"
+                ></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </ng-container>
+      <ng-template #emptyList>
+        <div [style]="{ 'min-width': '30rem', 'min-height': '18.5rem' }">Não há conceitos disponíveis.</div>
       </ng-template>
-      <ng-template pTemplate="body" let-reg>
-        <tr>
-          <td>{{ reg.avaliacaoTipo.descricao }}</td>
-          <td>{{ reg.avaliacaoConceito.descricao }}</td>
-          <td>
-            
-            
-              <p-button
-                (click)="showDialog(reg.comentario)"
-                icon="pi pi-external-link"
-                label="Abrir comentário do professor"
-                
-              ></p-button>
-            
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-accordionTab>
-</p-accordion>
+    </p-card>
+  </section>
+</div>
+
 
 <p-dialog
   header="Feedback"
-  [(visible)]="dialogVisible"
+  [(visible)]="isDialogVisibleFeedback"
   [breakpoints]="{ '960px': '75vw' }"
   [style]="{ width: '50vw' }"
   [draggable]="false"
   [resizable]="false"
 >
   {{ selectedComentario }}
+</p-dialog>
+
+<p-dialog
+  header="Atividades"
+  [(visible)]="isDialogVisibleAtividade"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <ng-container *ngIf="atividades.length > 0; else emptyList">
+    <p-table [value]="atividades" [style]="{ 'min-width': '100%' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Avaliação</th>
+          <th>Descrição</th>
+          <th>Conceito</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-atividade>
+        <tr>
+          <td>{{ atividade.avaliacaoTipo.descricao }}</td>
+          <td>{{ atividade }}</td>
+          <td>{{ atividade.avaliacaoConceito.descricao }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-container>
+
+  <ng-template #emptyList>
+    <div class="empty-list-message">Não há atividades disponíveis.</div>
+  </ng-template>
 </p-dialog>
