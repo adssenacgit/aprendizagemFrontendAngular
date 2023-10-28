@@ -347,7 +347,7 @@ registerLocaleData(localeFR);
     BadgeModule,
     InputMaskModule,
     EditorModule,
-    MatChipsModule,
+    MatChipsModule
   ],
   providers: [
     CursosService,

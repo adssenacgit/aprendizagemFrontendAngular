@@ -18,12 +18,31 @@
     </div>
     <div class="form-group">
       <label for="tags">Tags</label>
-      <input class="form-control" formControlName="tags" id="tags" formControlName="tags" (keydown)="onTagInput($event)" #tagInput>
-      <div class="tags-container">
-        <span class="tag" *ngFor="let tag of selectedTags">
-          {{ tag }} <button class="btn btn-link btn-sm" (click)="removeTag(tag)">x</button>
-        </span>
-      </div>
+      <mat-form-field class="tags">
+        <mat-chip-list #chipList aria-label="Tag selection">
+          <mat-chip
+            *ngFor="let tag of selectedTags"
+            (removed)="removeTag(tag)">
+            {{tag.descricao}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input
+            placeholder="Nova tag..."
+            #tagInput
+            [formControl]="tagCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="addTag($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let tag of allChapterTags" [value]="tag">
+            {{tag.descricao}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
     </div>
     <div class="form-group">
       <label for="">Descrição</label>
