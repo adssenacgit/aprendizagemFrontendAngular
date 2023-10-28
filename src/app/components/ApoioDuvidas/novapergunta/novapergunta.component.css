@@ -24,20 +24,12 @@ form label {
     padding: 8px;
 }
 
-.tag {
-    background-color: #004A8D;
-    color: white;
-    padding: 4px;
-    border-radius: 6px;
-    margin: 4px;
-}
-
-.tag button {
-  color: white;
+.tags {
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   select.form-control {
-    width: 35rem;
+    width: 50%;
   }
 }
