@@ -1,3 +1,4 @@
+import { AcompanhamentoService } from 'src/app/services/acompanhamento.service';
 import { GrupoService } from 'src/app/services/grupo.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +11,7 @@ import { PlanejamentoUcService } from 'src/app/services/planejamento-uc.service'
 import { SituacaoAprendizagemService } from 'src/app/services/situacaoaprendizagem.service';
 import { BadgeService } from 'src/app/services/badge.service';
 import { Badge } from 'src/app/models/Badge';
+import { Acompanhamento } from 'src/app/models/Acompanhamento';
 
 @Component({
   selector: 'app-usuario-unidade-curricular',
@@ -22,6 +24,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
   estudanteId: number;
   grupo: Grupo;
   encontros: Encontro[];
+  acompanhamentos: Acompanhamento[]
   badges: Badge[];
   planejamentoUc: PlanejamentoUC;
   isLoading: boolean = true;
@@ -43,6 +46,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
     private planejamentoUcService: PlanejamentoUcService,
     private situacaoAprendizagemService: SituacaoAprendizagemService,
     private badgeService: BadgeService,
+    private acompanhamentoService: AcompanhamentoService
     ) { }
 
 
@@ -58,40 +62,47 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
             this.grupo = response;
           }
         });
-      this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.estudanteId)
+      this.encontroService.ObterEncontroPorGrupoIdJava(this.grupoId)
         .subscribe({
           next: (response) => {
             this.encontros = response;
-            this.encontros.forEach((encontro, index) => {
-              this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe({
-                next: (response) => {
-                  encontro.situacoesAprendizagem = response;
-                  this.encontros[index] = encontro;
-                  encontro.situacoesAprendizagem.forEach((situacao, index2) => {
-                    this.situacaoAprendizagemService.filtrarAtividadesEObjetosBySituacaoAprendizagemId(situacao.id)
-                      .subscribe({
-                        next: (response) => {
-                          this.encontros[index].situacoesAprendizagem[index2] = response;
-                        }
-                      })
-                  })
-                }
-              });
-              this.encontroService.setEncontros(this.encontros);
-              this.totalSituacoesAprendizagem += encontro.encontroStatus.totalSituacaoAprendizagem;
-              this.totalObjetosAprendizagem += encontro.encontroStatus.totalObjetoAprendizagem;
-              this.totalAtividades += encontro.encontroStatus.totalAtividade;
-              this.totalSituacoesAprendizagemAcompanhadas += encontro.encontroStatus.totalSituacaoAprendizagemAcompanhadas;
-              this.totalObjetosAprendizagemAcompanhadas += encontro.encontroStatus.totalObjetoAprendizagemAcompanhadas;
-              this.totalAtividadesAcompanhadas += encontro.encontroStatus.totalAtividadeAcompanhadas;
-            })
-            let temp = 0
-            temp += this.totalSituacoesAprendizagem + this.totalObjetosAprendizagem + this.totalAtividades
-            console.log(temp)
-            this.progressoUC = Math.round((temp / temp) * 100)
-            this.progressoAluno = Math.round(((this.totalSituacoesAprendizagemAcompanhadas + this.totalObjetosAprendizagemAcompanhadas + this.totalAtividadesAcompanhadas) / this.progressoUC) * 100)
+            this.encontroService.setEncontros(this.encontros);
           }
         });
+      // this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.estudanteId)
+      //   .subscribe({
+      //     next: (response) => {
+      //       this.encontros = response;
+      //       this.encontros.forEach((encontro, index) => {
+      //         this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe({
+      //           next: (response) => {
+      //             encontro.situacoesAprendizagem = response;
+      //             this.encontros[index] = encontro;
+      //             encontro.situacoesAprendizagem.forEach((situacao, index2) => {
+      //               this.situacaoAprendizagemService.filtrarAtividadesEObjetosBySituacaoAprendizagemId(situacao.id)
+      //                 .subscribe({
+      //                   next: (response) => {
+      //                     this.encontros[index].situacoesAprendizagem[index2] = response;
+      //                   }
+      //                 })
+      //             })
+      //           }
+      //         });
+      //         this.encontroService.setEncontros(this.encontros);
+      //         this.totalSituacoesAprendizagem += encontro.encontroStatus.totalSituacaoAprendizagem;
+      //         this.totalObjetosAprendizagem += encontro.encontroStatus.totalObjetoAprendizagem;
+      //         this.totalAtividades += encontro.encontroStatus.totalAtividade;
+      //         this.totalSituacoesAprendizagemAcompanhadas += encontro.encontroStatus.totalSituacaoAprendizagemAcompanhadas;
+      //         this.totalObjetosAprendizagemAcompanhadas += encontro.encontroStatus.totalObjetoAprendizagemAcompanhadas;
+      //         this.totalAtividadesAcompanhadas += encontro.encontroStatus.totalAtividadeAcompanhadas;
+      //       })
+      //       let temp = 0
+      //       temp += this.totalSituacoesAprendizagem + this.totalObjetosAprendizagem + this.totalAtividades
+      //       console.log(temp)
+      //       this.progressoUC = Math.round((temp / temp) * 100)
+      //       this.progressoAluno = Math.round(((this.totalSituacoesAprendizagemAcompanhadas + this.totalObjetosAprendizagemAcompanhadas + this.totalAtividadesAcompanhadas) / this.progressoUC) * 100)
+      //     }
+      //   });
         this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
           .subscribe({
             next: (response) => {
