@@ -17,6 +17,7 @@ const httpOptions = {
 })
 export class EncontroService {
   url = environment.apiServer + 'api/Encontro';
+  javaUrl = 'http://localhost:8080/encontro'
 
   constructor(private https: HttpClient) {}
 
@@ -32,6 +33,11 @@ export class EncontroService {
 
   ObterEncontroPorGrupoIdPorEstudanteId(grupoId: number, estudanteId: number): Observable<Encontro[]> {
     const apiUrl = `${this.url}/FilterByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
+    return this.https.get<Encontro[]>(apiUrl);
+  }
+
+  ObterEncontroPorGrupoIdJava(grupoId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoId/${grupoId}`;
     return this.https.get<Encontro[]>(apiUrl);
   }
 

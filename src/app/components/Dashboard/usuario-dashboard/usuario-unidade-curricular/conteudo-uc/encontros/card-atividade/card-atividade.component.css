@@ -1,4 +1,17 @@
 p {
   margin: 0;
   padding: 0;
+  font-family: 'PoppinsLight';
+  color: #004A8D;
+}
+
+.prazo-entrega {
+  color: black;
+  font-size: 12px;
+}
+
+.prazo-entrega-data {
+  color: #EF8F2F;
+  font-family: 'PoppinsSemiBold';
+  font-size: 12px;
 }

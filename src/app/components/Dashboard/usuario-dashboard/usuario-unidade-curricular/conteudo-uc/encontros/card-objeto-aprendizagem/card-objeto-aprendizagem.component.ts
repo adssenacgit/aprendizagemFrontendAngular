@@ -15,7 +15,6 @@ export class CardObjetoAprendizagemComponent implements OnInit{
 
   arquivoData: File;
   teste: string
-  checked: boolean = false;
   selected: boolean = false;
 
   constructor(
@@ -23,7 +22,7 @@ export class CardObjetoAprendizagemComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    //  this.dataService.currentData.subscribe(data => this.teste = data)
+    // console.log(this.objeto)
   }
 
   enviarArquivoParaODocViewer(dataBase64: string) {

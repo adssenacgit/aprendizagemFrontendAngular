@@ -18,4 +18,5 @@ export class Atividade {
     grauDificuldade: GrauDificuldade;
     enunciado !: String | null;
     alternativas !: String[] | null;
+    cursado?: boolean;
 }
