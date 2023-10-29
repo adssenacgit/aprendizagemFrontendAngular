@@ -12,19 +12,19 @@
               <th>Feedbacks</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-registroAvaliacaoAtual>
+          <ng-template pTemplate="body" let-registroAvaliacao>
             <tr>
-              <td>{{ registroAvaliacaoAtual.avaliacaoTipo.descricao }}</td>
-              <td>{{ registroAvaliacaoAtual.avaliacaoConceito.descricao }}</td>
+              <td>{{ registroAvaliacao.avaliacaoTipo.descricao }}</td>
+              <td>{{ registroAvaliacao.avaliacaoConceito.descricao }}</td>
               <td>
                 <p-button
-                  (click)="showDialogAtividade(registroAvaliacaoAtual.comentario)"
-                  icon="pi pi-search"
+                  (click)="showDialogAtividade(registroAvaliacao.comentario)"
+                  icon="pi pi-search" *ngIf="registroAvaliacao.avaliacaoTipo.descricao != 'Conceito Final'"
                 ></p-button>
               </td>
               <td>
                 <p-button
-                  (click)="showDialogFeedback(registroAvaliacaoAtual.comentario)"
+                  (click)="showDialogFeedback(registroAvaliacao.comentario)"
                   icon="pi pi-search"
                 ></p-button>
               </td>
@@ -48,7 +48,7 @@
   [draggable]="false"
   [resizable]="false"
 >
-  {{ selectedComentario }}
+  {{ selectedComentario == null ? 'Não tem feedback disponível' : selectedComentario}}
 </p-dialog>
 
 <p-dialog
@@ -66,13 +66,20 @@
           <th>Avaliação</th>
           <th>Descrição</th>
           <th>Conceito</th>
+          <th>Feedback</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-atividade>
         <tr>
-          <td>{{ atividade.avaliacaoTipo.descricao }}</td>
-          <td>{{ atividade }}</td>
-          <td>{{ atividade.avaliacaoConceito.descricao }}</td>
+          <td>Ciclo 1</td>
+          <td>{{ atividade.situacaoAprendizagem.titulo }}</td>
+          <td>O</td>
+          <td>
+            <p-button
+              (click)="showDialogFeedback(atividade.situacaoAprendizagem.comentario)"
+              icon="pi pi-search"
+            ></p-button>
+          </td>
         </tr>
       </ng-template>
     </p-table>

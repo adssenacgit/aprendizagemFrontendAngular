@@ -23,46 +23,49 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   isLoading: boolean = true;
 
   registrosAvaliacoes: { [key: string]: RegistroAvaliacao[] } = {};
-  idEstudanteUsuarioLogado: number = 0;
   selectedComentario: string = "";
+
+  idEstudanteUsuarioLogado: number = 0;
 
   atividades: Atividade[] = [];
   grupos: Grupo[] = [];
   acompanhamentos: Acompanhamento[] = [];
 
   constructor(
-    private registroAvaliacaoService: RegistroAvaliacaoService,
-    private acompanhamentoService: AcompanhamentoService,
-    private grupoService: GrupoService,
-    private authGuardService: AuthGuardService,
-    private encontroService: EncontroService,
-    private situacaoAprendizagem: SituacaoAprendizagemService,
-    private atividadeService: AtividadeService
+    private _registroAvaliacaoService: RegistroAvaliacaoService,
+    private _acompanhamentoService: AcompanhamentoService,
+    private _grupoService: GrupoService,
+    private _authGuardService: AuthGuardService,
+    private _encontroService: EncontroService,
+    private _situacaoAprendizagemService: SituacaoAprendizagemService,
+    private _atividadeService: AtividadeService
   ) {
   }
 
   ngOnInit(): void {
 
-    this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
+    this.idEstudanteUsuarioLogado = this._authGuardService.getIdEstudanteUsuarioLogado();
 
-    this.grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe($grupos => {
+
+    this._grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe($grupos => {
       this.grupos = $grupos;
 
       this.grupos.forEach(grupo => {
-          this.registroAvaliacaoService.ObterRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId(this.idEstudanteUsuarioLogado, grupo.id).subscribe($registrosAvaliacoes => {
+          this._registroAvaliacaoService.ObterRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId(this.idEstudanteUsuarioLogado, grupo.id).subscribe($registrosAvaliacoes => {
             this.registrosAvaliacoes[grupo.unidadeCurricular.nomeCurto] = $registrosAvaliacoes;
 
-            this.acompanhamentoService.ObterAcompanhamentoPeloGrupoIdPeloEstudanteId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($acompanhamentos => {
+            this._acompanhamentoService.ObterAcompanhamentoPeloGrupoIdPeloEstudanteId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($acompanhamentos => {
               // em caso de teste o hard log deve apresentar lista vazia [], exceto para grupo.id = 1
               this.acompanhamentos = $acompanhamentos;
             });
           });
 
-          this.encontroService.ObterEncontroPorGrupoId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($encontros => {
+          this._encontroService.ObterEncontroPorGrupoId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($encontros => {
             $encontros.forEach(encontro => {
-              this.situacaoAprendizagem.FiltrarSituacoesAprendizagemPorEncontroId(encontro.grupoId).subscribe($situacoesAprendizagem => {
+              this._situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.grupoId).subscribe($situacoesAprendizagem => {
                 $situacoesAprendizagem.forEach(situacaoAprendizagem => {
-                  this.atividadeService.FiltrarAtividadebySituacaoAprendizagemId(situacaoAprendizagem.id).subscribe($atividades => {
+                  this._atividadeService.FiltrarAtividadebySituacaoAprendizagemId(situacaoAprendizagem.id).subscribe($atividades => {
+                    console.log($atividades)
                     this.atividades = $atividades;
                   });
                 });
