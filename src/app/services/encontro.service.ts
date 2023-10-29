@@ -2,7 +2,7 @@ import { EncontroStatus } from './../models/EncontroStatus';
 import { Encontro } from './../models/Encontro';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const httpOptions = {
@@ -62,5 +62,11 @@ export class EncontroService {
   ObterStatusDoEncontro(idEncontro:number, idUsuario: string): Observable<EncontroStatus> {
     const apiUrl = `${this.url}/ObterStatusEncontro/${idEncontro}/${idUsuario}`;
     return this.https.get<EncontroStatus>(apiUrl, httpOptions);
+  }
+
+  private encontroSource = new BehaviorSubject<Encontro[]>([])
+  currentData = this.encontroSource.asObservable();
+  setEncontros(data: Encontro[]) {
+    this.encontroSource.next(data);
   }
 }

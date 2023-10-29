@@ -35,7 +35,7 @@
       </p-button>
     </div>
   </mat-toolbar>
-  
+
   <p-sidebar [(visible)]="sidebarVisible" position="right">
     <ng-template pTemplate="header">Notificações</ng-template>
     <ng-template pTemplate="content">
@@ -44,8 +44,7 @@
           <ul class="list-unstyled mb-0">
             <li *ngFor="let item of list">
               <app-card-notificacao
-                [title]="item.title"
-                [date]="item.date"
+
               ></app-card-notificacao>
             </li>
           </ul>
@@ -53,7 +52,7 @@
       </div>
     </ng-template>
   </p-sidebar>
-  
+
   <p-sidebar
     [(visible)]="sidebarVisible2"
     position="right"
@@ -70,7 +69,7 @@
 	<div class="botoes__Menu">
         <p-button icon="pi pi-comments" styleClass="p-button-warning" (click)="sidebarVisible2 = true"></p-button>&nbsp;
 		<p-button icon="pi pi-bell" styleClass="p-button-warning" (click)="sidebarVisible = true"></p-button>&nbsp;
-        <p-button class="senacCoin" label="Senac Coin" icon="pi pi-dollar" styleClass="p-button-warning teste" badge="{{ senacCoins.saldo }}" badgeClass="p-badge-danger"></p-button>        
+        <p-button class="senacCoin" label="Senac Coin" icon="pi pi-dollar" styleClass="p-button-warning teste" badge="{{ senacCoins.saldo }}" badgeClass="p-badge-danger"></p-button>
 		<app-menu-usuario></app-menu-usuario>
 	</div>
 </mat-toolbar>

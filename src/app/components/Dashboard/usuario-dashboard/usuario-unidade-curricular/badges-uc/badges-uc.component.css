@@ -1,0 +1,10 @@
+.badges-container {
+  border: 1px solid grey;
+}
+
+p {
+  margin: 0;
+  font-family: 'PoppinsSemiBold';
+  font-size: 14px;
+  color: #004A8D;
+}

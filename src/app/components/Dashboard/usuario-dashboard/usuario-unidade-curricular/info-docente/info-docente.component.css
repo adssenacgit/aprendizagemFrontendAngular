@@ -1,0 +1,17 @@
+h3 {
+  font-family: 'PoppinsSemiBold';
+  color: #004A8D;
+  font-size: 18px;
+}
+
+p {
+  font-family: 'PoppinsRegular';
+  font-size: 14px;
+  margin: 0;
+}
+
+.user-image {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+}
