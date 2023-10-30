@@ -1,4 +1,4 @@
-<div class="p-grid-flex">
+<div class="p-grid-flex" *ngIf="isEstudante">
   <section *ngFor="let registroAvaliacao of registrosAvaliacoes | keyvalue">
     <p-card [header]="registroAvaliacao.key"
             [style]="{ 'min-width': '35rem', 'max-width': '30rem', 'max-height': '30rem' }">

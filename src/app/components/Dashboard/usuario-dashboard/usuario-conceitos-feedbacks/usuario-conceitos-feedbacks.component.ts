@@ -21,6 +21,8 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   isDialogVisibleFeedback: boolean = false;
   isDialogVisibleAtividade: boolean = false;
   isLoading: boolean = true;
+  isProfessor: boolean = false;
+  isEstudante: boolean = false;
 
   registrosAvaliacoes: { [key: string]: RegistroAvaliacao[] } = {};
   selectedComentario: string = "";
@@ -45,6 +47,8 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   ngOnInit(): void {
 
     this.idEstudanteUsuarioLogado = this._authGuardService.getIdEstudanteUsuarioLogado();
+    this.isProfessor = this._authGuardService.VerificarProfessor();
+    this.isEstudante = this._authGuardService.VerificarEstudante();
 
 
     this._grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe($grupos => {
