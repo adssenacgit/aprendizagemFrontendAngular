@@ -12,6 +12,8 @@ import { SituacaoAprendizagemService } from 'src/app/services/situacaoaprendizag
 import { BadgeService } from 'src/app/services/badge.service';
 import { Badge } from 'src/app/models/Badge';
 import { Acompanhamento } from 'src/app/models/Acompanhamento';
+import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
+import { DataService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-usuario-unidade-curricular',
@@ -44,16 +46,22 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
     private grupoService: GrupoService,
     private encontroService: EncontroService,
     private planejamentoUcService: PlanejamentoUcService,
+    private objetoAprendizagemService: ObjetoAprendizagemService,
+    private dataService: DataService,
     private situacaoAprendizagemService: SituacaoAprendizagemService,
     private badgeService: BadgeService,
     private acompanhamentoService: AcompanhamentoService
-    ) { }
+    ) {
+      this.objetoAprendizagemService.setObjetoSource(null)
+      this.dataService.setData('')
+    }
 
 
 
   async ngOnInit(): Promise<void> {
     this.grupoId = this.route.snapshot.params['id'];
     this.grupoService.setGrupoId(this.grupoId);
+
     this.estudanteId = this.authGuardService.getIdEstudanteUsuarioLogado();
     try {
       this.grupoService.ObterGrupoPeloId(this.grupoId)
