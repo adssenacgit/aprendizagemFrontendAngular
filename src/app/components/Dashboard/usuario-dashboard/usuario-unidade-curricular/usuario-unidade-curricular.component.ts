@@ -65,8 +65,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
       this.encontroService.ObterEncontroPorGrupoIdJava(this.grupoId)
         .subscribe({
           next: (response) => {
-            this.encontros = response;
-            this.encontroService.setEncontros(this.encontros);
+            this.encontroService.setEncontros(response);
           }
         });
       // this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.estudanteId)

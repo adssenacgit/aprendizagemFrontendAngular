@@ -27,8 +27,10 @@ export class EncontrosListaComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    console.log(this.encontros)
     this.estudanteId = this.authGuardService.getIdEstudanteUsuarioLogado()
     this.grupoId = this.grupoService.getGrupoId()
+
   }
 
   obterAcompanhamento(encontro: Encontro) {

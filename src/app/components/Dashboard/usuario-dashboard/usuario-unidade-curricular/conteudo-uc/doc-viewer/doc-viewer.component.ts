@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { DataService } from 'src/app/services/data-service.service';
+import { Subscription } from 'rxjs';
+import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 
 @Component({
   selector: 'app-doc-viewer',
@@ -8,28 +11,45 @@ import { DataService } from 'src/app/services/data-service.service';
 })
 export class DocViewerComponent implements OnInit {
 
-  pdfSrc = 'http://www.pdf995.com/samples/pdf.pdf';
+  // pdfSrc = 'http://www.pdf995.com/samples/pdf.pdf';
   arquivoDataString: string;
 
+  modoExibicao: string;
+  objeto: ObjetoAprendizagem;
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private objetoAprendizagemService: ObjetoAprendizagemService
   ) { }
 
   ngOnInit(): void {
     this.dataService.currentData
-      .subscribe(data => {
-        this.arquivoDataString = data;
-        console.log(this.arquivoDataString)
-        if(this.arquivoDataString.length > 0)
-          this.arquivoDataString = this.decodeBase64ToDataUrl(data);
-      })
+      .subscribe(
+          response => {
+            if(response.length > 0){
+              console.log(response)
+              this.arquivoDataString = this.decodeBase64ToDataUrl(response)
+              this.modoExibicao = 'arquivo'
+              console.log(this.arquivoDataString)
+              console.log(this.modoExibicao)
+            }
+          }
+      )
 
+    this.objetoAprendizagemService.currentObjeto
+      .subscribe({
+        next: (response) => {
+          if(response != null) {
+            this.objeto = response
+            this.modoExibicao = 'texto'
+          }
+        }
+      })
   }
 
   contentLoaded() {
     // console.log(this.arquivoDataString)
-    // console.log('File loaded');
+    console.log('File loaded');
   }
 
   decodeBase64ToDataUrl(base64String: string) {
@@ -39,8 +59,8 @@ export class DocViewerComponent implements OnInit {
       byteArray[i] = binaryString.charCodeAt(i);
     }
     const blob = new Blob([byteArray], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-    return url;
+
+    return URL.createObjectURL(blob);
   }
 }
 
