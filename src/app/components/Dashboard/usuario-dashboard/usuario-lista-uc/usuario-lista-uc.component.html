@@ -119,6 +119,7 @@
             <button
               mat-mini-fab
               color="primary"
+              (click)="setGrupo(grupo.id)"
               [routerLink]="['/grupo/', grupo.id]"
             >
               <mat-icon>list</mat-icon>
