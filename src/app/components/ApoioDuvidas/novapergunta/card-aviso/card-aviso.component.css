@@ -5,10 +5,21 @@
 
 }
 
+#botaoX {
+font-weight: 800;
+color: #122B4B;
+font-size: 9px;
+position: absolute;
+top: -4.55px;
+right: 2.5px;
+}
+
 .close-button {
   position: absolute;
   top: 15px;
   right: 15px;
+  height: 15px;
+  width: 10px;
   border-radius: 100%;
   border-color: #122B4B;
   background-color: #E7EFFC;
