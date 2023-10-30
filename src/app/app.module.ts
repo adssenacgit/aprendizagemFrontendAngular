@@ -103,6 +103,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CalendarModule } from 'primeng/calendar';
+import { PanelModule } from 'primeng/panel';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
@@ -149,6 +151,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InputMaskModule } from "primeng/inputmask";
 import { EditorModule } from 'primeng/editor';
+import { DropdownModule } from 'primeng/dropdown';
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -293,6 +296,9 @@ registerLocaleData(localeFR);
     MatProgressSpinnerModule,
     MatExpansionModule,
     FlexLayoutModule,
+    CalendarModule,
+    PanelModule,
+    DropdownModule,
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({
       config:{
