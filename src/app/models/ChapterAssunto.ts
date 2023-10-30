@@ -13,8 +13,8 @@ export class ChapterAssunto {
     chapterId: number;
     usuarioId: string
     usuarioIdVerificacao: string
-    usuario: Usuario
-    chapter:Chapter;
+    usuario: Usuario = new Usuario();
+    chapter:Chapter = new Chapter();
     totalComentarios: number;
-    chapterTag: ChapterTag[];
+    tags: ChapterTag[] = [];
 }

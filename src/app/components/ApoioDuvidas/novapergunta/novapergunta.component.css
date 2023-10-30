@@ -1,3 +1,35 @@
-#perguntarbutton {
-    margin-left: 700px;
+#perguntar{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+h2 {
+    color: #004A8D;
+    font-weight: 600;
+}
+
+form {
+
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    padding: 8px 18px 8px 18px;
+    margin: 25px 0px 8px 0px;
+}
+
+form label {
+    font-weight: 500;
+    font-size: large;
+    color: #004A8D;
+    padding: 8px;
+}
+
+.tags {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  select.form-control {
+    width: 50%;
+  }
 }
