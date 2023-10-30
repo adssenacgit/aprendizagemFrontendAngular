@@ -17,6 +17,7 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material
   templateUrl: './novapergunta.component.html',
   styleUrls: ['./novapergunta.component.css']
 })
+
 export class NovaPerguntaComponent implements OnInit {
   form: FormGroup;
   submitted = false;
@@ -103,17 +104,20 @@ export class NovaPerguntaComponent implements OnInit {
       this.pergunta.contadorVisualizacao = 0;
       this.pergunta.status = 1;
       this.pergunta.verificacao = 0;
-      this.pergunta.chapterId = this.form.value.chapter;
-      this.pergunta.usuarioId = this.authGuardService.getIdUsuarioLogado();
+      this.pergunta.tags = this.selectedTags;
 
-      // Aqui você associa as tags selecionadas à pergunta
-      this.pergunta.chapterTags = this.selectedTags;
+      if (this.pergunta.chapter) {
+        this.pergunta.chapter.id = this.form.value.chapter;
+      }
+
+      this.pergunta.usuario.id = this.authGuardService.getIdUsuarioLogado();
 
       console.log(this.form.value.titulo);
       console.log(this.form.value.text);
       console.log(this.form.value.chapter);
       console.log(this.authGuardService.getIdUsuarioLogado());
       console.log(this.selectedTags);
+      console.log(this.pergunta);
 
       this.service.NovoChapterAssunto(this.pergunta).subscribe(() => {
         console.log("Pergunta enviada");

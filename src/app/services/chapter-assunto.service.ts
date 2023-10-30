@@ -44,7 +44,7 @@ export class ChapterAssuntoService {
   NovoChapterAssunto (chapterAssunto: ChapterAssunto): Observable<any>
   {
     // return this.https.post<ChapterAssunto>(this.url, chapter, httpOptions);
-    return this.https.post<ChapterAssunto>(this.javaUrl, chapterAssunto, httpOptions);
+    return this.https.post<ChapterAssunto>(this.javaUrl, chapterAssunto);
   }
 
   AtualizarChapterAssunto(chapterId: number, chapter: ChapterAssunto):Observable<any>
