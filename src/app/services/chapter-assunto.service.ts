@@ -41,7 +41,7 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
 
-  NovoChapterAssunto (chapter: ChapterAssunto): Observable<any>
+  NovoChapterAssunto (chapterAssunto: ChapterAssunto): Observable<any>
   {
     // return this.https.post<ChapterAssunto>(this.url, chapter, httpOptions);
     return this.https.post<ChapterAssunto>(this.javaUrl, chapterAssunto);

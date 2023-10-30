@@ -1,15 +1,17 @@
-<div
-  class="d-flex  gap-2 align-items-center p-1 select"
->
+<div class="d-flex gap-2 align-items-center p-1 select">
   <p-checkbox
     [(ngModel)]="objeto.cursado"
     [binary]="true"
     inputId="binary"
   ></p-checkbox>
-  <p style="width: 80%;">{{ objeto.titulo }}</p>
+  <p style="width: 80%;" class="line-clamp"
+    (click)="setObjetoSource(objeto)"
+  >
+    {{ objeto.titulo }}
+  </p>
   <mat-icon
     *ngIf="objeto.hasArquivo"
-    (click)="enviarArquivoParaODocViewer(objeto.arquivo)"
+    (click)="getObjeto(objeto)"
     class="material-symbols-outlined"
   >
     file_open
