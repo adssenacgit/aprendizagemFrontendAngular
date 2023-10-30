@@ -55,9 +55,10 @@ export class ApoioDuvidasComponent implements OnInit {
       this.chapterTodos = data
     })
 
-    this.chapterTagService.ObterTodos().subscribe((data) => {
-      this.chapterTagTodos = data;
+    this.chapterTagService.ObterTodos().subscribe({
+      next: (data) => this.chapterTagTodos = data
     })
+
     this.comentarioService.ObterTodos().subscribe((data) =>{
       const frequencyMap = new Map();
       data.forEach((item) => {
@@ -105,6 +106,22 @@ export class ApoioDuvidasComponent implements OnInit {
       this.currentPage * this.itemsPerPage,
       this.chapterAssuntos.length
     );
+  }
+
+  ordernarPorData(order: string) {
+    if (order == 'decrescente') {
+      this.chapterAssuntos.sort(
+        (a, b) =>
+          new Date(b.dataCadastro).getDate() -
+          new Date(a.dataCadastro).getDate()
+      );
+    } else if (order == 'crescente') {
+      this.chapterAssuntos.sort(
+        (a, b) =>
+          new Date(a.dataCadastro).getDate() -
+          new Date(b.dataCadastro).getDate()
+      );
+    }
   }
 
   filtraPorTitulo(busca: string) {

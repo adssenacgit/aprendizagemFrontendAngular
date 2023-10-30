@@ -23,4 +23,6 @@ export class Encontro {
   presenca?: number;
   situacoesAprendizagem: SituacaoAprendizagem[] = [];
   lecionado?: boolean;
+  atividades: Atividade[];
+	EncontroStatus: any;
 }

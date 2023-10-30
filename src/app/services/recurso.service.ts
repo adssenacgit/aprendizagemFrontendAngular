@@ -39,17 +39,17 @@ export class RecursoService {
 
   SalvarRecurso(recurso: Recurso): Observable<Recurso> {
     const apiUrl = `${this.apiUrl}`;
-    return this.http.post<Recurso>(apiUrl, recurso, httpOptions);
+    return this.http.post<Recurso>(apiUrl, recurso);
   }
 
   DeletarRecurso(id: number): Observable<Recurso> {
     const apiUrl = `${this.apiUrl}/${id}`;
-    return this.http.delete<Recurso>(apiUrl, httpOptions);
+    return this.http.delete<Recurso>(apiUrl);
   }
 
   ObterRecursoPorId(id: number): Observable<Recurso> {
     const apiUrl = `${this.apiUrl}/${id}`;
-    return this.http.get<Recurso>(apiUrl, httpOptions);
+    return this.http.get<Recurso>(apiUrl);
   }
 
   ObterArquivoRecursoPorIdJava(id: number): Observable<Blob> {
@@ -73,6 +73,11 @@ export class RecursoService {
   ObterRecursoPorIdJava(id: number): Observable<Recurso> {
     const apiUrl = `${this.javaUrl}/${id}`;
     return this.http.get<Recurso>(apiUrl);
+  }
+
+  SalvarRecursoJava(recurso: Recurso): Observable<Recurso> {
+    const apiUrl = `${this.javaUrl}`;
+    return this.http.post<Recurso>(apiUrl, recurso);
   }
 
   AtualizarRecursoStatusJava(id: number, statusAtualizado: number) {
