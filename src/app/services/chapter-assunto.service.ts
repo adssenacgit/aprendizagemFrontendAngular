@@ -24,16 +24,23 @@ export class ChapterAssuntoService {
 
   ObterTodos() : Observable<ChapterAssunto[]>
   {
+    return this.https.get<ChapterAssunto[]>(this.url);
+  }
+
+  ObterTodosJava() : Observable<ChapterAssunto[]>
+  {
     return this.https.get<ChapterAssunto[]>(this.javaUrl);
-    // return this.https.get<ChapterAssunto[]>(this.url);
   }
 
   ObterChapterAssuntoById (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
+    const apiUrl = `${this.url}/${chapterAssuntoId}`;
+    return this.https.get<ChapterAssunto>(apiUrl);
+  }
+  ObterChapterAssuntoByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>
+  {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}`;
     return this.https.get<ChapterAssunto>(apiUrl);
-    // const apiUrl = `${this.url}/${chapterAssuntoId}`;
-    // return this.https.get<ChapterAssunto>(apiUrl);
   }
 
   ObterChapterAssuntosByChapterId (chapterId: number): Observable<ChapterAssunto[]> {
@@ -43,7 +50,11 @@ export class ChapterAssuntoService {
 
   NovoChapterAssunto (chapterAssunto: ChapterAssunto): Observable<any>
   {
-    // return this.https.post<ChapterAssunto>(this.url, chapter, httpOptions);
+    return this.https.post<ChapterAssunto>(this.url, chapterAssunto, httpOptions);
+  }
+  
+  NovoChapterAssuntoJava (chapterAssunto: ChapterAssunto): Observable<any>
+  {
     return this.https.post<ChapterAssunto>(this.javaUrl, chapterAssunto);
   }
 
@@ -65,7 +76,7 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
 
-  AssociarTagsChapterAssunto(chapterAssuntoId: number, chapterTags: ChapterTag[]): Observable<any>
+  AssociarTagsChapterAssuntoJava(chapterAssuntoId: number, chapterTags: ChapterTag[]): Observable<any>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/associar-tags`;
     return this.https.post<ChapterAssunto>(apiUrl, chapterTags, httpOptions);

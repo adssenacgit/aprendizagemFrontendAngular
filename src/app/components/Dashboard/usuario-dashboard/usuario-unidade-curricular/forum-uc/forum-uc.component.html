@@ -1,8 +1,10 @@
-<div>
-  grupoId = {{grupoId}}
-</div>
+<div *ngIf="chapter">
+  <div>
+    grupoId = {{grupoId}}
+  </div>
 
-<div>
-  chapterId = {{chapter.id}}
-  {{chapter.descricao}}
+  <div>
+    chapterId = {{chapter.id}}
+    {{chapter.descricao}}
+  </div>
 </div>
