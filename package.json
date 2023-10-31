@@ -25,6 +25,8 @@
     "@sweetalert2/ngx-sweetalert2": "^12.1.0",
     "bootstrap-icons": "^1.11.1",
     "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "ngx-bootstrap": "^0.0.1",
     "mammoth": "^1.6.0",
     "ngx-doc-viewer": "^14.0.0",
     "ngx-drag-scroll": "^14.0.1",
