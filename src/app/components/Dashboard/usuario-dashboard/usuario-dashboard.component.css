@@ -26,16 +26,19 @@ p {
 	background: white;
 	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
 	border: transparent;
-	padding: 2rem;
-	margin-bottom: 20px;
-	margin-right: 13px;
+	padding: 2.5rem;
+	margin-top: 35px;
+	padding-right: 80px;
+	margin-right: 15px;
+
   }
 
   .dashboard-usuario-card-badges {
 	background: white;
 	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
 	border: transparent;
-	padding: 2rem;
-	margin-bottom: 20px;
-	margin-right: 13px;
+	padding: 2.5rem;
+	margin-top: 50px;
+	padding-right: 80px;
+	margin-right: 15px;
   }
