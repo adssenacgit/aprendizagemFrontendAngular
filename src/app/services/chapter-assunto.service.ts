@@ -52,6 +52,7 @@ export class ChapterAssuntoService {
   {
     return this.https.post<ChapterAssunto>(this.url, chapterAssunto, httpOptions);
   }
+  
   NovoChapterAssuntoJava (chapterAssunto: ChapterAssunto): Observable<any>
   {
     return this.https.post<ChapterAssunto>(this.javaUrl, chapterAssunto);

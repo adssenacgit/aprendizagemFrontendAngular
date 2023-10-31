@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -271,7 +272,7 @@ registerLocaleData(localeFR);
     ForumUcComponent,
     CardTopicoComunidadeComponent,
     RecursoDocViewerComponent,
-    CardAvisoComponent
+    CardAvisoComponent,
   ],
   imports: [
     BrowserModule,
@@ -347,7 +348,8 @@ registerLocaleData(localeFR);
     BadgeModule,
     InputMaskModule,
     EditorModule,
-    MatChipsModule
+    MatChipsModule,
+    MatFormFieldModule
   ],
   providers: [
     CursosService,
