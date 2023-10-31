@@ -1,0 +1,66 @@
+body{
+  min-height: 100vh;
+}
+ul{
+  color: white;
+  list-style-type: none;
+}
+.cadeado{
+display: table-cell;
+vertical-align: middle;
+}
+/* Style do Status */
+.circle1 {
+width: 20px;
+height: 20px;
+background-color: #2F80ED;
+border-radius: 50%;
+display: inline-block;
+margin: 10px;
+border: 1px solid #828282;
+}
+.circle2 {
+width: 20px;
+height: 20px;
+background-color: rgb(142, 158, 173);
+border-radius: 50%;
+display: inline-block;
+margin: 10px;
+border: 1px solid #828282;
+}
+/* Style da legenda do Status */
+.div-com-legenda {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+.legenda {
+visibility: hidden;
+position: absolute;
+background-color: #092C4C;
+color: #fff;
+border-radius: 4px;
+padding: 5px;
+font-size: 14px;
+top: -15px;
+left: -60%;
+transform: translateX(-50%);
+opacity: 0;
+transition: opacity 0.3s;
+}
+.div-com-legenda:hover .legenda {
+visibility: visible;
+opacity: 0.9;
+}
+/* Responsividade */
+@media only screen and (max-width: 900px) {
+.p-timeline-vertical.p-timeline-alternate .p-timeline-event:nth-child(odd) .p-timeline-event-opposite{
+  display: none;
+}
+.p-timeline-vertical.p-timeline-alternate .p-timeline-event:nth-child(even) .p-timeline-event-opposite{
+  display: none;
+}
+.p-timeline-vertical.p-timeline-alternate .p-timeline-event:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+}
