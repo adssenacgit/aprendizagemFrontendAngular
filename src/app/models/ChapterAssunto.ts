@@ -16,9 +16,5 @@ export class ChapterAssunto {
     usuario: Usuario = new Usuario();
     chapter:Chapter = new Chapter();
     totalComentarios: number;
-<<<<<<< HEAD
-    chapterTag: ChapterTag[];
-=======
-    tags: ChapterTag[] = [];
->>>>>>> fd597e1 (Front Nova Pergunta funciona)
+    chapterTags: ChapterTag[] = [];
 }
