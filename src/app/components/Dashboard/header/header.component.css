@@ -21,13 +21,13 @@
 .menu_responsivo{
   display: none;
   justify-content: center;
-  background-color: #F2994A;
-  color: black;
-  border-radius: 20px;
+  background-color: #f7941d;
   margin-top: 10px;
+  border-radius: 20px;
 }
 .lista_menu_responsivo{
   background-color: #092C4C;
+  
 }
 .lista_menu_responsivo.li.a{
   margin-left: 5px ;
