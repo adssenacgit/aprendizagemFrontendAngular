@@ -1,14 +1,19 @@
 <div class="container" id="voltar" >
   <div>
-    <button type ="button"  class="btn btn-primary" (click)="onCancel()"routerLink="/comunidade">Voltar</button>
+    <button type ="button"  class="btn btn-primary" (click)="limparFormulario()"routerLink="/comunidade">Voltar</button>
   </div>
+
   <h2>Nova Pergunta</h2>
+
   <app-card-aviso></app-card-aviso>
+
   <form class = "needs-validation" novalidate [formGroup]="form">
+
     <div class="form-group">
       <label for="titulo">Titulo</label>
       <input class="form-control" formControlName="titulo" rows="3" formControlName="titulo" [ngClass]="{ 'is-invalid': submitted && hasError('titulo')}">
     </div>
+
     <div class="form-group">
       <label for="chapter">Chapter (Assunto)</label>
       <select class="form-control" formControlName="chapter" formControlName="chapter" required>
@@ -16,6 +21,7 @@
         <option *ngFor="let chapter of chapters" [ngValue]="chapter.id">{{chapter.nome}}</option>
       </select>
     </div>
+
     <div class="form-group">
       <label for="tags">Tags</label>
       <mat-form-field class="tags" appearance="fill">
@@ -44,13 +50,15 @@
         </mat-autocomplete>
       </mat-form-field>
     </div>
+
     <div class="form-group">
       <label for="">Descrição</label>
       <p-editor formControlName="text" [style]="{ height: '320px' }"></p-editor>
     </div>
   </form>
+
   <div id="perguntar" >
     <button type="submit" id="botaoEnviar" class="btn btn-primary" (click)="onSubmit()"routerLink="/comunidade" [disabled]="!verificarCampos()">Enviar</button>
-    <button type ="button"  class="btn btn-primary" (click)="onCancel()">Limpar Campos</button>
+    <button type ="button"  class="btn btn-primary" (click)="limparFormulario()">Limpar Campos</button>
   </div>
 </div>

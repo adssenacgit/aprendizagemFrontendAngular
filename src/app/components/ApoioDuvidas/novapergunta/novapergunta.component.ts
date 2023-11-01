@@ -131,7 +131,7 @@ export class NovaPerguntaComponent implements OnInit {
     }
   }
 
-  onCancel() {
+  limparFormulario() {
     this.form.reset();
     this.descriptions = [];
   }
