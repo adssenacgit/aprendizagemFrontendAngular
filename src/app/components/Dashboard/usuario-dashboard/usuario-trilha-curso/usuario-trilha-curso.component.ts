@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { delay, catchError, of } from 'rxjs';
 import { Modulo } from 'src/app/models/Modulo';
 import { SenacCoin } from 'src/app/models/SenacCoin';
@@ -14,7 +14,11 @@ import { ErrorService } from 'src/app/shared/alerts/error-dialog/error-dialog.se
 @Component({
   selector: 'app-trilha-curso',
   templateUrl: './usuario-trilha-curso.component.html',
-  styleUrls: ['./usuario-trilha-curso.component.css']
+  styleUrls: ['./usuario-trilha-curso.component.css'],
+
+    encapsulation:
+  ViewEncapsulation.None
+
 })
 export class UsuarioTrilhaCursoComponent implements OnInit {
 

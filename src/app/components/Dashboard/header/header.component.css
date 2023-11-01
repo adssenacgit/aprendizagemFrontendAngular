@@ -9,6 +9,8 @@
 }
 .header-container{
   justify-content: space-between;
+  height: auto;
+  align-items: center;
 }
 .botoes__Menu {
 	display: flex;
@@ -16,7 +18,26 @@
   justify-content: space-around;
 	align-items: center;
 }
-
+.menu_responsivo{
+  display: none;
+  justify-content: center;
+  background-color: #f7941d;
+  margin-top: 5px;
+}
+.lista_menu_responsivo{
+  background-color: #092C4C;
+}
+.lista_menu_responsivo.li.a{
+  margin-left: 5px ;
+}
+.menu_nav{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: medium;
+  padding: 10px;
+  gap: 1.5rem;
+}
 .nav-bar {
   background: #092C4C;
 }
@@ -47,4 +68,12 @@ a:hover {
 }
 .active {
   color: #F2994A;
+}
+@media (max-width: 1080px) {
+  .menu_nav{
+    display: none;
+  }
+  .menu_responsivo{
+    display:block;
+  }
 }

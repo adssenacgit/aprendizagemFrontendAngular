@@ -13,12 +13,20 @@
             <ng-container *ngFor="let unidadesCurriculares of modulo.unidadesCurriculares; let i = index">
               <tr [ngClass]="{ 'gray-row': i % 2 === 0 }">
                 <td style="text-align: left; border: none;">{{ unidadesCurriculares.nome }}</td>
-                <td style="text-align: center; border: none;">{{ unidadesCurriculares.horas }}</td>
-                <div *ngIf="modulo.id === 1" style="text-align: center">
-                  <i class="pi pi-unlock" style="font-size: 1.75rem; color: '#092C4C';" ></i>
+                <td style="text-align: center;vertical-align: middle; border: none;">{{ unidadesCurriculares.horas }}</td>
+                <div class="cadeado" *ngIf="modulo.id === 1" style="text-align: center">
+                  <!-- <i class="pi pi-unlock" style="font-size: 1.75rem; color: '#092C4C';" ></i> -->
+                  <div class="div-com-legenda">
+                    <div class="circle1"></div>
+                    <div class="legenda">Cursando</div>
+                  </div>
                 </div>
-                <div *ngIf="modulo.id !== 1" style="text-align: center">
-                  <i class="pi pi-lock" style="font-size: 1.75rem; color: '#F7941D';"></i>
+                <div class="cadeado" *ngIf="modulo.id !== 1" style="text-align: center">
+                  <!-- <i class="pi pi-lock" style="font-size: 1.75rem; color: '#F7941D';"></i> -->
+                  <div class="div-com-legenda">
+                    <div class="circle2"></div>
+                    <div class="legenda">Indisponível</div>
+                  </div>
                 </div>
               </tr>
             </ng-container>

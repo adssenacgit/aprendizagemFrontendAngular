@@ -13,7 +13,7 @@ import { SenacCoin } from 'src/app/models/SenacCoin';
 })
 export class HeaderComponent implements OnInit {
 
-  idUsuarioLogado : string;  
+  idUsuarioLogado : string;
   sidebarVisible: boolean;
   sidebarVisible2: boolean;
   senacCoins: SenacCoin = new SenacCoin();
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authGuardService: AuthGuardService,
     private senacCoinService: SenacCoinService,
-    private senacCoinMovimentacao: SenacCoinMovimentacaoService    
+    private senacCoinMovimentacao: SenacCoinMovimentacaoService
     ) { }
 
   ngOnInit(): void {
