@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 import { DataService } from 'src/app/services/data-service.service';
+import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
 
 @Component({
   selector: 'app-card-objeto-aprendizagem',
@@ -13,17 +14,19 @@ export class CardObjetoAprendizagemComponent implements OnInit{
   @Input()
   objeto: ObjetoAprendizagem;
 
+  objetoComArquivo: ObjetoAprendizagem
+
   arquivoData: File;
   teste: string
-  checked: boolean = false;
   selected: boolean = false;
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private objetoAprendizagemService: ObjetoAprendizagemService
   ) { }
 
   ngOnInit(): void {
-    //  this.dataService.currentData.subscribe(data => this.teste = data)
+    // console.log(this.objeto)
   }
 
   enviarArquivoParaODocViewer(dataBase64: string) {
@@ -47,5 +50,17 @@ export class CardObjetoAprendizagemComponent implements OnInit{
     return blob;
   }
 
+  setObjetoSource(objeto: ObjetoAprendizagem){
+    this.objetoAprendizagemService.setObjetoSource(objeto)
+  }
 
+  getObjeto(objeto: ObjetoAprendizagem) {
+    this.objetoAprendizagemService.obterObjetoAprendizagemPorId(objeto.id)
+      .subscribe({
+        next: response => {
+          this.objetoComArquivo = response
+        },
+        complete: () => this.dataService.setData(this.objetoComArquivo.arquivo)
+      })
+  }
 }

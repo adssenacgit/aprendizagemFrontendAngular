@@ -17,6 +17,7 @@ const httpOptions = {
 export class AcompanhamentoService {
 
   url = environment.apiServer + 'api/Acompanhamento';
+  javaUrl = 'http://localhost:8080/acompanhamento'
   constructor(private https: HttpClient) { }
 
   ObterTodos() : Observable<Acompanhamento[]>
@@ -30,9 +31,25 @@ export class AcompanhamentoService {
     return this.https.get<Acompanhamento[]>(apiUrl);
   }
 
+  ObterAcompanhamentoPeloGrupoIdPeloEstudanteIdJava (grupoId: number, estudanteId: number) : Observable<Acompanhamento[]>
+  {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
+    return this.https.get<Acompanhamento[]>(apiUrl);
+  }
+
   ObterAcompanhametoPeloId(acompanhamentoId: number): Observable<Acompanhamento>
   {
     const apiUrl = `${this.url}/${acompanhamentoId}`;
+    return this.https.get<Acompanhamento>(apiUrl);
+  }
+
+  obterAcompanhamentoPorGrupoIdPorEstudanteIdPorAtividadeIdJava(grupoId: number, estudanteId: number, atividadeId: number) {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoIdByEstudanteIdByAtividadeId/${grupoId}/${estudanteId}/${atividadeId}`;
+    return this.https.get<Acompanhamento>(apiUrl);
+  }
+
+  obterAcompanhamentoPorGrupoIdPorEstudanteIdPorObjetoIdJava(grupoId: number, estudanteId: number, objetoId: number) {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoIdByEstudanteIdByObjetoId/${grupoId}/${estudanteId}/${objetoId}`;
     return this.https.get<Acompanhamento>(apiUrl);
   }
 
@@ -47,7 +64,7 @@ export class AcompanhamentoService {
 
   ExcluirAcompanhamento(acompanhamentoId: number): Observable<any>{
     const apiUrl = `${this.url}/${acompanhamentoId}`;
-    return this.https.delete<Acompanhamento>(apiUrl, httpOptions);    
+    return this.https.delete<Acompanhamento>(apiUrl, httpOptions);
   }
 
   FiltrarAcompanhamento(nomeUsuario: string) : Observable<Acompanhamento[]>

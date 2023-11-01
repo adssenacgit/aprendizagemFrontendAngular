@@ -11,4 +11,6 @@ export class ObjetoAprendizagem {
     grauDificuldade: GrauDificuldade;
     usuarioId: string;
     usuario: Usuario;
+    cursado?: boolean;
+    hasArquivo?: boolean;
 }

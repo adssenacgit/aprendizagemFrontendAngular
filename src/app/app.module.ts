@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -103,6 +104,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CalendarModule } from 'primeng/calendar';
+import { PanelModule } from 'primeng/panel';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
@@ -149,6 +152,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InputMaskModule } from "primeng/inputmask";
 import { EditorModule } from 'primeng/editor';
+import { DropdownModule } from 'primeng/dropdown';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -185,7 +191,7 @@ import { CardTopicoComunidadeComponent } from './components/ApoioDuvidas/card-to
 import { RecursoDocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/recurso-doc-viewer/recurso-doc-viewer.component';
 import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
 import { ProfessorListaUcComponent } from './components/Dashboard/professor-dashboard/professor-lista-uc/professor-lista-uc.component';
-
+import { CardAvisoComponent } from './components/ApoioDuvidas/novapergunta/card-aviso/card-aviso.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -270,7 +276,7 @@ registerLocaleData(localeFR);
     RecursoDocViewerComponent,
     ProfessorDashboardComponent,
     ProfessorListaUcComponent,
-
+    CardAvisoComponent,
   ],
   imports: [
     BrowserModule,
@@ -299,6 +305,9 @@ registerLocaleData(localeFR);
     MatProgressSpinnerModule,
     MatExpansionModule,
     FlexLayoutModule,
+    CalendarModule,
+    PanelModule,
+    DropdownModule,
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({
       config:{
@@ -343,6 +352,8 @@ registerLocaleData(localeFR);
     BadgeModule,
     InputMaskModule,
     EditorModule,
+    MatChipsModule,
+    MatFormFieldModule
   ],
   providers: [
     CursosService,

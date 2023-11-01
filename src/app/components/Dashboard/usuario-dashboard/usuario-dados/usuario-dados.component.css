@@ -3,52 +3,64 @@
 	flex-direction: row;
 	align-items: center;
 	gap: 1rem;
-	  height: auto;
-  
+	height: 100px;
+	margin-right: 200px;
+	height: 70px;
+
+
 	  /* border-radius: 1rem;
 	  box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11); */
 	  color: #434343;
   }
-  
-  .card {
+
+  /* .card {
 	border-radius: 1rem;
 	  background: white;
 	  box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
 	  border: transparent;
 	padding: 2rem;
-  }
-  
-  .user-image {
+  } */
+
+  /* .user-image {
 	border-radius: 50%;
 	width: 100px;
 	height: 100px;
-  }
-  
-  
-  .user-info {
+  } */
+
+
+  /* .user-info {
 	display: flex;
 	flex-direction: column;
 	line-height: 0.75;
 	letter-spacing: -1px;
-  }
-  
-  .user-name {
+  } */
+
+  /* .user-name {
 	font-size: 24px;
 	font-weight: 500;
   }
-  
-  .user-email{
+	@@ -41,13 +44,23 @@
 	font-size: 16px;
 	color: #BDBDBD;
 	font-weight: 400;
-  }
-  
+  } */
+
   .user-stats {
 	letter-spacing: normal;
 	font-weight: 300;
 	font-size: 16px;
   }
-  
+
+.saldo-box {
+	width: 200px;
+	height: 50px;
+	background-color: #ffffff;
+	text-align: center;
+	line-height: 50px;
+	border: 1px solid #CBD5E1;
+	border-radius: 5px;
+  } 
+
   :host ::ng-deep p-avatar .p-avatar-lg .p-avatar-icon {
 	  font-size: 3.5rem;
   }

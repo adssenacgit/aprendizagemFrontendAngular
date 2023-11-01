@@ -1,4 +1,10 @@
-<div class="d-flex gap-2 justify-content-between p-1">
-  <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
-  <p>{{atividade.descricao}}</p>
+<div class="d-flex gap-2 align-items-center p-1">
+  <p-checkbox [(ngModel)]="atividade.cursado" [binary]="true" inputId="binary"></p-checkbox>
+  <div>
+    <p class="line-clamp">{{atividade.descricao}}</p>
+    <div class="d-flex gap-1">
+      <p class="prazo-entrega">Prazo de entrega: </p>
+      <p class="prazo-entrega-data">{{formatarDataComHora(atividade.dataFim)}}</p>
+    </div>
+  </div>
 </div>
