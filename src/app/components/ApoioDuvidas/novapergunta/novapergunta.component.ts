@@ -124,7 +124,7 @@ export class NovaPerguntaComponent implements OnInit {
       this.pergunta.usuario.id = this.authGuardService.getIdUsuarioLogado();
       console.log(this.pergunta);
       // envia a pergunta
-      this.service.NovoChapterAssunto(this.pergunta).subscribe(() => {
+      this.service.NovoChapterAssuntoJava(this.pergunta).subscribe(() => {
         console.log("Pergunta enviada");
       });
     }
