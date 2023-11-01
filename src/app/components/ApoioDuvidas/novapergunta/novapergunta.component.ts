@@ -30,6 +30,7 @@ export class NovaPerguntaComponent implements OnInit {
   descriptions: string[] = [];
   allTags: ChapterTag[] = [];
   selectedTags: ChapterTag[] = [];
+  chapterNome: string = '';
 
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
@@ -134,4 +135,9 @@ export class NovaPerguntaComponent implements OnInit {
     this.form.reset();
   }
 
-}
+  verificarCampos(): boolean {
+      return this.form.valid;
+    }
+  }
+
+
