@@ -92,7 +92,7 @@ export class NovaPerguntaComponent implements OnInit {
   // seleciona tag e adiciona no array de tags
   selected(event: MatAutocompleteSelectedEvent): void {
     const selectedTag = this.allTags.find(tag => tag.descricao === event.option.value);
-    if (selectedTag) {
+    if (selectedTag && !this.selectedTags.includes(selectedTag)) {
       this.descriptions.push(selectedTag.descricao);
       this.selectedTags.push(selectedTag);
     }
@@ -133,6 +133,7 @@ export class NovaPerguntaComponent implements OnInit {
 
   onCancel() {
     this.form.reset();
+    this.descriptions = [];
   }
 
   verificarCampos(): boolean {
