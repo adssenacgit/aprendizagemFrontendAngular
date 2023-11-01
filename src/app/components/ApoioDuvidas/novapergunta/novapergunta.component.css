@@ -3,6 +3,24 @@
     flex-direction: row-reverse;
 }
 
+#perguntar button{
+    margin: 0px 0px 0px 10px;
+}
+
+button {
+    background-color: #004A8D;
+    color: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+button:hover {
+    background-color: #003057;
+    color: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
 h2 {
     color: #004A8D;
     font-weight: 600;

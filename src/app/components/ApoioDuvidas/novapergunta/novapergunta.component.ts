@@ -30,6 +30,7 @@ export class NovaPerguntaComponent implements OnInit {
   descriptions: string[] = [];
   allTags: ChapterTag[] = [];
   selectedTags: ChapterTag[] = [];
+  chapterNome: string = '';
 
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
@@ -91,7 +92,7 @@ export class NovaPerguntaComponent implements OnInit {
   // seleciona tag e adiciona no array de tags
   selected(event: MatAutocompleteSelectedEvent): void {
     const selectedTag = this.allTags.find(tag => tag.descricao === event.option.value);
-    if (selectedTag) {
+    if (selectedTag && !this.selectedTags.includes(selectedTag)) {
       this.descriptions.push(selectedTag.descricao);
       this.selectedTags.push(selectedTag);
     }
@@ -124,14 +125,20 @@ export class NovaPerguntaComponent implements OnInit {
       this.pergunta.usuario.id = this.authGuardService.getIdUsuarioLogado();
       console.log(this.pergunta);
       // envia a pergunta
-      this.service.NovoChapterAssunto(this.pergunta).subscribe(() => {
+      this.service.NovoChapterAssuntoJava(this.pergunta).subscribe(() => {
         console.log("Pergunta enviada");
       });
     }
   }
 
-  onCancel() {
+  limparFormulario() {
     this.form.reset();
+    this.descriptions = [];
   }
 
-}
+  verificarCampos(): boolean {
+      return this.form.valid;
+    }
+  }
+
+
