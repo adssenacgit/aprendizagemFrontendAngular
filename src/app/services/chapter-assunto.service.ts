@@ -48,11 +48,16 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
 
+  ObterChapterAssuntosByChapterIdJava (chapterId: number): Observable<ChapterAssunto[]> {
+    const apiUrl = `${this.javaUrl}/filtrar-chapter-assuntos-por-chapter-id/${chapterId}`;
+    return this.https.get<ChapterAssunto[]>(apiUrl);
+  }
+
   NovoChapterAssunto (chapterAssunto: ChapterAssunto): Observable<any>
   {
     return this.https.post<ChapterAssunto>(this.url, chapterAssunto, httpOptions);
   }
-  
+
   NovoChapterAssuntoJava (chapterAssunto: ChapterAssunto): Observable<any>
   {
     return this.https.post<ChapterAssunto>(this.javaUrl, chapterAssunto);

@@ -1,3 +1,5 @@
+import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
+import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/nova-pergunta-forum-uc/nova-pergunta-forum-uc.component';
 import { MensagensComponent } from './components/Dashboard/dashboard/mensagens/mensagens.component';
 import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/usuario-recursos.component';
 import { ChapterListagemGeralComponent } from './components/Chapters/chapter-listagem-geral/chapter-listagem-geral.component';
@@ -68,7 +70,16 @@ const routes: Routes = [
             path: 'conceitos', component: ConceitosUcComponent
           },
           {
-            path: 'forum', component: ForumUcComponent
+            path: 'forum',
+            component: ForumUcComponent
+          },
+          {
+            path: 'forum/novapergunta',
+            component: NovaPerguntaForumUcComponent
+          },
+          {
+            path: 'forum/topico/:id',
+            component: TopicoForumUcComponent
           },
           {
             path: 'participantes', component: ParticipantesUcComponent

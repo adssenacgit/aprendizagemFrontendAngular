@@ -192,6 +192,9 @@ import { RecursoDocViewerComponent } from './components/Dashboard/usuario-dashbo
 import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
 import { ProfessorListaUcComponent } from './components/Dashboard/professor-dashboard/professor-lista-uc/professor-lista-uc.component';
 import { CardAvisoComponent } from './components/ApoioDuvidas/novapergunta/card-aviso/card-aviso.component';
+import { CardTopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/card-topico-forum-uc/card-topico-forum-uc.component';
+import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/nova-pergunta-forum-uc/nova-pergunta-forum-uc.component';
+import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -277,6 +280,9 @@ registerLocaleData(localeFR);
     ProfessorDashboardComponent,
     ProfessorListaUcComponent,
     CardAvisoComponent,
+    CardTopicoForumUcComponent,
+    NovaPerguntaForumUcComponent,
+    TopicoForumUcComponent,
   ],
   imports: [
     BrowserModule,
