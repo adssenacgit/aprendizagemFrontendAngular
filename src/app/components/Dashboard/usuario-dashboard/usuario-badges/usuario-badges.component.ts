@@ -17,12 +17,17 @@ export class UsuarioBadgesComponent implements OnInit {
   constructor(
     private badgeService: BadgeService,
     private authGuardService: AuthGuardService
-  ) { }
+  ) { 
+    this.badge.imagem="";
+
+    this.badges.push(this.badge);
+    this.badges.push(this.badge);
+    this.badges.push(this.badge);
+  }
 
   ngOnInit(): void {
 
     this.idEstudante = this.authGuardService.getIdEstudanteUsuarioLogado();
-
 
     this.badgeService.ObterBadgesPeloEstudanteId(this.idEstudante).subscribe(resultado => {
       this.badges = resultado;
