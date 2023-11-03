@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Progresso } from 'src/app/models/Progresso';
 
 @Component({
   selector: 'app-progresso',
@@ -8,9 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProgressoComponent implements OnInit {
 
   @Input()
-  progressoUC: number;
-  @Input()
-  progressoAluno: number;
+  progresso: Progresso;
 
   constructor() { }
 

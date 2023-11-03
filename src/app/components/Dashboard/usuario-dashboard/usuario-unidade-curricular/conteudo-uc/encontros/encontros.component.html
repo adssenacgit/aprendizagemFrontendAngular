@@ -18,12 +18,13 @@
               <div class="encontro-header-title">
                 {{ i + 1 }}. {{ encontro.observacao }}
               </div>
-              <span
-                >{{
-                  encontro.diaLetivo.dialetivo | date : "dd/MM" : "" : "pt-BR"
-                }}
-                - {{ encontro.local }}</span
-              >
+              <div class="d-flex gap-1">
+                <i *ngIf="encontro.presenca" class="pi pi-user" style="color:#27AE60"></i>
+                <i *ngIf="!encontro.presenca" class="pi pi-user-minus" style="color:#EB5757"></i>
+                <span>
+                  {{ encontro.diaLetivo.dialetivo | date : "dd/MM" : "" : "pt-BR" }} - {{ encontro.local }}
+                </span>
+              </div>
             </div>
           </div>
         </div>

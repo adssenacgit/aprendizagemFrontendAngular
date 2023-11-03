@@ -14,6 +14,8 @@ import { Badge } from 'src/app/models/Badge';
 import { Acompanhamento } from 'src/app/models/Acompanhamento';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
 import { DataService } from 'src/app/services/data-service.service';
+import { ProgressoService } from 'src/app/services/progresso.service';
+import { Progresso } from 'src/app/models/Progresso';
 
 @Component({
   selector: 'app-usuario-unidade-curricular',
@@ -30,15 +32,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
   badges: Badge[];
   planejamentoUc: PlanejamentoUC;
   isLoading: boolean = true;
-
-  totalSituacoesAprendizagem: number = 0;
-  totalObjetosAprendizagem: number = 0;
-  totalAtividades: number = 0;
-  totalSituacoesAprendizagemAcompanhadas: number = 0;
-  totalObjetosAprendizagemAcompanhadas: number = 0;
-  totalAtividadesAcompanhadas: number = 0;
-  progressoUC: number = 0;
-  progressoAluno: number = 0;
+  progresso: Progresso;
 
   constructor(
     private authGuardService : AuthGuardService,
@@ -48,9 +42,8 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
     private planejamentoUcService: PlanejamentoUcService,
     private objetoAprendizagemService: ObjetoAprendizagemService,
     private dataService: DataService,
-    private situacaoAprendizagemService: SituacaoAprendizagemService,
     private badgeService: BadgeService,
-    private acompanhamentoService: AcompanhamentoService
+    private progressoService: ProgressoService,
     ) {
       this.objetoAprendizagemService.setObjetoSource(null)
       this.dataService.setData('')
@@ -70,60 +63,29 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
             this.grupo = response;
           }
         });
-      this.encontroService.ObterEncontroPorGrupoIdJava(this.grupoId)
+      this.encontroService.ObterEncontroPorGrupoIdPorEstudanteIdJava(this.grupoId, this.estudanteId)
         .subscribe({
           next: (response) => {
             this.encontroService.setEncontros(response);
+            console.log(response)
           }
         });
-      // this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.estudanteId)
-      //   .subscribe({
-      //     next: (response) => {
-      //       this.encontros = response;
-      //       this.encontros.forEach((encontro, index) => {
-      //         this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe({
-      //           next: (response) => {
-      //             encontro.situacoesAprendizagem = response;
-      //             this.encontros[index] = encontro;
-      //             encontro.situacoesAprendizagem.forEach((situacao, index2) => {
-      //               this.situacaoAprendizagemService.filtrarAtividadesEObjetosBySituacaoAprendizagemId(situacao.id)
-      //                 .subscribe({
-      //                   next: (response) => {
-      //                     this.encontros[index].situacoesAprendizagem[index2] = response;
-      //                   }
-      //                 })
-      //             })
-      //           }
-      //         });
-      //         this.encontroService.setEncontros(this.encontros);
-      //         this.totalSituacoesAprendizagem += encontro.encontroStatus.totalSituacaoAprendizagem;
-      //         this.totalObjetosAprendizagem += encontro.encontroStatus.totalObjetoAprendizagem;
-      //         this.totalAtividades += encontro.encontroStatus.totalAtividade;
-      //         this.totalSituacoesAprendizagemAcompanhadas += encontro.encontroStatus.totalSituacaoAprendizagemAcompanhadas;
-      //         this.totalObjetosAprendizagemAcompanhadas += encontro.encontroStatus.totalObjetoAprendizagemAcompanhadas;
-      //         this.totalAtividadesAcompanhadas += encontro.encontroStatus.totalAtividadeAcompanhadas;
-      //       })
-      //       let temp = 0
-      //       temp += this.totalSituacoesAprendizagem + this.totalObjetosAprendizagem + this.totalAtividades
-      //       console.log(temp)
-      //       this.progressoUC = Math.round((temp / temp) * 100)
-      //       this.progressoAluno = Math.round(((this.totalSituacoesAprendizagemAcompanhadas + this.totalObjetosAprendizagemAcompanhadas + this.totalAtividadesAcompanhadas) / this.progressoUC) * 100)
-      //     }
-      //   });
-        this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
-          .subscribe({
-            next: (response) => {
-              this.planejamentoUc = response;
-            }
-          });
-        this.badgeService.ObterBadgesPeloGrupoId(this.grupoId)
-          .subscribe({
-            next: (res) => this.badges = res
-          })
+      this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
+        .subscribe({
+          next: (response) => {
+            this.planejamentoUc = response;
+          }
+        });
+      this.badgeService.ObterBadgesPeloGrupoId(this.grupoId)
+        .subscribe({
+          next: (res) => this.badges = res
+        })
+      this.progressoService.obterProgressoByGrupoIdByEstudanteId(this.grupoId, this.estudanteId)
+        .subscribe({
+          next: (res) => this.progresso = res
+        })
     } finally {
         this.isLoading = false;
       }
   }
-
-
 }
