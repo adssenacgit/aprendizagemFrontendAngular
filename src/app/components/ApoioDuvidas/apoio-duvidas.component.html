@@ -5,38 +5,20 @@
     <div id="page-questions" class="col-10">
       <div id="header">
         <h1>Todas as Perguntas</h1>
-        <button
-          type="button"
-          class="btn btn-primary new-question"
-          routerLink="/comunidade/novapergunta"
-        >
+        <button type="button" class="btn btn-primary new-question" routerLink="/comunidade/novapergunta">
           Nova Pergunta
         </button>
       </div>
       <div id="search">
         <div class="input-group mb-3 search-bar">
-          <input
-            type="text"
-            [(ngModel)]="busca"
-            class="form-control"
-            placeholder="Busca"
-            aria-describedby="basic-addon1"
-            (ngModelChange)="filtraPorTitulo($event)"
-          />
-          <span
-            class="input-group-text"
-            id="basic-addon1"
-            style="background-color: #1660a5; color: white"
-            ><i class="fas fa-search"></i
-          ></span>
+          <input type="text" [(ngModel)]="busca" class="form-control" placeholder="Busca"
+            aria-describedby="basic-addon1" (ngModelChange)="filtraPorTitulo($event)" />
+          <span class="input-group-text" id="basic-addon1" style="background-color: #1660a5; color: white"><i
+              class="fas fa-search"></i></span>
         </div>
         <div class="btn-group">
-          <button
-            class="btn btn-secondary btn-sm dropdown-toggle filter"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
+          <button class="btn btn-secondary btn-sm dropdown-toggle filter" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
             <i class="bi bi-filter"></i> Filtros
           </button>
           <ul class="dropdown-menu">
@@ -48,66 +30,52 @@
               <hr class="dropdown-divider" />
             </li>
             <li><a class="dropdown-item">tags</a></li>
-            <li><a  (click)="filtrarPorVerificacao()"  class="dropdown-item">com resposta verificada</a></li>
+            <li><a (click)="filtrarPorVerificacao()" class="dropdown-item">com resposta verificada</a></li>
           </ul>
         </div>
-      </div> 
-      <div
-        *ngFor="let pergunta of chapterAssuntos.slice(startIndex, endIndex)"
-        class="questionHolder"
-      >
-        <app-card-topico-comunidade
-          [topico]="pergunta"
-        ></app-card-topico-comunidade>
+      </div>
+      <div *ngFor="let pergunta of chapterAssuntos.slice(startIndex, endIndex)" class="questionHolder">
+        <app-card-topico-comunidade [topico]="pergunta"></app-card-topico-comunidade>
       </div>
     </div>
     <div id="side-info" class="col-3">
-      <div
-        class="card border-gray mb-3 vertical-stack"
-        style="max-width: 18rem"
-      >
+      <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
 
         <div class="card-header">
           <h1>Chapter</h1>
           <p><a class="link-opacity-100" [(ngModel)]="busca" (click)="filtraPorChapter('')">ver todos</a></p>
         </div>
-        <div  class="card-body">
-              <a *ngFor="let chapter of chapterTodosNomes" class="card-text" [(ngModel)]="busca" 
-              (click)="filtraPorChapter(chapter)">
-              {{chapter}}<br></a>
-             
-          
-         
+        <div class="card-body">
+          <a *ngFor="let chapter of chapterTodosNomes" class="card-text" [(ngModel)]="busca"
+            (click)="filtraPorChapter(chapter)">
+            {{chapter}}<br></a>
+
+
+
         </div>
-        
+
       </div>
-      <div 
-        class="card border-gray mb-3 vertical-stack"
-        style="max-width: 18rem"
-      >
+      <div *ngIf="chapterTagTodos" class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
         <div class="card-header">
           <h1>Tags</h1>
           <p><a class="link-opacity-100" [(ngModel)]="busca" (click)="filtraPorChapter('')">ver todos</a></p>
         </div>
-        <div class="card-body tags-card" >
+        <div class="card-body tags-card">
           <button *ngFor="let i of chapterTagTodos" type="button" class="btn btn-light">
             <i class="bi bi-tags"></i>
             <p>{{ i.descricao }}</p>
           </button>
         </div>
       </div>
-      <div
-        class="card border-gray mb-3 vertical-stack"
-        style="max-width: 18rem"
-      >
+      <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
         <div class="card-header">
           <h1>Top contribuidores</h1>
         </div>
         <div *ngFor="let i of rankComentarios" class="card-body">
-					<img class="user-image" src="{{ 'data:image/png;base64,' + i.usuario[0] }}" />
-					<p >{{i.usuario[1]}}</p>
-          <p >{{i.count}}</p>
-				</div>
+          <img class="user-image" src="{{ 'data:image/png;base64,' + i.usuario[0] }}" />
+          <p>{{i.usuario[1]}}</p>
+          <p>{{i.count}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -115,30 +83,16 @@
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item">
-        <a
-          class="page-link"
-          aria-label="Previous"
-          (click)="previousPage()"
-          [class.disabled]="currentPage === 1"
-        >
+        <a class="page-link" aria-label="Previous" (click)="previousPage()" [class.disabled]="currentPage === 1">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li class="page-item" *ngFor="let i of totalPages">
-        <a
-          class="page-link"
-          (click)="irParaPagina(i)"
-          [ngClass]="{ active: i === currentPage }"
-          >{{ i }}</a
-        >
+        <a class="page-link" (click)="irParaPagina(i)" [ngClass]="{ active: i === currentPage }">{{ i }}</a>
       </li>
       <li class="page-item">
-        <a
-          class="page-link"
-          aria-label="Next"
-          (click)="nextPage()"
-          [class.disabled]="endIndex >= chapterAssuntos.length"
-        >
+        <a class="page-link" aria-label="Next" (click)="nextPage()"
+          [class.disabled]="endIndex >= chapterAssuntos.length">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

@@ -18,6 +18,9 @@
       </div>
     </div>
 
+    <div class="info">
+    </div>
+
     <div class="question-holder">
       <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card question-card">
         <div class="card-body question-header">
@@ -42,17 +45,20 @@
 
     <form class="needs-validation" novalidate [formGroup]="form">
       <div class="form-group">
-        <label for="comentario">Comentario</label>
-        <textarea class="form-control" id="comentario" rows="3" formControlName="comentario"></textarea>
-      </div>
-      <div class="action-buttons">
-        <button type="submit" class="btn btn-primary action-send" (click)="onSubmit()">Enviar </button>
-        <button type="button" class="btn btn-default action-cancel" (click)="onCancel()"
-          routerLink="/comunidade">Cancelar</button>
+        <label for="comentario">Comentário</label>
+        <p-editor id="comentario" formControlName="comentario" [style]="{ height: '320px' }">{{ textoSanitizado
+          }}</p-editor>
       </div>
     </form>
+    <div class="action-buttons">
+      <button type="submit" class="btn btn-primary action-send" (click)="onSubmit()"
+        routerLink="/comunidade">Enviar</button>
+      <button type="button" class="btn btn-primary action-cancel" (click)="limparFormulario()">Limpar Campos</button>
+    </div>
 
   </div>
+
+  <!-- cards da lateral -->
   <div id="side-info" class="col-3">
     <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
       <div class="card-header">
@@ -82,6 +88,8 @@
     </div>
   </div>
 </div>
+
+<!-- paginacão -->
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
