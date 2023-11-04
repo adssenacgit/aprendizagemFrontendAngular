@@ -30,7 +30,10 @@ export class ApoioDuvidasComponent implements OnInit {
   usuario: Usuario;
   idUsuarioLogado: string;
   chapterTagTodos: ChapterTag[];
-  rankComentarios: { usuario: { foto: string; nome: string }; count: number }[] = [];
+  rankComentarios: {
+    usuario: { foto: string; nome: string };
+    count: number;
+  }[] = [];
 
   constructor(
     private _route: ActivatedRoute,
@@ -39,7 +42,7 @@ export class ApoioDuvidasComponent implements OnInit {
     private authGuardService: AuthGuardService,
     private chapterService: ChapterService,
     private chapterTagService: ChapterTagService,
-    private comentarioService: ComentarioService,
+    private comentarioService: ComentarioService
   ) {}
 
   ngOnInit(): void {
@@ -51,31 +54,30 @@ export class ApoioDuvidasComponent implements OnInit {
 
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
-    this.chapterService.ObterTodos().subscribe((data)=>{
-      this.chapterTodos = data
-    })
+    this.chapterService.ObterTodos().subscribe((data) => {
+      this.chapterTodos = data;
+    });
 
     this.chapterTagService.ObterTodos().subscribe({
-      next: (data) => this.chapterTagTodos = data
-    })
+      next: (data) => (this.chapterTagTodos = data),
+    });
 
     // this.comentarioService.ObterTodos().subscribe((data) =>{
-      // const frequencyMap = new Map();
-      // data.forEach((item) => {
-	    //   const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
-      //   frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
-	    // });
+    // const frequencyMap = new Map();
+    // data.forEach((item) => {
+    //   const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
+    //   frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
+    // });
     //   this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuario, count]) => ({usuario, count }));
 
-      // this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
-      //   usuario: JSON.parse(usuarioKey),
-      //   count,
-      // }));
+    // this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
+    //   usuario: JSON.parse(usuarioKey),
+    //   count,
+    // }));
 
     //   this.rankComentarios.sort((a, b) => b.count - a.count)
-	  //   this.rankComentarios =  this.rankComentarios.slice(0,3);
+    //   this.rankComentarios =  this.rankComentarios.slice(0,3);
     // })
-
 
     this.usuarioService
       .ObterUsuarioPorId(this.idUsuarioLogado)
@@ -135,11 +137,12 @@ export class ApoioDuvidasComponent implements OnInit {
     this.calculateTotalPages(true);
   }
 
-  filtraPorChapter(busca: string){
-    this.chapterAssuntos = this.chapterAssuntosTodos.filter(
-			(value) => value.chapter.nome.toLowerCase().includes(busca.toLowerCase()));
-		this.currentPage = 1;
-		this.calculateTotalPages(true);
+  filtraPorChapter(busca: string) {
+    this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) =>
+      value.chapter.nome.toLowerCase().includes(busca.toLowerCase())
+    );
+    this.currentPage = 1;
+    this.calculateTotalPages(true);
   }
 
   irParaPagina(i: number) {

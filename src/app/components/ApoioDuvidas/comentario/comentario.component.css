@@ -74,6 +74,7 @@ h4 {
 .action-cancel {
   background-color: #f38c0d;
   color: white;
+  border: #f38c0d;
 }
 
 .question-card {
