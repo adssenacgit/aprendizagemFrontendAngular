@@ -18,31 +18,79 @@
       </div>
     </div>
 
-    <div class="info">
+    <!-- pergunta -->
+    <div class="card question-card">
+      <div class="card-body question-info">
+        <div class="question-data">
+          <img class="user-image" src="{{ 'data:image/png;base64,' + pergunta.usuario.foto }}" />
+          <div class="question-texts">
+            <h4 class="comentario-usuario-nome">
+              {{pergunta.usuario.nomeCompleto}}
+            </h4>
+            <h5>{{pergunta.dataCadastro | date}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="answer-body">
+        <div class="card-body question-big-text">
+          <h1 routerLink="/comunidade/comentario/">
+            {{pergunta.titulo}}
+          </h1>
+          <h3>
+            {{pergunta.descricao}}
+          </h3>
+        </div>
+        <div class="card-body question-tags">
+          <button type="button" class="btn btn-light">
+            <i class="bi bi-tags"></i>
+            <p>sql</p>
+          </button>
+          <button type="button" class="btn btn-light">
+            <i class="bi bi-tags"></i>
+            <p>sql</p>
+          </button>
+          <button type="button" class="btn btn-light">
+            <i class="bi bi-tags"></i>
+            <p>sql</p>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="question-holder">
-      <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card question-card">
-        <div class="card-body question-header">
+    <!-- respostas -->
+    <div class="answer-holder">
+      <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card answer-card">
+        <div class="card-body answer-header">
           <h3>
+            <img class="user-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
             {{ comentario.usuario.nomeCompleto }}
           </h3>
           <h4>
             {{ comentario.data }}
           </h4>
-          <div class="question-data">
+          <div class="verified-icon">
+            <i class="bi bi-check2-all"></i>Verificado
           </div>
         </div>
-        <div class="card-body question-text">
-          <p>{{ comentario.texto }}</p>
-        </div>
-        <div class="card-body question-actions">
-          <button type="button" class="btn btn-default back-btn"> <i class="bi bi-chat"></i></button>
-          <button type="button" class="btn btn-default back-btn"> <i class="bi bi-hand-thumbs-up"></i></button>
+        <div class="answer-body">
+          <div class="card-body question-text">
+            <p>{{ comentario.texto }}</p>
+          </div>
+          <div class="card-body answer-actions">
+            <div class="first-buttons">
+              <button type="button" class="btn btn-default first-btn"> <i class="bi bi-hand-thumbs-up"></i>10</button>
+              <button type="button" class="btn btn-default first-btn"> <i class="bi bi-chat"></i>Responder</button>
+            </div>
+            <div class="second-buttons">
+              <button type="button" class="btn btn-default second-btn"> <i class="bi bi bi-pencil"></i></button>
+              <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- fazer comentários -->
     <form class="needs-validation" novalidate [formGroup]="form">
       <div class="form-group">
         <label for="comentario">Comentário</label>

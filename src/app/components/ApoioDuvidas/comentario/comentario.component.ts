@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
-import { EditorModule } from 'primeng/editor';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
+import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
 
 @Component({
   selector: 'app-comentarios',
@@ -17,6 +17,8 @@ export class ComentarioComponent implements OnInit {
   form: FormGroup;
   comentario: ChapterAssuntoComentario = new ChapterAssuntoComentario();
   comentarios: ChapterAssuntoComentario[] = [];
+  chapterAssuntos: ChapterAssunto[];
+  pergunta: ChapterAssunto;
   idUsuarioLogado: string;
   currentPage: number = 1;
   itemsPerPage: number = 4;
@@ -29,7 +31,8 @@ export class ComentarioComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private comentarioService: ComentarioService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
+    private chapterAssuntoService: ChapterAssuntoService
   ) {}
 
   ngOnInit() {
@@ -42,6 +45,10 @@ export class ComentarioComponent implements OnInit {
         this.comentarios = data;
         this.calculateTotalPages(false);
       });
+
+    this.chapterAssuntoService.ObterChapterAssuntoById(id).subscribe((data) => {
+      this.pergunta = data;
+    });
 
     this.form = this.fb.group({
       comentario: [null, [Validators.required, Validators.minLength(5)]],
