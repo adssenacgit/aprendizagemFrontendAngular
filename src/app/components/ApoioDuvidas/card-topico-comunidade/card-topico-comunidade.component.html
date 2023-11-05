@@ -18,7 +18,7 @@
         <i class="bi bi-chat"></i>
       </button>
       <button type="button" class="btn btn-light">
-        <p>40</p>
+        <p>{{curtidas}}</p>
         <i class="bi bi-hand-thumbs-up"></i>
       </button>
       <button type="button" class="btn btn-light">
@@ -37,25 +37,9 @@
     </h3>
   </div>
   <div class="card-body question-tags">
-    <button type="button" class="btn btn-light">
+    <button *ngFor="let i of topico.chapterTags" type="button" class="btn btn-light">
       <i class="bi bi-tags"></i>
-      <p>sql</p>
-    </button>
-    <button type="button" class="btn btn-light">
-      <i class="bi bi-tags"></i>
-      <p>sql</p>
-    </button>
-    <button type="button" class="btn btn-light">
-      <i class="bi bi-tags"></i>
-      <p>sql</p>
-    </button>
-    <button type="button" class="btn btn-light">
-      <i class="bi bi-tags"></i>
-      <p>sql</p>
-    </button>
-    <button type="button" class="btn btn-light">
-      <i class="bi bi-tags"></i>
-      <p>sql</p>
+      <p>{{i.descricao}}</p>
     </button>
   </div>
 </div>
