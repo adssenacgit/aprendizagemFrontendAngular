@@ -66,7 +66,7 @@
 .answer-header {
   display: flex;
   flex-direction: column;
-  flex: 0 1 20%;
+  flex: 0 1 15%;
 }
 .back-btn {
   background-color: #1660a5;
@@ -131,6 +131,7 @@ h4 {
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 .verified-icon i {
   margin-right: 8px;
@@ -198,7 +199,7 @@ h4 {
 .question-info {
   display: flex;
   flex-direction: column;
-  flex: 0 1 20%;
+  flex: 0 1 15%;
 }
 .question-data {
   display: flex;
