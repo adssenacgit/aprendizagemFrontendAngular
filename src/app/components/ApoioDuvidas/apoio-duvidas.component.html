@@ -9,6 +9,7 @@
           Nova Pergunta
         </button>
       </div>
+      <!-- Barra de pesquisa e Filtro -->
       <div id="search">
         <div class="input-group mb-3 search-bar">
           <input type="text" [(ngModel)]="busca" class="form-control" placeholder="Busca"
@@ -38,6 +39,8 @@
         <app-card-topico-comunidade [topico]="pergunta"></app-card-topico-comunidade>
       </div>
     </div>
+
+    <!-- Menu Lateral -->
     <div id="side-info" class="col-3">
       <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
         <div class="card-header">
