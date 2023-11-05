@@ -1,0 +1,60 @@
+<div *ngIf="$isProfessor">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
+    <div class="p-field">
+      <label for="firstName">Primeiro Nome</label>
+      <input
+        pInputText
+        id="firstName"
+        formControlName="firstName"
+      />
+      <div
+        *ngIf="formGroup.get('firstName')?.hasError('required') && formGroup.get('firstName')?.touched"
+        class="p-error"
+      >
+        Primeiro nome é obrigatório.
+      </div>
+    </div>
+
+    <div class="p-field">
+      <label for="lastName">Sobrenome</label>
+      <input
+        pInputText
+        id="lastName"
+        formControlName="lastName"
+      />
+      <div
+        *ngIf="formGroup.get('lastName')?.hasError('required') && formGroup.get('lastName')?.touched"
+        class="p-error"
+      >
+        Sobrenome é obrigatório.
+      </div>
+    </div>
+
+    <div class="p-field">
+      <label for="email">E-mail</label>
+      <input
+        pInputText
+        id="email"
+        formControlName="email"
+      />
+      <div
+        *ngIf="formGroup.get('email')?.hasError('required') && formGroup.get('email')?.touched"
+        class="p-error"
+      >
+        E-mail é obrigatório.
+      </div>
+      <div
+        *ngIf="formGroup.get('email')?.hasError('email') && formGroup.get('email')?.touched"
+        class="p-error"
+      >
+        E-mail inválido.
+      </div>
+    </div>
+
+    <div class="p-field">
+      <button pButton type="button" label="Enviar" (click)="onSubmit()" [disabled]="!formGroup.valid"></button>
+    </div>
+
+
+  </form>
+</div>

@@ -10,6 +10,7 @@ import {EncontroService} from "../../../../services/encontro.service";
 import {SituacaoAprendizagemService} from "../../../../services/situacaoaprendizagem.service";
 import {AtividadeService} from "../../../../services/atividade.service";
 import {Atividade} from "../../../../models/Atividade";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-conceitos-feedbacks',
@@ -17,15 +18,11 @@ import {Atividade} from "../../../../models/Atividade";
   styleUrls: ['./usuario-conceitos-feedbacks.component.css']
 })
 export class UsuarioConceitosFeedbacksComponent implements OnInit {
-
-  isDialogVisibleFeedback: boolean = false;
-  isDialogVisibleAtividade: boolean = false;
   isLoading: boolean = true;
   isProfessor: boolean = false;
   isEstudante: boolean = false;
 
   registrosAvaliacoes: { [key: string]: RegistroAvaliacao[] } = {};
-  selectedComentario: string = "";
 
   idEstudanteUsuarioLogado: number = 0;
 
@@ -69,7 +66,6 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
               this._situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.grupoId).subscribe($situacoesAprendizagem => {
                 $situacoesAprendizagem.forEach(situacaoAprendizagem => {
                   this._atividadeService.FiltrarAtividadebySituacaoAprendizagemId(situacaoAprendizagem.id).subscribe($atividades => {
-                    console.log($atividades)
                     this.atividades = $atividades;
                   });
                 });
@@ -83,20 +79,6 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
 
       this.isLoading = false;
     });
-
   }
-
-  showDialogFeedback(comentario: string) {
-    this.isDialogVisibleFeedback = true;
-    this.selectedComentario = comentario;
-    this.isDialogVisibleFeedback = true;
-  }
-
-  showDialogAtividade(comentario: string) {
-    this.isDialogVisibleAtividade = true;
-    this.selectedComentario = comentario;
-    this.isDialogVisibleAtividade = true;
-  }
-
 }
 
