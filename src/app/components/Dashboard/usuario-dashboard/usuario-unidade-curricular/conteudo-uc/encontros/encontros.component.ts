@@ -61,7 +61,6 @@ export class EncontrosListaComponent implements OnInit{
                   acompanhamento.status == 1 ? objeto.cursado = true : objeto.cursado = false
                 }
               }
-              console.log(objeto)
             }
           })
       })

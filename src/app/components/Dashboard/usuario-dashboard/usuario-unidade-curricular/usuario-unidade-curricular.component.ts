@@ -67,7 +67,6 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
         .subscribe({
           next: (response) => {
             this.encontroService.setEncontros(response);
-            console.log(response)
           }
         });
       this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)

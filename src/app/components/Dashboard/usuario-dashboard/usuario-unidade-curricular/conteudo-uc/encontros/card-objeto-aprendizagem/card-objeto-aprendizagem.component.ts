@@ -32,7 +32,6 @@ export class CardObjetoAprendizagemComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    console.log(this.objeto)
   }
 
   enviarArquivoParaODocViewer(dataBase64: string) {
@@ -47,7 +46,6 @@ export class CardObjetoAprendizagemComponent implements OnInit{
       acompanhamento.participante = this.participante
       acompanhamento.objetoAprendizagemId = objeto.id
       acompanhamento.status = 1
-      console.log(acompanhamento)
       this.acompanhamentoService.novoAcompanhamentoJava(acompanhamento)
         .subscribe(
           res => console.log(res)
