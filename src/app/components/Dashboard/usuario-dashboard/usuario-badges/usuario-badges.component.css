@@ -43,3 +43,14 @@
 	scale: 1.5;
 	color: orange;
 }
+
+@media screen and (max-width: 900px) {
+	.pi-th-large {
+	  display: none;
+	}
+	.card__header {
+		white-space: nowrap;
+		margin-left: 6rem;
+	  }
+	  
+  }

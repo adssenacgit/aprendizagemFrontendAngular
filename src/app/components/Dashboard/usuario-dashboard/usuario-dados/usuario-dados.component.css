@@ -64,4 +64,11 @@
   :host ::ng-deep p-avatar .p-avatar-lg .p-avatar-icon {
 	  font-size: 3.5rem;
   }
+
+  @media screen and (max-width: 900px) {
+	.pi-th-large {
+	  display: none;
+	}
+  }
+  
   

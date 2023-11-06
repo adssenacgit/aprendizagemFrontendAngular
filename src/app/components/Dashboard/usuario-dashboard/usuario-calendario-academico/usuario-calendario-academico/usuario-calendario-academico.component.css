@@ -1,0 +1,7 @@
+/* Responsividade */
+@media screen and (max-width: 900px) {
+  .mat-calendar {
+    display: block;
+    margin: 0 auto; /* Adiciona margem automática para centralizar horizontalmente */
+  }
+}
