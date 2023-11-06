@@ -2,7 +2,7 @@ import { EncontroStatus } from './../models/EncontroStatus';
 import { Encontro } from './../models/Encontro';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const httpOptions = {
@@ -17,6 +17,7 @@ const httpOptions = {
 })
 export class EncontroService {
   url = environment.apiServer + 'api/Encontro';
+  javaUrl = 'http://localhost:8080/encontro'
 
   constructor(private https: HttpClient) {}
 
@@ -25,13 +26,23 @@ export class EncontroService {
     return this.https.get<Encontro[]>(apiUrl);
   }
 
-  ObterEncontroPeloId(encontroId: Encontro['id']): Observable<Encontro> {
+  ObterEncontroPorId(encontroId: Encontro['id']): Observable<Encontro> {
     const apiUrl = `${this.url}/${encontroId}`;
     return this.https.get<Encontro>(apiUrl);
   }
 
-  ObterEncontroPorGrupoId(grupoId: number, estudanteId: number): Observable<Encontro[]> {
+  ObterEncontroPorGrupoIdPorEstudanteId(grupoId: number, estudanteId: number): Observable<Encontro[]> {
     const apiUrl = `${this.url}/FilterByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
+    return this.https.get<Encontro[]>(apiUrl);
+  }
+
+  ObterEncontroPorGrupoIdPorEstudanteIdJava(grupoId: number, estudanteId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
+    return this.https.get<Encontro[]>(apiUrl);
+  }
+
+  ObterEncontroPorGrupoIdJava(grupoId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoId/${grupoId}`;
     return this.https.get<Encontro[]>(apiUrl);
   }
 
@@ -64,9 +75,9 @@ export class EncontroService {
     return this.https.get<EncontroStatus>(apiUrl, httpOptions);
   }
 
-  ObterEncontrosPorGrupoIdPorUserId(grupoId: number ,idUsuario: string): Observable<Encontro>{
-    const apiUrl = `${this.url}FilterByGrupoIdByEstudanteId/${grupoId}/${idUsuario}`;
-    return this.https.get<Encontro>(apiUrl, httpOptions);
-    
+  private encontroSource = new BehaviorSubject<Encontro[]>([])
+  currentData = this.encontroSource.asObservable();
+  setEncontros(data: Encontro[]) {
+    this.encontroSource.next(data);
   }
 }

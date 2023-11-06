@@ -1,0 +1,20 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.mat-icon {
+  overflow: visible;
+}
+
+.select:hover {
+  cursor: pointer;
+
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,12 @@
+<div *ngIf="participantes != undefined" class="p-3 d-flex flex-column gap-3">
+  <div *ngFor="let participante of participantes">
+    <div class="d-flex participante-card">
+      <div>
+        <img class="user-image" src="{{'data:image/png;base64,' + participante.estudante.usuario.foto}}" />
+      </div>
+      <div>
+        {{participante.estudante.usuario.nomeCompleto}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,38 +1,39 @@
 <div class="container">
-	<div class="row">
-		<div class="d-flex bd-highlight" style="height: 100%">
-			<div class="col-6">
-				<div class="card-uc-descricao shadow-sm">
-					<p-tabView styleClass="tabview-custom">
-						<p-tabPanel header="DescriçãoDaUC">
-							<ng-template pTemplate="header">
-								<i class="pi pi-book"></i>
-								<span>Descrição da UC</span>
-							</ng-template>
+  <div class="row">
+    <div class="d-flex bd-highlight" style="height: 100%;">
+      <div class="col-6">
+        <div class="card-uc-descricao shadow-sm">
+          <p-tabView styleClass="tabview-custom">
+            <p-tabPanel header="DescriçãoDaUC">
+              <ng-template pTemplate="header">
+                <i class="pi pi-book"></i>
+                <span>Descrição da UC</span>
+              </ng-template>
 
-							<div class="container">
-								<h2>{{ grupo.unidadeCurricular.nome }} - {{ grupo.unidadeCurricular.horas }} horas</h2>
-								<h3>{{ planejamentoUC.descricao }}</h3>
-								<h3>Professor: {{ grupo.professor.usuario.nomeCompleto }}</h3>
-							</div>
-						</p-tabPanel>
-						<p-tabPanel header="HeaderParticipantes">
-							<ng-template pTemplate="header">
-								<i class="pi pi-user"></i>
-								<span>Participantes</span>
-							</ng-template>
-							<ol type="1">
-								<div *ngFor="let participante of participantes; let i = index" drag-scroll-item>
-									<li>{{ participante.usuario.nomeCompleto }}</li>
-								</div>
-							</ol>
-						</p-tabPanel>
-						<p-tabPanel header="HeaderCompetencias">
-							<ng-template pTemplate="header">
-								<i class="pi pi-skills"></i>
-								<span>Competências</span>
-							</ng-template>
-							<div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="container">
+                <h2>{{grupo.unidadeCurricular.nome}} - {{grupo.unidadeCurricular.horas}} horas </h2>
+                <h3>{{planejamentoUC.descricao}}</h3>
+                <h3>Professor: {{grupo.professor.usuario.nomeCompleto}}</h3>
+              </div>
+            </p-tabPanel>
+            <p-tabPanel header="HeaderParticipantes">
+              <ng-template pTemplate="header">
+                <i class="pi pi-user"></i>
+                <span>Participantes</span>
+              </ng-template>
+              <ol type="1">
+                <div *ngFor="let participante of participantes; let i = index" drag-scroll-item>
+                  <li>{{participante.usuario.nomeCompleto}} </li>
+                </div>
+              </ol>
+            </p-tabPanel>
+            <p-tabPanel header="HeaderCompetencias">
+              <ng-template pTemplate="header">
+                <i class="pi pi-skills"></i>
+                <span>Competências</span>
+              </ng-template>
+              <!-- Visualização de competencias  -->
+              <div class="accordion accordion-flush" id="accordionFlushExample">
 								<div *ngFor="let indicador of competenciaIndicadores; let i = index" class="accordion-item comp">
 									<h2 class="accordion-header">
 										<button
@@ -50,7 +51,7 @@
 									<div
 										[id]="'flush-collapse' + i"
 										class="accordion-collapse collapse"
-										data-bs-parent="#accordionFlushExample">
+                  >
 										<div *ngFor="let objetoAprendizagem of objetosAprendizagemCompetencia" class="accordion-body">
 											<strong>{{ objetoAprendizagem.descricao }}</strong>
 											<p>Dificuldade: {{ objetoAprendizagem.grauDificuldade.descricao }}</p>
@@ -64,99 +65,85 @@
 									</div>
 								</div>
 							</div>
-						</p-tabPanel>
-					</p-tabView>
-				</div>
-			</div>
-			<div class="col-6">
-				<div class="card-uc-descricao shadow-sm">
-					<div class="d-flex align-items-start flex-column">
-						<p-tabView styleClass="tabview-custom" style="width: 100%">
-							<p-tabPanel header="HeaderStatusParticipacao">
-								<ng-template pTemplate="header">
-									<i class="pi pi-chips"></i>
-									<span>Status de Participação</span>
-								</ng-template>
+            </p-tabPanel>
+          </p-tabView>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card-uc-descricao shadow-sm">
+          <div class="d-flex align-items-start flex-column" >
+            <p-tabView styleClass="tabview-custom" style="width:100%;" >
+              <p-tabPanel header="HeaderStatusParticipacao">
+                <ng-template pTemplate="header">
+                  <i class="pi pi-chips"></i>
+                  <span>Status de Participação</span>
+                </ng-template>
 
-								<div class="container">
-									<div class="row text-center">
-										<div class="col-4">
-											<h5>Atividades</h5>
-											<p-knob
-												[(ngModel)]="statusAtividades"
-												valueColor="SlateGray"
-												rangeColor="MediumTurquoise"
-												valueTemplate="12/20"></p-knob>
-										</div>
-										<div class="col-4">
-											<h5>Avaliações</h5>
-											<p-knob
-												[(ngModel)]="statusAtividades"
-												valueColor="SlateGray"
-												rangeColor="MediumTurquoise"></p-knob>
-										</div>
-										<div class="col-4">
-											<h5>Desafíos</h5>
-											<p-knob
-												[(ngModel)]="statusAtividades"
-												valueColor="SlateGray"
-												rangeColor="MediumTurquoise"></p-knob>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-2">
-											<h4>Meu progresso</h4>
-										</div>
-										<div class="col-10">
-											<p>{{ ((this.encontroCursados.length * 100) / this.encontros.length).toFixed(2) }}%</p>
-											<p-progressBar
-												[value]="((this.encontroCursados.length * 100) / this.encontroCursados.length).toFixed(2)">
-											</p-progressBar>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-2">
-											<h4>Progresso da UC</h4>
-										</div>
-										<div class="col-10">
-											<p>{{ ((this.encontros.length * 100) / this.unidadeCurricular.horas).toFixed(2) }}%</p>
-											<p-progressBar
-												[value]="((this.encontros.length * 100) / this.unidadeCurricular.horas).toFixed(2)">
-											</p-progressBar>
-										</div>
-									</div>
-								</div>
-							</p-tabPanel>
+                <div class="container">
+                  <div class="row text-center">
+                    <div class="col-4">
+                      <h5>Atividades</h5>
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise" valueTemplate="12/20"></p-knob>
+                    </div>
+                    <div class="col-4">
+                      <h5>Avaliações</h5>
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>
+                    </div>
+                    <div class="col-4">
+                      <h5>Desafíos</h5>
+                      <p-knob [(ngModel)]="statusAtividades" valueColor="SlateGray" rangeColor="MediumTurquoise"></p-knob>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2" >
+                        <h4>Meu progresso</h4>
+                    </div>
+                    <div class="col-10">
+                      <p-progressBar [value]="((this.situacoesAprendizagem.length * 100) / (this.encontros.length)).toFixed(2)">
+                      </p-progressBar>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2">
+                      <h4>Progresso da UC</h4>
+                    </div>
+                    <div class="col-10">
+                      <p-progressBar [value]="((this.encontros.length * 100) / (this.unidadeCurricular.horas)).toFixed(2)">
+                      </p-progressBar>
+                    </div>
+                  </div>
+                </div>
+              </p-tabPanel>
+              <p-tabPanel header="HeaderBadges">
+                <ng-template pTemplate="header">
+                  <i class="pi pi-chips"></i>
+                  <span>Badges da UC</span>
+                </ng-template>
+                <div class="container">
+                  <drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 13rem;">
+                    <div *ngFor="let badge of badges; let i = index" drag-scroll-item>
+                      <div class="card shadow-sm">
+                        <div class="card-body">
+                          <div class="divFoto">
+                            <img id="badge_img" src="{{getImage(badge.imagem)}}" width="120" height="100" />
+                          </div>
+                          <h5 style="text-align: center; margin: 0 0 0;">{{badge.descricao}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </drag-scroll>
+                </div>
 
-							<p-tabPanel header="HeaderBadges">
-								<ng-template pTemplate="header">
-									<i class="pi pi-chips"></i>
-									<span>Badges da UC</span>
-								</ng-template>
+              </p-tabPanel>
 
-								<div class="container">
-									<drag-scroll #nav [scroll-x-wheel-enabled]="true" style="height: 13rem">
-										<div *ngFor="let badge of badges; let i = index" drag-scroll-item>
-											<div class="card shadow-sm">
-												<div class="card-body">
-													<div class="divFoto">
-														<img id="badge_img" src="{{ getImage(badge.imagem) }}" width="120" height="100" />
-													</div>
-													<h5 style="text-align: center; margin: 0 0 0">{{ badge.descricao }}</h5>
-												</div>
-											</div>
-										</div>
-									</drag-scroll>
-								</div>
-							</p-tabPanel>
-						</p-tabView>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            </p-tabView>
 
-	<div class="accordion accordion" id="accordionExample">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion accordion" id="accordionExample">
 		<div *ngFor="let encontro of encontros; let i = index" class="accordion-item">
 			<h2 class="accordion-header" [id]="'heading' + i">
 				<button
@@ -167,23 +154,22 @@
 					aria-expanded="false"
 					[attr.aria-controls]="'collapse' + i"
 					>
-					<h1 style="text-align: center; margin: 0 0 0">
-						{{ encontro.diaLetivo.dialetivo | date : 'dd MMM' : '' : 'pt-BR' }}
-					</h1>
-					<h4 style="text-align: center; margin: 0 0 0">
-						{{ encontro.diaLetivo.dialetivo | date : 'EEEE' : '' : 'pt-BR' }}
-					</h4>
+					<h1 style="margin: 0">{{encontro.diaLetivo.dialetivo|date:'dd MMM':'':'pt-BR'}}</h1>
+          <h4 style="margin:0 5px;">{{encontro.diaLetivo.dialetivo|date:'EEEE':'':'pt-BR'}}</h4>
+          <p style="margin: 0 30px">{{encontro.observacao}}</p>
+          <div *ngIf="encontro.presenca">
+            <mat-icon>done_outline</mat-icon>
+          </div>
 				</button>
 			</h2>
 			<div
 				[id]="'collapse' + i"
 				class="accordion-collapse collapse"
 				[attr.aria-labelledby]="'heading' + i"
-				data-bs-parent="#accordionExample"
 				>
 				<div class="accordion-body d-flex" >
-					<div *ngFor="let situacaoAprend of encontro.situacaoAprendizagem; let i = index" class="card">
-						<div style="display: flex; flex-direction: column; justify-content: space-betwe0en" class="card-body">
+					<div *ngFor="let situacaoAprend of encontro.situacoesAprendizagem; let i = index" class="card">
+						<div style="display: flex; flex-direction: column;" class="card-body">
 							<h5 class="card-title">{{ situacaoAprend.titulo }}</h5>
 							<p class="card-text">{{ situacaoAprend.descricao }}</p>
 							<button
@@ -192,7 +178,7 @@
 								style="display: flex; margin-top: 20px; padding: 10px 15px;flex-direction: column;" *ngFor="let atividade of situacaoAprend.atividades; let i = index">
 								{{atividade.descricao}}
 							</button>
-							<button
+              <button
 								type="button"
 								class="btn btn-secondary"
 								style="display: flex; margin-top: 20px; padding: 10px 15px;flex-direction: column;" *ngFor="let objetos of situacaoAprend.objetosAprendizagem; let i = index">

@@ -3,7 +3,6 @@
 }
 .card-recursos{
     padding: 32px;
-    
 }
 .class-Button{
     display: flex;
@@ -61,4 +60,39 @@ label{
     top: -55px
 }
 
-  
+th {
+  font-family: 'PoppinsSemiBold';
+  color: #004A8D !important;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+td {
+  font-family: 'PoppinsRegular';
+  font-size: 14px;
+}
+
+.public-icon {
+  font-size: 20px;
+  color: #004A8D
+}
+
+.action-button {
+  cursor: pointer;
+}
+
+.action-button:hover {
+  color: #004A8D;
+}
+
+.proprietario-info {
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-image {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+}

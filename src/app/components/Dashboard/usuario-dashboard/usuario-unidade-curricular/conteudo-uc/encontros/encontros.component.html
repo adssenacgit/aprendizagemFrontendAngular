@@ -1,0 +1,94 @@
+<div *ngIf="this.encontros">
+  <div class="encontros-container overflow-scroll">
+    <div class="accordion">
+      <div
+        class="accordion-item"
+        *ngFor="let encontro of encontros; index as i"
+      >
+        <div class="accordion-header" [attr.id]="'panelsStayOpen-heading' + i" (click)="obterAcompanhamento(encontro)">
+          <div
+            class="accordion-button collapsed acc-header"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#panelsStayOpen-collapse' + i"
+            [attr.aria-expanded]="false"
+            [attr.aria-controls]="'panelsStayOpen-collapse' + i"
+          >
+            <div class="encontro-info-container">
+              <div class="encontro-header-title">
+                {{ i + 1 }}. {{ encontro.observacao }}
+              </div>
+              <div class="d-flex gap-1">
+                <i *ngIf="encontro.presenca" class="pi pi-user" style="color:#27AE60"></i>
+                <i *ngIf="!encontro.presenca" class="pi pi-user-minus" style="color:#EB5757"></i>
+                <span>
+                  {{ encontro.diaLetivo.dialetivo | date : "dd/MM" : "" : "pt-BR" }} - {{ encontro.local }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          [attr.id]="'panelsStayOpen-collapse' + i"
+          class="accordion-collapse collapse"
+          [attr.aria-labelledby]="'panelsStayOpen-heading' + i"
+        >
+          <div class="accordion-body">
+            <div
+              *ngIf="
+                encontro.situacoesAprendizagem != null &&
+                  encontro.situacoesAprendizagem.length > 0;
+                else semSituacao
+              "
+            >
+              <div
+                *ngFor="let sit of encontro.situacoesAprendizagem; index as j"
+              >
+                <div *ngIf="sit.objetosAprendizagem != null; else semObjetos">
+                  <div class="p-2 font-weight-bold">
+                    <p class="situacao-titulo">
+                      {{ i + 1 + "." + (j + 1) + " " }} {{ sit.titulo }}
+                    </p>
+                  </div>
+                  <div *ngFor="let obj of sit.objetosAprendizagem">
+                    <div class="border-bottom border-1 w-100">
+                      <app-card-objeto-aprendizagem
+                        [objeto]="obj"
+                        [participante] = "participante"
+                      ></app-card-objeto-aprendizagem>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="sit.atividades != null; else semAtividades">
+                  <div *ngFor="let atividade of sit.atividades">
+                    <div class="border-bottom border-1 w-100">
+                      <app-card-atividade
+                        [atividade]="atividade"
+                      ></app-card-atividade>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #semSituacao>
+  <p class="p-3" style="color: red">Sem situações de aprendizagem.</p>
+</ng-template>
+
+<ng-template #semObjetos>
+  <p style="color: red">
+    Sem objetos de aprendizagem nesta situação de aprendizagem.
+  </p>
+</ng-template>
+
+<ng-template #semAtividades>
+  <p style="color: red">
+    Sem Atividades de aprendizagem nesta situação de aprendizagem.
+  </p>
+</ng-template>

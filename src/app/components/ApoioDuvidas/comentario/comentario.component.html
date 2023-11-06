@@ -1,29 +1,101 @@
-<p-card
-*ngFor="let comentario of comentarios.slice(startIndex, endIndex)"
-  header="{{ comentario.chapterAssunto.usuario.nomeCompleto }}"
-  subheader="{{ comentario.data }}">
-  <ng-template pTemplate="header">
-    
-  </ng-template>
-  <p>
-    {{ comentario.texto }}
-  </p>
-  <ng-template pTemplate="footer">
-  </ng-template>
-</p-card>
+<div id="container">
+  <div id="content" class="col-9">
 
-<form class = "needs-validation" novalidate [formGroup]="form">
-  <div class="form-group">
-    <label for="comentario">Comentario</label>
-    <textarea class="form-control" id="comentario" rows="3" formControlName="comentario"></textarea>
-  </div>
-  <div>
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Enviar </button>
-    <button type ="button"  class="btn btn-default" (click)="onCancel()"routerLink="/comunidade">Cancelar</button>
-  </div>
-</form>
+    <div class="header">
+      <button type="button" class="btn btn-default back-btn" (click)="onCancel()" routerLink="/comunidade"> <i
+          class="bi bi-arrow-bar-left"></i> Voltar</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary btn-sm dropdown-toggle filter" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <i class="bi bi-filter"></i> Filtros
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item">Mais recentes</a></li>
+          <li><a class="dropdown-item">Mais antigos</a></li>
+          <li><a class="dropdown-item">Mais respondidos</a></li>
+          <li><a class="dropdown-item">Mais curtidos</a></li>
+        </ul>
+      </div>
+    </div>
 
-<div id="paginacao">
-  <button class="btn btn-primary" id ="Anterior"(click)="previousPage()" [disabled]="currentPage === 1"> < </button>
-  <button class="btn btn-primary" id= "Proximo" (click)="nextPage()" [disabled]="endIndex >= comentarios.length"> > </button>
+    <div class="question-holder">
+      <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card question-card">
+        <div class="card-body question-header">
+          <h3>
+            {{ comentario.usuario.nomeCompleto }}
+          </h3>
+          <h4>
+            {{ comentario.data }}
+          </h4>
+          <div class="question-data">
+          </div>
+        </div>
+        <div class="card-body question-text">
+          <p>{{ comentario.texto }}</p>
+        </div>
+        <div class="card-body question-actions">
+          <button type="button" class="btn btn-default back-btn"> <i class="bi bi-chat"></i></button>
+          <button type="button" class="btn btn-default back-btn"> <i class="bi bi-hand-thumbs-up"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <form class="needs-validation" novalidate [formGroup]="form">
+      <div class="form-group">
+        <label for="comentario">Comentario</label>
+        <textarea class="form-control" id="comentario" rows="3" formControlName="comentario"></textarea>
+      </div>
+      <div class="action-buttons">
+        <button type="submit" class="btn btn-primary action-send" (click)="onSubmit()">Enviar </button>
+        <button type="button" class="btn btn-default action-cancel" (click)="onCancel()"
+          routerLink="/comunidade">Cancelar</button>
+      </div>
+    </form>
+
+  </div>
+  <div id="side-info" class="col-3">
+    <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
+      <div class="card-header">
+        <h1>Chapter</h1>
+        <p><a class="link-opacity-100" href="#">ver todos</a></p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Banco de Dados</p>
+        <p class="card-text">Banco de Dados II</p>
+      </div>
+    </div>
+    <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
+      <div class="card-header">
+        <h1>Tags</h1>
+        <p><a class="link-opacity-100" href="#">ver todos</a></p>
+      </div>
+      <div class="card-body tags-card">
+        <button type="button" class="btn btn-light">
+          <i class="bi bi-tags"></i>
+          <p>MySQL</p>
+        </button>
+        <button type="button" class="btn btn-light">
+          <i class="bi bi-tags"></i>
+          <p>Sql Server</p>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" aria-label="Previous" (click)="previousPage()" [class.disabled]="currentPage === 1">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item" *ngFor="let i of totalPages">
+      <a class="page-link" (click)="irParaPagina(i)" [ngClass]="{ active: i === currentPage }">{{ i }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" aria-label="Next" (click)="nextPage()" [class.disabled]="endIndex >= comentarios.length">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

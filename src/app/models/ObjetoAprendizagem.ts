@@ -3,6 +3,7 @@ import { Usuario } from "./Usuario";
 
 export class ObjetoAprendizagem {
     id: number;
+    titulo: string;
     descricao: string;
     arquivo: string;
     status: number;
@@ -10,4 +11,6 @@ export class ObjetoAprendizagem {
     grauDificuldade: GrauDificuldade;
     usuarioId: string;
     usuario: Usuario;
+    cursado?: boolean;
+    hasArquivo?: boolean;
 }

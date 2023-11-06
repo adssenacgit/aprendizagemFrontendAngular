@@ -1,3 +1,5 @@
+import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
+import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/nova-pergunta-forum-uc/nova-pergunta-forum-uc.component';
 import { MensagensComponent } from './components/Dashboard/dashboard/mensagens/mensagens.component';
 import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/usuario-recursos.component';
 import { ChapterListagemGeralComponent } from './components/Chapters/chapter-listagem-geral/chapter-listagem-geral.component';
@@ -23,6 +25,7 @@ import { ListagemOfertasComponent } from './components/Oferta/listagem-ofertas/l
 import { AtualizarOfertaComponent } from './components/Oferta/atualizar-oferta/atualizar-oferta.component';
 import { UsuarioDashboardComponent } from './components/Dashboard/usuario-dashboard/usuario-dashboard.component';
 import { AdministradorDashboardComponent } from './components/Dashboard/administrador-dashboard/administrador-dashboard.component';
+import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
 import { TimelineDetalhesComponent } from './components/UnidadeCurricular/timeline/timeline-detalhes/timeline-detalhes.component';
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
@@ -38,6 +41,13 @@ import { ApoioDuvidasComponent } from './components/ApoioDuvidas/apoio-duvidas.c
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 import { UsuarioRequerimentoWebComponent } from './components/Dashboard/usuario-dashboard/usuario-requerimento-web/usuario-requerimento-web.component';
 import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
+import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
+import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/encontros.component';
+import { ConteudoUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/conteudo-uc.component';
+import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/tarefas-uc/tarefas-uc.component';
+import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
+import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
+import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
 
 const routes: Routes = [
   {
@@ -45,6 +55,37 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuardService],
     children:[
+      {
+        path: 'grupo/:id',
+        component: UsuarioUnidadeCurricularComponent,
+        children: [
+          { path: "", redirectTo:"aulas", pathMatch: "full" },
+          {
+            path: 'aulas', component: ConteudoUcComponent
+          },
+          {
+            path: 'tarefas', component: TarefasUcComponent
+          },
+          {
+            path: 'conceitos', component: ConceitosUcComponent
+          },
+          {
+            path: 'forum',
+            component: ForumUcComponent
+          },
+          {
+            path: 'forum/novapergunta',
+            component: NovaPerguntaForumUcComponent
+          },
+          {
+            path: 'forum/topico/:id',
+            component: TopicoForumUcComponent
+          },
+          {
+            path: 'participantes', component: ParticipantesUcComponent
+          }
+        ],
+      },
       {
         path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent
       },
@@ -77,6 +118,9 @@ const routes: Routes = [
       },
       {
         path: 'dashboard/administradordashboard', component: AdministradorDashboardComponent
+      },
+      {
+        path: 'dashboard/professordashboard', component: ProfessorDashboardComponent
       },
       {
         path: 'badges/listagembadges', component: ListagemBadgesComponent

@@ -1,0 +1,9 @@
+<div class="container container-shadow progresso-container p-3 border rounded d-flex flex-column justify-content-between"
+  *ngIf="progresso">
+  <p>Progresso da UC</p>
+  <p-progressBar [style]="{ height: '20px', fontSize: '14px' }" [value]="progresso.progressoUc"></p-progressBar>
+
+  <p>Progresso do Aluno</p>
+  <p-progressBar [style]="{ height: '20px', fontSize: '14px' }" [value]="progresso.progressoEstudante"
+  pTooltip="{{progresso.progressoEstudante}}%" tooltipPosition="bottom"></p-progressBar>
+</div>

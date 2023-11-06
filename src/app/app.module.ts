@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -103,6 +104,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CalendarModule } from 'primeng/calendar';
+import { PanelModule } from 'primeng/panel';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
@@ -118,6 +121,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { BadgeModule } from 'primeng/badge';
 import Swal from 'sweetalert2';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
@@ -146,6 +150,11 @@ import { ListboxModule } from 'primeng/listbox';
 import { SidebarModule } from 'primeng/sidebar';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { InputMaskModule } from "primeng/inputmask";
+import { EditorModule } from 'primeng/editor';
+import { DropdownModule } from 'primeng/dropdown';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -162,6 +171,30 @@ import localeDE from '@angular/common/locales/de';
 import localeFR from '@angular/common/locales/fr';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
+import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
+import { CardInfoGrupoComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/card-info-grupo/card-info-grupo.component';
+import { LinkComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/link/link.component';
+import { ProgressoComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/progresso/progresso.component';
+import { InfoDocenteComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/info-docente/info-docente.component';
+import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/encontros.component';
+import { CardObjetoAprendizagemComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/card-objeto-aprendizagem/card-objeto-aprendizagem.component';
+import { CardAtividadeComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/card-atividade/card-atividade.component';
+import { DocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/doc-viewer/doc-viewer.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { BadgesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/badges-uc/badges-uc.component';
+import { ConteudoUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/conteudo-uc.component';
+import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/tarefas-uc/tarefas-uc.component';
+import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
+import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
+import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
+import { CardTopicoComunidadeComponent } from './components/ApoioDuvidas/card-topico-comunidade/card-topico-comunidade.component';
+import { RecursoDocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/recurso-doc-viewer/recurso-doc-viewer.component';
+import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
+import { ProfessorListaUcComponent } from './components/Dashboard/professor-dashboard/professor-lista-uc/professor-lista-uc.component';
+import { CardAvisoComponent } from './components/ApoioDuvidas/novapergunta/card-aviso/card-aviso.component';
+import { CardTopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/card-topico-forum-uc/card-topico-forum-uc.component';
+import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/nova-pergunta-forum-uc/nova-pergunta-forum-uc.component';
+import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -207,6 +240,7 @@ registerLocaleData(localeFR);
     ChapterListagemGeralComponent,
     EstudoPrevioComponent,
     EncontrosComponent,
+    EncontrosListaComponent,
     DialogIndicadoresComponent,
     UsuarioArquivosPrivadosComponent,
     UsuarioDadosComponent,
@@ -226,7 +260,29 @@ registerLocaleData(localeFR);
     SideNavComponent,
     AjudaComponent,
     UsuarioNoticiasComponent,
-    CardMensagemComponent
+    CardMensagemComponent,
+    UsuarioUnidadeCurricularComponent,
+    CardInfoGrupoComponent,
+    LinkComponent,
+    ProgressoComponent,
+    InfoDocenteComponent,
+    CardObjetoAprendizagemComponent,
+    CardAtividadeComponent,
+    DocViewerComponent,
+    BadgesUcComponent,
+    ConteudoUcComponent,
+    TarefasUcComponent,
+    ConceitosUcComponent,
+    ParticipantesUcComponent,
+    ForumUcComponent,
+    CardTopicoComunidadeComponent,
+    RecursoDocViewerComponent,
+    ProfessorDashboardComponent,
+    ProfessorListaUcComponent,
+    CardAvisoComponent,
+    CardTopicoForumUcComponent,
+    NovaPerguntaForumUcComponent,
+    TopicoForumUcComponent,
   ],
   imports: [
     BrowserModule,
@@ -255,6 +311,9 @@ registerLocaleData(localeFR);
     MatProgressSpinnerModule,
     MatExpansionModule,
     FlexLayoutModule,
+    CalendarModule,
+    PanelModule,
+    DropdownModule,
     NgxMaskModule.forRoot(),
     JwtModule.forRoot({
       config:{
@@ -294,7 +353,13 @@ registerLocaleData(localeFR);
     ConfirmDialogModule,
     InputTextareaModule,
     InputTextModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    NgxDocViewerModule,
+    BadgeModule,
+    InputMaskModule,
+    EditorModule,
+    MatChipsModule,
+    MatFormFieldModule
   ],
   providers: [
     CursosService,

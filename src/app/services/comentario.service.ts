@@ -20,7 +20,7 @@ export class ComentarioService {
   url = environment.apiServer + 'api/ChapterAssuntoComentario';
   constructor(private https: HttpClient) { }
 
-  ObterTodos():Observable<ChapterAssuntoComentario[]>{
+  ObterTodos(): Observable<ChapterAssuntoComentario[]>{
     const apiUrl = `${this.url}`;
     let teste = this.https.get<ChapterAssuntoComentario[]>(apiUrl)
     return teste;
@@ -36,5 +36,5 @@ export class ComentarioService {
   NovoChapterAssuntoComentario (comentario: ChapterAssuntoComentario): Observable<ChapterAssuntoComentario>
   {
     return this.https.post<ChapterAssuntoComentario>(this.url, comentario, httpOptions);
-  }  
+  }
 }
