@@ -48,6 +48,7 @@ import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usu
 import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
+import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 
 const routes: Routes = [
   {
@@ -193,6 +194,9 @@ const routes: Routes = [
       },
       {
         path: 'noticias', component: UsuarioNoticiasComponent
+      },
+      {
+        path: 'perfil', component: UsuarioPerfilComponent
       }
     ]
   },

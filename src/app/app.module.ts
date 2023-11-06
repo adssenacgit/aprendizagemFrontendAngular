@@ -195,6 +195,7 @@ import { CardAvisoComponent } from './components/ApoioDuvidas/novapergunta/card-
 import { CardTopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/card-topico-forum-uc/card-topico-forum-uc.component';
 import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/nova-pergunta-forum-uc/nova-pergunta-forum-uc.component';
 import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
+import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -283,6 +284,7 @@ registerLocaleData(localeFR);
     CardTopicoForumUcComponent,
     NovaPerguntaForumUcComponent,
     TopicoForumUcComponent,
+    UsuarioPerfilComponent
   ],
   imports: [
     BrowserModule,
