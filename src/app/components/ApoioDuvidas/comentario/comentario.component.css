@@ -16,6 +16,15 @@
   justify-content: space-between;
   padding: 10px 0px 20px 0px;
 }
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.title h1 {
+  color: #0e4070;
+  font-weight: bold;
+}
 .filter {
   color: black;
   border: none !important;
@@ -184,6 +193,7 @@ h4 {
   flex-direction: row;
   cursor: pointer;
   justify-content: center;
+  margin: 30px 0px;
 }
 .active {
   background-color: #1660a5;
@@ -236,4 +246,16 @@ h4 {
 }
 .question-tags p {
   margin: 0;
+}
+.model-fade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

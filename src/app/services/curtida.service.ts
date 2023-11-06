@@ -5,23 +5,24 @@ import { environment } from 'src/environments/environment';
 import { Curtida } from '../models/Curtida';
 
 const httpOptions = {
-  headers: new HttpHeaders ({
-    'Content-Type' : 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('TokenUsuarioLogado')}`
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('TokenUsuarioLogado')}`,
   }),
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CurtidaService {
-  url:string = environment.apiServer + 'api/Curtida';
+  url: string = environment.apiServer + 'api/Curtida';
 
-  constructor(private https: HttpClient) { }
+  constructor(private https: HttpClient) {}
 
-  TotalFilterByChapterAssuntoComentarioId (ComentarioId: number) : Observable<number>
-  {
-    const apiUrl = `${this.url}/TotalFilterByChapterAssuntoComentarioId/${ComentarioId}`
+  TotalFilterByChapterAssuntoComentarioId(
+    ComentarioId: number
+  ): Observable<number> {
+    const apiUrl = `${this.url}/TotalFilterByChapterAssuntoComentarioId/${ComentarioId}`;
     return this.https.get<number>(apiUrl);
   }
 }

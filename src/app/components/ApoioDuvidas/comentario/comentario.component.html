@@ -4,18 +4,6 @@
     <div class="header">
       <button type="button" class="btn btn-default back-btn" (click)="onCancel()" routerLink="/comunidade"> <i
           class="bi bi-arrow-bar-left"></i> Voltar</button>
-      <div class="btn-group">
-        <button class="btn btn-secondary btn-sm dropdown-toggle filter" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <i class="bi bi-filter"></i> Filtros
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item">Mais recentes</a></li>
-          <li><a class="dropdown-item">Mais antigos</a></li>
-          <li><a class="dropdown-item">Mais respondidos</a></li>
-          <li><a class="dropdown-item">Mais curtidos</a></li>
-        </ul>
-      </div>
     </div>
 
     <!-- pergunta -->
@@ -59,6 +47,23 @@
 
     <!-- respostas -->
     <div class="answer-holder">
+      <div class="title">
+        <h1>Respostas</h1>
+        <div class="div">
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-sm dropdown-toggle filter" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-filter"></i> Filtros
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item">Mais recentes</a></li>
+              <li><a class="dropdown-item">Mais antigos</a></li>
+              <li><a class="dropdown-item">Mais respondidos</a></li>
+              <li><a class="dropdown-item">Mais curtidos</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card answer-card">
         <div class="card-body answer-header">
           <h3>
@@ -82,13 +87,50 @@
               <button type="button" class="btn btn-default first-btn"> <i class="bi bi-chat"></i>Responder</button>
             </div>
             <div class="second-buttons">
-              <button type="button" class="btn btn-default second-btn"> <i class="bi bi bi-pencil"></i></button>
+              <button type="button" class="btn btn-default second-btn" data-bs-toggle="modal"
+                data-bs-target="#exampleModal"> <i class="bi bi bi-pencil"></i></button>
               <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
             </div>
           </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
+    <!-- paginacão -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" aria-label="Previous" (click)="previousPage()" [class.disabled]="currentPage === 1">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" *ngFor="let i of totalPages">
+          <a class="page-link" (click)="irParaPagina(i)" [ngClass]="{ active: i === currentPage }">{{ i }}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" aria-label="Next" (click)="nextPage()" [class.disabled]="endIndex >= comentarios.length">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
     <!-- fazer comentários -->
     <form class="needs-validation" novalidate [formGroup]="form">
@@ -136,22 +178,3 @@
     </div>
   </div>
 </div>
-
-<!-- paginacão -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" aria-label="Previous" (click)="previousPage()" [class.disabled]="currentPage === 1">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item" *ngFor="let i of totalPages">
-      <a class="page-link" (click)="irParaPagina(i)" [ngClass]="{ active: i === currentPage }">{{ i }}</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" aria-label="Next" (click)="nextPage()" [class.disabled]="endIndex >= comentarios.length">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>

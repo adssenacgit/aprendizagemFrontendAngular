@@ -6,6 +6,8 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
+import { Curtida } from 'src/app/models/Curtida';
+import { CurtidaService } from 'src/app/services/curtida.service';
 
 @Component({
   selector: 'app-comentarios',
@@ -26,6 +28,8 @@ export class ComentarioComponent implements OnInit {
   endIndex: number = this.currentPage * this.itemsPerPage;
   totalPages: number[];
   descriptions: string[] = [];
+  curtidas: number;
+  curtidasMap: Map<number, number> = new Map<number, number>();
 
   constructor(
     private fb: FormBuilder,
