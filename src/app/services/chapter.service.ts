@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Chapter } from '../models/Chapter';
 
@@ -20,6 +20,7 @@ export class ChapterService {
 
   constructor(private https: HttpClient) { }
 
+ 
   ObterTodos() : Observable<Chapter[]>
   {
     return this.https.get<Chapter[]>(this.url);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
 import { ActivatedRoute } from '@angular/router';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
@@ -11,6 +11,7 @@ import { ComentarioService } from 'src/app/services/comentario.service';
 import { ChapterTag } from 'src/app/models/ChapterTag';
 import { Chapter } from 'src/app/models/Chapter';
 import { ChapterTagService } from 'src/app/services/chapter-tag.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-apoio-duvidas',
@@ -22,6 +23,7 @@ export class ApoioDuvidasComponent implements OnInit {
   chapterAssuntos: ChapterAssunto[];
   chapterAssuntosTodos: ChapterAssunto[];
   chapterTodos: Chapter[];
+  chapterTodosNomes: string[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 8;
   startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
@@ -30,7 +32,8 @@ export class ApoioDuvidasComponent implements OnInit {
   usuario: Usuario;
   idUsuarioLogado: string;
   chapterTagTodos: ChapterTag[];
-  rankComentarios: { usuario: { foto: string; nome: string }; count: number }[] = [];
+  rankComentarios: { usuario: [ foto: string, nome: string ]; count: number }[] = [];
+  loading = true
 
   constructor(
     private _route: ActivatedRoute,
@@ -40,7 +43,10 @@ export class ApoioDuvidasComponent implements OnInit {
     private chapterService: ChapterService,
     private chapterTagService: ChapterTagService,
     private comentarioService: ComentarioService,
-  ) {}
+    private cdr: ChangeDetectorRef, 
+  ) {interval(1000).subscribe(() => {
+    this.cdr.detectChanges();
+  });}
 
   ngOnInit(): void {
     this.chapterAssuntoService.ObterTodos().subscribe((data) => {
@@ -49,32 +55,30 @@ export class ApoioDuvidasComponent implements OnInit {
       this.calculateTotalPages(false);
     });
 
+    this.todosChapter();
+
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
-    this.chapterService.ObterTodos().subscribe((data)=>{
-      this.chapterTodos = data
+    this.chapterTagService.ObterTodos().subscribe((data) => this.chapterTagTodos = data
+    );
+
+    this.comentarioService.ObterTodos().subscribe((data) =>{
+      const frequencyMap = new Map();
+      data.forEach((item) => {
+	      const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
+        frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
+	    });
+      this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuario, count]) => ({usuario, count }));
+
+      this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
+        usuario: JSON.parse(usuarioKey),
+        count,
+      }));
+
+      this.rankComentarios.sort((a, b) => b.count - a.count);
+	    this.rankComentarios =  this.rankComentarios.slice(0,3);
+
     })
-
-    this.chapterTagService.ObterTodos().subscribe({
-      next: (data) => this.chapterTagTodos = data
-    })
-
-    // this.comentarioService.ObterTodos().subscribe((data) =>{
-      // const frequencyMap = new Map();
-      // data.forEach((item) => {
-	    //   const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
-      //   frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
-	    // });
-    //   this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuario, count]) => ({usuario, count }));
-
-      // this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
-      //   usuario: JSON.parse(usuarioKey),
-      //   count,
-      // }));
-
-    //   this.rankComentarios.sort((a, b) => b.count - a.count)
-	  //   this.rankComentarios =  this.rankComentarios.slice(0,3);
-    // })
 
 
     this.usuarioService
@@ -83,6 +87,16 @@ export class ApoioDuvidasComponent implements OnInit {
         this.usuario = resultado;
       });
   }
+
+  todosChapter() {
+    this.chapterService.ObterTodos().subscribe((data) => {
+        this.chapterTodos = data;
+        this.chapterTodos.forEach(val => this.chapterTodosNomes.push(val.nome));
+        console.log(this.chapterTodosNomes);
+    });
+}
+
+
 
   previousPage() {
     if (this.currentPage > 1) {
@@ -123,6 +137,14 @@ export class ApoioDuvidasComponent implements OnInit {
           new Date(b.dataCadastro).getDate()
       );
     }
+  }
+
+  ordernarPorResposta(order: string) {
+    if (order == 'decrescente') {
+      this.chapterAssuntos.sort(
+        (a, b) =>
+          b.totalComentarios -
+          a.totalComentarios);}
   }
 
   filtraPorTitulo(busca: string) {

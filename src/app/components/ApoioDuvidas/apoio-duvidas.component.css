@@ -53,6 +53,12 @@
   }
   .card-header p {
 	margin: 0;
+	cursor: pointer;
+  }
+
+  .card-body a {
+	margin: 0;
+	cursor: pointer;
   }
   .card-text {
 	font-size: 16px;
