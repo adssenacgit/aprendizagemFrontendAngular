@@ -32,8 +32,9 @@ export class ApoioDuvidasComponent implements OnInit {
   usuario: Usuario;
   idUsuarioLogado: string;
   chapterTagTodos: ChapterTag[];
-  rankComentarios: { usuario: [ foto: string, nome: string ]; count: number }[] = [];
-  loading = true
+  rankComentarios: { usuario: [foto: string, nome: string]; count: number }[] =
+    [];
+  loading = true;
 
   constructor(
     private _route: ActivatedRoute,
@@ -43,10 +44,12 @@ export class ApoioDuvidasComponent implements OnInit {
     private chapterService: ChapterService,
     private chapterTagService: ChapterTagService,
     private comentarioService: ComentarioService,
-    private cdr: ChangeDetectorRef, 
-  ) {interval(1000).subscribe(() => {
-    this.cdr.detectChanges();
-  });}
+    private cdr: ChangeDetectorRef
+  ) {
+    interval(1000).subscribe(() => {
+      this.cdr.detectChanges();
+    });
+  }
 
   ngOnInit(): void {
     this.chapterAssuntoService.ObterTodos().subscribe((data) => {
@@ -59,27 +62,33 @@ export class ApoioDuvidasComponent implements OnInit {
 
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
-    this.chapterTagService.ObterTodos().subscribe((data) => this.chapterTagTodos = data
-    );
+    this.chapterTagService
+      .ObterTodos()
+      .subscribe((data) => (this.chapterTagTodos = data));
 
-    this.comentarioService.ObterTodos().subscribe((data) =>{
+    this.comentarioService.ObterTodos().subscribe((data) => {
       const frequencyMap = new Map();
       data.forEach((item) => {
-	      const usuarioKey = JSON.stringify([item.usuario.foto, item.usuario.nomeCompleto]);
+        const usuarioKey = JSON.stringify([
+          item.usuario.foto,
+          item.usuario.nomeCompleto,
+        ]);
         frequencyMap.set(usuarioKey, (frequencyMap.get(usuarioKey) || 0) + 1);
-	    });
-      this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuario, count]) => ({usuario, count }));
+      });
+      this.rankComentarios = Array.from(frequencyMap.entries()).map(
+        ([usuario, count]) => ({ usuario, count })
+      );
 
-      this.rankComentarios = Array.from(frequencyMap.entries()).map(([usuarioKey, count]) => ({
-        usuario: JSON.parse(usuarioKey),
-        count,
-      }));
+      this.rankComentarios = Array.from(frequencyMap.entries()).map(
+        ([usuarioKey, count]) => ({
+          usuario: JSON.parse(usuarioKey),
+          count,
+        })
+      );
 
       this.rankComentarios.sort((a, b) => b.count - a.count);
-	    this.rankComentarios =  this.rankComentarios.slice(0,3);
-
-    })
-
+      this.rankComentarios = this.rankComentarios.slice(0, 3);
+    });
 
     this.usuarioService
       .ObterUsuarioPorId(this.idUsuarioLogado)
@@ -90,13 +99,11 @@ export class ApoioDuvidasComponent implements OnInit {
 
   todosChapter() {
     this.chapterService.ObterTodos().subscribe((data) => {
-        this.chapterTodos = data;
-        this.chapterTodos.forEach(val => this.chapterTodosNomes.push(val.nome));
-        console.log(this.chapterTodosNomes);
+      this.chapterTodos = data;
+      this.chapterTodos.forEach((val) => this.chapterTodosNomes.push(val.nome));
+      console.log(this.chapterTodosNomes);
     });
-}
-
-
+  }
 
   previousPage() {
     if (this.currentPage > 1) {
@@ -142,13 +149,15 @@ export class ApoioDuvidasComponent implements OnInit {
   ordernarPorResposta(order: string) {
     if (order == 'decrescente') {
       this.chapterAssuntos.sort(
-        (a, b) =>
-          b.totalComentarios -
-          a.totalComentarios);}
+        (a, b) => b.totalComentarios - a.totalComentarios
+      );
+    }
   }
 
-  filtrarPorVerificacao(){
-    this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) => value.verificacao != null)
+  filtrarPorVerificacao() {
+    this.chapterAssuntos = this.chapterAssuntosTodos.filter(
+      (value) => value.verificacao != null
+    );
   }
 
   filtraPorTitulo(busca: string) {
@@ -161,11 +170,12 @@ export class ApoioDuvidasComponent implements OnInit {
     this.calculateTotalPages(true);
   }
 
-  filtraPorChapter(busca: string){
-    this.chapterAssuntos = this.chapterAssuntosTodos.filter(
-			(value) => value.chapter.nome.toLowerCase().includes(busca.toLowerCase()));
-		this.currentPage = 1;
-		this.calculateTotalPages(true);
+  filtraPorChapter(busca: string) {
+    this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) =>
+      value.chapter.nome.toLowerCase().includes(busca.toLowerCase())
+    );
+    this.currentPage = 1;
+    this.calculateTotalPages(true);
   }
 
   irParaPagina(i: number) {
