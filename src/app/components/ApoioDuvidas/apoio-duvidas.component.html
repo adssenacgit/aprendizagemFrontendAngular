@@ -48,10 +48,10 @@
               <hr class="dropdown-divider" />
             </li>
             <li><a class="dropdown-item">tags</a></li>
-            <li><a class="dropdown-item">com resposta verificada</a></li>
+            <li><a  (click)="filtrarPorVerificacao()"  class="dropdown-item">com resposta verificada</a></li>
           </ul>
         </div>
-      </div>
+      </div> 
       <div
         *ngFor="let pergunta of chapterAssuntos.slice(startIndex, endIndex)"
         class="questionHolder"

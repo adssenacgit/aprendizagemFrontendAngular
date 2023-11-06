@@ -147,6 +147,10 @@ export class ApoioDuvidasComponent implements OnInit {
           a.totalComentarios);}
   }
 
+  filtrarPorVerificacao(){
+    this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) => value.verificacao != null)
+  }
+
   filtraPorTitulo(busca: string) {
     this.chapterAssuntos = this.chapterAssuntosTodos.filter(
       (value) =>
