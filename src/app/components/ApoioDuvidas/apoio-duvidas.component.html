@@ -43,7 +43,6 @@
     <!-- Menu Lateral -->
     <div id="side-info" class="col-3">
       <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
-        <<<<<<< HEAD=======>>>>>>> 5a68969b0edb2350abbe6671613976dae549074e
           <div class="card-header">
             <h1>Chapter</h1>
             <p><a class="link-opacity-100" [(ngModel)]="busca" (click)="filtraPorChapter('')">ver todos</a></p>
@@ -64,7 +63,7 @@
           <p><a class="link-opacity-100" [(ngModel)]="busca" (click)="filtraPorChapter('')">ver todos</a></p>
         </div>
         <div class="card-body tags-card">
-          <button *ngFor="let i of chapterTagTodos" type="button" class="btn btn-light">
+          <button *ngFor="let i of chapterTagTodos" type="button" class="btn btn-light d-flex gap-1">
             <i class="bi bi-tags"></i>
             <p>{{ i.descricao }}</p>
           </button>

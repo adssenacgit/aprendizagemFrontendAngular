@@ -52,7 +52,8 @@ export class ApoioDuvidasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.chapterAssuntoService.ObterTodos().subscribe((data) => {
+    this.chapterAssuntoService.ObterTodosJava().subscribe((data) => {
+      console.log(data)
       this.chapterAssuntosTodos = data;
       this.chapterAssuntos = data;
       this.calculateTotalPages(false);

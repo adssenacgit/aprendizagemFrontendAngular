@@ -20,9 +20,9 @@ export class CurtidaService {
   constructor(private https: HttpClient) {}
 
   TotalFilterByChapterAssuntoComentarioId(
-    ComentarioId: number
-  ): Observable<number> {
+    ComentarioId: any
+  ): Observable<any> {
     const apiUrl = `${this.url}/TotalFilterByChapterAssuntoComentarioId/${ComentarioId}`;
-    return this.https.get<number>(apiUrl);
+    return this.https.get<any>(apiUrl);
   }
 }

@@ -119,7 +119,7 @@ h3, p {
   font-family: 'PoppinsLight';
   font-size: 14px;
   margin: 0;
-  height: 20px;
+  /* height: 20px; */
 }
 .question-actions .btn {
   height: 20px;
@@ -157,9 +157,9 @@ h3, p {
   max-width: 251px;
 }
 .question-tags .btn {
-  width: 63px;
-  height: 28px;
-  padding: 10px;
+  /* width: 63px; */
+  /* height: 28px; */
+  padding: 0px 3px 0px 5px;
   margin: 5px;
   display: flex;
   flex-direction: row;
