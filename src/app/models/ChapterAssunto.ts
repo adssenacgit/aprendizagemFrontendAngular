@@ -17,4 +17,7 @@ export class ChapterAssunto {
     chapter:Chapter = new Chapter();
     totalComentarios: number;
     chapterTags: ChapterTag[] = [];
+
+    
+
 }
