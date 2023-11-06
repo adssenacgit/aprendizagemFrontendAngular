@@ -44,6 +44,12 @@ export class GrupoService {
     return this.https.get<Grupo[]>(apiUrl);
   }
 
+  ObterTodosGrupos () : Observable<Grupo[]>
+  {
+    const apiUrl = `${this.url}`;
+    return this.https.get<Grupo[]>(apiUrl);
+  }
+
   ObterGrupoPeloEstudanteIdPeriodoId (idEstudante: number, idPeriodo: number) : Observable<Grupo[]>
   {
     const apiUrl = `${this.url}/ObterGruposByEstudanteIdByPeriodoId/${idEstudante}/${idPeriodo}`;
@@ -61,7 +67,7 @@ export class GrupoService {
 
   ExcluirGrupo(grupoId: number): Observable<any>{
     const apiUrl = `${this.url}/${grupoId}`;
-    return this.https.delete<Grupo>(apiUrl, httpOptions);    
+    return this.https.delete<Grupo>(apiUrl, httpOptions);
   }
 
   FiltrarGrupo(nomeUc: string, idOferta: number, idCurso: number) : Observable<Grupo[]>
