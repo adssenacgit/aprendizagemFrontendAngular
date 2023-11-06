@@ -45,19 +45,19 @@ p {
   @media screen and (max-width: 900px) {
 	.proximas-atividades {
 		position: absolute;
-		width: 45rem;
+		width: 44rem;
 		left: 2.1rem;
-		bottom: 38rem;
+		top: 3rem;
 	  }
 	  
 	  .calendario-academico {
 		position: absolute;
-		top: 25rem;
-		left: 18rem;
+		top: 24rem;
+		left: 18.5rem;
 	  }
 	
 	.dashboard-usuario-card-coin {
-		margin-top: 47rem;
+		margin-top: 45rem;
 		margin-bottom: 3rem;
 		width: 22rem;
 		left: 0.9rem;
