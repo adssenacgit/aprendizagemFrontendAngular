@@ -32,10 +32,9 @@ export class ApoioDuvidasComponent implements OnInit {
   usuario: Usuario;
   idUsuarioLogado: string;
   chapterTagTodos: ChapterTag[];
-  rankComentarios: {
-    usuario: { foto: string; nome: string };
-    count: number;
-  }[] = [];
+  rankComentarios: { usuario: [foto: string, nome: string]; count: number }[] =
+    [];
+  loading = true;
 
   constructor(
     private _route: ActivatedRoute,
