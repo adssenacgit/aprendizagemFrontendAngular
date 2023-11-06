@@ -1,8 +1,8 @@
-import { Atividade } from "./Atividade";
-import { Badge } from "./Badge";
-import { GrauDificuldade } from "./GrauDificuldade";
-import { ObjetoAprendizagem } from "./ObjetoAprendizagem";
-import { PlanejamentoUC } from "./PlanejamentoUC";
+import { Atividade } from './Atividade';
+import { Badge } from './Badge';
+import { GrauDificuldade } from './GrauDificuldade';
+import { ObjetoAprendizagem } from './ObjetoAprendizagem';
+import { PlanejamentoUC } from './PlanejamentoUC';
 
 export class SituacaoAprendizagem {
     id: number;

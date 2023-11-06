@@ -26,28 +26,38 @@ import { Estudante } from 'src/app/models/Estudante';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
+import { AtividadeService } from 'src/app/services/atividade.service';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 import { AtividadeService } from 'src/app/services/atividade.service';
 import { EncontroStatus } from 'src/app/models/EncontroStatus';
 import { Atividade } from 'src/app/models/Atividade';
 import { ThisReceiver } from '@angular/compiler';
+import { EncontroStatus } from 'src/app/models/EncontroStatus';
+import { Atividade } from 'src/app/models/Atividade';
+import { ThisReceiver } from '@angular/compiler';
+// import { AccordionModule } from 'ngx-bootstrap/accordion';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
-  selector: 'app-encontros',
-  templateUrl: './encontros.component.html',
-  styleUrls: ['./encontros.component.css'],
-  encapsulation: ViewEncapsulation.None
+	selector: 'app-encontros',
+	templateUrl: './encontros.component.html',
+	styleUrls: ['./encontros.component.css'],
+	encapsulation: ViewEncapsulation.None,
 })
-export class EncontrosComponent implements OnInit {
 
-  idEstudanteUsuarioLogado : number;
-  grupoId: number;
-  loading: boolean = true;
+// @NgModule({
+//   imports: [BrowserAnimationsModule,
+//     AccordionModule.forRoot(),]
+// })
+export class EncontrosComponent implements OnInit {
+	idEstudanteUsuarioLogado: number;
+	grupoId: number;
+	loading: boolean = true;
 
   encontros: Encontro[] = [];
 
-  leftNavDisabled = false;
-  rightNavDisabled = false;
+	leftNavDisabled = false;
+	rightNavDisabled = false;
 
   grupo: Grupo= new Grupo();
   unidadeCurricular: UnidadeCurricular = new UnidadeCurricular();
@@ -64,7 +74,7 @@ export class EncontrosComponent implements OnInit {
 	encontroCursados: number[] = [];
   statusAtividades: number = 5;
 
-  @ViewChild('nav', {read: DragScrollComponent}) ds: DragScrollComponent;
+	@ViewChild('nav', { read: DragScrollComponent }) ds: DragScrollComponent;
 
   constructor(
     private route : ActivatedRoute,
@@ -134,11 +144,11 @@ export class EncontrosComponent implements OnInit {
         },
       );
 
-      this.competenciaService.filterByUnidadeCurricularId(this.grupo.unidadeCurricularId).subscribe(
-        (competencias: Competencia[]) => {
-          this.competencias = competencias;
-        }
-      );
+			this.competenciaService
+				.filterByUnidadeCurricularId(this.grupo.unidadeCurricularId)
+				.subscribe((competencias: Competencia[]) => {
+					this.competencias = competencias;
+				});
 
       this.competenciaIndicadorService.FiltrarCompetenciaIndicadoresByUnidadeCurricularId(this.grupo.unidadeCurricularId).subscribe(
         (competenciaIndicadores: CompetenciaIndicador[]) => {
@@ -152,17 +162,15 @@ export class EncontrosComponent implements OnInit {
         }
       );
 
-      this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupo.id).subscribe(
-        (planejamentoUC: PlanejamentoUC) => {
-          this.planejamentoUC = planejamentoUC;
-        }
-      );
+			this.planejamentoUcService
+				.FiltrarPlanejamentoUCByGrupoId(this.grupo.id)
+				.subscribe((planejamentoUC: PlanejamentoUC) => {
+					this.planejamentoUC = planejamentoUC;
+				});
 
-      this.badgeService.ObterBadgesPeloGrupoId(this.grupo.id).subscribe(
-        (badge: Badge[]) => {
-          this.badges = badge;
-        }
-      );
+			this.badgeService.ObterBadgesPeloGrupoId(this.grupo.id).subscribe((badge: Badge[]) => {
+				this.badges = badge;
+			});
 
       this.estudantesService.ObterEstudanteByGrupoId(this.grupo.id).subscribe(
         (participantes: Estudante[]) => {
@@ -170,11 +178,12 @@ export class EncontrosComponent implements OnInit {
         }
       );
 
-      this.loading = false;
-    });
-  }
+			this.loading = false;
+		});
+	};
 
-  ObterSituacoesAprendizagem = (idEncontro: number, i:number) => {
+	ObterSituacoesAprendizagem = (idEncontro: number, i: number) => {
+		this.objetosAprendizagem = [];
 
     this.objetosAprendizagem=[];
 
@@ -182,7 +191,7 @@ export class EncontrosComponent implements OnInit {
       this.encontros[j].selecionado=0;
     }
 
-    this.encontros[i].selecionado=1;
+		this.encontros[i].selecionado = 1;
 
     this.loading = true;
     this.situacaoAprendizagemService.filtrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
@@ -241,16 +250,16 @@ export class EncontrosComponent implements OnInit {
 			});
 	};
 
-  //Comandos do scroll de encontros
-  moveLeft() {
-    this.ds.moveLeft();
-  }
-  moveRight() {
-    this.ds.moveRight();
-  }
-  moveTo(index: number) {
-    this.ds.moveTo(index);
-  }
+	//Comandos do scroll de encontros
+	moveLeft() {
+		this.ds.moveLeft();
+	}
+	moveRight() {
+		this.ds.moveRight();
+	}
+	moveTo(index: number) {
+		this.ds.moveTo(index);
+	}
 
   AbrirDialog(id : any, descricaoCompetencia: any): void
   {
@@ -265,18 +274,16 @@ export class EncontrosComponent implements OnInit {
 }
 
 @Component({
-  selector: 'app-dialog-indicadores',
-  templateUrl: './dialog-indicadores.html'
+	selector: 'app-dialog-indicadores',
+	templateUrl: './dialog-indicadores.html',
 })
+export class DialogIndicadoresComponent {
+	competenciaIndicadores: CompetenciaIndicador[] = [];
 
-export class DialogIndicadoresComponent{
-
-  competenciaIndicadores: CompetenciaIndicador[]=[];
-
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public dados: any,
-    private competenciaIndicadorService: CompetenciaIndicadorService
-    ) { }
+	constructor(
+		@Inject(MAT_DIALOG_DATA) public dados: any,
+		private competenciaIndicadorService: CompetenciaIndicadorService
+	) {}
 
     ngOnInit(): void {
       this.competenciaIndicadorService.FiltrarCompetenciaIndicadoresByUnidadeCurricularId(this.dados.id).subscribe(resultado => {
