@@ -42,43 +42,52 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._verificarPerfilUsuarioLogado();
+    this._obterRegistrosAvaliacoesEAtividades();
+  }
 
-    this.idEstudanteUsuarioLogado = this._authGuardService.getIdEstudanteUsuarioLogado();
-    this.isProfessor = this._authGuardService.VerificarProfessor();
-    this.isEstudante = this._authGuardService.VerificarEstudante();
+  private _obterRegistrosAvaliacoesEAtividades(): void {
+    if (this.isEstudante) {
+      this._grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe({
+        next: ($grupos) => {
+          this.grupos = $grupos;
 
+          this.grupos.forEach(grupo => {
+              this._registroAvaliacaoService.ObterRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId(this.idEstudanteUsuarioLogado, grupo.id).subscribe($registrosAvaliacoes => {
+                this.registrosAvaliacoes[grupo.unidadeCurricular.nomeCurto] = $registrosAvaliacoes;
 
-    this._grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe($grupos => {
-      this.grupos = $grupos;
+                this._acompanhamentoService.ObterAcompanhamentoPeloGrupoIdPeloEstudanteId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($acompanhamentos => {
+                  this.acompanhamentos = $acompanhamentos;
+                });
+              });
 
-      this.grupos.forEach(grupo => {
-          this._registroAvaliacaoService.ObterRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId(this.idEstudanteUsuarioLogado, grupo.id).subscribe($registrosAvaliacoes => {
-            this.registrosAvaliacoes[grupo.unidadeCurricular.nomeCurto] = $registrosAvaliacoes;
-
-            this._acompanhamentoService.ObterAcompanhamentoPeloGrupoIdPeloEstudanteId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($acompanhamentos => {
-              // em caso de teste o hard log deve apresentar lista vazia [], exceto para grupo.id = 1
-              this.acompanhamentos = $acompanhamentos;
-            });
-          });
-
-          this._encontroService.ObterEncontroPorGrupoId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($encontros => {
-            $encontros.forEach(encontro => {
-              this._situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.grupoId).subscribe($situacoesAprendizagem => {
-                $situacoesAprendizagem.forEach(situacaoAprendizagem => {
-                  this._atividadeService.FiltrarAtividadebySituacaoAprendizagemId(situacaoAprendizagem.id).subscribe($atividades => {
-                    this.atividades = $atividades;
+              this._encontroService.ObterEncontroPorGrupoId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($encontros => {
+                $encontros.forEach(encontro => {
+                  this._situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.grupoId).subscribe($situacoesAprendizagem => {
+                    $situacoesAprendizagem.forEach(situacaoAprendizagem => {
+                      this._atividadeService.FiltrarAtividadebySituacaoAprendizagemId(situacaoAprendizagem.id).subscribe($atividades => {
+                        this.atividades = $atividades;
+                      });
+                    });
                   });
                 });
               });
-            });
-          });
+            }
+          )
 
+
+        },
+        complete: () => {
+          this.isLoading = false;
         }
-      )
+      });
+    }
+  }
 
-
-      this.isLoading = false;
-    });
+  private _verificarPerfilUsuarioLogado(): void {
+    this.idEstudanteUsuarioLogado = this._authGuardService.getIdEstudanteUsuarioLogado();
+    this.isProfessor = this._authGuardService.VerificarProfessor();
+    this.isEstudante = this._authGuardService.VerificarEstudante();
   }
 }
 
