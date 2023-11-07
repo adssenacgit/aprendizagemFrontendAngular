@@ -1,60 +1,219 @@
 <div *ngIf="$isProfessor">
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
-    <div class="p-field">
-      <label for="firstName">Primeiro Nome</label>
-      <input
-        pInputText
-        id="firstName"
-        formControlName="firstName"
-      />
-      <div
-        *ngIf="formGroup.get('firstName')?.hasError('required') && formGroup.get('firstName')?.touched"
-        class="p-error"
-      >
-        Primeiro nome é obrigatório.
-      </div>
-    </div>
 
-    <div class="p-field">
-      <label for="lastName">Sobrenome</label>
-      <input
-        pInputText
-        id="lastName"
-        formControlName="lastName"
-      />
-      <div
-        *ngIf="formGroup.get('lastName')?.hasError('required') && formGroup.get('lastName')?.touched"
-        class="p-error"
-      >
-        Sobrenome é obrigatório.
-      </div>
-    </div>
+    <section class="formModelStandalone">
+      <h1>Registrar Conceitos</h1>
+      <div class="grupo-estudante" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50">
+        <div class="p-field grupo">
+        <span class="p-float-label">
+          <p-dropdown
+            id="grupo"
+            inputId="grupo"
+            [(ngModel)]="grupoFormModelStandalone"
+            [ngModelOptions]="{standalone: true}"
+            [options]="grupos"
+            [placeholder]="'Escolha sua disciplina'"
+            optionLabel="descricao"
+          >
+          </p-dropdown>
+          <label for="grupo">Escolha sua disciplina</label>
+        </span>
+          <small
+            *ngIf="formGroup.get('grupo')?.hasError('required') && formGroup.get('grupo')?.touched"
+            class="p-error"
+          >
+            Escolher sua disciplina é obrigatório.
+          </small>
+        </div>
 
-    <div class="p-field">
-      <label for="email">E-mail</label>
-      <input
-        pInputText
-        id="email"
-        formControlName="email"
-      />
-      <div
-        *ngIf="formGroup.get('email')?.hasError('required') && formGroup.get('email')?.touched"
-        class="p-error"
-      >
-        E-mail é obrigatório.
-      </div>
-      <div
-        *ngIf="formGroup.get('email')?.hasError('email') && formGroup.get('email')?.touched"
-        class="p-error"
-      >
-        E-mail inválido.
-      </div>
-    </div>
+        <div class="p-field estudante">
+        <span class="p-float-label">
+          <p-dropdown
+            id="estudante"
+            inputId="estudante"
+            [(ngModel)]="estudanteFormModelStandalone"
+            [ngModelOptions]="{standalone: true}"
+            [options]="estudantes"
+            [placeholder]="'Escolha o estudante'"
+            [disabled]="grupoFormModelStandalone == ''"
+            optionLabel="usuario.nomeCompleto"
+          >
+          </p-dropdown>
+          <label for="estudante">Escolha o estudante</label>
+        </span>
+          <small
+            *ngIf="grupoFormModelStandalone == ''" class="p-error"
+          >
+            É preciso escolher uma disciplina primeiro.
+          </small>
+        </div>
 
-    <div class="p-field">
+<!--        <div class="p-field atividade">-->
+<!--        <span class="p-float-label">-->
+<!--          <p-dropdown-->
+<!--            id="atividade"-->
+<!--            inputId="atividade"-->
+<!--            [(ngModel)]="atividadeFormModelStandalone"-->
+<!--            [ngModelOptions]="{standalone: true}"-->
+<!--            [options]="atividades"-->
+<!--            [placeholder]="'Escolha a atividade'"-->
+<!--            [disabled]="estudanteFormModelStandalone == ''"-->
+<!--            optionLabel="situacaoAprendizagem.titulo"-->
+<!--          >-->
+<!--          </p-dropdown>-->
+<!--          <label for="atividade">Escolha a atividade</label>-->
+<!--        </span>-->
+<!--          <small-->
+<!--            *ngIf="estudanteFormModelStandalone == ''" class="p-error"-->
+<!--          >-->
+<!--            É preciso escolher um estudante primeiro.-->
+<!--          </small>-->
+<!--        </div>-->
+      </div>
+    </section>
+
+    <section class="atividade" *ngIf="estudanteFormModelStandalone != ''">
+      <p-table
+        #dt
+        [value]="atividades"
+        dataKey="id"
+        [rowHover]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [loading]="isLoading"
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="0"
+      >
+        <ng-template pTemplate="caption">
+          <div class="table-header">
+            Atividades
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="name">
+              <div class="flex justify-content-between align-items-center">
+                Nome
+                <p-sortIcon field="name"></p-sortIcon>
+              </div>
+            </th>
+            <th pSortableColumn="date">
+              <div class="flex justify-content-between align-items-center">
+                Data Início
+                <p-sortIcon field="date"></p-sortIcon>
+              </div>
+            </th>
+            <th pSortableColumn="date">
+              <div class="flex justify-content-between align-items-center">
+                Data Fim
+                <p-sortIcon field="date"></p-sortIcon>
+              </div>
+            </th>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                Download
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-atividade>
+          <tr class="p-selectable-row">
+            <td>
+              {{ atividade.situacaoAprendizagem.titulo }}
+            </td>
+            <td>
+              {{ atividade.dataInicio | date: 'dd/MM/yyyy' }}
+            </td>
+            <td>
+              {{ atividade.dataInicio | date: 'dd/MM/yyyy' }}
+            </td>
+            <td>
+              <button pButton type="button" class="p-button-primary" icon="pi pi-download"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">No customers found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </section>
+
+    <section class="reactiveFormAvaliacao" *ngIf="atividadeFormModelStandalone == ''" >
+      <h1>Digite os campos relacionados a avaliação</h1>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10">
+        <div class="p-field avaliacaoTipo" formGroupName="avaliacaoTipo">
+          <span class="p-float-label">
+            <p-dropdown
+              id="avaliacaoTipo"
+              inputId="avaliacaoTipo"
+              formControlName="descricao"
+              [options]="avaliacaoTipo"
+              [placeholder]="'Escolha o tipo de avaliação'"
+              [disabled]="estudanteFormModelStandalone == ''"
+            >
+            </p-dropdown>
+            <label for="atividade">Escolha o tipo de avaliação</label>
+          </span>
+          <small
+            *ngIf="estudanteFormModelStandalone == ''" class="p-error"
+          >
+            É preciso escolher uma estudante primeiro.
+          </small>
+        </div>
+
+        <div class="p-field avaliacaoConceito" formGroupName="avaliacaoConceito">
+          <span class="p-float-label">
+            <p-dropdown
+              id="avaliacaoConceito"
+              inputId="avaliacaoConceito"
+              formControlName="descricao"
+              [options]="avaliacaoConceito"
+              [placeholder]="'Escolha o conceito de avaliação'"
+              [disabled]="estudanteFormModelStandalone == ''"
+
+            >
+            </p-dropdown>
+            <label for="atividade">Escolha o conceito de avaliação</label>
+          </span>
+          <small
+            *ngIf="estudanteFormModelStandalone == ''" class="p-error"
+          >
+            É preciso escolher uma estudante primeiro.
+          </small>
+        </div>
+
+        <div class="p-field comentario">
+          <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">
+          <span class="p-float-label">
+            <input pInputText
+                   id="comentario disabled-input"
+                   type="text"
+                   aria-describedby="comentario-help"
+                   formControlName="comentario"
+                   [disabled]="estudanteFormModelStandalone == ''"
+            />
+            <label for="comentario">Comentário</label>
+          </span>
+            <small id="comentario-help"
+                   *ngIf="formGroup.get('comentario')?.hasError('required') && formGroup.get('comentario')?.touched"
+                   class="p-error">Comentário é obrigatório.
+            </small>
+            <small
+              *ngIf="estudanteFormModelStandalone == ''" class="p-error"
+            >
+              É preciso escolher uma estudante primeiro.
+            </small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="p-field" style="margin-top: 2rem">
       <button pButton type="button" label="Enviar" (click)="onSubmit()" [disabled]="!formGroup.valid"></button>
     </div>
-
-
   </form>
 </div>
