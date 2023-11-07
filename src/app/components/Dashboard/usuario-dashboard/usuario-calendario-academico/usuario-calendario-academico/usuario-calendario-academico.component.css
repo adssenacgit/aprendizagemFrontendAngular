@@ -1,7 +1,13 @@
-/* Responsividade */
-@media screen and (max-width: 900px) {
-  .mat-calendar {
-    display: block;
-    margin: 0 auto; /* Adiciona margem automática para centralizar horizontalmente */
+.calendario-academico {
+  margin-left: 55%; 
+  margin-bottom: 50px;
+  width: 25rem;
+}
+
+@media screen and (max-width: 1280px) {
+  .calendario-academico {
+		position: absolute;
+		right: 3rem;
+    width: 22rem;
   }
 }

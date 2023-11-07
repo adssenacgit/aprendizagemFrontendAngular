@@ -1,73 +1,51 @@
 .user-card-container {
+	position: relative;
+	background: white;
+	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
+	border: transparent;
+	padding: 1rem;
+	width: 30rem;
+	left: 29.5rem;
+	margin-top: 2rem;
+  }
+
+.user-info {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	gap: 1rem;
-	height: 100px;
 	margin-right: 200px;
-	height: 70px;
-
-
-	  /* border-radius: 1rem;
-	  box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11); */
-	  color: #434343;
-  }
-
-  /* .card {
-	border-radius: 1rem;
-	  background: white;
-	  box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
-	  border: transparent;
-	padding: 2rem;
-  } */
-
-  /* .user-image {
-	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-  } */
-
-
-  /* .user-info {
-	display: flex;
-	flex-direction: column;
-	line-height: 0.75;
-	letter-spacing: -1px;
-  } */
-
-  /* .user-name {
-	font-size: 24px;
-	font-weight: 500;
-  }
-	@@ -41,13 +44,23 @@
-	font-size: 16px;
-	color: #BDBDBD;
-	font-weight: 400;
-  } */
-
-  .user-stats {
-	letter-spacing: normal;
-	font-weight: 300;
-	font-size: 16px;
-  }
+}
 
 .saldo-box {
-	width: 200px;
+	width: 15rem;
 	height: 50px;
 	background-color: #ffffff;
-	text-align: center;
-	line-height: 50px;
 	border: 1px solid #CBD5E1;
 	border-radius: 5px;
-  } 
-
-  :host ::ng-deep p-avatar .p-avatar-lg .p-avatar-icon {
-	  font-size: 3.5rem;
+	margin-top: 1.5rem;
   }
 
-  @media screen and (max-width: 900px) {
+  .pi-th-large {
+	scale: 1.5;
+	color: #092C4C;
+	position: absolute;
+	top: 80%;
+	right: 1.3rem;
+	transform: translateY(-50%);
+  }
+
+  @media screen and (max-width: 1280px) {
+	.user-card-container {
+	  position: relative; /* Adicionado para que o ícone seja posicionado em relação a este contêiner */
+	  margin-top: 42rem;
+	  width: 22rem;
+	  left: 11rem;
+	}
+  
 	.pi-th-large {
-	  display: none;
+	  position: absolute;
+	  right: 2rem; /* Ajuste conforme necessário para movê-lo mais para a direita */
 	}
   }
   
