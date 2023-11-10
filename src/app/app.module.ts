@@ -199,6 +199,7 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {InputMaskModule} from "primeng/inputmask";
 import { DropdownModule } from 'primeng/dropdown';
+import { TreeTableModule } from 'primeng/treetable';
 
 //Ngx Imports
 import {DragScrollModule} from 'ngx-drag-scroll';
@@ -222,6 +223,7 @@ import {
   ListarRegistrosAvaliacoesComponent
 } from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/estudante/listar-registros-avaliacoes/listar-registros-avaliacoes.component';
 import {TagModule} from "primeng/tag";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -359,7 +361,9 @@ registerLocaleData(localeFR);
     OverlayPanelModule,
     InputMaskModule,
     DropdownModule,
-    TagModule
+    TagModule,
+    TreeTableModule,
+    ProgressSpinnerModule
   ],
   providers: [
     CursosService,

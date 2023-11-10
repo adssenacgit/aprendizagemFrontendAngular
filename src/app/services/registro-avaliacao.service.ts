@@ -26,8 +26,8 @@ export class RegistroAvaliacaoService {
     return this.https.post<RegistroAvaliacao>(apiUrl, registroAvaliacao, httpOptions);
   }
 
-  ObterRegistrosAvaliacaoPeloEstudanteId (id: string) : Observable<RegistroAvaliacao[]> {
-    const apiUrl = `${this.url}/TodosRegistrosFilterByEstudanteId/${id}`;
+  ObterRegistrosAvaliacaoPeloEstudanteId (estudanteId: number) : Observable<RegistroAvaliacao[]> {
+    const apiUrl = `${this.url}/TodosRegistrosFilterByEstudanteId/${estudanteId}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);
   }
 

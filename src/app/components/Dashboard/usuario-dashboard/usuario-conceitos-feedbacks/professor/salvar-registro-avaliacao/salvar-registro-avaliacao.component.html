@@ -9,11 +9,12 @@
           <p-dropdown
             id="grupo"
             inputId="grupo"
+            optionLabel="descricao"
             [(ngModel)]="grupoFormModelStandalone"
             [ngModelOptions]="{standalone: true}"
             [options]="grupos"
             [placeholder]="'Escolha sua disciplina'"
-            optionLabel="descricao"
+            (onChange)="onChange($event)"
           >
           </p-dropdown>
           <label for="grupo">Escolha sua disciplina</label>
@@ -25,195 +26,367 @@
             Escolher sua disciplina é obrigatório.
           </small>
         </div>
-
-        <div class="p-field estudante">
-        <span class="p-float-label">
-          <p-dropdown
-            id="estudante"
-            inputId="estudante"
-            [(ngModel)]="estudanteFormModelStandalone"
-            [ngModelOptions]="{standalone: true}"
-            [options]="estudantes"
-            [placeholder]="'Escolha o estudante'"
-            [disabled]="grupoFormModelStandalone == ''"
-            optionLabel="usuario.nomeCompleto"
-          >
-          </p-dropdown>
-          <label for="estudante">Escolha o estudante</label>
-        </span>
-          <small
-            *ngIf="grupoFormModelStandalone == ''" class="p-error"
-          >
-            É preciso escolher uma disciplina primeiro.
-          </small>
-        </div>
-
-<!--        <div class="p-field atividade">-->
-<!--        <span class="p-float-label">-->
-<!--          <p-dropdown-->
-<!--            id="atividade"-->
-<!--            inputId="atividade"-->
-<!--            [(ngModel)]="atividadeFormModelStandalone"-->
-<!--            [ngModelOptions]="{standalone: true}"-->
-<!--            [options]="atividades"-->
-<!--            [placeholder]="'Escolha a atividade'"-->
-<!--            [disabled]="estudanteFormModelStandalone == ''"-->
-<!--            optionLabel="situacaoAprendizagem.titulo"-->
-<!--          >-->
-<!--          </p-dropdown>-->
-<!--          <label for="atividade">Escolha a atividade</label>-->
-<!--        </span>-->
-<!--          <small-->
-<!--            *ngIf="estudanteFormModelStandalone == ''" class="p-error"-->
-<!--          >-->
-<!--            É preciso escolher um estudante primeiro.-->
-<!--          </small>-->
-<!--        </div>-->
       </div>
     </section>
 
-    <section class="atividade" *ngIf="estudanteFormModelStandalone != ''">
-      <p-table
-        #dt
-        [value]="atividades"
-        dataKey="id"
-        [rowHover]="true"
-        [rows]="10"
-        [showCurrentPageReport]="true"
-        [rowsPerPageOptions]="[10, 25, 50]"
-        [loading]="isLoading"
-        [paginator]="true"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [filterDelay]="0"
-      >
-        <ng-template pTemplate="caption">
-          <div class="table-header">
-            Atividades
-          </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-          <tr>
-            <th pSortableColumn="name">
-              <div class="flex justify-content-between align-items-center">
-                Nome
-                <p-sortIcon field="name"></p-sortIcon>
-              </div>
-            </th>
-            <th pSortableColumn="date">
-              <div class="flex justify-content-between align-items-center">
-                Data Início
-                <p-sortIcon field="date"></p-sortIcon>
-              </div>
-            </th>
-            <th pSortableColumn="date">
-              <div class="flex justify-content-between align-items-center">
-                Data Fim
-                <p-sortIcon field="date"></p-sortIcon>
-              </div>
-            </th>
-            <th>
-              <div class="flex justify-content-between align-items-center">
-                Download
-              </div>
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-atividade>
-          <tr class="p-selectable-row">
-            <td>
-              {{ atividade.situacaoAprendizagem.titulo }}
-            </td>
-            <td>
-              {{ atividade.dataInicio | date: 'dd/MM/yyyy' }}
-            </td>
-            <td>
-              {{ atividade.dataInicio | date: 'dd/MM/yyyy' }}
-            </td>
-            <td>
-              <button pButton type="button" class="p-button-primary" icon="pi pi-download"></button>
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="8">No customers found.</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </section>
-
-    <section class="reactiveFormAvaliacao" *ngIf="atividadeFormModelStandalone == ''" >
-      <h1>Digite os campos relacionados a avaliação</h1>
-      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10">
-        <div class="p-field avaliacaoTipo" formGroupName="avaliacaoTipo">
-          <span class="p-float-label">
-            <p-dropdown
-              id="avaliacaoTipo"
-              inputId="avaliacaoTipo"
-              formControlName="descricao"
-              [options]="avaliacaoTipo"
-              [placeholder]="'Escolha o tipo de avaliação'"
-              [disabled]="estudanteFormModelStandalone == ''"
-            >
-            </p-dropdown>
-            <label for="atividade">Escolha o tipo de avaliação</label>
-          </span>
-          <small
-            *ngIf="estudanteFormModelStandalone == ''" class="p-error"
-          >
-            É preciso escolher uma estudante primeiro.
-          </small>
-        </div>
-
-        <div class="p-field avaliacaoConceito" formGroupName="avaliacaoConceito">
-          <span class="p-float-label">
-            <p-dropdown
-              id="avaliacaoConceito"
-              inputId="avaliacaoConceito"
-              formControlName="descricao"
-              [options]="avaliacaoConceito"
-              [placeholder]="'Escolha o conceito de avaliação'"
-              [disabled]="estudanteFormModelStandalone == ''"
-
-            >
-            </p-dropdown>
-            <label for="atividade">Escolha o conceito de avaliação</label>
-          </span>
-          <small
-            *ngIf="estudanteFormModelStandalone == ''" class="p-error"
-          >
-            É preciso escolher uma estudante primeiro.
-          </small>
-        </div>
-
-        <div class="p-field comentario">
-          <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">
-          <span class="p-float-label">
-            <input pInputText
-                   id="comentario disabled-input"
-                   type="text"
-                   aria-describedby="comentario-help"
-                   formControlName="comentario"
-                   [disabled]="estudanteFormModelStandalone == ''"
-            />
-            <label for="comentario">Comentário</label>
-          </span>
-            <small id="comentario-help"
-                   *ngIf="formGroup.get('comentario')?.hasError('required') && formGroup.get('comentario')?.touched"
-                   class="p-error">Comentário é obrigatório.
-            </small>
-            <small
-              *ngIf="estudanteFormModelStandalone == ''" class="p-error"
-            >
-              É preciso escolher uma estudante primeiro.
-            </small>
-          </div>
-        </div>
+    <section class="estudante-atividade" *ngIf="grupoFormModelStandalone !== ''">
+      <div class="card">
+        <p-table
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [value]="estudantes"
+          [paginator]="true"
+          [rows]="5"
+          [showCurrentPageReport]="true"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          [rowsPerPageOptions]="[5, 10, 25, 50]"
+          [loading]="isLoading"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nomes dos Estudantes</th>
+              <th>Lista de Atividades</th>
+              <th>Conceitos e Feedback Finais</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-estudante>
+            <tr *ngIf="!isLoading">
+              <td>
+                <p>{{ estudante.usuario.nomeCompleto }}</p>
+              </td>
+              <td style="min-width: 35rem">
+                <p-accordion>
+                  <p-accordionTab header="Atividades">
+                    <p-table [value]="avaliacaoTipo" [paginator]="true" [rows]="5"
+                             [rowsPerPageOptions]="[5, 10, 25, 50]">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th>Tipo de Avaliação</th>
+                          <th>Atividades</th>
+                          <th>Conceito</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-tipoAvaliacao>
+                        <tr>
+                          <td>{{ tipoAvaliacao }}</td>
+                          <td>
+                            <p-table [value]="acompanhamentos" [paginator]="false">
+                              <ng-template pTemplate="body" let-acompanhamento>
+                                <tr>
+                                  <td>
+                                    <a [href]="mock.arquivoMock" download="arquivo">
+                                      <small>{{ acompanhamento.situacaoAprendizagem.titulo != null ? acompanhamento.situacaoAprendizagem.titulo : '' }}</small>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </p-table>
+                          </td>
+                          <td>
+                            <p-table [value]="acompanhamentos" [paginator]="false">
+                              <ng-template pTemplate="body" let-acompanhamento>
+                                <tr>
+                                  <td>
+                                    <p-tag
+                                      [value]="acompanhamento.avaliacaoConceito.descricao != null ? acompanhamento.avaliacaoConceito.descricao : 'SA'"
+                                      [severity]="getSeverity(acompanhamento.avaliacaoConceito.descricao)"></p-tag>
+                                  </td>
+                                </tr>
+                              </ng-template>
+                            </p-table>
+                          </td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+                  </p-accordionTab>
+                </p-accordion>
+              </td>
+              <td>
+                <p-accordion>
+                  <p-accordionTab header="Avaliações">
+                    <section class="ciclo1"
+                             style="display:flex; flex-direction: column; gap: 2rem; margin: 2rem 0 2rem 0">
+                      <div class="p-field">
+                        <span class="p-float-label">
+                          <p-dropdown
+                            id="avaliacaoTipoCiclo1"
+                            inputId="avaliacaoTipoCiclo1"
+                            [options]="avaliacaoTipo"
+                            [placeholder]="'Tipo de avaliação'"
+                            [(ngModel)]="avaliacaoTipoCiclo1"
+                            [ngModelOptions]="{standalone: true}"
+                            class="custom-dropdown"
+                          >
+                          </p-dropdown>
+                          <label for="avaliacaoTipoCiclo1">Tipo de avaliação</label>
+                        </span>
+                      </div>
+                      <div class="p-field avaliacaoConceitoCiclo1">
+                        <span class="p-float-label">
+                          <p-dropdown
+                            id="avaliacaoConceitoCiclo1"
+                            inputId="avaliacaoConceitoCiclo1"
+                            [options]="avaliacaoConceito"
+                            [placeholder]="'Conceito de avaliação'"
+                            [(ngModel)]="avaliacaoConceitoCiclo1"
+                            [ngModelOptions]="{standalone: true}"
+                          >
+                          </p-dropdown>
+                          <label for="avaliacaoConceitoCiclo1">Conceito de avaliação</label>
+                        </span>
+                      </div>
+                      <div class="p-field comentarioCiclo1">
+                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">
+                          <span class="p-float-label">
+                            <input pInputText
+                                   id="comentarioCiclo1"
+                                   type="text"
+                                   [(ngModel)]="comentarioCiclo1"
+                                   [ngModelOptions]="{standalone: true}"
+                            />
+                            <label for="comentarioCiclo1">Comentário</label>
+                          </span>
+                        </div>
+                      </div>
+                      <button pButton type="button" icon="pi pi-save" (click)="onSubmit()"
+                              [disabled]="!formGroup.valid"></button>
+                    </section>
+                    <!--                    <section class="ciclo2" style="display:flex; gap: 2rem; margin: 2rem 0 2rem 0">-->
+                    <!--                      <div class="p-field">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoTipoCiclo2"-->
+                    <!--                            inputId="avaliacaoTipoCiclo2"-->
+                    <!--                            [options]="avaliacaoTipo"-->
+                    <!--                            [placeholder]="'Tipo de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoTipoCiclo2"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoTipoCiclo2">Tipo de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field avaliacaoConceitoCiclo1">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoConceitoCiclo2"-->
+                    <!--                            inputId="avaliacaoConceitoCiclo2"-->
+                    <!--                            [options]="avaliacaoConceito"-->
+                    <!--                            [placeholder]="'Conceito de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoConceitoCiclo2"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoConceitoCiclo2">Conceito de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field comentarioCiclo1">-->
+                    <!--                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">-->
+                    <!--                          <span class="p-float-label">-->
+                    <!--                            <input pInputText-->
+                    <!--                                   id="comentarioCiclo2"-->
+                    <!--                                   type="text"-->
+                    <!--                                   [(ngModel)]="comentarioCiclo2"-->
+                    <!--                                   [ngModelOptions]="{standalone: true}"-->
+                    <!--                            />-->
+                    <!--                            <label for="comentarioCiclo2">Comentário</label>-->
+                    <!--                          </span>-->
+                    <!--                        </div>-->
+                    <!--                      </div>-->
+                    <!--                      <button pButton type="button" icon="pi pi-save" (click)="onSubmit()"-->
+                    <!--                              [disabled]="!formGroup.valid"></button>-->
+                    <!--                    </section>-->
+                    <!--                    <section class="recuperacaoCiclo1" style="display:flex; gap: 2rem; margin: 2rem 0 2rem 0">-->
+                    <!--                      <div class="p-field">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoTipoRecuperacaoCiclo1"-->
+                    <!--                            inputId="avaliacaoTipoRecuperacaoCiclo1"-->
+                    <!--                            [options]="avaliacaoTipo"-->
+                    <!--                            [placeholder]="'Tipo de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoTipoRecuperacaoCiclo1"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoTipoRecuperacaoCiclo1">Tipo de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field avaliacaoConceitoRecuperacaoCiclo1">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoConceitoRecuperacaoCiclo1"-->
+                    <!--                            inputId="avaliacaoConceitoRecuperacaoCiclo1"-->
+                    <!--                            [options]="avaliacaoConceito"-->
+                    <!--                            [placeholder]="'Conceito de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoConceitoRecuperacaoCiclo1"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoConceitoRecuperacaoCiclo1">Conceito de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field comentarioRecuperacaoCiclo1">-->
+                    <!--                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">-->
+                    <!--                          <span class="p-float-label">-->
+                    <!--                            <input pInputText-->
+                    <!--                                   id="comentarioRecuperacaoCiclo1"-->
+                    <!--                                   type="text"-->
+                    <!--                                   [(ngModel)]="comentarioRecuperacaoCiclo1"-->
+                    <!--                                   [ngModelOptions]="{standalone: true}"-->
+                    <!--                            />-->
+                    <!--                            <label for="comentarioRecuperacaoCiclo1">Comentário</label>-->
+                    <!--                          </span>-->
+                    <!--                        </div>-->
+                    <!--                      </div>-->
+                    <!--                      <button pButton type="button" icon="pi pi-save" (click)="onSubmit()"-->
+                    <!--                              [disabled]="!formGroup.valid"></button>-->
+                    <!--                    </section>-->
+                    <!--                    <section class="recuperacaoCiclo2" style="display:flex; gap: 2rem; margin: 2rem 0 2rem 0">-->
+                    <!--                      <div class="p-field">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoTipoRecuperacaoCiclo2"-->
+                    <!--                            inputId="avaliacaoTipoRecuperacaoCiclo2"-->
+                    <!--                            [options]="avaliacaoTipo"-->
+                    <!--                            [placeholder]="'Tipo de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoTipoRecuperacaoCiclo2"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoTipoRecuperacaoCiclo2">Tipo de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field avaliacaoConceitoRecuperacaoCiclo2">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoConceitoRecuperacaoCiclo2"-->
+                    <!--                            inputId="avaliacaoConceitoRecuperacaoCiclo2"-->
+                    <!--                            [options]="avaliacaoConceito"-->
+                    <!--                            [placeholder]="'Conceito de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoConceitoRecuperacaoCiclo2"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoConceitoRecuperacaoCiclo2">Conceito de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field comentarioRecuperacaoCiclo2">-->
+                    <!--                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">-->
+                    <!--                          <span class="p-float-label">-->
+                    <!--                            <input pInputText-->
+                    <!--                                   id="comentarioRecuperacaoCiclo2"-->
+                    <!--                                   type="text"-->
+                    <!--                                   [(ngModel)]="comentarioRecuperacaoCiclo2"-->
+                    <!--                                   [ngModelOptions]="{standalone: true}"-->
+                    <!--                            />-->
+                    <!--                            <label for="comentarioRecuperacaoCiclo2">Comentário</label>-->
+                    <!--                          </span>-->
+                    <!--                        </div>-->
+                    <!--                      </div>-->
+                    <!--                      <button pButton type="button" icon="pi pi-save" (click)="onSubmit()"-->
+                    <!--                              [disabled]="!formGroup.valid"></button>-->
+                    <!--                    </section>-->
+                    <!--                    <section class="conceitoFinal" style="display:flex; gap: 2rem; margin: 2rem 0 2rem 0">-->
+                    <!--                      <div class="p-field">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoTipoConceitoFinal"-->
+                    <!--                            inputId="avaliacaoTipoConceitoFinal"-->
+                    <!--                            [options]="avaliacaoTipo"-->
+                    <!--                            [placeholder]="'Tipo de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoTipoConceitoFinal"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoTipoConceitoFinal">Tipo de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field avaliacaoConceitoConceitoFinal">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoConceitoConceitoFinal"-->
+                    <!--                            inputId="avaliacaoConceitoConceitoFinal"-->
+                    <!--                            [options]="avaliacaoConceito"-->
+                    <!--                            [placeholder]="'Conceito de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoConceitoConceitoFinal"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoConceitoConceitoFinal">Conceito de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field comentarioConceitoFinal">-->
+                    <!--                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">-->
+                    <!--                          <span class="p-float-label">-->
+                    <!--                            <input pInputText-->
+                    <!--                                   id="comentarioConceitoFinal"-->
+                    <!--                                   type="text"-->
+                    <!--                                   [(ngModel)]="comentarioConceitoFinal"-->
+                    <!--                                   [ngModelOptions]="{standalone: true}"-->
+                    <!--                            />-->
+                    <!--                            <label for="comentarioConceitoFinal">Comentário</label>-->
+                    <!--                          </span>-->
+                    <!--                        </div>-->
+                    <!--                      </div>-->
+                    <!--                      <button pButton type="button" icon="pi pi-save" (click)="onSubmit()"-->
+                    <!--                              [disabled]="!formGroup.valid"></button>-->
+                    <!--                    </section>-->
+                    <!--                    <section class="resultado" style="display:flex; gap: 2rem; margin: 2rem 0 2rem 0">-->
+                    <!--                      <div class="p-field">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoTipoResultado"-->
+                    <!--                            inputId="avaliacaoTipoResultado"-->
+                    <!--                            [options]="avaliacaoTipo"-->
+                    <!--                            [placeholder]="'Tipo de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoTipoResultado"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoTipoResultado">Tipo de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field avaliacaoConceitoResultado">-->
+                    <!--                        <span class="p-float-label">-->
+                    <!--                          <p-dropdown-->
+                    <!--                            id="avaliacaoConceitoResultado"-->
+                    <!--                            inputId="avaliacaoConceitoResultado"-->
+                    <!--                            [options]="avaliacaoConceito"-->
+                    <!--                            [placeholder]="'Conceito de avaliação'"-->
+                    <!--                            [(ngModel)]="avaliacaoConceitoResultado"-->
+                    <!--                            [ngModelOptions]="{standalone: true}"-->
+                    <!--                          >-->
+                    <!--                          </p-dropdown>-->
+                    <!--                          <label for="avaliacaoConceitoResultado">Conceito de avaliação</label>-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="p-field comentarioResultado">-->
+                    <!--                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">-->
+                    <!--                          <span class="p-float-label">-->
+                    <!--                            <input pInputText-->
+                    <!--                                   id="comentarioResultado"-->
+                    <!--                                   type="text"-->
+                    <!--                                   [(ngModel)]="comentarioResultado"-->
+                    <!--                                   [ngModelOptions]="{standalone: true}"-->
+                    <!--                            />-->
+                    <!--                            <label for="comentarioResultado">Comentário</label>-->
+                    <!--                          </span>-->
+                    <!--                        </div>-->
+                    <!--                      </div>-->
+                    <!--                      <button pButton type="button" icon="pi pi-save" (click)="onSubmit()"-->
+                    <!--                              [disabled]="!formGroup.valid"></button>-->
+                    <!--                    </section>-->
+                  </p-accordionTab>
+                </p-accordion>
+              </td>
+            </tr>
+            <tr *ngIf="isLoading">
+              <td></td>
+              <td>Carregando os dados</td>
+              <td></td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
     </section>
-
-    <div class="p-field" style="margin-top: 2rem">
-      <button pButton type="button" label="Enviar" (click)="onSubmit()" [disabled]="!formGroup.valid"></button>
-    </div>
   </form>
 </div>
