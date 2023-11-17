@@ -34,6 +34,18 @@
 .filter:hover {
   background-color: #f1ebeb;
 }
+.user-poster-image {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.user-image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
 .answer-actions {
   display: flex;
   flex-direction: row;

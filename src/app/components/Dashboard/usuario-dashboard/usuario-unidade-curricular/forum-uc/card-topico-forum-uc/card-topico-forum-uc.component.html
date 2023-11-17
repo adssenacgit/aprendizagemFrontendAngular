@@ -14,7 +14,7 @@
     </div>
     <div class="question-actions btn-group">
       <button type="button" class="btn btn-light">
-        <p>{{ topico.totalComentarios }}</p>
+        <p>{{ topico.comentarios.length }}</p>
         <i class="bi bi-chat"></i>
       </button>
       <button type="button" class="btn btn-light">
@@ -31,10 +31,7 @@
     <h2 routerLink="./topico/{{ topico.id }}">
       {{ topico.titulo }}
     </h2>
-    <!-- <h4 class="author">{{ topico.usuario.nomeCompleto }}</h4> -->
-    <h3>
-      {{ topico.descricao }}
-    </h3>
+    <div [innerHTML]="topico.descricao"></div>
   </div>
   <div class="card-body question-tags">
     <button type="button" class="btn btn-light" *ngFor="let tag of topico.tags">

@@ -150,7 +150,7 @@ export class ApoioDuvidasComponent implements OnInit {
   ordernarPorResposta(order: string) {
     if (order == 'decrescente') {
       this.chapterAssuntos.sort(
-        (a, b) => b.totalComentarios - a.totalComentarios
+        (a, b) => b.comentarios.length - a.comentarios.length
       );
     }
   }

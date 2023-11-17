@@ -37,16 +37,17 @@ export class ComentarioComponent implements OnInit {
   ngOnInit() {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
     let id = this.route.snapshot.params['id'];
-    this.comentarioService
-      .FiltrarChapterAssuntoComentarioPorId(id)
-      .subscribe((data) => {
-        this.comentario.chapterAssuntoId = id;
-        this.comentarios = data;
-        this.calculateTotalPages(false);
-      });
+    // this.comentarioService
+    //   .FiltrarChapterAssuntoComentarioPorId(id)
+    //   .subscribe((data) => {
+    //     this.comentario.chapterAssuntoId = id;
+    //     this.comentarios = data;
+    //     this.calculateTotalPages(false);
+    //   });
 
-    this.chapterAssuntoService.ObterChapterAssuntoById(id).subscribe((data) => {
+    this.chapterAssuntoService.ObterChapterAssuntoByIdJava(id).subscribe((data) => {
       this.pergunta = data;
+      this.comentarios = data.comentarios;
     });
 
     this.form = this.fb.group({
