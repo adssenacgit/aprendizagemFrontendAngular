@@ -19,9 +19,10 @@ export class CardTopicoComunidadeComponent implements OnInit {
     private chapterAssuntoService: ChapterAssuntoService) { }
 
   ngOnInit(): void {
-    this.chapterAssuntoService.ObterTotalComentariosByChapterAssuntoIdJava(this.topico.id).subscribe((data) => {
-      this.totalComentarios = data;
-    });
+    // this.chapterAssuntoService.ObterTotalComentariosByChapterAssuntoIdJava(this.topico.id).subscribe((data) => {
+    //   this.totalComentarios = data;
+    // });
+    console.log(this.topico.totalComentarios)
 
   }
 
