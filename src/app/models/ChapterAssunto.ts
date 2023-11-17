@@ -1,4 +1,5 @@
 import { Chapter } from "./Chapter";
+import { ChapterAssuntoComentario } from "./ChapterAssuntoComentario";
 import { ChapterTag } from "./ChapterTag";
 import { Usuario } from "./Usuario";
 
@@ -17,6 +18,7 @@ export class ChapterAssunto {
     chapter:Chapter = new Chapter();
     totalComentarios: number;
     tags: ChapterTag[] = [];
+    comentarios: ChapterAssuntoComentario[] = [];
 
 
 

@@ -37,6 +37,12 @@ export class ChapterAssuntoService {
     const apiUrl = `${this.url}/${chapterAssuntoId}`;
     return this.https.get<ChapterAssunto>(apiUrl);
   }
+
+  ObterTotalComentariosByChapterAssuntoIdJava (chapterAssuntoId: number): Observable<number> {
+    const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/total-comentarios`;
+    return this.https.get<number>(apiUrl);
+  }
+
   ObterChapterAssuntoByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}`;
@@ -52,6 +58,8 @@ export class ChapterAssuntoService {
     const apiUrl = `${this.javaUrl}/filtrar-chapter-assuntos-por-chapter-id/${chapterId}`;
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
+
+
 
   NovoChapterAssunto (chapterAssunto: ChapterAssunto): Observable<any>
   {

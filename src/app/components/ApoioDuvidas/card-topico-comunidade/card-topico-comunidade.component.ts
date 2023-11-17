@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
+import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
 import { ComentarioService } from 'src/app/services/comentario.service';
 
 @Component({
@@ -12,12 +13,15 @@ export class CardTopicoComunidadeComponent implements OnInit {
 
   @Input() topico: ChapterAssunto;
   curtidas: number;
+  totalComentarios: number;
 
   constructor(
-    private ChapterAssuntoComentario: ComentarioService) { }
+    private chapterAssuntoService: ChapterAssuntoService) { }
 
   ngOnInit(): void {
-    this.ChapterAssuntoComentario.FiltrarChapterAssuntoComentarioPorId(this.topico.id).subscribe(data => this.topico.totalComentarios = data.length)
+    this.chapterAssuntoService.ObterTotalComentariosByChapterAssuntoIdJava(this.topico.id).subscribe((data) => {
+      this.totalComentarios = data;
+    });
 
   }
 
