@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
-import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
-import { CurtidaService } from 'src/app/services/curtida.service';
 
 @Component({
   selector: 'app-card-topico-comunidade',
@@ -15,8 +14,7 @@ export class CardTopicoComunidadeComponent implements OnInit {
   curtidas: number;
 
   constructor(
-    private ChapterAssuntoComentario: ComentarioService,
-    private Curtida: CurtidaService, ) { }
+    private ChapterAssuntoComentario: ComentarioService) { }
 
   ngOnInit(): void {
     this.ChapterAssuntoComentario.FiltrarChapterAssuntoComentarioPorId(this.topico.id).subscribe(data => this.topico.totalComentarios = data.length)

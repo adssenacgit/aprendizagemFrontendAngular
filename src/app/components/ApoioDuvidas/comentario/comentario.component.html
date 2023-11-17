@@ -24,8 +24,7 @@
           <h1 routerLink="/comunidade/comentario/">
             {{pergunta.titulo}}
           </h1>
-          <h3>
-            {{pergunta.descricao}}
+          <h3 [innerHTML]="pergunta.descricao">
           </h3>
         </div>
         <div class="card-body question-tags">
@@ -79,7 +78,7 @@
         </div>
         <div class="answer-body">
           <div class="card-body question-text">
-            <p>{{ comentario.texto }}</p>
+            <p [innerHTML]="comentario.texto"></p>
           </div>
           <div class="card-body answer-actions">
             <div class="first-buttons">
