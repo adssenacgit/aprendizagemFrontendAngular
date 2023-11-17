@@ -4,6 +4,8 @@ import { Encontro } from 'src/app/models/Encontro';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { GrupoService } from 'src/app/services/grupo.service';
 import { Grupo } from 'src/app/models/Grupo';
+import { ParticipanteService } from 'src/app/services/participante.service';
+import { Participante } from 'src/app/models/Participante';
 
 
 @Component({
@@ -17,20 +19,24 @@ export class EncontrosListaComponent implements OnInit{
   @Input()
   encontros: Encontro[];
   estudanteId: number;
+  participante: Participante;
   isLoading: boolean = true;
   grupoId: number
 
   constructor(
     private authGuardService: AuthGuardService,
     private acompanhamentoService: AcompanhamentoService,
-    private grupoService: GrupoService
+    private grupoService: GrupoService,
+    private participanteService: ParticipanteService
   ) { }
 
   ngOnInit(): void {
-    console.log(this.encontros)
     this.estudanteId = this.authGuardService.getIdEstudanteUsuarioLogado()
     this.grupoId = this.grupoService.getGrupoId()
-
+    this.participanteService.obterParticipantePorEstudanteIdPorGrupoIdJava(this.estudanteId, this.grupoId)
+      .subscribe(
+        response => this.participante = response
+      )
   }
 
   obterAcompanhamento(encontro: Encontro) {
@@ -47,7 +53,14 @@ export class EncontrosListaComponent implements OnInit{
         this.acompanhamentoService.obterAcompanhamentoPorGrupoIdPorEstudanteIdPorObjetoIdJava(this.grupoId, this.estudanteId, objeto.id)
           .subscribe({
             next: (response) => {
-              response != null ? objeto.cursado = true : objeto.cursado = false;
+              if ( response.length == 0) {
+                objeto.cursado = false
+              }
+              else {
+                for (let acompanhamento of response) {
+                  acompanhamento.status == 1 ? objeto.cursado = true : objeto.cursado = false
+                }
+              }
             }
           })
       })

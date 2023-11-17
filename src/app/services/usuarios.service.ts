@@ -41,4 +41,9 @@ export class UsuariosService {
     const apiUrl = `${this.url}/LogarUsuario`;
     return this.http.post<DadosRegistro>(apiUrl, dadosLogin);
   }
+
+  AtualizarUsuario(formData: any): Observable<Usuario>{
+    const apiUrl = `${this.url}/${formData.id}`;
+    return this.http.put<Usuario>(apiUrl, formData);
+  }
 }

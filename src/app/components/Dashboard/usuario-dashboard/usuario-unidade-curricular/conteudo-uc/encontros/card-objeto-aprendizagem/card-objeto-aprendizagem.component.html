@@ -3,6 +3,7 @@
     [(ngModel)]="objeto.cursado"
     [binary]="true"
     inputId="binary"
+    (onChange)="toggleAcompanhamento($event, objeto)"
   ></p-checkbox>
   <p style="width: 80%;" class="line-clamp"
     (click)="setObjetoSource(objeto)"

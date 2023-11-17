@@ -3,32 +3,35 @@ import { ActivatedRoute } from '@angular/router';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
+import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
 @Component({
   selector: 'app-comentarios',
   templateUrl: './comentario.component.html',
   styleUrls: ['./comentario.component.css'],
 })
 export class ComentarioComponent implements OnInit {
+  textoSanitizado: string;
   form: FormGroup;
-
   comentario: ChapterAssuntoComentario = new ChapterAssuntoComentario();
-
   comentarios: ChapterAssuntoComentario[] = [];
+  chapterAssuntos: ChapterAssunto[];
+  pergunta: ChapterAssunto;
   idUsuarioLogado: string;
   currentPage: number = 1;
   itemsPerPage: number = 4;
   startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
   endIndex: number = this.currentPage * this.itemsPerPage;
   totalPages: number[];
+  descriptions: string[] = [];
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private comentarioService: ComentarioService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
+    private chapterAssuntoService: ChapterAssuntoService
   ) {}
 
   ngOnInit() {
@@ -42,9 +45,22 @@ export class ComentarioComponent implements OnInit {
         this.calculateTotalPages(false);
       });
 
+    this.chapterAssuntoService.ObterChapterAssuntoById(id).subscribe((data) => {
+      this.pergunta = data;
+    });
+
     this.form = this.fb.group({
       comentario: [null, [Validators.required, Validators.minLength(5)]],
     });
+  }
+
+  sanitizeHTML(input: string): string {
+    return input
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   previousPage() {
@@ -109,9 +125,7 @@ export class ComentarioComponent implements OnInit {
     }
   }
 
-  onDelete() {
-
-  }
+  onDelete() {}
 
   onSubmit() {
     var date;
@@ -130,20 +144,29 @@ export class ComentarioComponent implements OnInit {
       ('00' + date.getUTCSeconds()).slice(-2);
 
     this.comentario.texto = this.form.value.comentario;
+    this.textoSanitizado = this.sanitizeHTML(this.comentario.texto.toString());
     this.comentario.data = date;
     this.comentario.usuarioId = this.idUsuarioLogado;
 
     this.comentarioService
       .NovoChapterAssuntoComentario(this.comentario)
       .subscribe({
-        next: (() => {
-          location.reload()
-        })
+        next: () => {
+          location.reload();
+        },
       });
   }
 
   onCancel() {
     console.log('onCancel');
     this.form.reset();
+  }
+  limparFormulario() {
+    this.form.reset();
+    this.descriptions = [];
+  }
+
+  verificarCampos(): boolean {
+    return this.form.valid;
   }
 }

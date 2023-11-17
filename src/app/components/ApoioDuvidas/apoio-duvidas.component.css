@@ -53,6 +53,12 @@
   }
   .card-header p {
 	margin: 0;
+	cursor: pointer;
+  }
+
+  .card-body a {
+	margin: 0;
+	cursor: pointer;
   }
   .card-text {
 	font-size: 16px;
@@ -60,8 +66,8 @@
   }
   .tags-card .btn {
 	/* width: 63px; */
-	height: 28px;
-	padding: 10px;
+	/* height: 28px; */
+	padding: 0px 3px 0px 5px;
 	margin: 5px;
 	display: flex;
 	flex-direction: row;

@@ -1,6 +1,6 @@
-import { AtividadeTipo } from "./AtividadeTipo";
-import { GrauDificuldade } from "./GrauDificuldade";
-import { SituacaoAprendizagem } from "./SituacaoAprendizagem";
+import { AtividadeTipo } from './AtividadeTipo';
+import { GrauDificuldade } from './GrauDificuldade';
+import { SituacaoAprendizagem } from './SituacaoAprendizagem';
 
 export class Atividade {
     id: number;

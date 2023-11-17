@@ -18,6 +18,7 @@ const httpOptions = {
 export class GrupoService {
 
   url = environment.apiServer + 'api/Grupo';
+  javaUrl = 'http://localhost:8080/grupo'
   grupoId: number;
   constructor(private https: HttpClient) { }
 
@@ -77,6 +78,11 @@ export class GrupoService {
 
   getGrupoId() {
     return this.grupoId;
+  }
+
+  obterGruposPeloProfessorIdPeriodoAtivo(professorId: number) {
+    const apiUrl = `${this.javaUrl}/getGrupoByPeriodoAtivoByProfessorId/${professorId}`;
+    return this.https.get<Grupo[]>(apiUrl);
   }
 
 }

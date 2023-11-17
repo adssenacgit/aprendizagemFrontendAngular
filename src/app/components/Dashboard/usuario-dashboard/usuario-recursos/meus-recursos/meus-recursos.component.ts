@@ -26,6 +26,7 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
   ref: DynamicDialogRef;
 
   idUsuarioLogado: string;
+  isAdministrator: boolean = false;
   recurso: Recurso;
   uploadedFiles: any[] = [];
   maxFileSize: number = 1000000;
@@ -53,6 +54,8 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
 
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+    this.isAdministrator = this.authGuardService.VerificarAdministrador();
+    console.log(this.isAdministrator)
     this.filteredItems = this.recursos;
   }
 
@@ -341,6 +344,7 @@ export class MeusRecursosComponent implements OnInit, OnChanges,OnDestroy{
       case "audio/mpeg":
       case "audio/mp3":
       case "audio/mp4":
+      case "audio/wav":
         return "Arquivo de Áudio";
       case "video/mpeg":
       case "video/mp4":

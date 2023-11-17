@@ -36,6 +36,11 @@ export class EncontroService {
     return this.https.get<Encontro[]>(apiUrl);
   }
 
+  ObterEncontroPorGrupoIdPorEstudanteIdJava(grupoId: number, estudanteId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
+    return this.https.get<Encontro[]>(apiUrl);
+  }
+
   ObterEncontroPorGrupoIdJava(grupoId: number): Observable<Encontro[]> {
     const apiUrl = `${this.javaUrl}/filtrarByGrupoId/${grupoId}`;
     return this.https.get<Encontro[]>(apiUrl);
