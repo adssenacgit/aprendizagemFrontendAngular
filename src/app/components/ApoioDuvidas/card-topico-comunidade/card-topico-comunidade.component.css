@@ -75,7 +75,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 286px;
+  max-width: 200px;
 }
 .tags-card p {
   margin: 0;
@@ -101,6 +101,7 @@
 }
 .question-data {
   display: flex;
+  width: 275px;
   flex-direction: row;
   padding: 5px;
 }
@@ -112,6 +113,13 @@
 
 .comentario-usuario-nome {
   color: #9d9696;
+}
+
+.question-texts {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 100%;
 }
 
 .question-texts h4,
@@ -134,6 +142,7 @@ h3, p {
 }
 .question-actions {
   display: flex;
+  width: 50%;
   flex-direction: row;
   justify-content: space-between;
 }
