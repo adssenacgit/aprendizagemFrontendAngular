@@ -1,13 +1,17 @@
 <div class="user-card-container">
-	<img class="user-image" src="{{'data:image/png;base64,' + usuario.foto}}" />
+	<!-- <img class="user-image" src="{{'data:image/png;base64,' + usuario.foto}}" /> -->
 	<div class="user-info">
-	  <p class="user-name">{{usuario.nomeCompleto}}</p>
-	  <p class="user-email">{{usuario.email}}</p>
-	  <div class="user-stats">
-		<p>Senac Coin: {{senacCoin.saldo}}</p>
-		<!-- Necessário endpoint para nível do usuário -->
-		<p>Nível: 1</p>
-	  </div>
+		<!-- <p class="user-name">{{usuario.nomeCompleto}}</p> -->
+		<!-- <p class="user-email">{{usuario.email}}</p> -->
+		<div class="user-stats">
+			<!-- <p>Senac Coin: {{senacCoin.saldo}}</p> -->
+			<h2 style="color: #092C4C">Saldo Senac Coin</h2>
+			<div class="saldo-box">
+				{{senacCoin.saldo}} 
+			</div>
+			<i class="pi pi-th-large"  [routerLink]="['/senacCoin/usuariosenaccoin']" style="color: #0084ff" style="font-size: 1.5rem; color: #092C4C; cursor: pointer; margin-top: -20px; margin-left: 186%;" ></i>
+			<!-- Necessário endpoint para nível do usuário -->
+			<!-- <p>Nível: 1</p> -->
+		</div>
 	</div>
-  </div>
-  
+</div>

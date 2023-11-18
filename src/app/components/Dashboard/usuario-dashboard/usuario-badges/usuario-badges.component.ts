@@ -11,19 +11,25 @@ import { BadgeService } from 'src/app/services/badge.service';
 export class UsuarioBadgesComponent implements OnInit {
   badges: Badge[]=[];
   badge : Badge = new Badge;
-  idUsuarioLogado: string;
+  idEstudante: number;
 
 
   constructor(
     private badgeService: BadgeService,
     private authGuardService: AuthGuardService
-  ) { }
+  ) { 
+    this.badge.imagem="";
+
+    this.badges.push(this.badge);
+    this.badges.push(this.badge);
+    this.badges.push(this.badge);
+  }
 
   ngOnInit(): void {
 
-    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+    this.idEstudante = this.authGuardService.getIdEstudanteUsuarioLogado();
 
-    this.badgeService.ObterBadgesRecentesPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
+    this.badgeService.ObterBadgesPeloEstudanteId(this.idEstudante).subscribe(resultado => {
       this.badges = resultado;
     })
   }

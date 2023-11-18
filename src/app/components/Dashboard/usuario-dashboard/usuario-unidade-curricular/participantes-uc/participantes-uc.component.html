@@ -1,0 +1,5 @@
+<div *ngIf="participantes != undefined" class="p-3">
+  <div *ngFor="let participante of participantes">
+    <p class="user-name">{{participante.usuario.nomeCompleto}}</p>
+  </div>
+</div>

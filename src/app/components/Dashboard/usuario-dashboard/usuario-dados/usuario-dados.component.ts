@@ -14,7 +14,7 @@ export class UsuarioDadosComponent implements OnInit {
 
   usuario : Usuario = new Usuario;
   idUsuarioLogado : string;
-  senacCoin: SenacCoin;
+  senacCoin: SenacCoin =new SenacCoin;
 
   constructor(
     private usuarioService : UsuariosService,
@@ -31,6 +31,7 @@ export class UsuarioDadosComponent implements OnInit {
 
     this.senacCoinService.ObterSenacCoinPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado => {
       this.senacCoin = resultado;
+      console.log(resultado);
     })
   }
 

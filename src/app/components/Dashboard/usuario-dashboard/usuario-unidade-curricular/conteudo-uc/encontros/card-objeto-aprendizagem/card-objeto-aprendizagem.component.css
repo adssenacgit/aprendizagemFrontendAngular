@@ -1,0 +1,13 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.mat-icon {
+  overflow: visible;
+}
+
+.select:hover {
+  cursor: pointer;
+
+}

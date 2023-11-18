@@ -1,0 +1,18 @@
+p {
+  font-family: 'PoppinsRegular';
+  font-size: 16px;
+  font-weight: 100;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.active {
+  background-color: #EF8F2F;
+}
+
+.link-container:hover {
+  background-color: #EF8F2F;
+}

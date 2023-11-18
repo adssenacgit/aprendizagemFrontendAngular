@@ -1,6 +1,4 @@
-
-
-<div class="essa" >
+<!-- <div class="essa" >
 
     <h2>Lista de Recursos Digitais do Usuário</h2>
     <div class="postagem" *ngIf="teladepostagem()"></div>
@@ -11,10 +9,36 @@
 
         <p-tabPanel header="Arquivos Compartilhados">
             <div class="p-grid w-auto">
-                
                 <h1>Arquivos Compartilhados Aqui</h1>
             </div>
         </p-tabPanel>
     </p-tabView>
+</div> -->
+<div class="container page-container">
+    <div class="row gap-3 content-container">
+      <div class="col p-3 border rounded container-shadow d-flex flex-column justify-content-between">
+        <div>
+          <h1 style="text-align: center;">Recursos Digitais</h1>
+          <div class="botoes d-flex flex-column gap-2">
+            <div class="arquivo-nav border rounded container-shadow" (click)="obterMeusRecursos()">Meus arquivos</div>
+            <div class="arquivo-nav border rounded container-shadow" (click)="obterRecursosPublicos()">Públicos</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column gap-1">
+          <div class="d-flex justify-content-center gap-2">
+            <i class="pi pi-cloud icon"></i>
+            <p>Armazenamento</p>
+          </div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar" role="progressbar" style="width: {{value}}%;" [attr.aria-valuenow]="value" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div>
+            <p>{{value}}MB de 100MB usados</p>
+          </div>
+        </div>
+      </div>
+      <div class=" col-md-10 col-sm-12 h-100 p-3 border rounded container-shadow">
+        <app-meus-recursos  *ngIf="recursos != undefined" [recursos]="recursos" [modoExibicao]="modoExibicao"></app-meus-recursos>
+      </div>
+    </div>
 </div>
-       

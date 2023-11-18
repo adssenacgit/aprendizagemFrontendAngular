@@ -59,7 +59,7 @@ export class TimelineListaComponent implements OnInit {
     private encontroService: EncontroService,
     private errorService: ErrorService,
     private atividadeService: AtividadeService,
-    private objetoAprendizagemService: ObjetoAprendizagemService, 
+    private objetoAprendizagemService: ObjetoAprendizagemService,
     private situacaoAprendizagemService: SituacaoAprendizagemService,
     private authGuardService: AuthGuardService
   ) {}
@@ -72,7 +72,7 @@ export class TimelineListaComponent implements OnInit {
   }
 
   ObterEncontros = () => {
-    this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).pipe(
+    this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.idEstudanteUsuarioLogado).pipe(
         delay(500),
         catchError((error) => {
           this.errorService.onError('Erro ao carregar encontros da unidade curricular.');
@@ -88,7 +88,7 @@ export class TimelineListaComponent implements OnInit {
   showDialogDetalheEncontro(encontroId: number){
     this.displayDetalheEncontro = true;
 
-    this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontroId).subscribe(resultado =>{
+    this.situacaoAprendizagemService.filtrarSituacoesAprendizagemPorEncontroId(encontroId).subscribe(resultado =>{
       this.situacoesAprendizagem = resultado;
       this.loading = false;
     })

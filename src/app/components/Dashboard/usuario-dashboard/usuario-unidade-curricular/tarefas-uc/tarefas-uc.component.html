@@ -1,0 +1,8 @@
+
+<div *ngFor="let encontro of encontros">
+  <div *ngFor="let situacaoAprendizagem of encontro.situacoesAprendizagem">
+    <div *ngFor="let atividade of situacaoAprendizagem.atividades">
+      <p>{{atividade.descricao}}</p>
+    </div>
+  </div>
+</div>
