@@ -32,6 +32,12 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto[]>(this.javaUrl);
   }
 
+  ObterTodosComTotalComentariosJava() : Observable<ChapterAssunto[]>
+  {
+    const apiUrl = `${this.javaUrl}/with-total-comentarios`;
+    return this.https.get<ChapterAssunto[]>(apiUrl);
+  }
+
   ObterChapterAssuntoById (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.url}/${chapterAssuntoId}`;
@@ -41,6 +47,12 @@ export class ChapterAssuntoService {
   ObterChapterAssuntoByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}`;
+    return this.https.get<ChapterAssunto>(apiUrl);
+  }
+
+  ObterChapterAssuntoWithTotalComentariosByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>
+  {
+    const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/with-total-comentarios`;
     return this.https.get<ChapterAssunto>(apiUrl);
   }
 
