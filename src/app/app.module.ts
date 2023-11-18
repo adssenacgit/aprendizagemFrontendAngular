@@ -224,6 +224,7 @@ import {
 } from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/estudante/listar-registros-avaliacoes/listar-registros-avaliacoes.component';
 import {TagModule} from "primeng/tag";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {MessageService} from "primeng/api";
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -374,6 +375,7 @@ registerLocaleData(localeFR);
     HttpClientModule,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

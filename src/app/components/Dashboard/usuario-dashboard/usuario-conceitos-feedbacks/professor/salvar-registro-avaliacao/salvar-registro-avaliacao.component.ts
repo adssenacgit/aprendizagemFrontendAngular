@@ -17,6 +17,12 @@ import {delay, forkJoin, switchMap} from "rxjs";
 import {AcompanhamentoService} from "../../../../../../services/acompanhamento.service";
 import {Acompanhamento} from "../../../../../../models/Acompanhamento";
 import {AvaliacaoConceito} from "../../../../../../models/AvaliacaoConceito";
+import {MessageService} from "primeng/api";
+import {HttpErrorResponse} from "@angular/common/http";
+import {NotificacaoService} from "../../../../../../services/notificacao.service";
+import {Usuario} from "../../../../../../models/Usuario";
+import {Notificacao} from "../../../../../../models/Notificacao";
+import {UsuariosService} from "../../../../../../services/usuarios.service";
 
 @Component({
   selector: 'app-salvar-registro-avaliacao',
@@ -35,11 +41,15 @@ export class SalvarRegistroAvaliacaoComponent implements OnInit {
   estudantes: Estudante[] = [];
   atividades: Atividade[] = [];
   acompanhamentos: Acompanhamento[] = [];
-  avaliacaoTipo: string[] = ['Ciclo 1', 'Ciclo 2', 'Recuperação Ciclo 1', 'Recuperação Ciclo 2', 'Conceito Final', 'Resultado'];
-  avaliacaoConceito: string[] = ['O', 'B', 'S', 'I', 'SA'];
   registroAvaliacoes: RegistroAvaliacao[] = [];
 
+  avaliacaoTipo: string[] = ['Ciclo 1', 'Ciclo 2', 'Recuperação Ciclo 1', 'Recuperação Ciclo 2', 'Conceito Final', 'Resultado'];
+  avaliacaoConceito: string[] = ['O', 'B', 'S', 'I', 'SA'];
+
   grupoFormModelStandalone: string = '';
+  avaliacaoTipoFormModelStandalone: string = 'Ciclo 1';
+  avaliacaoConceitoFormModelStandalone: string = '';
+  comentarioFormModelStandalone: string = "";
 
   avaliacaoTipoCiclo1: string = 'Ciclo 1';
   avaliacaoConceitoCiclo1: string = '';
@@ -74,7 +84,10 @@ export class SalvarRegistroAvaliacaoComponent implements OnInit {
     private _registroAvaliacaoService: RegistroAvaliacaoService,
     private _atividadeService: AtividadeService,
     private _authGuardService: AuthGuardService,
-    private _acompanhamentoService: AcompanhamentoService
+    private _acompanhamentoService: AcompanhamentoService,
+    private _messageService: MessageService,
+    private _notificacaoService: NotificacaoService,
+    private _usuarioService: UsuariosService
   ) {
   }
 
@@ -104,32 +117,11 @@ export class SalvarRegistroAvaliacaoComponent implements OnInit {
                 this._listarRegistroAvaliacoesPeloIdEstudante(estudante.id);
                 this.grupos = $grupos;
 
-                // this._encontroService.ObterEncontroPorGrupoId(grupo.id, estudante.id).subscribe({
-                //   next: ($encontros) => {
-                //     $encontros.forEach(encontro => {
-
-                      // this._situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.id).subscribe({
-                      //   next: ($situacoesAprendizagem) => {
-                      //     $situacoesAprendizagem.forEach(situacaoAprendizagem => {
-
-                            // this._atividadeService.FiltrarAtividadebySituacaoAprendizagemId(situacaoAprendizagem.id).subscribe({
-                            //   next: ($atividades) => {
-                            //     this.atividades = $atividades;
-                            //   }
-                            // });
-
-                            this._acompanhamentoService.ObterAcompanhamentoPeloGrupoIdPeloEstudanteId(grupo.id, estudante.id).subscribe({
-                              next: ($acompanhamentos) => {
-                                console.log($acompanhamentos)
-                                  this.acompanhamentos = $acompanhamentos;
-                              }
-                            });
-                      //     });
-                      //   }
-                      // });
-                //     });
-                //   }
-                // });
+                this._acompanhamentoService.ObterAcompanhamentoPeloGrupoIdPeloEstudanteId(grupo.id, estudante.id).subscribe({
+                  next: ($acompanhamentos) => {
+                    this.acompanhamentos = $acompanhamentos;
+                  }
+                });
               });
             }
           });
@@ -188,7 +180,7 @@ export class SalvarRegistroAvaliacaoComponent implements OnInit {
     }
   }
 
-  onChange(data: any) {
+  onChange(data: any): void {
     this.isLoading = true;
     this.grupoFormModelStandalone = data.value;
     this._listarGruposQueOProfessorLeciona();
@@ -199,16 +191,33 @@ export class SalvarRegistroAvaliacaoComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.formGroup.valid) {
-      this._registroAvaliacaoService.SalvarRegistroAvaliacao(this.formGroup.value).subscribe({
-        next: ($registroAvaliacao) => {
-          console.log(this.formGroup.value);
-          console.log($registroAvaliacao);
-        },
-        error: (error) => {
-          console.error(error);
+    this._registroAvaliacaoService.SalvarRegistroAvaliacao(this.formGroup.value).subscribe({
+      next: ($registroAvaliacao): void => {
+        this._messageService.add({severity: 'success', summary: 'Success', detail: 'Registro final salvo'});
+      },
+      error: (error: HttpErrorResponse): void => {
+        switch (error.status) {
+          case 404 : {
+            this._messageService.add({
+              severity: 'error',
+              summary: `Error ${error.status}`,
+              detail: 'Erro de endereçamento'
+            });
+            break;
+          }
         }
-      });
-    }
+      },
+      complete: (): void => {
+        this._usuarioService.ObterUsuarioPorId(this.idUsuarioLogado).subscribe({
+          next:($usuario) => {
+            this._notificacaoService.CadastrarNotificacao(new Notificacao(0, "Novo conceito registrado!", new Date(), 1, 1, $usuario, "")).subscribe({
+              next: ($notificacao) => {
+                console.log($notificacao)
+              }
+            });
+          }
+        })
+      }
+    });
   }
 }
