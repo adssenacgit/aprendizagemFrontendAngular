@@ -51,14 +51,23 @@ export class AuthGuardService implements CanActivate {
   }
 
   VerificarProfessor(): boolean {
-
-    const token = String(sessionStorage.getItem('TokenUsuarioLogado'));
-
+    const token:string = String(sessionStorage.getItem('TokenUsuarioLogado'));
     const tokenUsuario = this.getDecodedAccessToken(token);
-
     const decodedRole = tokenUsuario['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
 
     if(decodedRole === 'Professor'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  VerificarEstudante(): boolean {
+    const token:string = String(sessionStorage.getItem('TokenUsuarioLogado'));
+    const tokenUsuario = this.getDecodedAccessToken(token);
+    const decodedRole = tokenUsuario['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+
+    if(decodedRole === 'Usuario'){
       return true;
     }else{
       return false;
@@ -72,7 +81,7 @@ export class AuthGuardService implements CanActivate {
     const decodedName = tokenUsuario['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     return decodedName;
   }
-    
+
   getNomeUsuarioLogado(): string {
     //const token = String(localStorage.getItem('TokenUsuarioLogado'));
     const token = String(sessionStorage.getItem('TokenUsuarioLogado'));

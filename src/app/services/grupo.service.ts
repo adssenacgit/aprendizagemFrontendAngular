@@ -45,6 +45,12 @@ export class GrupoService {
     return this.https.get<Grupo[]>(apiUrl);
   }
 
+  ObterTodosGrupos () : Observable<Grupo[]>
+  {
+    const apiUrl = `${this.url}`;
+    return this.https.get<Grupo[]>(apiUrl);
+  }
+
   ObterGrupoPeloEstudanteIdPeriodoId (idEstudante: number, idPeriodo: number) : Observable<Grupo[]>
   {
     const apiUrl = `${this.url}/ObterGruposByEstudanteIdByPeriodoId/${idEstudante}/${idPeriodo}`;
