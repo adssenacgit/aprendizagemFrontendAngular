@@ -49,6 +49,7 @@ import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/u
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
 import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
+import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
 
 const routes: Routes = [
   {
@@ -88,10 +89,7 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent
-      },
-      {
-        path: 'unidadeCurricular/estudoprevio', component: EstudoPrevioComponent
+        path: 'professor/grupo/:id', component: ProfessorUnidadeCurricularComponent
       },
       {
         path: 'recurso/usuariorecursos', component: UsuarioRecursosComponent
