@@ -1,0 +1,17 @@
+    <mat-card class="card-java" *ngFor="let badge of badges">
+        <mat-card-header>
+            <mat-card-title class="title-java">
+                <p>{{badge.descricao}}</p>
+            </mat-card-title>
+        </mat-card-header>
+        <img class="img-java" mat-card-image [src]="'data:image/jpg;base64,'+badge.imagem">
+        <br>
+        <mat-card-content>
+            <p>
+              {{badge.descricao}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button>MAIS DETALHES</button>
+        </mat-card-actions>
+    </mat-card>

@@ -31,11 +31,17 @@ export class MensagensComponent implements OnInit {
     private mensagemService : MensagemService,
     private estudanteService : EstudantesService,
     private authGuardService: AuthGuardService
-    ) {
+    ) { 
+
+      // inserção de dados mockados
+      this.mensagens = conversa;
+
+
     }
 
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+    console.log("id",this.idUsuarioLogado)
 
     this.estudanteService.ObterEstudanteByUsuarioId(this.idUsuarioLogado).subscribe(resultado=>{
       this.estudante = resultado;
