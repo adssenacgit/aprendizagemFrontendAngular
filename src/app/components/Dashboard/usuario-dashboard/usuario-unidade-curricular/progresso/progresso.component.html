@@ -1,0 +1,8 @@
+<div class="container container-shadow progresso-container p-3 border rounded d-flex flex-column justify-content-between">
+  <p>Progresso da UC</p>
+  <p-progressBar [style]="{ height: '20px', fontSize: '14px' }" [value]="progressoUC"></p-progressBar>
+
+  <p>Progresso do Aluno</p>
+  <p-progressBar [style]="{ height: '20px', fontSize: '14px' }" [value]="progressoAluno"
+  pTooltip="{{progressoAluno}}%" tooltipPosition="bottom"></p-progressBar>
+</div>

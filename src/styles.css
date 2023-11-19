@@ -1,6 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
+
+@font-face {
+  font-family: 'PoppinsRegular';
+  src: url('../src/assets/fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: url('../src/assets/fonts/Poppins/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'PoppinsLight';
+  src: url('../src/assets/fonts/Poppins/Poppins-Light.ttf');
+}
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .dia-feriado {
@@ -28,4 +44,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .p-button.p-fileupload-choose {
     background-color: blue;
     color: white;
+}
+
+.container-shadow{
+  box-shadow: 2px 2px 2px 0px rgba(25, 24, 25, 0.15);
 }

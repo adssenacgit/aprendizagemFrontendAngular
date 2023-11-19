@@ -18,6 +18,7 @@ const httpOptions = {
 export class GrupoService {
 
   url = environment.apiServer + 'api/Grupo';
+  grupoId: number;
   constructor(private https: HttpClient) { }
 
   ObterGrupoPeloId(ucId: number): Observable<Grupo>
@@ -74,6 +75,14 @@ export class GrupoService {
   {
     const apiUrl = `${this.url}/FiltrarGrupo/${idCurso}/${idOferta}/${nomeUc}`;
     return this.https.get<Grupo[]>(apiUrl);
+  }
+
+  setGrupoId(grupoId: number): void {
+    this.grupoId = grupoId;
+  }
+
+  getGrupoId() {
+    return this.grupoId;
   }
 
 }

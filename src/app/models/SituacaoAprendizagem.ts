@@ -17,7 +17,7 @@ export class SituacaoAprendizagem {
     grauDificuldade:GrauDificuldade;
     badgeId: number;
     badge:Badge
-    objetosAprendizagem: ObjetoAprendizagem[];
-    atividades: Atividade[];
-    selecionado : number;
+    objetosAprendizagem?: ObjetoAprendizagem[] = [];
+    atividades?: Atividade[] = [];
+    selecionado? : number;
 }

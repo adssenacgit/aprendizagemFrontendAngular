@@ -3,6 +3,7 @@ import { Usuario } from "./Usuario";
 
 export class ObjetoAprendizagem {
     id: number;
+    titulo: string;
     descricao: string;
     arquivo: string;
     status: number;

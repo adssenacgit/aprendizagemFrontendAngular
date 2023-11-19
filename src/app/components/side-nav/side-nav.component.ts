@@ -9,23 +9,23 @@ import { navbarData } from '../Dashboard/dashboard/nav-data';
 })
 export class SideNavComponent implements OnInit {
 
-  collapsed = true;
-	screeWidth: 0;
-	navData = navbarData;
+//  collapsed = true;
+//	screeWidth: 0;
+//	navData = navbarData;
 
-  isAdministrador: boolean;
-  constructor(private authGuard: AuthGuardService) { }
+  //isAdministrador: boolean;
+//  constructor(private authGuard: AuthGuardService) { }
 
   ngOnInit(): void {
-    this.isAdministrador = this.authGuard.VerificarAdministrador();
+    //this.isAdministrador = this.authGuard.VerificarAdministrador();
   }
 
-	toggleCollapse(): void {
-		this.collapsed = !this.collapsed;
-	}
+	//toggleCollapse(): void {
+		//this.collapsed = !this.collapsed;
+//	}
 
-	closeSidenav(): void {
-		this.collapsed = false;
-	}
+//	closeSidenav(): void {
+//		this.collapsed = false;
+//	}
 
 }

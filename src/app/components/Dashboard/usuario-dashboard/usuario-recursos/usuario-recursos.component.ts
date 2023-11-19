@@ -11,7 +11,10 @@ import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 })
 export class UsuarioRecursosComponent implements OnInit {
 
-  
+  recursos: Recurso[]
+  value: number = 30;
+  modoExibicao: string ='privado'
+
   idUsuarioLogado : string;
   constructor(
     private recursoService : RecursoService,
@@ -21,11 +24,28 @@ export class UsuarioRecursosComponent implements OnInit {
 
   ngOnInit(): void {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+    this.recursoService.ObterRecursoPeloUsuarioIdJava(this.idUsuarioLogado).subscribe(resultado => {
+      this.modoExibicao = 'privado'
+      this.recursos = resultado;
+    });
+  }
 
-  
-}
-teladepostagem(){
-  return true
-}
+  obterMeusRecursos() {
+    this.recursoService.ObterRecursoPeloUsuarioIdJava(this.idUsuarioLogado).subscribe(resultado => {
+      this.modoExibicao = 'privado'
+      this.recursos = resultado;
+    });
+  }
+
+  obterRecursosPublicos() {
+    this.recursoService.ObterRecursoPublicosJava().subscribe(resultado => {
+      this.modoExibicao = 'publico'
+      this.recursos = resultado;
+    });
+  }
+
+  teladepostagem(){
+    return true
+  }
 
 }

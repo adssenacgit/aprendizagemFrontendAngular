@@ -1,0 +1,22 @@
+<div *ngIf="professorUsuario" class="container p-3 border rounded h-100 container-shadow">
+  <div class="titulo">
+    <h3>Docente</h3>
+  </div>
+  <div class="docente-info d-flex justify-content-between align-middle align-items-middle">
+    <div class="docente-nome-email d-flex flex-column align-middle justify-content-center">
+      <div class="docente-nome d-flex">
+        <p>
+          {{professor.usuario.nomeCompleto}}
+        </p>
+        <div>
+          <i class="pi pi-comment"></i>
+        </div>
+      </div>
+      <p>{{professor.usuario.email}}</p>
+    </div>
+    <div class="docente-foto">
+      <img class="user-image" src="{{'data:image/png;base64,' + professorUsuario.foto}}" />
+    </div>
+  </div>
+</div>
+

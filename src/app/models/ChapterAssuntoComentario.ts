@@ -1,4 +1,5 @@
 import { ChapterAssunto } from "./ChapterAssunto";
+import { Usuario } from "./Usuario";
 
 export class ChapterAssuntoComentario {
     id: number;
@@ -9,5 +10,5 @@ export class ChapterAssuntoComentario {
     chapterAssuntoId: number;
     chapterAssunto: ChapterAssunto;
     usuarioId: String;
+    usuario: Usuario;
 }
-      

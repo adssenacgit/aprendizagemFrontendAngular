@@ -8,7 +8,7 @@ import { GrupoService } from './../../../services/grupo.service';
 import { CompetenciaService } from './../../../services/competencia.service';
 import { UnidadeCurricularService } from './../../../services/unidade-curricular.service';
 import { AuthGuardService } from './../../../services/auth-guard.service';
-import { Component, Inject, OnInit, ViewChild,  ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Encontro } from 'src/app/models/Encontro';
 import { EncontroService } from 'src/app/services/encontro.service';
@@ -27,6 +27,10 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
+import { AtividadeService } from 'src/app/services/atividade.service';
+import { EncontroStatus } from 'src/app/models/EncontroStatus';
+import { Atividade } from 'src/app/models/Atividade';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-encontros',
@@ -40,7 +44,7 @@ export class EncontrosComponent implements OnInit {
   grupoId: number;
   loading: boolean = true;
 
-  encontros: Encontro[];
+  encontros: Encontro[] = [];
 
   leftNavDisabled = false;
   rightNavDisabled = false;
@@ -53,9 +57,11 @@ export class EncontrosComponent implements OnInit {
   participantes: Estudante[]=[];
   situacoesAprendizagem: SituacaoAprendizagem[]=[];
   objetosAprendizagem: ObjetoAprendizagem[]=[];
+  objetosAprendizagemCompetencia: ObjetoAprendizagem[] = [];
   planejamentoUC: PlanejamentoUC = new PlanejamentoUC();
   badges: Badge[]=[];
-
+  atividades: Atividade[] = [];
+	encontroCursados: number[] = [];
   statusAtividades: number = 5;
 
   @ViewChild('nav', {read: DragScrollComponent}) ds: DragScrollComponent;
@@ -73,6 +79,7 @@ export class EncontrosComponent implements OnInit {
     private estudantesService: EstudantesService,
     private situacaoAprendizagemService: SituacaoAprendizagemService,
     private objetoAprendizagemService: ObjetoAprendizagemService,
+    private atividadeService: AtividadeService,
     private authGuardService: AuthGuardService,
     private sanitizer: DomSanitizer,
     private dialog: MatDialog
@@ -81,31 +88,46 @@ export class EncontrosComponent implements OnInit {
   ngOnInit(): void {
     this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
     this.grupoId = this.route.snapshot.params['id'];
-    //this.grupoId = 7;
     this.ObterEncontros();
-    //this.ds.moveTo(8);
     this.ObterDetalhesUC();
+    this.ObterEncontrosCursados();
 
   }
 
   getImage(baseImage:string) : any{
-
     let objectURL = 'data:image/png;base64,' + atob(baseImage);
     return objectURL;
   }
 
   ObterEncontros = () => {
-    this.encontroService.ObterEncontroPorGrupoId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe(resultado => {
-        this.encontros = resultado;
-        this.ObterSituacoesAprendizagem(this.encontros[0].id, 0);
+    this.encontroService.ObterEncontroPorGrupoIdPorEstudanteId(this.grupoId, this.idEstudanteUsuarioLogado).subscribe(resultado => {
+        this.encontros = resultado.reverse();
+        this.encontros.forEach((encontro) => {
+          this.situacaoAprendizagemService
+            .FiltrarSituacoesAprendizagemPorEncontroId(encontro.id)
+            .subscribe((situacao) => {
+              encontro.situacoesAprendizagem = situacao;
+              situacao.forEach((aaaa) => {
+                this.ObterAtividades(aaaa)
+                this.ObterObjetosAprendizagem(aaaa)
+              })
+              this.loading = false;
+            });
+        });
         this.loading = false;
       });
   };
 
+  ObterEncontrosCursados = () => {
+		this.encontros.forEach((encontro) => {
+			this.encontroCursados.push(encontro.encontroStatus.statusCursada);
+		});
+	};
+
   ObterDetalhesUC = ()=> {
     this.grupoService.ObterGrupoPeloId(this.grupoId).subscribe(resultado => {
       this.grupo = resultado;
-      
+
       this.unidadeCurricularService.ObterUnidadeCurricularPeloId(this.grupo.unidadeCurricularId).subscribe(
         (uc: UnidadeCurricular) => {
           this.unidadeCurricular = uc;
@@ -123,10 +145,10 @@ export class EncontrosComponent implements OnInit {
           this.competenciaIndicadores = competenciaIndicadores;
         }
       );
-      
+
       this.bibliografiaService.FiltrarbibliografiaByUnidadeCurricularId(this.grupo.unidadeCurricularId).subscribe(
         (bibliografias: Bibliografia[]) => {
-          this.bibliografias = bibliografias;          
+          this.bibliografias = bibliografias;
         }
       );
 
@@ -144,7 +166,7 @@ export class EncontrosComponent implements OnInit {
 
       this.estudantesService.ObterEstudanteByGrupoId(this.grupo.id).subscribe(
         (participantes: Estudante[]) => {
-          this.participantes = participantes;          
+          this.participantes = participantes;
         }
       );
 
@@ -157,32 +179,67 @@ export class EncontrosComponent implements OnInit {
     this.objetosAprendizagem=[];
 
     for(var j=0; j< this.encontros.length; j=j+1){
-      this.encontros[j].selecionado=0;  
+      this.encontros[j].selecionado=0;
     }
 
     this.encontros[i].selecionado=1;
 
     this.loading = true;
-    this.situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
+    this.situacaoAprendizagemService.filtrarSituacoesAprendizagemPorEncontroId(idEncontro).subscribe(resultado => {
         this.situacoesAprendizagem = resultado;
         this.loading = false;
       });
   };
 
-  ObterObjetosAprendizagem = (idSituacaoAprendizagem: number, i:number) => {
+  ObterSituacosAprendizagem = (idEncontro: number, i: number) => {
 
     for(var j=0; j< this.situacoesAprendizagem.length; j=j+1){
-      this.situacoesAprendizagem[j].selecionado=0;  
+      this.situacoesAprendizagem[j].selecionado=0;
+
     }
 
-    this.situacoesAprendizagem[i].selecionado=1;
+    this.encontros[i].selecionado=1;
 
     this.loading = true;
-    this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorSituacaoAprendizagemId(idSituacaoAprendizagem).subscribe(resultado => {
+    this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorSituacaoAprendizagemId(idEncontro).subscribe(resultado => {
         this.objetosAprendizagem = resultado;
         this.loading = false;
       });
   };
+
+  ObterAtividades = (situacaoAprendizagem: SituacaoAprendizagem) => {
+		this.loading = true;
+		this.atividadeService.FiltrarAtividadebySituacaoAprendizagemId(situacaoAprendizagem.id)
+			.subscribe((resultado) => {
+				situacaoAprendizagem.atividades = resultado;
+				this.loading = false;
+		});
+	};
+
+  ObterObjetosAprendizagem = (situacaoAprendizagem: SituacaoAprendizagem) => {
+		this.loading = true;
+		this.objetoAprendizagemService.FiltrarObjetoAprendizagemPorSituacaoAprendizagemId(situacaoAprendizagem.id)
+			.subscribe((resultado) => {
+				situacaoAprendizagem.objetosAprendizagem = resultado;
+				this.loading = false;
+			});
+	};
+
+	ObterObjetosAprendizagemPorCompetencia = (idIndicadorCompetencia: number, i: number) => {
+		for (var j = 0; j < this.competenciaIndicadores.length; j = j + 1) {
+			this.competenciaIndicadores[j].selecionado = 0;
+		}
+
+		this.competenciaIndicadores[i].selecionado = 1;
+
+		this.loading = true;
+		this.objetoAprendizagemService
+			.FiltrarObjetoAprendizagemPorIndicadorCompetenciaId(idIndicadorCompetencia)
+			.subscribe((resultado) => {
+				this.objetosAprendizagemCompetencia = resultado;
+				this.loading = false;
+			});
+	};
 
   //Comandos do scroll de encontros
   moveLeft() {
@@ -195,7 +252,7 @@ export class EncontrosComponent implements OnInit {
     this.ds.moveTo(index);
   }
 
-  AbrirDialog(id : any, descricaoCompetencia: any): void 
+  AbrirDialog(id : any, descricaoCompetencia: any): void
   {
     this.dialog.open(DialogIndicadoresComponent, {
       data: {
@@ -225,6 +282,6 @@ export class DialogIndicadoresComponent{
       this.competenciaIndicadorService.FiltrarCompetenciaIndicadoresByUnidadeCurricularId(this.dados.id).subscribe(resultado => {
           this.competenciaIndicadores = resultado;
       });
-    }        
-  
+    }
+
 }

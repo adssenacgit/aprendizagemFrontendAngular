@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
       title: "Evento de carreira no auditório",
       date: "18/06/2023",
     }
-
   ];
   constructor(
     private authGuardService: AuthGuardService,

@@ -31,7 +31,7 @@ export class UsuarioTrilhaCursoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+
     this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
 
     this.ObterModulos();
