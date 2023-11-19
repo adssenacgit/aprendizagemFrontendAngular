@@ -76,11 +76,11 @@ import {
 } from './components/UnidadeCurricular/encontros/encontros.component';
 
 import {
-  ListagemBadgesComponent,
+  ListagemTabelaBadgesComponent,
   DialogExclusaoBadgeComponent
-} from './components/Badge/listagem-badge/listagem-badges.component';
-import {NovoBadgeComponent} from './components/Badge/novo-badge/novo-badge.component';
-import {AtualizarBadgeComponent} from './components/Badge/atualizar-badge/atualizar-badge.component';
+} from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
+import {NovoBadgeComponent} from './components/Dashboard/usuario-dashboard/usuario-badges/professor/novo-badge/novo-badge.component';
+import {AtualizarBadgeComponent} from './components/Dashboard/usuario-dashboard/usuario-badges/professor/atualizar-badge/atualizar-badge.component';
 
 import {MenuUsuarioComponent} from './components/Dashboard/header/menu-usuario/menu-usuario.component';
 
@@ -100,11 +100,11 @@ import {UsuarioDadosComponent} from './components/Dashboard/usuario-dashboard/us
 import {
   UsuarioProximasAtividadesComponent
 } from './components/Dashboard/usuario-dashboard/usuario-proximas-atividades/usuario-proximas-atividades.component';
-import {UsuarioBadgesComponent} from './components/Dashboard/usuario-dashboard/usuario-badges/usuario-badges.component';
+import {ListagemUltimasBadgesComponent} from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-ultimas-badges/listagem-ultimas-badges.component';
 
 import {
-  ListagemUsuarioBadgesComponent
-} from './components/Dashboard/usuario-dashboard/usuario-badges/listagem-usuario-badges/listagem-usuario-badges.component';
+  ListagemBadgesComponent
+} from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-badges/listagem-badges.component';
 import {ApoioDuvidasComponent} from './components/ApoioDuvidas/apoio-duvidas.component';
 import {ComentarioComponent} from './components/ApoioDuvidas/comentario/comentario.component';
 
@@ -225,6 +225,12 @@ import {
 import {TagModule} from "primeng/tag";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {MessageService} from "primeng/api";
+import {PanelModule} from "primeng/panel";
+import {
+  CardTopicoComunidadeComponent
+} from "./components/ApoioDuvidas/card-topico-comunidade/card-topico-comunidade.component";
+import { UsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/usuario-badges.component';
+import { DetalheBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/detalhe-badge/detalhe-badge.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -274,8 +280,8 @@ registerLocaleData(localeFR);
     UsuarioArquivosPrivadosComponent,
     UsuarioDadosComponent,
     UsuarioProximasAtividadesComponent,
-    UsuarioBadgesComponent,
-    ListagemUsuarioBadgesComponent,
+    ListagemUltimasBadgesComponent,
+    ListagemBadgesComponent,
     ApoioDuvidasComponent,
     ComentarioComponent,
     ListaObjetosAprendizagem,
@@ -291,7 +297,11 @@ registerLocaleData(localeFR);
     UsuarioNoticiasComponent,
     CardMensagemComponent,
     SalvarRegistroAvaliacaoComponent,
-    ListarRegistrosAvaliacoesComponent
+    ListarRegistrosAvaliacoesComponent,
+    CardTopicoComunidadeComponent,
+    ListagemTabelaBadgesComponent,
+    UsuarioBadgesComponent,
+    DetalheBadgeComponent
   ],
   imports: [
     BrowserModule,
@@ -364,7 +374,9 @@ registerLocaleData(localeFR);
     DropdownModule,
     TagModule,
     TreeTableModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    PanelModule,
+    MatProgressBarModule
   ],
   providers: [
     CursosService,

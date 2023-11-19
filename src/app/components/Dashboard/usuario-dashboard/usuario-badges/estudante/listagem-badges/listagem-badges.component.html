@@ -1,0 +1,19 @@
+<section style="display: flex; gap: 2rem">
+  <mat-card class="card" *ngFor="let badge of badges">
+    <mat-card-header>
+      <mat-card-title>
+        <p>{{badge.descricao}}</p>
+      </mat-card-title>
+    </mat-card-header>
+    <img class="image" mat-card-image [src]="'data:image/jpg;base64,'+badge.imagem" alt="badge">
+    <br>
+    <mat-card-content>
+      <p>
+        {{badge.descricao}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [routerLink]="['/badges/detalhe', badge.id]">MAIS DETALHES</button>
+    </mat-card-actions>
+  </mat-card>
+</section>
