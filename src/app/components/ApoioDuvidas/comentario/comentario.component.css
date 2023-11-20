@@ -271,3 +271,8 @@ h4 {
   align-items: center;
   justify-content: center;
 }
+
+.pressed {
+  background-color: #F2994A;
+  color: #092C4C;
+}

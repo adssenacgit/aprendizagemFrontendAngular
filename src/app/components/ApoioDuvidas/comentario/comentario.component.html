@@ -82,7 +82,11 @@
           </div>
           <div class="card-body answer-actions">
             <div class="first-buttons">
-              <button type="button" class="btn btn-default first-btn"> <i class="bi bi-hand-thumbs-up"></i>10</button>
+              <button type="button" class="btn btn-default first-btn" [class.pressed]="checarCurtida(comentario.curtidas, idUsuarioLogado)"
+                (click)="!checarCurtida(comentario.curtidas, idUsuarioLogado) ? curtir(comentario) : descurtir(comentario)">
+                <i class="bi bi-hand-thumbs-up"></i>
+                {{comentario.curtidas.length}}
+              </button>
               <button type="button" class="btn btn-default first-btn"> <i class="bi bi-chat"></i>Responder</button>
             </div>
             <div class="second-buttons">

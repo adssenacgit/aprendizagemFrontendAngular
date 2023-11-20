@@ -1,3 +1,4 @@
+import { Comentario } from './../../../models/Comentario';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
@@ -6,6 +7,9 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
+import { Curtida } from 'src/app/models/Curtida';
+import { CurtidaService } from 'src/app/services/curtida.service';
+import { Usuario } from 'src/app/models/Usuario';
 @Component({
   selector: 'app-comentarios',
   templateUrl: './comentario.component.html',
@@ -25,13 +29,17 @@ export class ComentarioComponent implements OnInit {
   endIndex: number = this.currentPage * this.itemsPerPage;
   totalPages: number[];
   descriptions: string[] = [];
+  curtida: Curtida = new Curtida();
+  curtidas: Curtida[] = [];
+  comentarioCurtido: boolean;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private comentarioService: ComentarioService,
     private authGuardService: AuthGuardService,
-    private chapterAssuntoService: ChapterAssuntoService
+    private chapterAssuntoService: ChapterAssuntoService,
+    private curtidaService: CurtidaService
   ) {}
 
   ngOnInit() {
@@ -48,11 +56,15 @@ export class ComentarioComponent implements OnInit {
     this.chapterAssuntoService.ObterChapterAssuntoByIdJava(id).subscribe((data) => {
       this.pergunta = data;
       this.comentarios = data.comentarios;
+      console.log(this.comentarios);
+      console.log(this.pergunta);
     });
 
     this.form = this.fb.group({
       comentario: [null, [Validators.required, Validators.minLength(5)]],
     });
+
+    this.comentarioCurtido = this.checarCurtida(this.curtidas, this.idUsuarioLogado);
   }
 
   sanitizeHTML(input: string): string {
@@ -169,5 +181,32 @@ export class ComentarioComponent implements OnInit {
 
   verificarCampos(): boolean {
     return this.form.valid;
+  }
+
+  checarCurtida(curtidas: Curtida[], idUsuario: string): boolean {
+    return curtidas.some(curtida => curtida.usuario.id === idUsuario);
+  }
+
+  curtir(comentario: ChapterAssuntoComentario) {
+    this.curtida.chapterAssuntoComentarioId = comentario.id;
+    this.curtida.usuarioId = this.idUsuarioLogado;
+    this.curtida.rank = 1;
+    this.curtidaService.postCurtida(this.curtida).subscribe({
+      next: () => {
+        location.reload();
+      },
+    });
+
+  }
+
+  descurtir(comentario: ChapterAssuntoComentario) {
+    const curtida = comentario.curtidas.find(curtida => curtida.usuario.id == this.idUsuarioLogado);
+    if (curtida) {
+      this.curtidaService.deleteCurtida(curtida.id).subscribe({
+        next: () => {
+          location.reload();
+        },
+      });
+    }
   }
 }
