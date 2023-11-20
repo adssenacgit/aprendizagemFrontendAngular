@@ -107,7 +107,7 @@ export class AtualizarBadgeComponent implements OnInit {
 
   VoltarListagem() : void
   {
-    this.router.navigate(['badges/listagembadges']);
+    this.router.navigate(['badges/professor/listagem']);
   }
 
   SelecionarImagem(fileInput: any): void{

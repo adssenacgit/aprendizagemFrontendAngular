@@ -76,7 +76,7 @@ export class SalvarBadgeComponent implements OnInit {
       novoBadge.BadgeNivelId = badge.badgeNivelId;
 
       this.badgeService.NovoBadge(novoBadge).subscribe((dados) => {
-        this.router.navigate(['badges/listagembadges']);
+        this.router.navigate(['badges/professor/listagem']);
       },
       (err) => {
         if (err.status === 400){
@@ -115,7 +115,7 @@ export class SalvarBadgeComponent implements OnInit {
 
   VoltarListagem() : void
   {
-    this.router.navigate(['badges/listagembadges']);
+    this.router.navigate(['badges/professor/listagem']);
   }
 
   SelecionarImagem(fileInput: any): void{
