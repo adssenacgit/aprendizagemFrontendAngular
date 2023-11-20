@@ -82,19 +82,19 @@ const routes: Routes = [
         path: 'dashboard/administradordashboard', component: AdministradorDashboardComponent
       },
       {
-        path: 'badges/listagembadges', component: ListagemTabelaBadgesComponent
+        path: 'badges/professor/listagem', component: ListagemTabelaBadgesComponent
       },
       {
-        path: 'badges/novobadge', component: NovoBadgeComponent
+        path: 'badges/professor/novo', component: NovoBadgeComponent
       },
       {
-        path: 'badges/atualizarbadge/:id', component: AtualizarBadgeComponent
+        path: 'badges/professor/atualizar/:id', component: AtualizarBadgeComponent
       },
       {
-        path: 'badges/listagemusuariobadges', component: ListagemBadgesComponent
+        path: 'badges/estudante/listagem', component: ListagemBadgesComponent
       },
       {
-        path: 'badges/detalhe/:id', component: DetalheBadgeComponent
+        path: 'badges/estudante/detalhe/:id', component: DetalheBadgeComponent
       },
       {
         path: 'cursos/listagemcursos', component: ListagemCursosComponent

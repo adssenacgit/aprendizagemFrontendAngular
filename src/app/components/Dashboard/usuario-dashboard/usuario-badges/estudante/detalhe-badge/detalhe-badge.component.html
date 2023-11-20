@@ -1,1 +1,23 @@
-<p>detalhe-badge works!</p>
+<section style="display:flex; flex-direction: row; justify-content: start; align-items: center;gap: 2rem;">
+  <mat-card
+    style="max-width: 20rem; display: flex; flex-direction: column; justify-content: center; align-items: start; gap: 2rem">
+    <mat-card-header>
+      <mat-card-title>{{ badge.descricao }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="display: flex; flex-direction: column; justify-content: center; align-items: start;">
+      <img mat-card-image [src]="'data:image/png;base64,' + badge.imagem" alt="{{ badge.nomeArquivo }}"
+           style="max-width: 10rem; margin-left: 2rem">
+      <p><strong>Descrição:</strong> {{ badge.descricao }}</p>
+      <p><strong>Nível:</strong> {{ badge.badgeNivel ? badge.badgeNivel.descricao : 'N/A' }}</p>
+      <p><strong>Tipo:</strong> {{ badge.badgeTipo ? badge.badgeTipo.nome : 'N/A' }}</p>
+    </mat-card-content>
+  </mat-card>
+
+
+  <p-panel [header]="badge.descricao" >
+    <p>
+      A badge <b>{{badge.descricao}}</b> é do tipo <b>{{badge.badgeNivel.descricao}}</b> e foi adquirida pelo/a estudante <b>{{usuario.nomeCompleto}}</b>
+      através da <b>{{badge.badgeTipo.nome}}</b>.
+    </p>
+  </p-panel>
+</section>

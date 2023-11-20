@@ -1,19 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BadgeService} from "../../../../../../services/badge.service";
 import {AuthGuardService} from "../../../../../../services/auth-guard.service";
 import {Badge} from "../../../../../../models/Badge";
-import {map, startWith} from "rxjs/operators";
-import {UntypedFormControl} from "@angular/forms";
-import {Observable} from "rxjs";
-import {MatTableDataSource} from "@angular/material/table";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-listagem-tabela-badges',
   templateUrl: './listagem-badges.component.html',
   styleUrls: ['./listagem-badges.component.css']
 })
-export class ListagemBadgesComponent implements OnInit {
-  badges: Badge[] = [];
+export class ListagemBadgesComponent implements OnInit, OnDestroy {
+  private _subscription: Subscription = new Subscription();
+
+  protected badges: Badge[] = [];
 
   constructor(private _badgeService: BadgeService, private _authGuardService: AuthGuardService) {
   }
@@ -23,11 +22,15 @@ export class ListagemBadgesComponent implements OnInit {
   }
 
   obterBadgesPeloEstudanteId(): void {
-    this._badgeService.ObterBadgesPeloEstudanteId(this._authGuardService.getIdEstudanteUsuarioLogado())
+    this._subscription = this._badgeService.ObterBadgesPeloEstudanteId(this._authGuardService.getIdEstudanteUsuarioLogado())
       .subscribe({
         next: (response) => {
           this.badges = response;
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
   }
 }

@@ -55,12 +55,12 @@ export class AtualizarBadgeComponent implements OnInit {
       this.badgeNivel = resultado;
     });
 
-    this.badgeService.ObterBadgesPeloId(this.badgeId).subscribe((resultado: BadgeRetorno) =>{
+    this.badgeService.ObterBadgesPeloId(this.badgeId).subscribe((resultado:Badge) =>{
       this.descricaoBadge = resultado.descricao;
       debugger;
       const observable = new Observable((subscriber: Subscriber<any>) => {
         const reader = new FileReader();
-        reader.readAsDataURL(resultado.imagem);
+        // reader.readAsDataURL(resultado.imagem);
       });
       observable.subscribe(d=>{
         this.imagem = d;
