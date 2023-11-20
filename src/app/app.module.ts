@@ -79,7 +79,7 @@ import {
   ListagemTabelaBadgesComponent,
   DialogExclusaoBadgeComponent
 } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
-import {NovoBadgeComponent} from './components/Dashboard/usuario-dashboard/usuario-badges/professor/novo-badge/novo-badge.component';
+import {SalvarBadgeComponent} from './components/Dashboard/usuario-dashboard/usuario-badges/professor/salvar-badge/salvar-badge.component';
 import {AtualizarBadgeComponent} from './components/Dashboard/usuario-dashboard/usuario-badges/professor/atualizar-badge/atualizar-badge.component';
 
 import {MenuUsuarioComponent} from './components/Dashboard/header/menu-usuario/menu-usuario.component';
@@ -217,11 +217,11 @@ import localeFR from '@angular/common/locales/fr';
 import {SideNavComponent} from './components/side-nav/side-nav.component';
 import {AjudaComponent} from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 import {
-  SalvarRegistroAvaliacaoComponent
-} from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/professor/salvar-registro-avaliacao/salvar-registro-avaliacao.component';
+  SalvarConceitoFeedbackComponent
+} from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/professor/salvar-conceito-feedback/salvar-conceito-feedback.component';
 import {
-  ListarRegistrosAvaliacoesComponent
-} from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/estudante/listar-registros-avaliacoes/listar-registros-avaliacoes.component';
+  ListagemConceitosFeedbacksComponent
+} from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/estudante/listagem-conceitos-feedbacks/listagem-conceitos-feedbacks.component';
 import {TagModule} from "primeng/tag";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {MessageService} from "primeng/api";
@@ -246,7 +246,7 @@ registerLocaleData(localeFR);
     DialogExclusaoCursosComponent,
     ListagemBadgesComponent,
     DialogExclusaoBadgeComponent,
-    NovoBadgeComponent,
+    SalvarBadgeComponent,
     AtualizarBadgeComponent,
     ListagemFuncoesComponent,
     NovaFuncaoComponent,
@@ -296,8 +296,8 @@ registerLocaleData(localeFR);
     AjudaComponent,
     UsuarioNoticiasComponent,
     CardMensagemComponent,
-    SalvarRegistroAvaliacaoComponent,
-    ListarRegistrosAvaliacoesComponent,
+    SalvarConceitoFeedbackComponent,
+    ListagemConceitosFeedbacksComponent,
     CardTopicoComunidadeComponent,
     ListagemTabelaBadgesComponent,
     UsuarioBadgesComponent,

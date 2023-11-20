@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-listagem-badges',
+  selector: 'app-listagem-tabela-badges',
   templateUrl: './listagem-tabela-badges.component.html',
   styleUrls: ['./listagem-tabela-badges.component.css']
 })

@@ -3,11 +3,11 @@ import {RegistroAvaliacao} from "../../../../../../models/RegistroAvaliacao";
 import {Atividade} from "../../../../../../models/Atividade";
 
 @Component({
-  selector: 'app-listar-registros-avaliacoes',
-  templateUrl: './listar-registros-avaliacoes.component.html',
-  styleUrls: ['./listar-registros-avaliacoes.component.css']
+  selector: 'app-listagem-conceitos-feedbacks',
+  templateUrl: './listagem-conceitos-feedbacks.component.html',
+  styleUrls: ['./listagem-conceitos-feedbacks.component.css']
 })
-export class ListarRegistrosAvaliacoesComponent implements OnInit {
+export class ListagemConceitosFeedbacksComponent implements OnInit {
   isDialogVisibleFeedback: boolean = false;
   isDialogVisibleAtividade: boolean = false;
   feedback: string = "";

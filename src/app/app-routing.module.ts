@@ -27,7 +27,7 @@ import { TimelineDetalhesComponent } from './components/UnidadeCurricular/timeli
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
 import { ListagemTabelaBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
-import { NovoBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/novo-badge/novo-badge.component';
+import { SalvarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/salvar-badge/salvar-badge.component';
 import { AtualizarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/atualizar-badge/atualizar-badge.component';
 import { ListagemBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-badges/listagem-badges.component';
 import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-objetos-aprendizagem/lista-objetos-aprendizagem.component';
@@ -85,7 +85,7 @@ const routes: Routes = [
         path: 'badges/professor/listagem', component: ListagemTabelaBadgesComponent
       },
       {
-        path: 'badges/professor/novo', component: NovoBadgeComponent
+        path: 'badges/professor/salvar', component: SalvarBadgeComponent
       },
       {
         path: 'badges/professor/atualizar/:id', component: AtualizarBadgeComponent

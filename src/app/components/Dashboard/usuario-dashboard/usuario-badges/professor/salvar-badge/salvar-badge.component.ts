@@ -14,11 +14,11 @@ interface Estados {
 }
 
 @Component({
-  selector: 'app-novo-badge',
-  templateUrl: './novo-badge.component.html',
+  selector: 'app-salvar-badge',
+  templateUrl: './salvar-badge.component.html',
   styleUrls: ['../listagem-tabela-badge/listagem-tabela-badges.component.css']
 })
-export class NovoBadgeComponent implements OnInit {
+export class SalvarBadgeComponent implements OnInit {
 
   formulario: any;
   badgesNivel : BadgeNivel[];
