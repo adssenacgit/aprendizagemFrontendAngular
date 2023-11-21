@@ -24,7 +24,7 @@ export class ComentarioComponent implements OnInit {
   pergunta: ChapterAssunto;
   idUsuarioLogado: string;
   currentPage: number = 1;
-  itemsPerPage: number = 4;
+  itemsPerPage: number = 8;
   startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
   endIndex: number = this.currentPage * this.itemsPerPage;
   totalPages: number[];
@@ -57,6 +57,7 @@ export class ComentarioComponent implements OnInit {
 
     this.comentarioService.obterChapterAssuntoComentariosPorChapterIdJava(perguntaId).subscribe((data) => {
       this.comentarios = data;
+      this.comentariosFilhos = data.filter(comentario => comentario.pai != null);
       console.log(this.comentarios);
     });
 

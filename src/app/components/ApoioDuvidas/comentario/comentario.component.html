@@ -74,7 +74,7 @@
 
 
 
-      <div *ngFor="let comentario of comentarios" class="card answer-card">
+      <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card answer-card" [ngClass]="{'filho': comentario.comentarioPai !== null}">
         <div class="card-body answer-header">
           <h3>
             <img class="user-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
@@ -106,8 +106,15 @@
                 data-bs-target="#exampleModal"> <i class="bi bi bi-pencil"></i></button>
               <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
             </div>
-
           </div>
+
+
+
+
+
+
+
+
           <!-- <div *ngIf="mostrarRespostas">
             <div  *ngFor="let comentario of comentariosFilhos.slice(startIndex, endIndex)" class="card answer-card filhos">
               <div class="card-body answer-header">
@@ -162,6 +169,10 @@
             </div>
           </div> -->
         </div>
+
+
+
+
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

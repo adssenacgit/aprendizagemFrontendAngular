@@ -137,7 +137,7 @@ h4 {
   border-top: 2px solid #1660a531;
   padding: 5px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 .answer-body {
   display: flex;
@@ -279,7 +279,13 @@ h4 {
   border-color: #092C4C;
 }
 
-.filhos {
-  margin-left: 30px;
+.filho {
+  margin-left: 50px;
+}
+
+.filho .user-image {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 

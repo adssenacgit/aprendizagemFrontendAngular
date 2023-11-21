@@ -7,6 +7,7 @@ export class ChapterAssuntoComentario {
     texto: string;
     data: string;
     pai: number;
+    comentarioPai: ChapterAssuntoComentario;
     chapterAssuntoComentarioReferenciaPai: string;
     chapterAssuntoId: number;
     chapterAssunto: ChapterAssunto;
