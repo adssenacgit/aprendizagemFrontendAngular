@@ -18,22 +18,34 @@ const httpOptions = {
 export class ComentarioService {
 
   url = environment.apiServer + 'api/ChapterAssuntoComentario';
+  javaUrl = "http://localhost:8080/chapter-assunto-comentario"
   constructor(private https: HttpClient) { }
 
-  ObterTodos(): Observable<ChapterAssuntoComentario[]>{
+  obterTodos(): Observable<ChapterAssuntoComentario[]>{
     const apiUrl = `${this.url}`;
     let teste = this.https.get<ChapterAssuntoComentario[]>(apiUrl)
     return teste;
   }
 
-  FiltrarChapterAssuntoComentarioPorId (id: number) : Observable<ChapterAssuntoComentario[]>
+  filtrarComentariosFilhosByPaiId(id: number): Observable<ChapterAssuntoComentario[]>{
+    const apiUrl = `${this.javaUrl}/${id}/filhos`;
+    return this.https.get<ChapterAssuntoComentario[]>(apiUrl);
+
+  }
+
+  obterChapterAssuntoComentariosPorChapterIdJava(id: number): Observable<ChapterAssuntoComentario[]>{
+    const apiUrl = `${this.javaUrl}/filtrar-por-chapter-assunto-id/${id}`;
+    return this.https.get<ChapterAssuntoComentario[]>(apiUrl);
+  }
+
+  filtrarChapterAssuntoComentarioPorId (id: number) : Observable<ChapterAssuntoComentario[]>
   {
     const apiUrl = `${this.url}/filterByChapterAssuntoId/${id}`;
     let teste = this.https.get<ChapterAssuntoComentario[]>(apiUrl)
     return teste;
   }
 
-  NovoChapterAssuntoComentario (comentario: ChapterAssuntoComentario): Observable<ChapterAssuntoComentario>
+  novoChapterAssuntoComentario (comentario: ChapterAssuntoComentario): Observable<ChapterAssuntoComentario>
   {
     return this.https.post<ChapterAssuntoComentario>(this.url, comentario, httpOptions);
   }

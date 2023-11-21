@@ -32,6 +32,8 @@ export class ComentarioComponent implements OnInit {
   curtida: Curtida = new Curtida();
   curtidas: Curtida[] = [];
   comentarioCurtido: boolean;
+  mostrarRespostas: boolean = false;
+  comentariosFilhos: ChapterAssuntoComentario[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -44,20 +46,18 @@ export class ComentarioComponent implements OnInit {
 
   ngOnInit() {
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
-    let id = this.route.snapshot.params['id'];
-    // this.comentarioService
-    //   .FiltrarChapterAssuntoComentarioPorId(id)
-    //   .subscribe((data) => {
-    //     this.comentario.chapterAssuntoId = id;
-    //     this.comentarios = data;
-    //     this.calculateTotalPages(false);
-    //   });
+    let perguntaId = this.route.snapshot.params['id'];
 
-    this.chapterAssuntoService.ObterChapterAssuntoByIdJava(id).subscribe((data) => {
+
+    this.chapterAssuntoService.ObterChapterAssuntoByIdJava(perguntaId).subscribe((data) => {
       this.pergunta = data;
-      this.comentarios = data.comentarios;
-      console.log(this.comentarios);
+      this.calculateTotalPages(false);
       console.log(this.pergunta);
+    });
+
+    this.comentarioService.obterChapterAssuntoComentariosPorChapterIdJava(perguntaId).subscribe((data) => {
+      this.comentarios = data;
+      console.log(this.comentarios);
     });
 
     this.form = this.fb.group({
@@ -159,10 +159,10 @@ export class ComentarioComponent implements OnInit {
     this.comentario.texto = this.form.value.comentario;
     this.textoSanitizado = this.sanitizeHTML(this.comentario.texto.toString());
     this.comentario.data = date;
-    this.comentario.usuarioId = this.idUsuarioLogado;
+    this.comentario.usuario.id = this.idUsuarioLogado;
 
     this.comentarioService
-      .NovoChapterAssuntoComentario(this.comentario)
+      .novoChapterAssuntoComentario(this.comentario)
       .subscribe({
         next: () => {
           location.reload();
@@ -209,4 +209,15 @@ export class ComentarioComponent implements OnInit {
       });
     }
   }
+
+  toggleResposta(comentarioPaiId: number) {
+    this.comentarioService.filtrarComentariosFilhosByPaiId(comentarioPaiId).subscribe((data) => {
+      this.comentariosFilhos = data;
+      console.log(this.comentariosFilhos);
+    });
+    this.mostrarRespostas = !this.mostrarRespostas;
+  }
+
+
+
 }

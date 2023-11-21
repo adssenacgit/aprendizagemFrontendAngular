@@ -127,7 +127,7 @@ export class NovaPerguntaComponent implements OnInit {
       this.pergunta.status = 1;
       this.pergunta.verificacao = 0;
       this.pergunta.tags = this.selectedTags;
-      this.pergunta.chapter.id = this.form.value.chapter;
+      this.pergunta.chapterId = this.form.value.chapter;
       this.pergunta.usuario.id = this.authGuardService.getIdUsuarioLogado();
       console.log(this.pergunta);
       // envia a pergunta

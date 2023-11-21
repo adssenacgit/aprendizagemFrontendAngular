@@ -52,7 +52,7 @@ export class ApoioDuvidasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.chapterAssuntoService.ObterTodosComTotalComentariosJava().subscribe((data) => {
+    this.chapterAssuntoService.ObterTodosJava().subscribe((data) => {
       console.log(data)
       this.chapterAssuntosTodos = data;
       this.chapterAssuntos = data;
@@ -67,7 +67,7 @@ export class ApoioDuvidasComponent implements OnInit {
       .ObterTodos()
       .subscribe((data) => (this.chapterTagTodos = data));
 
-    this.comentarioService.ObterTodos().subscribe((data) => {
+    this.comentarioService.obterTodos().subscribe((data) => {
       const frequencyMap = new Map();
       data.forEach((item) => {
         const usuarioKey = JSON.stringify([
@@ -173,7 +173,7 @@ export class ApoioDuvidasComponent implements OnInit {
 
   filtraPorChapter(busca: string) {
     this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) =>
-      value.chapter.nome.toLowerCase().includes(busca.toLowerCase())
+      value.chapterNome.toLowerCase().includes(busca.toLowerCase())
     );
     this.currentPage = 1;
     this.calculateTotalPages(true);

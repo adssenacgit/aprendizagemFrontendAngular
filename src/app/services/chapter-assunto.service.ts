@@ -38,6 +38,12 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
 
+  ObterChapterAssuntoWithComentariosPaiByIdJava(chapterAssuntoId: number) : Observable<ChapterAssunto>
+  {
+    const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/with-comentarios-pai`;
+    return this.https.get<ChapterAssunto>(apiUrl);
+  }
+
   ObterChapterAssuntoById (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.url}/${chapterAssuntoId}`;

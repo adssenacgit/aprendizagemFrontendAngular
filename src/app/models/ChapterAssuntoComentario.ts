@@ -10,7 +10,7 @@ export class ChapterAssuntoComentario {
     chapterAssuntoComentarioReferenciaPai: string;
     chapterAssuntoId: number;
     chapterAssunto: ChapterAssunto;
-    usuarioId: String;
     usuario: Usuario;
     curtidas: Curtida[];
+    filhos?: ChapterAssuntoComentario[];
 }

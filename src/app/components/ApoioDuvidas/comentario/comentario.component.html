@@ -43,11 +43,11 @@
         </div>
       </div>
     </div>
-
+    <!-- utilizar INPLACE -->
     <!-- respostas -->
     <div class="answer-holder">
       <div class="title">
-        <h1>Respostas</h1>
+        <h1>Respostas ({{comentarios.length}})</h1>
         <div class="div">
           <div class="btn-group">
             <button class="btn btn-secondary btn-sm dropdown-toggle filter" type="button" data-bs-toggle="dropdown"
@@ -63,7 +63,18 @@
           </div>
         </div>
       </div>
-      <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card answer-card">
+
+
+
+
+
+
+
+
+
+
+
+      <div *ngFor="let comentario of comentarios" class="card answer-card">
         <div class="card-body answer-header">
           <h3>
             <img class="user-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
@@ -87,14 +98,69 @@
                 <i class="bi bi-hand-thumbs-up"></i>
                 {{comentario.curtidas.length}}
               </button>
-              <button type="button" class="btn btn-default first-btn"> <i class="bi bi-chat"></i>Responder</button>
+              <button type="button" class="btn btn-default first-btn" (click)="toggleResposta(comentario.id)"> <i class="bi bi-chat"></i>Responder</button>
             </div>
+
             <div class="second-buttons">
               <button type="button" class="btn btn-default second-btn" data-bs-toggle="modal"
                 data-bs-target="#exampleModal"> <i class="bi bi bi-pencil"></i></button>
               <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
             </div>
+
           </div>
+          <!-- <div *ngIf="mostrarRespostas">
+            <div  *ngFor="let comentario of comentariosFilhos.slice(startIndex, endIndex)" class="card answer-card filhos">
+              <div class="card-body answer-header">
+                <h3>
+                  <img class="user-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
+                  {{ comentario.usuario.nomeCompleto }}
+                </h3>
+                <h4>
+                  {{ comentario.data }}
+                </h4>
+                <div class="verified-icon">
+                  <i class="bi bi-check2-all"></i>Verificado
+                </div>
+              </div>
+              <div class="answer-body">
+                <div class="card-body question-text">
+                  <p [innerHTML]="comentario.texto"></p>
+                </div>
+                <div class="card-body answer-actions">
+                  <div class="first-buttons">
+                    <button type="button" class="btn btn-default first-btn" [class.pressed]="checarCurtida(comentario.curtidas, idUsuarioLogado)"
+                      (click)="!checarCurtida(comentario.curtidas, idUsuarioLogado) ? curtir(comentario) : descurtir(comentario)">
+                      <i class="bi bi-hand-thumbs-up"></i>
+                      {{comentario.curtidas.length}}
+                    </button>
+                    <button type="button" class="btn btn-default first-btn"> <i class="bi bi-chat"></i>Responder</button>
+                  </div>
+                  <div class="second-buttons">
+                    <button type="button" class="btn btn-default second-btn" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"> <i class="bi bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -114,8 +180,22 @@
           </div>
         </div>
       </div>
-
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- paginacão -->
     <nav aria-label="Page navigation example">
       <ul class="pagination">

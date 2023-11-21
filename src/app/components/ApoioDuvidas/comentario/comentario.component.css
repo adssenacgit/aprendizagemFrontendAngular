@@ -137,7 +137,7 @@ h4 {
   border-top: 2px solid #1660a531;
   padding: 5px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .answer-body {
   display: flex;
@@ -151,6 +151,7 @@ h4 {
   border-radius: 20px;
   align-items: center;
   display: flex;
+  width: 120px;
   justify-content: center;
   margin-top: 10px;
 }
@@ -275,4 +276,10 @@ h4 {
 .pressed {
   background-color: #F2994A;
   color: #092C4C;
+  border-color: #092C4C;
 }
+
+.filhos {
+  margin-left: 30px;
+}
+
