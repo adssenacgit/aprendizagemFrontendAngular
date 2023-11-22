@@ -58,7 +58,7 @@
         </div>
       </div>
       <div>
-        <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card answer-card">
+        <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card answer-card" [attr.id]="'comentario-' + comentario.id" #comentario>
           <div class="card-body answer-header">
             <h3>
               <img class="user-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
