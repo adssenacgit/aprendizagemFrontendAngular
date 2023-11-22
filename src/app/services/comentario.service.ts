@@ -34,7 +34,7 @@ export class ComentarioService {
   }
 
   obterChapterAssuntoComentariosPorChapterIdJava(id: number): Observable<ChapterAssuntoComentario[]>{
-    const apiUrl = `${this.javaUrl}/filtrar-por-chapter-assunto-id/${id}`;
+    const apiUrl = `${this.javaUrl}/comentarios-by-chapter-assunto-id/${id}`;
     return this.https.get<ChapterAssuntoComentario[]>(apiUrl);
   }
 

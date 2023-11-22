@@ -227,6 +227,7 @@ h4 {
 .question-data {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .card-body .question-big-text {
   display: flex;
@@ -237,6 +238,11 @@ h4 {
 }
 
 /* tags */
+.tags-space {
+  display: flex;
+  flex-direction: row;
+}
+
 .question-tags {
   height: fit-content;
   display: flex;
@@ -245,7 +251,7 @@ h4 {
   max-width: 251px;
 }
 .question-tags .btn {
-  width: 63px;
+  /* width: 63px; */
   height: 28px;
   padding: 10px;
   margin: 5px;

@@ -1,5 +1,5 @@
 import { Comentario } from './../../../models/Comentario';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
@@ -35,13 +35,17 @@ export class ComentarioComponent implements OnInit {
   mostrarRespostas: boolean = false;
   comentariosFilhos: ChapterAssuntoComentario[] = [];
 
+  @ViewChildren('comentario') comentariosDom: QueryList<ElementRef>;
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private comentarioService: ComentarioService,
     private authGuardService: AuthGuardService,
     private chapterAssuntoService: ChapterAssuntoService,
-    private curtidaService: CurtidaService
+    private curtidaService: CurtidaService,
+    private el: ElementRef,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -57,7 +61,6 @@ export class ComentarioComponent implements OnInit {
 
     this.comentarioService.obterChapterAssuntoComentariosPorChapterIdJava(perguntaId).subscribe((data) => {
       this.comentarios = data;
-      this.comentariosFilhos = data.filter(comentario => comentario.pai != null);
       console.log(this.comentarios);
     });
 
@@ -219,6 +222,25 @@ export class ComentarioComponent implements OnInit {
     this.mostrarRespostas = !this.mostrarRespostas;
   }
 
+  getPosterNameByComentarioId(id: number): string {
+    let comentario = this.comentarios.find(comentario => comentario.id == id);
+    return comentario!.usuario.nomeCompleto;
+  }
 
+  getComentarioAnchor(id: number): string {
+    return `comentario-${id}`;
+  }
+
+ // CONTINUAR TENTANDO SCROLLAR ATÉ O COMENTÁRIO
+  scrollToElement(id: number): void {
+    const comentarioElement = this.comentariosDom.find(comentario => comentario.nativeElement.id === `comentario-${id}`);
+    console.log(this.comentariosDom);
+    console.log(comentarioElement);
+    if (comentarioElement) {
+      comentarioElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+  }
 
 }
+
