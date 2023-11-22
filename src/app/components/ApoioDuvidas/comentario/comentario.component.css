@@ -63,12 +63,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(5, 126, 239);
-  border: 1px solid rgb(5, 126, 239);
-  border-radius: 10px;
+  background-color: #1660a5;
+  border: 1px solid #1660a5;
+  border-radius: 6px;
   height: 30px;
   color: white;
 }
+
+.first-btn-modal {
+  margin-left: 10px;
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+  background-color: #1660a5 ;
+  border: 1px solid #1660a5 ;
+  border-radius: 6px ;
+  height: 30px ;
+  width: 100px;
+  color: white ;
+}
+
 .first-btn i {
   margin-right: 8px;
 }
@@ -109,6 +123,13 @@ h4 {
 .question-text p {
   font-size: 15px;
 }
+
+.question-text a {
+  color: #1660a5;
+  font-weight: 500;
+  cursor: pointer;
+}
+
 .form-group label {
   margin: 10px 10px 20px 0px;
   font-weight: bold;

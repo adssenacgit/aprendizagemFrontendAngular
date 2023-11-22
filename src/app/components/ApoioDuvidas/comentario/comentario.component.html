@@ -73,7 +73,7 @@
           </div>
           <div class="answer-body">
             <div class="card-body question-text">
-              <a *ngIf="comentario.paiId" (click)="scrollToElement(comentario.paiId)">@{{ getPosterNameByComentarioId(comentario.paiId) }}</a>
+              <a *ngIf="comentario.paiId" (click)="scrollToElement(comentario.paiId)">{{'@' + getPosterNameByComentarioId(comentario.paiId) }}</a>
               <p [innerHTML]="comentario.texto"></p>
             </div>
             <div class="card-body answer-actions">
@@ -83,7 +83,16 @@
                   <i class="bi bi-hand-thumbs-up"></i>
                   {{comentario.curtidas.length}}
                 </button>
-                <button type="button" class="btn btn-default first-btn" (click)="toggleResposta(comentario.id)"> <i class="bi bi-chat"></i>Responder</button>
+                <p-button class="first-btn-modal" (click)="showModalResposta()" icon="bi bi-chat" label="Resposta"></p-button>
+                <p-dialog header="Responder" [(visible)]="modalResposta" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="true">
+                  <form [formGroup]="respostaFilho">
+                    <p-editor formControlName="textFilho" [style]="{ height: '320px' }"></p-editor>
+                  </form>
+                  <div class="action-buttons">
+                    <button type="submit" class="btn btn-primary action-send" (click)="responder()">Enviar</button>
+                    <button type="button" class="btn btn-primary action-cancel" (click)="limparFormulario()">Limpar Campos</button>
+                  </div>
+                </p-dialog>
               </div>
               <div class="second-buttons">
                 <button type="button" class="btn btn-default second-btn" data-bs-toggle="modal"

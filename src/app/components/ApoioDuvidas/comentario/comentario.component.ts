@@ -4,12 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
 import { Curtida } from 'src/app/models/Curtida';
 import { CurtidaService } from 'src/app/services/curtida.service';
 import { Usuario } from 'src/app/models/Usuario';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 @Component({
   selector: 'app-comentarios',
   templateUrl: './comentario.component.html',
@@ -32,8 +33,9 @@ export class ComentarioComponent implements OnInit {
   curtida: Curtida = new Curtida();
   curtidas: Curtida[] = [];
   comentarioCurtido: boolean;
-  mostrarRespostas: boolean = false;
   comentariosFilhos: ChapterAssuntoComentario[] = [];
+  modalResposta: boolean = false;
+  respostaFilho: FormGroup;
 
   @ViewChildren('comentario') comentariosDom: QueryList<ElementRef>;
 
@@ -44,6 +46,7 @@ export class ComentarioComponent implements OnInit {
     private authGuardService: AuthGuardService,
     private chapterAssuntoService: ChapterAssuntoService,
     private curtidaService: CurtidaService,
+    private usuarioService: UsuariosService,
     private el: ElementRef,
     private renderer: Renderer2
   ) {}
@@ -59,7 +62,11 @@ export class ComentarioComponent implements OnInit {
       console.log(this.pergunta);
     });
 
-    this.comentarioService.obterChapterAssuntoComentariosPorChapterIdJava(perguntaId).subscribe((data) => {
+    this.respostaFilho = new FormGroup({
+      textFilho: new FormControl()
+  });
+
+    this.comentarioService.obterChapterAssuntoComentariosPorChapterAssuntoIdJava(perguntaId).subscribe((data) => {
       this.comentarios = data;
       console.log(this.comentarios);
     });
@@ -214,24 +221,12 @@ export class ComentarioComponent implements OnInit {
     }
   }
 
-  toggleResposta(comentarioPaiId: number) {
-    this.comentarioService.filtrarComentariosFilhosByPaiId(comentarioPaiId).subscribe((data) => {
-      this.comentariosFilhos = data;
-      console.log(this.comentariosFilhos);
-    });
-    this.mostrarRespostas = !this.mostrarRespostas;
-  }
 
   getPosterNameByComentarioId(id: number): string {
     let comentario = this.comentarios.find(comentario => comentario.id == id);
     return comentario!.usuario.nomeCompleto;
   }
 
-  getComentarioAnchor(id: number): string {
-    return `comentario-${id}`;
-  }
-
- // CONTINUAR TENTANDO SCROLLAR ATÉ O COMENTÁRIO
   scrollToElement(id: number): void {
     const comentarioElement = this.comentariosDom.find(comentario => comentario.nativeElement.id === `comentario-${id}`);
     console.log(this.comentariosDom);
@@ -241,6 +236,58 @@ export class ComentarioComponent implements OnInit {
     }
 
   }
+
+  showModalResposta() {
+    this.modalResposta = true;
+  }
+
+  responder() {
+    var date;
+    date = new Date();
+    date =
+      date.getUTCFullYear() +
+      '-' +
+      ('00' + (date.getUTCMonth() + 1)).slice(-2) +
+      '-' +
+      ('00' + date.getUTCDate()).slice(-2) +
+      ' ' +
+      ('00' + date.getUTCHours()).slice(-2) +
+      ':' +
+      ('00' + date.getUTCMinutes()).slice(-2) +
+      ':' +
+      ('00' + date.getUTCSeconds()).slice(-2);
+
+    this.comentario.texto = this.respostaFilho.value;
+    this.textoSanitizado = this.sanitizeHTML(this.comentario.texto.toString());
+    this.comentario.data = date;
+    this.comentario.chapterAssuntoId = this.pergunta.id;
+    this.usuarioService.ObterUsuarioPorId(this.idUsuarioLogado).subscribe((data) => {
+      this.comentario.usuario = data;
+    });
+
+    // Encontrar o comentário pai pelo id do comentário atual
+    const comentarioPai = this.comentarios.find(comentario => comentario.id === this.comentario.id);
+
+    // Atribuir o id do comentário pai à propriedade paiId do comentário atual
+    if (comentarioPai) {
+      this.comentario.paiId = comentarioPai.id;
+    }
+
+    console.log(this.comentario);
+    console.log(this.comentario.paiId);
+
+    // Restante do seu código...
+    // this.comentarioService
+    //   .novoChapterAssuntoComentario(this.comentario)
+    //   .subscribe({
+    //     next: () => {
+    //       location.reload();
+    //     },
+    //   });
+  }
+
+
+
 
 }
 
