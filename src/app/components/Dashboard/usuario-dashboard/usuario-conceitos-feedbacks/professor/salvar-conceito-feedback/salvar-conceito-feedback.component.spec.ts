@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SalvarRegistroAvaliacaoComponent } from './salvar-registro-avaliacao.component';
+import { SalvarConceitoFeedbackComponent } from './salvar-conceito-feedback.component';
 
 describe('FormularioRegistroAvaliacaoComponent', () => {
-  let component: SalvarRegistroAvaliacaoComponent;
-  let fixture: ComponentFixture<SalvarRegistroAvaliacaoComponent>;
+  let component: SalvarConceitoFeedbackComponent;
+  let fixture: ComponentFixture<SalvarConceitoFeedbackComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SalvarRegistroAvaliacaoComponent ]
+      declarations: [ SalvarConceitoFeedbackComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SalvarRegistroAvaliacaoComponent);
+    fixture = TestBed.createComponent(SalvarConceitoFeedbackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

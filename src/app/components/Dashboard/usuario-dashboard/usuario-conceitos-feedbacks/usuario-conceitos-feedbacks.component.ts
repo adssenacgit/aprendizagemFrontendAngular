@@ -61,7 +61,7 @@ export class UsuarioConceitosFeedbacksComponent implements OnInit {
                 });
               });
 
-              this._encontroService.ObterEncontroPorGrupoId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($encontros => {
+              this._encontroService.ObterEncontroPorGrupoIdPorEstudanteId(grupo.id, this.idEstudanteUsuarioLogado).subscribe($encontros => {
                 $encontros.forEach(encontro => {
                   this._situacaoAprendizagemService.FiltrarSituacoesAprendizagemPorEncontroId(encontro.grupoId).subscribe($situacoesAprendizagem => {
                     $situacoesAprendizagem.forEach(situacaoAprendizagem => {

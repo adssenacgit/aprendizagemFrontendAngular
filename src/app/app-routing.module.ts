@@ -26,10 +26,10 @@ import { AdministradorDashboardComponent } from './components/Dashboard/administ
 import { TimelineDetalhesComponent } from './components/UnidadeCurricular/timeline/timeline-detalhes/timeline-detalhes.component';
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
-import { ListagemBadgesComponent } from './components/Badge/listagem-badge/listagem-badges.component';
-import { NovoBadgeComponent } from './components/Badge/novo-badge/novo-badge.component';
-import { AtualizarBadgeComponent } from './components/Badge/atualizar-badge/atualizar-badge.component';
-import { ListagemUsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/listagem-usuario-badges/listagem-usuario-badges.component';
+import { ListagemTabelaBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
+import { SalvarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/salvar-badge/salvar-badge.component';
+import { AtualizarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/atualizar-badge/atualizar-badge.component';
+import { ListagemBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-badges/listagem-badges.component';
 import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-objetos-aprendizagem/lista-objetos-aprendizagem.component';
 import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
 import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
@@ -38,13 +38,9 @@ import { ApoioDuvidasComponent } from './components/ApoioDuvidas/apoio-duvidas.c
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 import { UsuarioRequerimentoWebComponent } from './components/Dashboard/usuario-dashboard/usuario-requerimento-web/usuario-requerimento-web.component';
 import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
-import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
-import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/encontros.component';
-import { ConteudoUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/conteudo-uc.component';
-import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/tarefas-uc/tarefas-uc.component';
-import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
-import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
-import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
+import {
+  DetalheBadgeComponent
+} from "./components/Dashboard/usuario-dashboard/usuario-badges/estudante/detalhe-badge/detalhe-badge.component";
 
 const routes: Routes = [
   {
@@ -52,28 +48,6 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuardService],
     children:[
-      {
-        path: 'grupo/:id',
-        component: UsuarioUnidadeCurricularComponent,
-        children: [
-          { path: "", redirectTo:"aulas", pathMatch: "full" },
-          {
-            path: 'aulas', component: ConteudoUcComponent
-          },
-          {
-            path: 'tarefas', component: TarefasUcComponent
-          },
-          {
-            path: 'conceitos', component: ConceitosUcComponent
-          },
-          {
-            path: 'forum', component: ForumUcComponent
-          },
-          {
-            path: 'participantes', component: ParticipantesUcComponent
-          }
-        ],
-      },
       {
         path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent
       },
@@ -108,13 +82,19 @@ const routes: Routes = [
         path: 'dashboard/administradordashboard', component: AdministradorDashboardComponent
       },
       {
-        path: 'badges/listagembadges', component: ListagemBadgesComponent
+        path: 'badges/professor/listagem', component: ListagemTabelaBadgesComponent
       },
       {
-        path: 'badges/novobadge', component: NovoBadgeComponent
+        path: 'badges/professor/salvar', component: SalvarBadgeComponent
       },
       {
-        path: 'badges/atualizarbadge/:id', component: AtualizarBadgeComponent
+        path: 'badges/professor/atualizar/:id', component: AtualizarBadgeComponent
+      },
+      {
+        path: 'badges/estudante/listagem', component: ListagemBadgesComponent
+      },
+      {
+        path: 'badges/estudante/detalhe/:id', component: DetalheBadgeComponent
       },
       {
         path: 'cursos/listagemcursos', component: ListagemCursosComponent
@@ -145,9 +125,6 @@ const routes: Routes = [
       },
       {
         path: 'ofertas/atualizaroferta/:id', component: AtualizarOfertaComponent
-      },
-      {
-        path: 'badges/listagemusuariobadges', component: ListagemUsuarioBadgesComponent
       },
       {
         path: 'unidadeCurricular/objetosaprendizagem', component: ListaObjetosAprendizagem

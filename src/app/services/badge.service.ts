@@ -32,10 +32,15 @@ export class BadgeService {
     return this.https.get<Badge[]>(apiUrl);
   }
 
-  ObterBadgesPeloId(badgeId: number): Observable<BadgeRetorno>
+  ObterBadgesRecentesPeloUsuarioId(usuarioId: string): Observable<Badge[]>
+  {
+   const apiUrl = `${this.url}`;
+  return this.https.get<Badge[]>(apiUrl);
+  }
+  ObterBadgesPeloId(badgeId: number): Observable<Badge>
   {
     const apiUrl = `${this.url}/${badgeId}`;
-    return this.https.get<BadgeRetorno>(apiUrl);
+    return this.https.get<Badge>(apiUrl);
   }
 
   ObterBadgesPeloEstudanteId(estudanteId: number): Observable<Badge[]>

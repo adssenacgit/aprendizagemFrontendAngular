@@ -25,11 +25,11 @@ import {Notificacao} from "../../../../../../models/Notificacao";
 import {UsuariosService} from "../../../../../../services/usuarios.service";
 
 @Component({
-  selector: 'app-salvar-registro-avaliacao',
-  templateUrl: './salvar-registro-avaliacao.component.html',
-  styleUrls: ['./salvar-registro-avaliacao.component.css']
+  selector: 'app-salvar-conceito-feedback',
+  templateUrl: './salvar-conceito-feedback.component.html',
+  styleUrls: ['./salvar-conceito-feedback.component.css']
 })
-export class SalvarRegistroAvaliacaoComponent implements OnInit {
+export class SalvarConceitoFeedbackComponent implements OnInit {
   @Input() $isProfessor: boolean = false;
   mock: Mock = new Mock();
 
