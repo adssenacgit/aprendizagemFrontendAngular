@@ -72,10 +72,14 @@
                 </p-table>
             </p-accordionTab>
           </p-accordion>
-          <app-cards-senac-coin
-            class="container-fluid"
-            style="display: flex; flex-direction: row"
+          <div class="container-cards" 
+            style="display: flex; flex-wrap: wrap;
+            justify-content: center;">
+            <app-cards-senac-coin
+            class="item-card"
+            style="margin-top: 15px;"
             [$senacCoins]="senacCoins"
             [$senacCoinMovimentacoes]="senacCoinMovimentacoes"
-          ></app-cards-senac-coin>
+            ></app-cards-senac-coin>
+          </div>
 </div>
