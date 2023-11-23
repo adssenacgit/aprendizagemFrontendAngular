@@ -197,7 +197,7 @@ import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-das
 import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
 import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -365,7 +365,7 @@ registerLocaleData(localeFR);
     EditorModule,
     MatChipsModule,
     MatFormFieldModule,
-    ScrollingModule
+
   ],
   providers: [
     CursosService,

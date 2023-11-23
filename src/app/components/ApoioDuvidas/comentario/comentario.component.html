@@ -37,6 +37,8 @@
         </div>
       </div>
     </div>
+    <button type="button" class="btn btn-default go-to-answer-btn" (click)="scrollToEditor('formComentario')"> <i
+      class="bi bi-chat"> Responder</i></button>
 
     <!-- respostas -->
     <div class="answer-holder">
@@ -58,8 +60,8 @@
         </div>
       </div>
       <div>
-        <cdk-virtual-scroll-viewport scrollWindow itemSize="5">
-          <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card answer-card" [attr.id]="'comentario-' + comentario.id" #comentario>
+
+          <div *ngFor="let comentario of comentarios" class="card answer-card" [attr.id]="'comentario-' + comentario.id" #comentario>
             <div class="card-body answer-header">
               <h3>
                 <img class="user-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
@@ -84,13 +86,14 @@
                     <i class="bi bi-hand-thumbs-up"></i>
                     {{comentario.curtidas.length}}
                   </button>
-                  <p-button class="first-btn-modal" (click)="showModalResposta(comentario)" icon="bi bi-chat" label="Resposta"></p-button>
-                  <p-dialog header="{{'Responder a ' + comentario.usuario.nomeCompleto}}" [(visible)]="modalResposta" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="true">
+                  <button class="first-btn" (click)="showModalResposta(comentario)"> <i
+                    class="bi bi-chat">  Responder</i></button>
+                  <p-dialog header="{{'Responder a ' + comentario.usuario.nomeCompleto}}" [(visible)]="modalResposta" [style]="{ width: '60vw' }" [draggable]="false">
                     <form [formGroup]="respostaFilhoForm">
                       <p-editor formControlName="comentario" [style]="{ height: '320px' }"></p-editor>
                       <div class="action-buttons">
                         <button type="submit" class="btn btn-primary action-send" (click)="responder()">Enviar</button>
-                        <button type="button" class="btn btn-primary action-cancel" (click)="limparFormulario()">Limpar Campos</button>
+                        <button type="button" class="btn btn-primary action-cancel" (click)="limparFormularioFilho()">Limpar Campos</button>
                       </div>
                     </form>
 
@@ -121,7 +124,7 @@
               </div>
             </div>
           </div>
-        </cdk-virtual-scroll-viewport>
+
       </div>
 
     </div>
@@ -145,7 +148,7 @@
     </nav> -->
 
     <!-- fazer comentários -->
-    <form class="needs-validation" novalidate [formGroup]="form">
+    <form id="formComentario" class="needs-validation" novalidate [formGroup]="form">
       <div class="form-group">
         <label for="comentario">Comentário</label>
         <p-editor id="comentario" formControlName="comentario" [style]="{ height: '320px' }">{{ textoSanitizado

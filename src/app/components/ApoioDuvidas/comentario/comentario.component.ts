@@ -1,6 +1,6 @@
 import { Comentario } from './../../../models/Comentario';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Scroll } from '@angular/router';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
@@ -11,7 +11,7 @@ import { Curtida } from 'src/app/models/Curtida';
 import { CurtidaService } from 'src/app/services/curtida.service';
 import { Usuario } from 'src/app/models/Usuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+
 @Component({
   selector: 'app-comentarios',
   templateUrl: './comentario.component.html',
@@ -38,9 +38,7 @@ export class ComentarioComponent implements OnInit {
   modalResposta: boolean = false;
   respostaFilhoForm: FormGroup;
   comentarioPaiIdSelecionado: number;
-  changeDetection: ChangeDetectionStrategy.OnPush;
-  standalone: true;
-  imports: [ScrollingModule];
+
 
   @ViewChildren('comentario') comentariosDom: QueryList<ElementRef>;
 
@@ -53,7 +51,8 @@ export class ComentarioComponent implements OnInit {
     private curtidaService: CurtidaService,
     private usuarioService: UsuariosService,
     private el: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+
   ) {}
 
   ngOnInit() {
@@ -203,6 +202,11 @@ export class ComentarioComponent implements OnInit {
     this.descriptions = [];
   }
 
+  limparFormularioFilho() {
+    this.respostaFilhoForm.reset();
+    this.descriptions = [];
+  }
+
   verificarCampos(): boolean {
     return this.form.valid;
   }
@@ -247,7 +251,13 @@ export class ComentarioComponent implements OnInit {
     if (comentarioElement) {
       comentarioElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
 
+  scrollToEditor(id: string): void {
+    const editorElement = this.el.nativeElement.querySelector(`#${id}`);
+    if (editorElement) {
+      editorElement.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
   }
 
   showModalResposta(comentario: ChapterAssuntoComentario) {
@@ -289,6 +299,7 @@ export class ComentarioComponent implements OnInit {
         },
       });
   }
+
 
 
 
