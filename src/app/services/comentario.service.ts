@@ -1,3 +1,4 @@
+import { NovoCursoComponent } from './../components/Curso/novo-curso/novo-curso.component';
 import { Injectable } from '@angular/core';
 import { ChapterAssuntoComentario } from 'src/app/models/ChapterAssuntoComentario';
 import { environment } from 'src/environments/environment';
@@ -48,5 +49,11 @@ export class ComentarioService {
   novoChapterAssuntoComentario (comentario: ChapterAssuntoComentario): Observable<ChapterAssuntoComentario>
   {
     return this.https.post<ChapterAssuntoComentario>(this.url, comentario, httpOptions);
+  }
+
+  novoChapterAssuntoComentarioJava (comentario: ChapterAssuntoComentario): Observable<ChapterAssuntoComentario>
+  {
+    const apiUrl = `${this.javaUrl}`;
+    return this.https.post<ChapterAssuntoComentario>(apiUrl, comentario);
   }
 }

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -106,5 +106,14 @@ export class ChapterAssuntoService {
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/associar-tags`;
     return this.https.post<ChapterAssunto>(apiUrl, chapterTags, httpOptions);
+  }
+
+
+  getComentariosPaginados(page: number, size: number): Observable<ChapterAssunto[]> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.https.get<ChapterAssunto[]>(`${this.javaUrl}/paginados`, { params });
   }
 }

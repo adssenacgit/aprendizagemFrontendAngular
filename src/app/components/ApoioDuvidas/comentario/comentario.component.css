@@ -70,7 +70,7 @@
   color: white;
 }
 
-.first-btn-modal {
+/* .first-btn-modal {
   margin-left: 10px;
   display: flex ;
   align-items: center ;
@@ -81,7 +81,7 @@
   height: 30px ;
   width: 100px;
   color: white ;
-}
+} */
 
 .first-btn i {
   margin-right: 8px;
@@ -306,13 +306,4 @@ h4 {
   border-color: #092C4C;
 }
 
-.filho {
-  margin-left: 50px;
-}
-
-.filho .user-image {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-}
 
