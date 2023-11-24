@@ -151,7 +151,7 @@ export class ApoioDuvidasComponent implements OnInit {
   ordernarPorResposta(order: string) {
     if (order == 'decrescente') {
       this.chapterAssuntos.sort(
-        (a, b) => b.comentarios.length - a.comentarios.length
+        (a, b) => b.totalComentarios - a.totalComentarios
       );
     }
   }
@@ -175,6 +175,14 @@ export class ApoioDuvidasComponent implements OnInit {
   filtraPorChapter(busca: string) {
     this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) =>
       value.chapterNome.toLowerCase().includes(busca.toLowerCase())
+    );
+    this.currentPage = 1;
+    this.calculateTotalPages(true);
+  }
+
+  filtraPorTag(busca: ChapterTag) {
+    this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) =>
+      value.tags.some((tag) => tag === busca)
     );
     this.currentPage = 1;
     this.calculateTotalPages(true);
