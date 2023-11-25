@@ -50,6 +50,11 @@ import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuar
 import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
 import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
+import { ProfessorConteudoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-conteudo-uc.component';
+import { ProfessorPlanejamentoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/professor-planejamento-uc.component';
+import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/situacao-aprendizagem/situacao-aprendizagem.component';
+import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
+import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
 
 const routes: Routes = [
   {
@@ -89,7 +94,26 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'professor/grupo/:id', component: ProfessorUnidadeCurricularComponent
+        path: 'professor/grupo/:id',
+        component: ProfessorUnidadeCurricularComponent,
+        children: [
+          { path: "", redirectTo:"aulas", pathMatch: "full" },
+          {
+            path: 'aulas', component: ProfessorConteudoUcComponent
+          },
+          {
+            path: 'planejamento', component: ProfessorPlanejamentoUcComponent
+          },
+          {
+            path: 'situacao-aprendizagem/:id', component: SituacaoAprendizagemComponent
+          },
+          {
+            path: 'objeto-aprendizagem', component: ObjetoAprendizagemComponent
+          },
+          {
+            path: 'atividade', component: AtividadeComponent
+          },
+        ]
       },
       {
         path: 'recurso/usuariorecursos', component: UsuarioRecursosComponent

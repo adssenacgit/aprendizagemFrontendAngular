@@ -1,5 +1,6 @@
 <div class="d-flex gap-2 align-items-center p-1 select">
   <p-checkbox
+    *ngIf="participante"
     [(ngModel)]="objeto.cursado"
     [binary]="true"
     inputId="binary"

@@ -1,3 +1,4 @@
+import { Participante } from './../../../../../../../models/Participante';
 import { Component, Input, OnInit } from '@angular/core';
 import { Atividade } from 'src/app/models/Atividade';
 
@@ -10,6 +11,8 @@ export class CardAtividadeComponent {
 
   @Input()
   atividade: Atividade;
+  @Input()
+  participante: Participante
 
   checked: boolean = true;
 

@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h1>Planejamento UC Ativo</h1>
+      <p>Unidade Curricular: {{planejamentoUcAtual.grupo.unidadeCurricular.nome}}</p>
+      <p>Período Id: {{planejamentoUcAtual.grupo.periodoId}}</p>
+      <p>{{planejamentoUcAtual.descricao}}</p>
+
+      <button mat-raised-button color="primary" (click)="setSituacao()" [routerLink]="['../situacao-aprendizagem/', planejamentoUcAtual.id]">Nova Situação de Aprendizagem</button>
+
+      <div *ngFor="let sit of situacoesAprendizagem" class="border">
+        <div class="d-flex">
+          <h2>Ordem: {{sit.ordem}} Id: {{sit.id}} - {{sit.titulo}}</h2>
+          <i class="pi action-button pi-pencil" (click)="setSituacao(sit)" [routerLink]="['../situacao-aprendizagem/', planejamentoUcAtual.id]"></i>
+        </div>
+        <button mat-raised-button color="primary" routerLink="../objeto-aprendizagem">Novo Objeto de Aprendizagem</button>
+        <button mat-raised-button color="primary" routerLink="../atividade">Nova Atividade</button>
+        <div *ngFor="let obj of sit.objetosAprendizagem">
+          <div class="d-flex">
+            <p>Objeto de aprendizagem: {{obj.titulo}}</p>
+            <i class="pi action-button pi-pencil"></i>
+          </div>
+        </div>
+        <div *ngFor="let atv of sit.atividades">
+          <p>Atividade: {{atv.descricao}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div *ngFor="let encontro of encontros">
+        <h2>{{encontro.diaLetivo.dialetivo | date}}</h2>
+        <div *ngFor="let sit of encontro.situacoesAprendizagem">
+          <h3>Id: {{sit.id}} - {{sit.descricao}}</h3>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

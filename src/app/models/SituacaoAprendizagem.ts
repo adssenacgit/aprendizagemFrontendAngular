@@ -10,14 +10,14 @@ export class SituacaoAprendizagem {
     descricao: string;
     duracao: number;
     ordem: number;
-    status: string;
+    status: number;
     planejamentoUCId: number;
     planejamentoUC: PlanejamentoUC;
     grauDificuldadeId: number;
     grauDificuldade:GrauDificuldade;
     badgeId: number;
     badge:Badge
-    objetosAprendizagem?: ObjetoAprendizagem[] = [];
-    atividades?: Atividade[] = [];
+    objetosAprendizagem?: ObjetoAprendizagem[];
+    atividades?: Atividade[];
     selecionado? : number;
 }

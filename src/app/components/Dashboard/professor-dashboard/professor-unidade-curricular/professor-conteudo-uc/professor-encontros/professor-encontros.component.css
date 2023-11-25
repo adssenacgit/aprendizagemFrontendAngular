@@ -1,0 +1,35 @@
+/* * {
+  font-family: 'PoppinsRegular';
+} */
+
+.acc-header {
+  background-color: #F8F9FA;
+  border-bottom: 0.5px solid grey;
+}
+
+.accordion-header-container{
+  display: flex;
+}
+.encontro-header-title {
+  font-family: 'PoppinsSemiBold';
+  font-size: 14px !important;
+  justify-content: flex-start;
+}
+
+.encontros-container {
+  max-height: 99vh;
+}
+
+span {
+  font-size: 12px;
+}
+
+.accordion-body {
+  padding: 0;
+  width: 100%;
+}
+
+.situacao-titulo {
+  font-family: 'PoppinsSemiBold';
+  font-size: 12px;
+}
