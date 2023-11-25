@@ -32,9 +32,10 @@ export class ApoioDuvidasComponent implements OnInit {
   usuario: Usuario;
   idUsuarioLogado: string;
   chapterTagTodos: ChapterTag[];
-  rankComentarios: { usuario: [foto: string, nome: string]; count: number }[] =
-    [];
+  rankComentarios: { usuario: [foto: string, nome: string]; count: number }[] = [];
   loading = true;
+  page: number = 0;
+  size: number = 10;
 
   constructor(
     private _route: ActivatedRoute,
@@ -67,7 +68,7 @@ export class ApoioDuvidasComponent implements OnInit {
       .ObterTodos()
       .subscribe((data) => (this.chapterTagTodos = data));
 
-    this.comentarioService.ObterTodos().subscribe((data) => {
+    this.comentarioService.obterTodos().subscribe((data) => {
       const frequencyMap = new Map();
       data.forEach((item) => {
         const usuarioKey = JSON.stringify([
@@ -173,10 +174,20 @@ export class ApoioDuvidasComponent implements OnInit {
 
   filtraPorChapter(busca: string) {
     this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) =>
-      value.chapter.nome.toLowerCase().includes(busca.toLowerCase())
+      value.chapterNome.toLowerCase().includes(busca.toLowerCase())
     );
     this.currentPage = 1;
     this.calculateTotalPages(true);
+  }
+
+  filtraPorTag(busca: number) {
+    this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) =>
+      value.tags.some((tag) => tag.id == busca)
+    );
+    this.currentPage = 1;
+    this.calculateTotalPages(true);
+    console.log(this.chapterAssuntos);
+    console.log(busca);
   }
 
   irParaPagina(i: number) {

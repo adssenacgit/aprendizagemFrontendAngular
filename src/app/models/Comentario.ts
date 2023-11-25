@@ -1,3 +1,5 @@
+import { Curtida } from "./Curtida";
+
 export interface Comentario {
     id: number;
     nome: string;

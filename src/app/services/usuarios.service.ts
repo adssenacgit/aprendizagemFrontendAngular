@@ -18,11 +18,17 @@ const httpOptions = {
 export class UsuariosService {
 
   url = environment.apiServer + 'api/Usuario';
+  javaUrl = "http://localhost:8080/usuario"
 
   constructor(private http: HttpClient) { }
 
   ObterUsuarioPorId(id : string): Observable<Usuario>{
     const apiUrl = `${this.url}/${id}`;
+    return this.http.get<Usuario>(apiUrl);
+  }
+
+  ObterUsuarioPorIdJava(id : string): Observable<Usuario>{
+    const apiUrl = `${this.javaUrl}/buscar/${id}`;
     return this.http.get<Usuario>(apiUrl);
   }
 

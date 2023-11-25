@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -32,14 +32,33 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto[]>(this.javaUrl);
   }
 
+  ObterTodosComTotalComentariosJava() : Observable<ChapterAssunto[]>
+  {
+    const apiUrl = `${this.javaUrl}/with-total-comentarios`;
+    return this.https.get<ChapterAssunto[]>(apiUrl);
+  }
+
+  ObterChapterAssuntoWithComentariosPaiByIdJava(chapterAssuntoId: number) : Observable<ChapterAssunto>
+  {
+    const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/with-comentarios-pai`;
+    return this.https.get<ChapterAssunto>(apiUrl);
+  }
+
   ObterChapterAssuntoById (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.url}/${chapterAssuntoId}`;
     return this.https.get<ChapterAssunto>(apiUrl);
   }
+
   ObterChapterAssuntoByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}`;
+    return this.https.get<ChapterAssunto>(apiUrl);
+  }
+
+  ObterChapterAssuntoWithTotalComentariosByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>
+  {
+    const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/with-total-comentarios`;
     return this.https.get<ChapterAssunto>(apiUrl);
   }
 
@@ -52,6 +71,8 @@ export class ChapterAssuntoService {
     const apiUrl = `${this.javaUrl}/filtrar-chapter-assuntos-por-chapter-id/${chapterId}`;
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
+
+
 
   NovoChapterAssunto (chapterAssunto: ChapterAssunto): Observable<any>
   {
@@ -85,5 +106,14 @@ export class ChapterAssuntoService {
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/associar-tags`;
     return this.https.post<ChapterAssunto>(apiUrl, chapterTags, httpOptions);
+  }
+
+
+  getComentariosPaginados(page: number, size: number): Observable<ChapterAssunto[]> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.https.get<ChapterAssunto[]>(`${this.javaUrl}/paginados`, { params });
   }
 }

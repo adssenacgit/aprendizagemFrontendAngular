@@ -198,6 +198,7 @@ import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard
 import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
 
+
 registerLocaleData(localePT);
 registerLocaleData(localeES);
 registerLocaleData(localeDE);
@@ -363,7 +364,8 @@ registerLocaleData(localeFR);
     InputMaskModule,
     EditorModule,
     MatChipsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+
   ],
   providers: [
     CursosService,
