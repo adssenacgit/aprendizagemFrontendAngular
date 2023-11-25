@@ -24,17 +24,16 @@
           <h1 routerLink="/comunidade/comentario/">
             {{pergunta.titulo}}
           </h1>
-          <h3 [innerHTML]="pergunta.descricao">
-          </h3>
+          <h3 [innerHTML]="pergunta.descricao"></h3>
         </div>
-        <div class="card-body tags-space">
+        <!-- <div class="card-body tags-space">
           <div class="card-body question-tags" *ngFor="let tag of pergunta.tags">
             <button type="button" class="btn btn-light">
               <i class="bi bi-tags"></i>
               <p>{{tag.descricao}}</p>
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <button type="button" class="btn btn-default go-to-answer-btn" (click)="scrollToEditor('formComentario')"> <i
@@ -51,10 +50,10 @@
               <i class="bi bi-filter"></i> Filtros
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item">Mais recentes</a></li>
-              <li><a class="dropdown-item">Mais antigos</a></li>
-              <li><a class="dropdown-item">Mais respondidos</a></li>
-              <li><a class="dropdown-item">Mais curtidos</a></li>
+              <li><a (click)="ordernarPorData('decrescente')" class="dropdown-item">Mais recentes</a></li>
+              <li><a (click)="ordernarPorData('crescente')" class="dropdown-item">Mais antigos</a></li>
+              <li><a (click)="ordernarPorMaisRespondidos()" class="dropdown-item">Mais respondidos</a></li>
+              <li><a (click)="ordenarPorMaisCurtidos()" class="dropdown-item">Mais curtidos</a></li>
             </ul>
           </div>
         </div>
@@ -64,7 +63,7 @@
           <div *ngFor="let comentario of comentarios" class="card answer-card" [attr.id]="'comentario-' + comentario.id" #comentario>
             <div class="card-body answer-header">
               <h3>
-                <img class="user-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
+                <img class="user-answer-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
                 {{ comentario.usuario.nomeCompleto }}
               </h3>
               <h4>
@@ -171,8 +170,7 @@
         <p><a class="link-opacity-100" href="#">ver todos</a></p>
       </div>
       <div class="card-body">
-        <p class="card-text">Banco de Dados</p>
-        <p class="card-text">Banco de Dados II</p>
+        <p class="card-text">{{pergunta.chapterNome}}</p>
       </div>
     </div>
     <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
@@ -180,14 +178,10 @@
         <h1>Tags</h1>
         <p><a class="link-opacity-100" href="#">ver todos</a></p>
       </div>
-      <div class="card-body tags-card">
+      <div class="card-body tags-card" *ngFor="let tag of pergunta.tags">
         <button type="button" class="btn btn-light">
           <i class="bi bi-tags"></i>
-          <p>MySQL</p>
-        </button>
-        <button type="button" class="btn btn-light">
-          <i class="bi bi-tags"></i>
-          <p>Sql Server</p>
+          <p>{{tag.descricao}}</p>
         </button>
       </div>
     </div>

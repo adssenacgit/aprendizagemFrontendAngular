@@ -30,7 +30,11 @@
               <hr class="dropdown-divider" />
             </li>
 
-            <li><a (click)="filtrarPorVerificacao()" class="dropdown-item">com resposta verificada</a></li>
+            <li><a (click)="filtrarPorVerificacao()" class="dropdown-item">Com Resposta Verificada</a></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a (click)="filtraPorChapter('')" class="dropdown-item">Limpar filtro</a></li>
           </ul>
         </div>
       </div>
@@ -63,9 +67,9 @@
           <p><a class="link-opacity-100" [(ngModel)]="busca" (click)="filtraPorChapter('')">ver todos</a></p>
         </div>
         <div class="card-body tags-card">
-          <button *ngFor="let i of chapterTagTodos" type="button" class="btn btn-light d-flex gap-1">
+          <button *ngFor="let tag of chapterTagTodos" type="button" class="btn btn-light d-flex gap-1">
             <i class="bi bi-tags">
-                <a (click)="filtraPorTag(i)">{{i.descricao}}</a>
+                <a (click)="filtraPorTag(tag.id)">{{tag.descricao}}</a>
             </i>
         </button>
         </div>

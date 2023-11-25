@@ -300,9 +300,40 @@ export class ComentarioComponent implements OnInit {
       });
   }
 
+  ordernarPorData(order: string) {
+    if (order == 'decrescente') {
+      this.comentarios.sort(
+        (a, b) =>
+          new Date(b.data).getDate() -
+          new Date(a.data).getDate()
+      );
+    } else if (order == 'crescente') {
+      this.comentarios.sort(
+        (a, b) =>
+          new Date(a.data).getDate() -
+          new Date(b.data).getDate()
+      );
+    }
+  }
 
+  ordenarPorMaisCurtidos() {
+      this.comentarios.sort(
+        (a, b) =>
+          b.curtidas.length -
+          a.curtidas.length
+      );
+  }
 
-
-
+  ordernarPorMaisRespondidos() {
+    const frequencia: { [id: number]: number } = {};
+    this.comentarios.forEach((comentario) => {
+      const paiId = comentario.paiId;
+      if (paiId !== null) {
+        frequencia[paiId] = (frequencia[paiId] || 0) + 1;
+      }
+    });
+    this.comentarios.sort((a, b) => (frequencia[b.id] || 0) - (frequencia[a.id] || 0));
+    console.log(this.comentarios);
+  }
 }
 

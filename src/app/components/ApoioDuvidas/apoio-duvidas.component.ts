@@ -180,12 +180,14 @@ export class ApoioDuvidasComponent implements OnInit {
     this.calculateTotalPages(true);
   }
 
-  filtraPorTag(busca: ChapterTag) {
+  filtraPorTag(busca: number) {
     this.chapterAssuntos = this.chapterAssuntosTodos.filter((value) =>
-      value.tags.some((tag) => tag === busca)
+      value.tags.some((tag) => tag.id == busca)
     );
     this.currentPage = 1;
     this.calculateTotalPages(true);
+    console.log(this.chapterAssuntos);
+    console.log(busca);
   }
 
   irParaPagina(i: number) {
