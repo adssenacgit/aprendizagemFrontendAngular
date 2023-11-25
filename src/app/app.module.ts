@@ -205,6 +205,7 @@ import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-
 import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
 import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
 
+
 registerLocaleData(localePT);
 registerLocaleData(localeES);
 registerLocaleData(localeDE);
@@ -377,7 +378,8 @@ registerLocaleData(localeFR);
     InputMaskModule,
     EditorModule,
     MatChipsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+
   ],
   providers: [
     CursosService,

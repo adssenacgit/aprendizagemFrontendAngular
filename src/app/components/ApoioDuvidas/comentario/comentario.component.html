@@ -10,7 +10,7 @@
     <div class="card question-card">
       <div class="card-body question-info">
         <div class="question-data">
-          <img class="user-image" src="{{ 'data:image/png;base64,' + pergunta.usuario.foto }}" />
+          <img class="user-poster-image" src="{{ 'data:image/png;base64,' + pergunta.usuario.foto }}" />
           <div class="question-texts">
             <h4 class="comentario-usuario-nome">
               {{pergunta.usuario.nomeCompleto}}
@@ -24,31 +24,25 @@
           <h1 routerLink="/comunidade/comentario/">
             {{pergunta.titulo}}
           </h1>
-          <h3>
-            {{pergunta.descricao}}
-          </h3>
+          <h3 [innerHTML]="pergunta.descricao"></h3>
         </div>
-        <div class="card-body question-tags">
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-          <button type="button" class="btn btn-light">
-            <i class="bi bi-tags"></i>
-            <p>sql</p>
-          </button>
-        </div>
+        <!-- <div class="card-body tags-space">
+          <div class="card-body question-tags" *ngFor="let tag of pergunta.tags">
+            <button type="button" class="btn btn-light">
+              <i class="bi bi-tags"></i>
+              <p>{{tag.descricao}}</p>
+            </button>
+          </div>
+        </div> -->
       </div>
     </div>
+    <button type="button" class="btn btn-default go-to-answer-btn" (click)="scrollToEditor('formComentario')"> <i
+      class="bi bi-chat"> Responder</i></button>
 
     <!-- respostas -->
     <div class="answer-holder">
       <div class="title">
-        <h1>Respostas</h1>
+        <h1>Respostas ({{comentarios.length}})</h1>
         <div class="div">
           <div class="btn-group">
             <button class="btn btn-secondary btn-sm dropdown-toggle filter" type="button" data-bs-toggle="dropdown"
@@ -56,65 +50,85 @@
               <i class="bi bi-filter"></i> Filtros
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item">Mais recentes</a></li>
-              <li><a class="dropdown-item">Mais antigos</a></li>
-              <li><a class="dropdown-item">Mais respondidos</a></li>
-              <li><a class="dropdown-item">Mais curtidos</a></li>
+              <li><a (click)="ordernarPorData('decrescente')" class="dropdown-item">Mais recentes</a></li>
+              <li><a (click)="ordernarPorData('crescente')" class="dropdown-item">Mais antigos</a></li>
+              <li><a (click)="ordernarPorMaisRespondidos()" class="dropdown-item">Mais respondidos</a></li>
+              <li><a (click)="ordenarPorMaisCurtidos()" class="dropdown-item">Mais curtidos</a></li>
             </ul>
           </div>
         </div>
       </div>
-      <div *ngFor="let comentario of comentarios.slice(startIndex, endIndex)" class="card answer-card">
-        <div class="card-body answer-header">
-          <h3>
-            <img class="user-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
-            {{ comentario.usuario.nomeCompleto }}
-          </h3>
-          <h4>
-            {{ comentario.data }}
-          </h4>
-          <div class="verified-icon">
-            <i class="bi bi-check2-all"></i>Verificado
-          </div>
-        </div>
-        <div class="answer-body">
-          <div class="card-body question-text">
-            <p>{{ comentario.texto }}</p>
-          </div>
-          <div class="card-body answer-actions">
-            <div class="first-buttons">
-              <button type="button" class="btn btn-default first-btn"> <i class="bi bi-hand-thumbs-up"></i>10</button>
-              <button type="button" class="btn btn-default first-btn"> <i class="bi bi-chat"></i>Responder</button>
-            </div>
-            <div class="second-buttons">
-              <button type="button" class="btn btn-default second-btn" data-bs-toggle="modal"
-                data-bs-target="#exampleModal"> <i class="bi bi bi-pencil"></i></button>
-              <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+      <div>
+
+          <div *ngFor="let comentario of comentarios" class="card answer-card" [attr.id]="'comentario-' + comentario.id" #comentario>
+            <div class="card-body answer-header">
+              <h3>
+                <img class="user-answer-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
+                {{ comentario.usuario.nomeCompleto }}
+              </h3>
+              <h4>
+                {{ comentario.data }}
+              </h4>
+              <div class="verified-icon">
+                <i class="bi bi-check2-all"></i>Verificado
               </div>
             </div>
+            <div class="answer-body">
+              <div class="card-body question-text">
+                <a *ngIf="comentario.paiId" (click)="scrollToElement(comentario.paiId)">{{'@' + getPosterNameByComentarioId(comentario.paiId) }}</a>
+                <p [innerHTML]="comentario.texto"></p>
+              </div>
+              <div class="card-body answer-actions">
+                <div class="first-buttons">
+                  <button type="button" class="btn btn-default first-btn" [class.pressed]="checarCurtida(comentario.curtidas, idUsuarioLogado)"
+                    (click)="!checarCurtida(comentario.curtidas, idUsuarioLogado) ? curtir(comentario) : descurtir(comentario)">
+                    <i class="bi bi-hand-thumbs-up"></i>
+                    {{comentario.curtidas.length}}
+                  </button>
+                  <button class="first-btn" (click)="showModalResposta(comentario)"> <i
+                    class="bi bi-chat">  Responder</i></button>
+                  <p-dialog header="{{'Responder a ' + comentario.usuario.nomeCompleto}}" [(visible)]="modalResposta" [style]="{ width: '60vw' }" [draggable]="false">
+                    <form [formGroup]="respostaFilhoForm">
+                      <p-editor formControlName="comentario" [style]="{ height: '320px' }"></p-editor>
+                      <div class="action-buttons">
+                        <button type="submit" class="btn btn-primary action-send" (click)="responder()">Enviar</button>
+                        <button type="button" class="btn btn-primary action-cancel" (click)="limparFormularioFilho()">Limpar Campos</button>
+                      </div>
+                    </form>
+
+                  </p-dialog>
+                </div>
+                <div class="second-buttons">
+                  <button type="button" class="btn btn-default second-btn" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"> <i class="bi bi bi-pencil"></i></button>
+                  <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+
       </div>
 
     </div>
     <!-- paginacão -->
-    <nav aria-label="Page navigation example">
+    <!-- <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link" aria-label="Previous" (click)="previousPage()" [class.disabled]="currentPage === 1">
@@ -130,10 +144,10 @@
           </a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
 
     <!-- fazer comentários -->
-    <form class="needs-validation" novalidate [formGroup]="form">
+    <form id="formComentario" class="needs-validation" novalidate [formGroup]="form">
       <div class="form-group">
         <label for="comentario">Comentário</label>
         <p-editor id="comentario" formControlName="comentario" [style]="{ height: '320px' }">{{ textoSanitizado
@@ -142,7 +156,7 @@
     </form>
     <div class="action-buttons">
       <button type="submit" class="btn btn-primary action-send" (click)="onSubmit()"
-        routerLink="/comunidade">Enviar</button>
+        >Enviar</button>
       <button type="button" class="btn btn-primary action-cancel" (click)="limparFormulario()">Limpar Campos</button>
     </div>
 
@@ -156,8 +170,7 @@
         <p><a class="link-opacity-100" href="#">ver todos</a></p>
       </div>
       <div class="card-body">
-        <p class="card-text">Banco de Dados</p>
-        <p class="card-text">Banco de Dados II</p>
+        <p class="card-text">{{pergunta.chapterNome}}</p>
       </div>
     </div>
     <div class="card border-gray mb-3 vertical-stack" style="max-width: 18rem">
@@ -165,14 +178,10 @@
         <h1>Tags</h1>
         <p><a class="link-opacity-100" href="#">ver todos</a></p>
       </div>
-      <div class="card-body tags-card">
+      <div class="card-body tags-card" *ngFor="let tag of pergunta.tags">
         <button type="button" class="btn btn-light">
           <i class="bi bi-tags"></i>
-          <p>MySQL</p>
-        </button>
-        <button type="button" class="btn btn-light">
-          <i class="bi bi-tags"></i>
-          <p>Sql Server</p>
+          <p>{{tag.descricao}}</p>
         </button>
       </div>
     </div>
