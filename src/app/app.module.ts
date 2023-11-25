@@ -197,6 +197,13 @@ import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-das
 import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
 import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
+import { ProfessorInfoGrupoComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-info-grupo/professor-info-grupo.component';
+import { ProfessorConteudoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-conteudo-uc.component';
+import { ProfessorEncontrosComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-encontros/professor-encontros.component';
+import { ProfessorPlanejamentoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/professor-planejamento-uc.component';
+import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/situacao-aprendizagem/situacao-aprendizagem.component';
+import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
+import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -286,7 +293,14 @@ registerLocaleData(localeFR);
     NovaPerguntaForumUcComponent,
     TopicoForumUcComponent,
     UsuarioPerfilComponent,
-    ProfessorUnidadeCurricularComponent
+    ProfessorUnidadeCurricularComponent,
+    ProfessorInfoGrupoComponent,
+    ProfessorConteudoUcComponent,
+    ProfessorEncontrosComponent,
+    ProfessorPlanejamentoUcComponent,
+    SituacaoAprendizagemComponent,
+    ObjetoAprendizagemComponent,
+    AtividadeComponent
   ],
   imports: [
     BrowserModule,
