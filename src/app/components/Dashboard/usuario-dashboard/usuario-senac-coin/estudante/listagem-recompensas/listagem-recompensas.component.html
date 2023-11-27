@@ -1,11 +1,10 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="cards col" *ngFor="let senacCoin of $senacCoins">
+  <div class="cards col" *ngFor="let senacCoinRecompensa of $senacCoinRecompensas">
     <div class="cardExterior card h-100">
       <img
         src="https://primefaces.org/cdn/primeng/images/usercard.png"
         class="card-img-top"
-        alt="..."
-      />
+        alt="..."/>
       <div
         class="card-body"
         style="
@@ -15,14 +14,14 @@
         "
       >
         <div class="titulos">
-          <h1 class="card-title">{{ senacCoin.saldo }}</h1>
-          <h2>R${{ senacCoin.saldo }}</h2>
+          <h1 class="card-title">{{ senacCoinRecompensa.nome }}</h1>
+          <h2>{{ senacCoinRecompensa.pontos | currency}}</h2>
         </div>
-        <p class="card-text">{{ senacCoin }}</p>
+        <p class="card-text">{{ senacCoinRecompensa.descricao }}</p>
         <div class="botao d-grid gap-2 d-md-flex justify-content-md-end">
           <!-- (click)="comprarItem(card)" -->
           <button
-            class="btn btn-warning me-md-2"
+            class="btn btn-primary me-md-2"
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
@@ -58,13 +57,13 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">...</div>
+      <div class="modal-body">Tem certeza que quer comprar?</div>
       <!-- Inserir descrição dos Cards -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Fechar
+          Não
         </button>
-        <button type="button" class="btn btn-warning">Comprar</button>
+        <button type="button" class="btn btn-primary">Sim</button>
       </div>
     </div>
   </div>

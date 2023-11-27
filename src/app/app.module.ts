@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule} from '@angular/core';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
@@ -125,8 +125,8 @@ import {
 import {AtividadesComponent} from './components/UnidadeCurricular/atividades/atividades.component';
 
 import {
-  CardsSenacCoinComponent
-} from './components/Dashboard/usuario-dashboard/cards-senac-coin/cards-senac-coin.component';
+  ListagemRecompensasComponent
+} from './components/Dashboard/usuario-dashboard/usuario-senac-coin/estudante/listagem-recompensas/listagem-recompensas.component';
 
 import {
   UsuarioNoticiasComponent
@@ -231,6 +231,8 @@ import {
 } from "./components/ApoioDuvidas/card-topico-comunidade/card-topico-comunidade.component";
 import { UsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/usuario-badges.component';
 import { DetalheBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/detalhe-badge/detalhe-badge.component';
+import { ListagemMovimentacoesComponent } from './components/Dashboard/usuario-dashboard/usuario-senac-coin/estudante/listagem-movimentacoes/listagem-movimentacoes.component';
+import { ListagemSaldoComponent } from './components/Dashboard/usuario-dashboard/usuario-senac-coin/estudante/listagem-saldo/listagem-saldo.component';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -291,7 +293,7 @@ registerLocaleData(localeFR);
     CardContatoComponent,
     MeusRecursosComponent,
     AtividadesComponent,
-    CardsSenacCoinComponent,
+    ListagemRecompensasComponent,
     SideNavComponent,
     AjudaComponent,
     UsuarioNoticiasComponent,
@@ -301,7 +303,9 @@ registerLocaleData(localeFR);
     CardTopicoComunidadeComponent,
     ListagemTabelaBadgesComponent,
     UsuarioBadgesComponent,
-    DetalheBadgeComponent
+    DetalheBadgeComponent,
+    ListagemMovimentacoesComponent,
+    ListagemSaldoComponent
   ],
   imports: [
     BrowserModule,
@@ -386,7 +390,8 @@ registerLocaleData(localeFR);
     AuthGuardService,
     HttpClientModule,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
     MessageService
   ],
   bootstrap: [AppComponent]
