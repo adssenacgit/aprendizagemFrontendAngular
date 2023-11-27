@@ -33,6 +33,8 @@ export class CardObjetoAprendizagemComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    this.dataService.setDataSource(null);
+
     this.objetoAprendizagemService.obterObjetoComRecursoPorIdJava(this.objeto.id)
       .subscribe(
         response => {

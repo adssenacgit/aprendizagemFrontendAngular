@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Encontro } from 'src/app/models/Encontro';
+import { DataService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-professor-encontros',
@@ -11,9 +12,12 @@ export class ProfessorEncontrosComponent implements OnInit {
   @Input()
   encontros: Encontro[]
 
-  constructor() { }
+  constructor(
+    private dataService: DataService,
+  ) { }
 
   ngOnInit(): void {
+    this.dataService.setDataSource(null);
   }
 
   obterAcompanhamento(encontro: Encontro){
