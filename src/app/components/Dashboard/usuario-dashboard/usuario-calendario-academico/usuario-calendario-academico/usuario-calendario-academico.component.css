@@ -4,10 +4,10 @@
   width: 25rem;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1080px) {
   .calendario-academico {
 		position: absolute;
-		right: 2.5rem;
+		right: 3rem;
     width: 22rem;
   }
 }

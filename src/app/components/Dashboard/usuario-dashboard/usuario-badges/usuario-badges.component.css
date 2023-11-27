@@ -37,7 +37,7 @@
 
 }
 
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1080px) {
 	.card__container {
 		position: relative;
 		margin-top: 54rem;

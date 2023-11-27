@@ -35,7 +35,7 @@
 	transform: translateY(-50%);
   }
 
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1080px) {
 	.user-card-container {
 	  position: relative; /* Adicionado para que o ícone seja posicionado em relação a este contêiner */
 	  margin-top: 42rem;

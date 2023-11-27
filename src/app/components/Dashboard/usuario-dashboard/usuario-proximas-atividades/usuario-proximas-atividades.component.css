@@ -6,11 +6,11 @@
      margin-right: -2px;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1080px) {
     .proximas-atividades {
         position: absolute;
         width: 22rem;
-        left: 1.7rem;
-        bottom: 6rem;
+        left: 2.2rem;
+        bottom: 13rem;
     }
 }
