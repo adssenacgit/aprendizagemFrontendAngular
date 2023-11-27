@@ -3,6 +3,9 @@ import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular
 import { DataService } from 'src/app/services/data-service.service';
 import { Subscription } from 'rxjs';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
+import { Atividade } from 'src/app/models/Atividade';
+import { AtividadeService } from 'src/app/services/atividade.service';
+import { Recurso } from 'src/app/models/Recurso';
 
 @Component({
   selector: 'app-doc-viewer',
@@ -11,29 +14,29 @@ import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 })
 export class DocViewerComponent implements OnInit {
 
-  // pdfSrc = 'http://www.pdf995.com/samples/pdf.pdf';
+  data: Recurso[];
   arquivoDataString: string;
-
   modoExibicao: string;
   objeto: ObjetoAprendizagem;
+  atividade: Atividade;
 
   constructor(
     private dataService: DataService,
-    private objetoAprendizagemService: ObjetoAprendizagemService
+    private objetoAprendizagemService: ObjetoAprendizagemService,
+    private atividadeService: AtividadeService
   ) { }
 
   ngOnInit(): void {
     this.dataService.currentData
       .subscribe(
           response => {
-            if(response.length > 0){
               console.log(response)
-              this.arquivoDataString = this.decodeBase64ToDataUrl(response)
+              this.data = response.recursos
+              this.decodeBase64ToDataUrl(this.data[0])
               this.modoExibicao = 'arquivo'
-              console.log(this.arquivoDataString)
+              console.log(this.data)
               console.log(this.modoExibicao)
             }
-          }
       )
 
     this.objetoAprendizagemService.currentObjeto
@@ -45,6 +48,16 @@ export class DocViewerComponent implements OnInit {
           }
         }
       })
+
+    this.atividadeService.currentAtividade
+    .subscribe({
+      next: (response) => {
+        if(response != null) {
+          this.atividade = response
+          this.modoExibicao = 'atividade'
+        }
+      }
+    })
   }
 
   contentLoaded() {
@@ -52,15 +65,16 @@ export class DocViewerComponent implements OnInit {
     console.log('File loaded');
   }
 
-  decodeBase64ToDataUrl(base64String: string) {
-    const binaryString = atob(base64String);
+  decodeBase64ToDataUrl(recurso: Recurso) {
+    const binaryString = atob(recurso.arquivo);
     const byteArray = new Uint8Array(binaryString.length);
     for (let i = 0; i < binaryString.length; i++) {
       byteArray[i] = binaryString.charCodeAt(i);
     }
-    const blob = new Blob([byteArray], { type: 'application/pdf' });
+    const blob = new Blob([byteArray], { type: recurso.mimeType });
 
-    return URL.createObjectURL(blob);
+    this.arquivoDataString = URL.createObjectURL(blob);
+    console.log(this.arquivoDataString)
   }
 }
 

@@ -46,7 +46,7 @@ export class UsuarioUnidadeCurricularComponent implements OnInit {
     private progressoService: ProgressoService,
     ) {
       this.objetoAprendizagemService.setObjetoSource(null)
-      this.dataService.setData('')
+      this.dataService.setDataSource(null)
     }
 
 

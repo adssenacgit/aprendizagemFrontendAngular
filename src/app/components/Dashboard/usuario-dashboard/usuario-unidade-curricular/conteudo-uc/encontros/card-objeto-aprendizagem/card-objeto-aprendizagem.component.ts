@@ -24,6 +24,7 @@ export class CardObjetoAprendizagemComponent implements OnInit{
   arquivoData: File;
   teste: string
   selected: boolean = false;
+  loading = true;
 
   constructor(
     private dataService: DataService,
@@ -32,11 +33,18 @@ export class CardObjetoAprendizagemComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    this.objetoAprendizagemService.obterObjetoComRecursoPorIdJava(this.objeto.id)
+      .subscribe(
+        response => {
+          this.objeto = response
+          this.loading = false
+        }
+      )
   }
 
   enviarArquivoParaODocViewer(dataBase64: string) {
     // var file = this.decodeBase64ToFile(dataBase64)
-    this.dataService.setData(dataBase64);
+    this.dataService.setDataSource(dataBase64);
     this.selected = true;
   }
 
@@ -79,17 +87,11 @@ export class CardObjetoAprendizagemComponent implements OnInit{
     return blob;
   }
 
-  setObjetoSource(objeto: ObjetoAprendizagem){
-    this.objetoAprendizagemService.setObjetoSource(objeto)
+  setObjetoSource(){
+    this.objetoAprendizagemService.setObjetoSource(this.objeto)
   }
 
-  getObjeto(objeto: ObjetoAprendizagem) {
-    this.objetoAprendizagemService.obterObjetoAprendizagemPorId(objeto.id)
-      .subscribe({
-        next: response => {
-          this.objetoComArquivo = response
-        },
-        complete: () => this.dataService.setData(this.objetoComArquivo.arquivo)
-      })
+  setDataSource() {
+    this.dataService.setDataSource(this.objeto)
   }
 }
