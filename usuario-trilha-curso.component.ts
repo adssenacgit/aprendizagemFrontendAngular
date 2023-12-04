@@ -18,7 +18,7 @@ import { ErrorService } from 'src/app/shared/alerts/error-dialog/error-dialog.se
 
     encapsulation:
   ViewEncapsulation.None
-
+  
 })
 export class UsuarioTrilhaCursoComponent implements OnInit {
 
