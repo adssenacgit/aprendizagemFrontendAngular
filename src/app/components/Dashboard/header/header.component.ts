@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   senacCoins: SenacCoin = new SenacCoin();
   loading: boolean = true;
   senacCoinMovimentacoes: SenacCoinMovimentacao[];
+  isProfessor: boolean;
 
   list = [
     {
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.isProfessor = this.authGuardService.VerificarProfessor();
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
     this.senacCoinService
       .ObterSenacCoinPeloUsuarioId(this.idUsuarioLogado)

@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Estudante } from 'src/app/models/Estudante';
+import { Participante } from 'src/app/models/Participante';
 import { EstudantesService } from 'src/app/services/estudante.service';
 import { GrupoService } from 'src/app/services/grupo.service';
+import { ParticipanteService } from 'src/app/services/participante.service';
 
 @Component({
   selector: 'app-participantes-uc',
@@ -11,23 +12,24 @@ import { GrupoService } from 'src/app/services/grupo.service';
 })
 
 export class ParticipantesUcComponent implements OnInit {
-  participantes: Estudante[];
+  participantes: Participante[];
   grupoId: number;
 
 
   constructor(
     private grupoService: GrupoService,
-    private estudanteService: EstudantesService,
+    private participanteService: ParticipanteService,
     private route : ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.grupoId = this.grupoService.getGrupoId()
     if(this.grupoId != undefined){
-      this.estudanteService.ObterEstudanteByGrupoId(this.grupoId)
+      this.participanteService.obterParticipantesPorGrupoIdJava(this.grupoId)
         .subscribe({
           next: (res => {
             this.participantes = res
+            console.log(this.participantes)
           })
         })
 

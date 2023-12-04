@@ -1,0 +1,20 @@
+<div *ngIf="cardAberto" class="card">
+  <p-card class="card-pergunta" id="titulo" header="Escrevendo uma boa pergunta">
+    <button (click)="fecharCard()" class="close-button">
+      <span id="botaoX">X</span>
+    </button>
+    <h3 class="m-0 sub-header">
+      Você está pronto para fazer uma pergunta para a comunidade e este formulário irá ajudá-lo a seguir o processo.
+    </h3>
+    <h4 class="m-0 etapas" class="etapas">
+      Etapas:
+    </h4>
+    <ul class="m-0 lista">
+        <li>Resuma o seu problema em um título de uma linha.</li>
+        <li>Descreva o seu problema com mais detalhes, incluindo o que você tentou e esperava que acontecesse.</li>
+        <li>Escolha o assunto mais relacionado à sua pergunta.</li>
+        <li>Adicione "tags" que ajudam a destacar a sua pergunta para os membros da comunidade.</li>
+        <li>Revise a sua pergunta e publique-a no site.</li>
+    </ul>
+  </p-card>
+</div>

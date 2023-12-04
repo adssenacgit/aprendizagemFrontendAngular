@@ -18,6 +18,9 @@ const httpOptions = {
 export class SituacaoAprendizagemService {
 
   url = environment.apiServer + 'api/SituacaoAprendizagem';
+  javaUrl = 'http://localhost:8080/situacao-aprendizagem';
+  private situacaoAprendizagem: SituacaoAprendizagem;
+
   constructor(private https: HttpClient) { }
 
   ObterSituacaoAprendizagemPorId (id: number) : Observable<SituacaoAprendizagem>
@@ -28,6 +31,10 @@ export class SituacaoAprendizagemService {
 
   criarSituacaoAprendizagem(situacao: SituacaoAprendizagem): Observable<SituacaoAprendizagem> {
     return this.https.post<SituacaoAprendizagem>(this.url, situacao);
+  }
+
+  criarSituacaoAprendizagemJava(situacao: SituacaoAprendizagem): Observable<SituacaoAprendizagem> {
+    return this.https.post<SituacaoAprendizagem>(this.javaUrl, situacao);
   }
 
   obterSituacoesAprendizagem(): Observable<SituacaoAprendizagem[]> {
@@ -80,6 +87,19 @@ export class SituacaoAprendizagemService {
   filtrarAtividadesEObjetosBySituacaoAprendizagemId(id: number): Observable<SituacaoAprendizagem> {
     const apiUrl = `${this.url}/FiltrarAtividadesEObjetosBySituacaoAprendizagemId/${id}`;
     return this.https.get<SituacaoAprendizagem>(apiUrl);
+  }
+
+  filtrarSituacoesAprendizagemPorPlanejamentoUcIdJava(planejamentoUcId: number): Observable<SituacaoAprendizagem[]>{
+    const apiUrl = `${this.javaUrl}/filtrarSituacoesAprendizagemPorPlanejamentoUcId/${planejamentoUcId}`
+    return this.https.get<SituacaoAprendizagem[]>(apiUrl);
+  }
+
+  setSituacaoAprendizagem(situacao: SituacaoAprendizagem) {
+    this.situacaoAprendizagem = situacao;
+  }
+
+  getSituacaoAprendizagem() {
+    return this.situacaoAprendizagem;
   }
 
 }

@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -152,6 +153,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InputMaskModule } from "primeng/inputmask";
 import { EditorModule } from 'primeng/editor';
 import { DropdownModule } from 'primeng/dropdown';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 //Ngx Imports
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -186,6 +189,22 @@ import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboa
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 import { CardTopicoComunidadeComponent } from './components/ApoioDuvidas/card-topico-comunidade/card-topico-comunidade.component';
 import { RecursoDocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/recurso-doc-viewer/recurso-doc-viewer.component';
+import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
+import { ProfessorListaUcComponent } from './components/Dashboard/professor-dashboard/professor-lista-uc/professor-lista-uc.component';
+import { CardAvisoComponent } from './components/ApoioDuvidas/novapergunta/card-aviso/card-aviso.component';
+import { CardTopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/card-topico-forum-uc/card-topico-forum-uc.component';
+import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/nova-pergunta-forum-uc/nova-pergunta-forum-uc.component';
+import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
+import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
+import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
+import { ProfessorInfoGrupoComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-info-grupo/professor-info-grupo.component';
+import { ProfessorConteudoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-conteudo-uc.component';
+import { ProfessorEncontrosComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-encontros/professor-encontros.component';
+import { ProfessorPlanejamentoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/professor-planejamento-uc.component';
+import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/situacao-aprendizagem/situacao-aprendizagem.component';
+import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
+import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
+
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -267,7 +286,22 @@ registerLocaleData(localeFR);
     ParticipantesUcComponent,
     ForumUcComponent,
     CardTopicoComunidadeComponent,
-    RecursoDocViewerComponent
+    RecursoDocViewerComponent,
+    ProfessorDashboardComponent,
+    ProfessorListaUcComponent,
+    CardAvisoComponent,
+    CardTopicoForumUcComponent,
+    NovaPerguntaForumUcComponent,
+    TopicoForumUcComponent,
+    UsuarioPerfilComponent,
+    ProfessorUnidadeCurricularComponent,
+    ProfessorInfoGrupoComponent,
+    ProfessorConteudoUcComponent,
+    ProfessorEncontrosComponent,
+    ProfessorPlanejamentoUcComponent,
+    SituacaoAprendizagemComponent,
+    ObjetoAprendizagemComponent,
+    AtividadeComponent
   ],
   imports: [
     BrowserModule,
@@ -343,6 +377,9 @@ registerLocaleData(localeFR);
     BadgeModule,
     InputMaskModule,
     EditorModule,
+    MatChipsModule,
+    MatFormFieldModule,
+
   ],
   providers: [
     CursosService,

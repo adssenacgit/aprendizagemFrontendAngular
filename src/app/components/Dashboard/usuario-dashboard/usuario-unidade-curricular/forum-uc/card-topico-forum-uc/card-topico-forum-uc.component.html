@@ -1,0 +1,42 @@
+<div class="card question-card" *ngIf="topico">
+  <div class="card-body question-info">
+    <div class="question-data d-flex">
+      <img
+        class="user-image"
+        src="{{ 'data:image/png;base64,' + topico.usuario.foto }}"
+      />
+      <div class="question-texts d-flex flex-column w-100 align-items-center">
+        <h4 class="comentario-usuario-nome">
+          {{ topico.usuario.nomeCompleto }}
+        </h4>
+        <h5>{{ topico.dataCadastro | date }}</h5>
+      </div>
+    </div>
+    <div class="question-actions btn-group">
+      <button type="button" class="btn btn-light">
+        <p>{{ topico.comentarios.length }}</p>
+        <i class="bi bi-chat"></i>
+      </button>
+      <button type="button" class="btn btn-light">
+        <p>40</p>
+        <i class="bi bi-hand-thumbs-up"></i>
+      </button>
+      <button type="button" class="btn btn-light">
+        <p>{{ topico.contadorVisualizacao }}</p>
+        <i class="bi bi-eye"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body question-big-text">
+    <h2 routerLink="./topico/{{ topico.id }}">
+      {{ topico.titulo }}
+    </h2>
+    <div [innerHTML]="topico.descricao"></div>
+  </div>
+  <div class="card-body question-tags">
+    <button type="button" class="btn btn-light" *ngFor="let tag of topico.tags">
+      <i class="bi bi-tags"></i>
+      <p>{{tag.descricao}}</p>
+    </button>
+  </div>
+</div>

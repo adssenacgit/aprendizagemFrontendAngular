@@ -1,12 +1,21 @@
-<div
-  (click)="enviarArquivoParaODocViewer(objeto.arquivo)"
-  class="d-flex justify-content-center gap-2 align-items-center p-1 select"
->
+<div class="d-flex gap-2 align-items-center p-1 select" *ngIf="!loading">
   <p-checkbox
-    [(ngModel)]="checked"
+    *ngIf="participante"
+    [(ngModel)]="objeto.cursado"
     [binary]="true"
     inputId="binary"
+    (onChange)="toggleAcompanhamento($event, objeto)"
   ></p-checkbox>
-  <p>{{ objeto.titulo }}</p>
-  <mat-icon class="material-symbols-outlined">file_open</mat-icon>
+  <p style="width: 80%;" class="line-clamp"
+    (click)="setObjetoSource()"
+  >
+    {{ objeto.titulo }}
+  </p>
+  <mat-icon
+    *ngIf="objeto.recursos.length > 0"
+    (click)="setDataSource()"
+    class="material-symbols-outlined"
+  >
+    file_open
+  </mat-icon>
 </div>

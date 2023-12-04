@@ -1,3 +1,5 @@
+import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
+import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/nova-pergunta-forum-uc/nova-pergunta-forum-uc.component';
 import { MensagensComponent } from './components/Dashboard/dashboard/mensagens/mensagens.component';
 import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/usuario-recursos.component';
 import { ChapterListagemGeralComponent } from './components/Chapters/chapter-listagem-geral/chapter-listagem-geral.component';
@@ -23,6 +25,7 @@ import { ListagemOfertasComponent } from './components/Oferta/listagem-ofertas/l
 import { AtualizarOfertaComponent } from './components/Oferta/atualizar-oferta/atualizar-oferta.component';
 import { UsuarioDashboardComponent } from './components/Dashboard/usuario-dashboard/usuario-dashboard.component';
 import { AdministradorDashboardComponent } from './components/Dashboard/administrador-dashboard/administrador-dashboard.component';
+import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
 import { TimelineDetalhesComponent } from './components/UnidadeCurricular/timeline/timeline-detalhes/timeline-detalhes.component';
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
@@ -45,6 +48,13 @@ import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usu
 import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
+import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
+import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
+import { ProfessorConteudoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-conteudo-uc.component';
+import { ProfessorPlanejamentoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/professor-planejamento-uc.component';
+import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/situacao-aprendizagem/situacao-aprendizagem.component';
+import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
+import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
 
 const routes: Routes = [
   {
@@ -67,7 +77,16 @@ const routes: Routes = [
             path: 'conceitos', component: ConceitosUcComponent
           },
           {
-            path: 'forum', component: ForumUcComponent
+            path: 'forum',
+            component: ForumUcComponent
+          },
+          {
+            path: 'forum/novapergunta',
+            component: NovaPerguntaForumUcComponent
+          },
+          {
+            path: 'forum/topico/:id',
+            component: TopicoForumUcComponent
           },
           {
             path: 'participantes', component: ParticipantesUcComponent
@@ -75,10 +94,26 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'unidadeCurricular/encontros/:id', component: EncontrosComponent
-      },
-      {
-        path: 'unidadeCurricular/estudoprevio', component: EstudoPrevioComponent
+        path: 'professor/grupo/:id',
+        component: ProfessorUnidadeCurricularComponent,
+        children: [
+          { path: "", redirectTo:"aulas", pathMatch: "full" },
+          {
+            path: 'aulas', component: ProfessorConteudoUcComponent
+          },
+          {
+            path: 'planejamento', component: ProfessorPlanejamentoUcComponent
+          },
+          {
+            path: 'situacao-aprendizagem/:id', component: SituacaoAprendizagemComponent
+          },
+          {
+            path: 'objeto-aprendizagem', component: ObjetoAprendizagemComponent
+          },
+          {
+            path: 'atividade', component: AtividadeComponent
+          },
+        ]
       },
       {
         path: 'recurso/usuariorecursos', component: UsuarioRecursosComponent
@@ -106,6 +141,9 @@ const routes: Routes = [
       },
       {
         path: 'dashboard/administradordashboard', component: AdministradorDashboardComponent
+      },
+      {
+        path: 'dashboard/professordashboard', component: ProfessorDashboardComponent
       },
       {
         path: 'badges/listagembadges', component: ListagemBadgesComponent
@@ -178,6 +216,9 @@ const routes: Routes = [
       },
       {
         path: 'noticias', component: UsuarioNoticiasComponent
+      },
+      {
+        path: 'perfil', component: UsuarioPerfilComponent
       }
     ]
   },
