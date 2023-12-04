@@ -5,8 +5,7 @@
         <i class="pi pi-bars" style="font-size: 1.8rem"></i>
       </button>
       <ul class="dropdown-menu lista_menu_responsivo">
-        <li><a *ngIf="!isProfessor" class="dropdown-item" routerLinkActive="active" routerLink="/dashboard/usuariodashboard">Início</a></li>
-        <li><a *ngIf="isProfessor" class="dropdown-item" routerLinkActive="active" routerLink="/dashboard/professordashboard">Início</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/dashboard/usuariodashboard">Início</a></li>
         <li><a class="dropdown-item" routerLinkActive="active" routerLink="/conceitos/usuarioconceitos">Conceitos</a></li>
         <li><a class="dropdown-item" routerLinkActive="active" routerLink="/recurso/usuariorecursos">Recursos Digitais</a></li>
         <li><a class="dropdown-item" routerLinkActive="active" routerLink="/curso/usuariotrilhacurso">Trilha do Curso</a></li>
@@ -100,6 +99,7 @@
 		<app-menu-usuario></app-menu-usuario>
 	</div>
 </mat-toolbar>
+
 <p-sidebar [(visible)]="sidebarVisible" position="right">
     <ng-template pTemplate="header">Notificações</ng-template>
     <ng-template pTemplate="content">
@@ -117,6 +117,7 @@
         </div>
     </ng-template>
 </p-sidebar>
+
 <p-sidebar [(visible)]="sidebarVisible2" position="right" styleClass="p-sidebar-md">
     <app-mensagens></app-mensagens>
 </p-sidebar>
