@@ -9,6 +9,9 @@ import { Competencia } from 'src/app/models/Competencia';
 import { CompetenciaIndicador } from 'src/app/models/CompetenciaIndicador';
 import { CompetenciaIndicadorService } from 'src/app/services/competencia-indicador.service';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
+import { PlanejamentoUcService } from 'src/app/services/planejamento-uc.service';
+import { SituacaoAprendizagem } from 'src/app/models/SituacaoAprendizagem';
+import { SituacaoAprendizagemService } from 'src/app/services/situacaoaprendizagem.service';
 
 @Component({
   selector: 'app-card-info-grupo',
@@ -23,6 +26,7 @@ export class CardInfoGrupoComponent implements OnInit {
 
   competencias: Competencia[];
   bibliografia: Bibliografia[];
+  situacoesAprendizagem: SituacaoAprendizagem[];
   competenciaIndicadores: CompetenciaIndicador[];
   isLoading: boolean = true;
 
@@ -31,7 +35,9 @@ export class CardInfoGrupoComponent implements OnInit {
     private competenciaService: CompetenciaService,
     private bibliografiaService: BibliografiaService,
     private competenciaIndicadorService: CompetenciaIndicadorService,
-    private objetoAprendizagemService: ObjetoAprendizagemService
+    private objetoAprendizagemService: ObjetoAprendizagemService,
+    private planejamentoUcService: PlanejamentoUcService,
+    private situacaoAprendizagemService: SituacaoAprendizagemService,
     ) { }
 
   ngOnInit(): void {
@@ -57,7 +63,20 @@ export class CardInfoGrupoComponent implements OnInit {
       (response: Bibliografia[]) => {
         this.bibliografia = response;
       }
-    );
+    )
+  }
+
+  obterPlanejamento() {
+    this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupo.id)
+    .subscribe({
+      next: response => this.planejamentoUc = response,
+      complete: () => {
+        this.situacaoAprendizagemService.filtrarSituacoesAprendizagemPorPlanejamentoUcIdJava(this.planejamentoUc.id)
+        .subscribe({
+          next: response => this.situacoesAprendizagem = response
+        })
+      }
+    })
   }
 
   public obterCompetenciaIndicadores() {

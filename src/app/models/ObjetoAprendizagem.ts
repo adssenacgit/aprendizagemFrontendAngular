@@ -1,4 +1,5 @@
 import { GrauDificuldade } from "./GrauDificuldade";
+import { Recurso } from "./Recurso";
 import { Usuario } from "./Usuario";
 
 export class ObjetoAprendizagem {
@@ -11,4 +12,7 @@ export class ObjetoAprendizagem {
     grauDificuldade: GrauDificuldade;
     usuarioId: string;
     usuario: Usuario;
+    cursado?: boolean;
+    hasArquivo?: boolean;
+    recursos: Recurso[]
 }

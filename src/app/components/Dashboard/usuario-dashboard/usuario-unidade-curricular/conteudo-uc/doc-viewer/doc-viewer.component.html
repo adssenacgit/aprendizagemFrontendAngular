@@ -1,10 +1,29 @@
-<div *ngIf="arquivoDataString.length > 0">
-  <ngx-doc-viewer
-    [url]="arquivoDataString"
-    viewer="pdf"
-    style="width: 100%; height: 99vh"
-    (loaded)="contentLoaded()"
-  >
-    <div>Loading</div>
-  </ngx-doc-viewer>
+<div *ngIf="modoExibicao === 'texto'" class="descricao-objeto">
+  <div [innerHTML]="objeto.descricao">
+  </div>
+</div>
+
+<div *ngIf="modoExibicao === 'atividade'" class="descricao-objeto">
+  <div [innerHTML]="atividade.descricao">
+  </div>
+</div>
+
+<div *ngIf="modoExibicao === 'arquivo'">
+  <div *ngIf="data.length > 0">
+    <div class="d-flex gap-2">
+      <div *ngFor="let recurso of data">
+        <p class="border" (click)="decodeBase64ToDataUrl(recurso)">
+          {{recurso.nomeArquivo}}
+        </p>
+      </div>
+    </div>
+    <ngx-doc-viewer
+      [url]="arquivoDataString"
+      viewer="url"
+      style="width: 100%; height: 97vh"
+      (loaded)="contentLoaded()"
+    >
+      <div>Loading</div>
+    </ngx-doc-viewer>
+  </div>
 </div>

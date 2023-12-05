@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center">
+                  <h1 class="text-right">Editar Perfil</h1>
+              </div>
+              <form [formGroup]="usuarioUpdateForm" (ngSubmit)="atualizarUsuario()" *ngIf="usuario">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                  <div class="edit-image" (click)="fileInput.click()">
+                    <img class="user-image" width="150px" height="150px"
+                    [src]="'data:image/png;base64,' + usuarioUpdateForm.get('foto')?.value">
+                    <input type="file" #fileInput style="display: none" (change)="onImageUpload($event)">
+                  </div>
+                  <span class="font-weight-bold mt-3">{{usuario.nomeCompleto}}</span>
+                  <span class="text-black-50">{{usuario.cpf}}</span>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label class="labels">Nome Completo</label>
+                    <input type="text" class="form-control" [value]="usuario.nomeCompleto" disabled>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="labels">CPF</label>
+                    <input type="text" class="form-control" [value]="usuario.cpf" disabled>
+                  </div>
+                  <div class="col-md-12 form-group">
+                    <label class="labels">Apelido</label>
+                    <input type="text" class="form-control" placeholder="Digite seu apelido" formControlName="apelido" id="apelido">
+                  </div>
+                  <div class="col-md-12 form-group">
+                    <label class="labels">Email</label>
+                    <input type="text" class="form-control" placeholder="Digite seu email" formControlName="email" id="email">
+                  </div>
+                  <!-- <div class="col-md-12 form-group">
+                    <label class="labels">Senha</label>
+                    <input type="password" class="form-control" placeholder="Digite sua senha" formControlName="password" id="password">
+                  </div> -->
+                </div>
+                <div class="mt-5 text-center">
+                  <button class="btn btn-primary" type="submit"
+                  [disabled]="usuarioUpdateForm.invalid"
+                  >Salvar alterações</button>
+                </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+

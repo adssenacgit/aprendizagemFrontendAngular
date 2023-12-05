@@ -17,18 +17,22 @@ export class UsuarioListaUcComponent implements OnInit {
 
   idEstudanteUsuarioLogado : number;
 
-  constructor(private grupoService: GrupoService, 
+  constructor(private grupoService: GrupoService,
               private authGuardService: AuthGuardService,
               private frequenciaService: FrequenciaService) { }
 
   ngOnInit(): void {
     this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
     this.grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe(resultado => {
-      this.grupos = resultado; 
-      this.grupos.forEach((grupo) => 
+      this.grupos = resultado;
+      this.grupos.forEach((grupo) =>
         this.frequenciaService.ObterFrequenciaByGrupoIdByEstudanteId(grupo.id, this.idEstudanteUsuarioLogado).subscribe(resultado => {grupo.frequencia = resultado.frequencia})
       )
       this.loading = false;
-    });    
+    });
+  }
+
+  setGrupo(grupoId: number) {
+    this.grupoService.setGrupoId(grupoId)
   }
 }

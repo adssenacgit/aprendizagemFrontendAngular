@@ -17,6 +17,7 @@ const httpOptions = {
 })
 export class EncontroService {
   url = environment.apiServer + 'api/Encontro';
+  javaUrl = 'http://localhost:8080/encontro'
 
   constructor(private https: HttpClient) {}
 
@@ -30,8 +31,28 @@ export class EncontroService {
     return this.https.get<Encontro>(apiUrl);
   }
 
+  ObterEncontrosPorGrupoId(grupoId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.url}/FilterByGrupoId/${grupoId}`;
+    return this.https.get<Encontro[]>(apiUrl);
+  }
+
+  ObterEncontrosPorGrupoIdJava(grupoId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoId/${grupoId}`;
+    return this.https.get<Encontro[]>(apiUrl);
+  }
+
   ObterEncontroPorGrupoIdPorEstudanteId(grupoId: number, estudanteId: number): Observable<Encontro[]> {
     const apiUrl = `${this.url}/FilterByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
+    return this.https.get<Encontro[]>(apiUrl);
+  }
+
+  ObterEncontroPorGrupoIdPorEstudanteIdJava(grupoId: number, estudanteId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoIdByEstudanteId/${grupoId}/${estudanteId}`;
+    return this.https.get<Encontro[]>(apiUrl);
+  }
+
+  ObterEncontroPorGrupoIdJava(grupoId: number): Observable<Encontro[]> {
+    const apiUrl = `${this.javaUrl}/filtrarByGrupoId/${grupoId}`;
     return this.https.get<Encontro[]>(apiUrl);
   }
 

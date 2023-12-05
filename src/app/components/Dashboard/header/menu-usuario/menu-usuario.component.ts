@@ -35,6 +35,11 @@ export class MenuUsuarioComponent implements OnInit {
         label: 'Comunidades',
         icon: 'pi pi-users',
 
+      }
+      ,{
+        label: 'Editar perfil',
+        icon: 'pi pi-cog',
+        routerLink: '/perfil'
       },
       {
         label: 'Logout',

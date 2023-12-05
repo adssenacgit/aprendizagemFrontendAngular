@@ -1,9 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Chapter } from '../models/Chapter';
-import { Curso } from '../models/Curso';
 
 const httpOptions = {
   headers: new HttpHeaders ({
@@ -17,17 +16,25 @@ const httpOptions = {
 })
 export class ChapterService {
   url:string = environment.apiServer + 'api/Chapter';
+  javaUrl: string = 'http://localhost:8080/chapter'
 
   constructor(private https: HttpClient) { }
 
+ 
   ObterTodos() : Observable<Chapter[]>
   {
     return this.https.get<Chapter[]>(this.url);
   }
 
-  ObterChapterById (cursoId: number) : Observable<Chapter>
+  ObterChapterById (chapterId: number) : Observable<Chapter>
   {
-    const apiUrl = `${this.url}/${cursoId}`;
+    const apiUrl = `${this.url}/${chapterId}`;
+    return this.https.get<Chapter>(apiUrl);
+  }
+
+  ObterChapterByGrupoIdJava (grupoId: number) : Observable<Chapter>
+  {
+    const apiUrl = `${this.javaUrl}/getChapterByGrupoId/${grupoId}`;
     return this.https.get<Chapter>(apiUrl);
   }
 
@@ -42,9 +49,9 @@ export class ChapterService {
     return this.https.put<Chapter>(apiUrl, chapter, httpOptions);
   }
 
-  ExcluirChapter(cursoId: number): Observable<any>
+  ExcluirChapter(chapterId: number): Observable<any>
   {
-    const apiUrl = `${this.url}/${cursoId}`;
+    const apiUrl = `${this.url}/${chapterId}`;
     return this.https.delete<Chapter>(apiUrl, httpOptions);
   }
 

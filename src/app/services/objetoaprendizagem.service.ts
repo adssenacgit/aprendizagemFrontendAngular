@@ -1,23 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ObjetoAprendizagem } from '../models/ObjetoAprendizagem';
 
-
 const httpOptions = {
-  headers: new HttpHeaders ({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('TokeUsuarioLogado')}`,
-    }),
-  };
+	headers: new HttpHeaders({
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${localStorage.getItem('TokeUsuarioLogado')}`,
+	}),
+};
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class ObjetoAprendizagemService {
 
   url = environment.apiServer + 'api/ObjetoAprendizagem';
+  javaUrl = 'http://localhost:8080/objetoAprendizagem';
   constructor(private https: HttpClient) { }
 
   criarObjetoAprendizagem(objeto: ObjetoAprendizagem): Observable<ObjetoAprendizagem>
@@ -31,6 +31,10 @@ export class ObjetoAprendizagemService {
 
   obterObjetoAprendizagemPorId(id: number): Observable<ObjetoAprendizagem> {
     return this.https.get<ObjetoAprendizagem>(`${this.url}/${id}`);
+  }
+
+  obterObjetoComRecursoPorIdJava(id: number): Observable<ObjetoAprendizagem> {
+    return this.https.get<ObjetoAprendizagem>(`${this.javaUrl}/obterObjetoComRecursosPorId/${id}`);
   }
 
   atualizarObjetoAprendizagem(id: number, objeto: ObjetoAprendizagem): Observable<ObjetoAprendizagem>
@@ -60,4 +64,15 @@ export class ObjetoAprendizagemService {
     return this.https.get<ObjetoAprendizagem[]>(apiUrl);
   }
 
+  obterObjetoArquivoPorIdJava(objetoId: number): Observable<Blob> {
+    const apiUrl = `${this.javaUrl}/obterObjetoArquivoPorId/${objetoId}`;
+    return this.https.get<Blob>(apiUrl);
+  }
+
+  private objetoSource = new BehaviorSubject<any>(null);
+  currentObjeto = this.objetoSource.asObservable();
+
+  setObjetoSource(objeto: any) {
+    this.objetoSource.next(objeto);
+  }
 }

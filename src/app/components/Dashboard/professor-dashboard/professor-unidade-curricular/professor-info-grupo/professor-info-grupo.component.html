@@ -1,0 +1,131 @@
+<div class="border rounded p-3 container-shadow">
+  <div class="text">
+    <h1>{{ grupo.unidadeCurricular.nome }}</h1>
+    <h2>Sobre este curso</h2>
+    <p>{{ planejamentoUc.descricao }}</p>
+  </div>
+  <div class="info d-sm-flex align-items-center justify-content-start gap-4">
+    <div class="detalhes-uc">Detalhes da UC</div>
+
+    <div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined">schedule</mat-icon>
+        <div>Carga Horária: {{ grupo.unidadeCurricular.horas }}h</div>
+      </div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined">school</mat-icon>
+        <div>
+          {{ grupo.unidadeCurricular.modulo.descricao }}
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined"
+          >playlist_add_check_circle</mat-icon
+        >
+        <div class="info-link">
+          <button
+            class="info-link"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasCompetencias"
+            (click)="obterCompetencias()"
+          >
+            Competências
+          </button>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined">auto_stories</mat-icon>
+        <div class="info-link">
+          <button
+            class="info-link"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasBibliografia"
+            (click)="obterBibliografia()"
+          >
+            Bibliografia
+          </button>
+          <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Enable backdrop (default)</button> -->
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <mat-icon class="icon material-symbols-outlined"
+          >space_dashboard</mat-icon
+        >
+        <div class="info-link">
+          <a [routerLink]="['./planejamento']">
+            Planejamento da UC
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- off canvas bibliografia -->
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="offcanvasBibliografia"
+  aria-labelledby="offcanvasWithBackdropLabel"
+>
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasWithBackdropLabel">
+      Bibliografia
+    </h3>
+    <button
+      type="button"
+      class="btn-close text-reset"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <p *ngFor="let livro of bibliografia">
+      {{ livro.nome }}
+    </p>
+  </div>
+</div>
+
+<!-- off canvas competencias -->
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="offcanvasCompetencias"
+  aria-labelledby="offcanvasWithBackdropLabel"
+>
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasWithBackdropLabel">
+      Competências
+    </h3>
+    <button
+      type="button"
+      class="btn-close text-reset"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div *ngFor="let competencia of competencias">
+      <p>
+        {{ competencia.descricao }}
+      </p>
+    </div>
+
+    <ul *ngIf="!isLoading">
+      <li *ngFor="let indicador of competenciaIndicadores">
+        {{ indicador.descricao }}
+        <ol>
+          <li *ngFor="let obj of indicador.objetosAprendizagem">
+            {{ obj.titulo }}
+          </li>
+        </ol>
+      </li>
+    </ul>
+
+    <div *ngIf="isLoading" class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>

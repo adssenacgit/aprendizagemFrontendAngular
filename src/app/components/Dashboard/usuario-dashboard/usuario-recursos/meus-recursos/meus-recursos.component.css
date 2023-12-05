@@ -3,7 +3,6 @@
 }
 .card-recursos{
     padding: 32px;
-
 }
 .class-Button{
     display: flex;
@@ -85,4 +84,15 @@ td {
 
 .action-button:hover {
   color: #004A8D;
+}
+
+.proprietario-info {
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-image {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
 }

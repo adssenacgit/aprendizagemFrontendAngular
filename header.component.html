@@ -1,0 +1,124 @@
+<mat-toolbar *ngIf="idUsuarioLogado" class="header-container" style="background-color: #092c4c">
+  <div style="display: flex; justify-content:center">
+    <div class="dropdown" style="align-items: center;">
+      <button class="btn btn-warning btn-secondary menu_responsivo" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="pi pi-bars" style="font-size: 1.8rem"></i>
+      </button>
+      <ul class="dropdown-menu lista_menu_responsivo">
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/dashboard/usuariodashboard">Início</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/conceitos/usuarioconceitos">Conceitos</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/recurso/usuariorecursos">Recursos Digitais</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/curso/usuariotrilhacurso">Trilha do Curso</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/comunidade">Comunidades</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/senacCoin/usuariosenaccoin">Senac Coin</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/requerimentoweb">Requerimento Web</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/noticias">Notícias</a></li>
+        <li><a class="dropdown-item" routerLinkActive="active" routerLink="/ajuda">Ajuda</a></li>
+      </ul>
+    </div>
+    <div style="padding: 10px;">
+      <img style="width: 4rem; margin-left: 1.5rem;" src="../../../../assets/img/senac-logo.png" />
+    </div>
+</div>
+    <div class="menu_nav">
+      <div style="
+      display: flex;
+      justify-content: space-around;
+      font-size: medium;
+      gap: 1.5rem;
+    ">
+      <span><a routerLinkActive="active" routerLink="/dashboard/usuariodashboard">Início</a></span>
+      <span><a routerLinkActive="active" routerLink="/conceitos/usuarioconceitos">Conceitos</a></span>
+      <span><a routerLinkActive="active" routerLink="/recurso/usuariorecursos">Recursos Digitais</a></span>
+      <span><a routerLinkActive="active" routerLink="/curso/usuariotrilhacurso">Trilha do Curso</a></span>
+    </div>
+    <div style="
+    display: flex;
+    justify-content: space-around;
+    font-size: medium;
+    gap: 1.5rem;
+  ">
+      <span><a routerLinkActive="active" routerLink="/comunidade">Comunidades</a></span>
+      <span><a routerLinkActive="active" routerLink="/senacCoin/usuariosenaccoin">Senac Coin</a></span>
+      <span><a routerLinkActive="active" routerLink="/requerimentoweb">Requerimento Web</a></span>
+      <span><a routerLinkActive="active" routerLink="/noticias">Notícias</a></span>
+      <span><a routerLinkActive="active" routerLink="/ajuda">Ajuda</a></span>
+    </div>
+    </div>
+    <div class="botoes__Menu">
+      <p-button
+        icon="pi pi-comments"
+        styleClass="p-button-warning"
+        (click)="sidebarVisible2 = true"
+      >
+      </p-button>
+      <p-button
+        icon="pi pi-bell"
+        styleClass="p-button-warning"
+        (click)="sidebarVisible = true"
+      >
+      </p-button>
+
+    </div>
+  </mat-toolbar>
+
+  <p-sidebar [(visible)]="sidebarVisible" position="right">
+    <ng-template pTemplate="header">Notificações</ng-template>
+    <ng-template pTemplate="content">
+      <div class="card">
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li *ngFor="let item of list">
+              <app-card-notificacao
+
+              ></app-card-notificacao>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+  </p-sidebar>
+
+  <p-sidebar
+    [(visible)]="sidebarVisible2"
+    position="right"
+    styleClass="p-sidebar-md"
+  >
+    <app-mensagens></app-mensagens>
+  </p-sidebar>
+
+<!--
+<mat-toolbar
+	*ngIf="idUsuarioLogado"
+	color="primary"
+	style="background-color: white; display: flex; flex-direction: row-reverse">
+	<div class="botoes__Menu">
+        <p-button icon="pi pi-comments" styleClass="p-button-warning" (click)="sidebarVisible2 = true"></p-button>&nbsp;
+		<p-button icon="pi pi-bell" styleClass="p-button-warning" (click)="sidebarVisible = true"></p-button>&nbsp;
+        <p-button class="senacCoin" label="Senac Coin" icon="pi pi-dollar" styleClass="p-button-warning teste" badge="{{ senacCoins.saldo }}" badgeClass="p-badge-danger"></p-button>
+		<app-menu-usuario></app-menu-usuario>
+	</div>
+</mat-toolbar>
+
+<p-sidebar [(visible)]="sidebarVisible" position="right">
+    <ng-template pTemplate="header">Notificações</ng-template>
+    <ng-template pTemplate="content">
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                    <li *ngFor="let item of list">
+                        <app-card-notificacao
+                            [title]="item.title"
+                            [date]="item.date"
+                        ></app-card-notificacao>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ng-template>
+</p-sidebar>
+
+<p-sidebar [(visible)]="sidebarVisible2" position="right" styleClass="p-sidebar-md">
+    <app-mensagens></app-mensagens>
+</p-sidebar>
+-->
