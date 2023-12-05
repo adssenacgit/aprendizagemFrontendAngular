@@ -50,11 +50,16 @@ export class AcompanhamentoService {
 
   obterAcompanhamentoPorGrupoIdPorEstudanteIdPorObjetoIdJava(grupoId: number, estudanteId: number, objetoId: number) {
     const apiUrl = `${this.javaUrl}/filtrarByGrupoIdByEstudanteIdByObjetoId/${grupoId}/${estudanteId}/${objetoId}`;
-    return this.https.get<Acompanhamento>(apiUrl);
+    return this.https.get<Acompanhamento[]>(apiUrl);
   }
 
   NovoAcompanhamento(acompanhamento: Acompanhamento): Observable<any>{
     return this.https.post<any>(this.url, acompanhamento, httpOptions);
+  }
+
+  novoAcompanhamentoJava(acompanhamento: Acompanhamento): Observable<any>{
+    const apiUrl = `${this.javaUrl}/simple`;
+    return this.https.post<any>(apiUrl, acompanhamento);
   }
 
   AtualizarAcompanhamento(acompanhamentoId: number, acompanhamento: Acompanhamento): Observable<any>{

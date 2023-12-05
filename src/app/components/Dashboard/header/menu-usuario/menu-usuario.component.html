@@ -1,25 +1,9 @@
-<div class="card">
-    <h1 style="color: white; margin-top: 20px">Olá {{ nomeUsuarioLogado }}!</h1>
-    <img src="https://img.freepik.com/icones-gratis/homem_318-157599.jpg" alt="foto perfil"
-        style="width: 65px; height: 65px; position: relative; right: 20px;">
-    <i class="pi pi-angle-down" style="color: white; font-size: 1.5rem; margin-top: -45px; margin-left: 100px;"
-        (click)="menu.toggle($event)"></i>
-    <div class="knob">
-        <div style="margin-top: 10px;">
-            <p-knob [min]="0" [max]="100" [step]="1"></p-knob>
-            <label style="color: #092C4C; font-size: 15px;">Acompanhamento Total</label>
-        </div>
-    </div>
-</div>
-<p-menu #menu [popup]="true" [model]="items"></p-menu>
-
-<!--<button 
+<button 
     type="button" 
     pButton 
     icon="pi pi-user" 
-    label="Olá, {{ nomeUsuarioLogado }}"
     (click)="menu.toggle($event)"
     styleClass="styleButton"
-	style="background-color: #f7941d; border: none; height: 45px"
+	style="background-color: #F2994A; color: black; border: none; height: 45px; width: 2rem; height: 1rem;   border-radius: 20px; 	padding: 18px;"
     ></button>
-<p-menu #menu [popup]="true" [model]="items"></p-menu>-->
+<p-menu #menu [popup]="true" [model]="items"></p-menu>

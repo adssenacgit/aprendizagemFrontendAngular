@@ -4,16 +4,15 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ObjetoAprendizagem } from '../models/ObjetoAprendizagem';
 
-
 const httpOptions = {
-  headers: new HttpHeaders ({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('TokeUsuarioLogado')}`,
-    }),
-  };
+	headers: new HttpHeaders({
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${localStorage.getItem('TokeUsuarioLogado')}`,
+	}),
+};
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class ObjetoAprendizagemService {
 
@@ -32,6 +31,10 @@ export class ObjetoAprendizagemService {
 
   obterObjetoAprendizagemPorId(id: number): Observable<ObjetoAprendizagem> {
     return this.https.get<ObjetoAprendizagem>(`${this.url}/${id}`);
+  }
+
+  obterObjetoComRecursoPorIdJava(id: number): Observable<ObjetoAprendizagem> {
+    return this.https.get<ObjetoAprendizagem>(`${this.javaUrl}/obterObjetoComRecursosPorId/${id}`);
   }
 
   atualizarObjetoAprendizagem(id: number, objeto: ObjetoAprendizagem): Observable<ObjetoAprendizagem>

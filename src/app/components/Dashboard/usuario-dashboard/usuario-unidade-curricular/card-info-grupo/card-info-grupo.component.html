@@ -54,9 +54,14 @@
           >space_dashboard</mat-icon
         >
         <div class="info-link">
-          <a (click)="openSnackBar('Falta implementar', 'ok')">
-            Planejamento da UC
-          </a>
+          <button
+            class="info-link"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasPlanejamentoUc"
+            (click)="obterPlanejamento()"
+          >
+          Planejamento da UC
+          </button>
         </div>
       </div>
     </div>
@@ -85,6 +90,41 @@
     <p *ngFor="let livro of bibliografia">
       {{ livro.nome }}
     </p>
+  </div>
+</div>
+
+<!-- off canvas Planejamento da uc -->
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="offcanvasPlanejamentoUc"
+  aria-labelledby="offcanvasWithBackdropLabel"
+>
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasWithBackdropLabel">
+      Planejamento da Uc
+    </h3>
+    <button
+      type="button"
+      class="btn-close text-reset"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div *ngFor="let sit of situacoesAprendizagem" class="border">
+      <div class="d-flex">
+        <h2>{{sit.titulo}}</h2>
+      </div>
+      <div *ngFor="let obj of sit.objetosAprendizagem">
+        <div class="d-flex">
+          <p>Objeto de aprendizagem: {{obj.titulo}}</p>
+        </div>
+      </div>
+      <div *ngFor="let atv of sit.atividades">
+        <p>Atividade: {{atv.descricao}}</p>
+      </div>
+    </div>
   </div>
 </div>
 

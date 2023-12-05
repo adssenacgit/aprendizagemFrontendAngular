@@ -17,6 +17,7 @@ p {
 }
 
 .line-clamp {
+  cursor: pointer;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   overflow: hidden;

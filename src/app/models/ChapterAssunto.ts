@@ -1,4 +1,5 @@
 import { Chapter } from "./Chapter";
+import { ChapterAssuntoComentario } from "./ChapterAssuntoComentario";
 import { ChapterTag } from "./ChapterTag";
 import { Usuario } from "./Usuario";
 
@@ -11,10 +12,11 @@ export class ChapterAssunto {
     status: number;
     verificacao: number;
     chapterId: number;
-    usuarioId: string
-    usuarioIdVerificacao: string
-    usuario: Usuario = new Usuario();
-    chapter:Chapter = new Chapter();
+    chapterNome: string;
+    usuario: Usuario;
+    usuarioIdVerificacao: string;
+    tags: ChapterTag[] = [];
+    comentarios: ChapterAssuntoComentario[] = [];
     totalComentarios: number;
-    chapterTags: ChapterTag[] = [];
+
 }

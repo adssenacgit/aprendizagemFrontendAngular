@@ -2,6 +2,7 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { Component, OnInit } from '@angular/core';
 import { Grupo } from 'src/app/models/Grupo';
 import { GrupoService } from 'src/app/services/grupo.service';
+import { ProfessorService } from 'src/app/services/professor.service';
 
 @Component({
   selector: 'app-professor-lista-uc',
@@ -14,16 +15,24 @@ export class ProfessorListaUcComponent implements OnInit {
 
   loading: boolean = true;
 
-  idEstudanteUsuarioLogado : number;
+  idProfessorLogado: number;
+  usuarioIdLogado: string;
 
-  constructor(private grupoService: GrupoService, 
-              private authGuardService: AuthGuardService,) { }
+  constructor(private grupoService: GrupoService,
+              private authGuardService: AuthGuardService,
+              private professorService: ProfessorService) { }
 
   ngOnInit(): void {
-    this.idEstudanteUsuarioLogado = this.authGuardService.getIdEstudanteUsuarioLogado();
-    this.grupoService.ObterGrupoPeloEstudanteIdSemestreAtivo(this.idEstudanteUsuarioLogado).subscribe(resultado => {
-      this.grupos = resultado; 
+    this.usuarioIdLogado = this.authGuardService.getIdUsuarioLogado();
+    this.professorService.obterProfessorPorUsuarioIdJava( this.usuarioIdLogado)
+      .subscribe(
+        response => {
+          this.idProfessorLogado = response.id
+        }
+      )
+    this.grupoService.obterGruposPeloProfessorIdPeriodoAtivo(1).subscribe(resultado => {
+      this.grupos = resultado;
       this.loading = false;
-    });    
+    });
   }
 }

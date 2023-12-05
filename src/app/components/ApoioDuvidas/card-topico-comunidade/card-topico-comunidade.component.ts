@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 
 @Component({
@@ -6,13 +6,12 @@ import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
   templateUrl: './card-topico-comunidade.component.html',
   styleUrls: ['./card-topico-comunidade.component.css']
 })
-export class CardTopicoComunidadeComponent implements OnInit {
+export class CardTopicoComunidadeComponent  {
 
-  @Input() topico: ChapterAssunto
+  @Input() topico: ChapterAssunto;
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+
 
 }

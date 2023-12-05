@@ -1,5 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { Chapter } from 'src/app/models/Chapter';
 import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
 import { ChapterTag } from 'src/app/models/ChapterTag';
@@ -9,15 +14,14 @@ import { ChapterService } from 'src/app/services/chapter.service';
 import { ChapterTagService } from 'src/app/services/chapter-tag.service';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, map, startWith } from 'rxjs';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-novapergunta',
   templateUrl: './novapergunta.component.html',
-  styleUrls: ['./novapergunta.component.css']
+  styleUrls: ['./novapergunta.component.css'],
 })
-
 export class NovaPerguntaComponent implements OnInit {
   form: FormGroup;
   submitted = false;
@@ -32,32 +36,32 @@ export class NovaPerguntaComponent implements OnInit {
   selectedTags: ChapterTag[] = [];
   chapterNome: string = '';
 
-
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
 
-
   constructor(
-    private fb:FormBuilder,
+    private fb: FormBuilder,
     private service: ChapterAssuntoService,
     private authGuardService: AuthGuardService,
     private chapterService: ChapterService,
     private chapterTagService: ChapterTagService
   ) {
-
     // tags que aparecem no autocomplete
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
-      map((description: string | null) => (description ? this._filter(description) : this.allTags.map(tag => tag.descricao))),
+      map((description: string | null) =>
+        description
+          ? this._filter(description)
+          : this.allTags.map((tag) => tag.descricao)
+      )
     );
 
     // todas as tags
-    this.chapterTagService.ObterTodos().subscribe(tags => {
+    this.chapterTagService.ObterTodos().subscribe((tags) => {
       this.allTags = tags;
     });
   }
 
   ngOnInit(): void {
-
     // todos os chapters
     this.chapterService.ObterTodos().subscribe((chapters: Chapter[]) => {
       this.chapters = chapters;
@@ -68,7 +72,6 @@ export class NovaPerguntaComponent implements OnInit {
       chapter: new FormControl('', Validators.required),
       text: [null, [Validators.required, Validators.minLength(5)]],
     });
-
   }
 
   // adiciona tag
@@ -91,7 +94,9 @@ export class NovaPerguntaComponent implements OnInit {
 
   // seleciona tag e adiciona no array de tags
   selected(event: MatAutocompleteSelectedEvent): void {
-    const selectedTag = this.allTags.find(tag => tag.descricao === event.option.value);
+    const selectedTag = this.allTags.find(
+      (tag) => tag.descricao === event.option.value
+    );
     if (selectedTag && !this.selectedTags.includes(selectedTag)) {
       this.descriptions.push(selectedTag.descricao);
       this.selectedTags.push(selectedTag);
@@ -103,13 +108,14 @@ export class NovaPerguntaComponent implements OnInit {
   // filtra tags no autocomplete
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.allTags.map(tag => tag.descricao).filter(description => description.toLowerCase().includes(filterValue));
+    return this.allTags
+      .map((tag) => tag.descricao)
+      .filter((description) => description.toLowerCase().includes(filterValue));
   }
 
   hasError(field: string) {
     return this.form.get(field)?.errors;
   }
-
 
   onSubmit() {
     this.submitted = true;
@@ -120,13 +126,13 @@ export class NovaPerguntaComponent implements OnInit {
       this.pergunta.contadorVisualizacao = 0;
       this.pergunta.status = 1;
       this.pergunta.verificacao = 0;
-      this.pergunta.chapterTags = this.selectedTags;
-      this.pergunta.chapter.id = this.form.value.chapter;
+      this.pergunta.tags = this.selectedTags;
+      this.pergunta.chapterId = this.form.value.chapter;
       this.pergunta.usuario.id = this.authGuardService.getIdUsuarioLogado();
       console.log(this.pergunta);
       // envia a pergunta
       this.service.NovoChapterAssuntoJava(this.pergunta).subscribe(() => {
-        console.log("Pergunta enviada");
+        console.log('Pergunta enviada');
       });
     }
   }
@@ -137,8 +143,6 @@ export class NovaPerguntaComponent implements OnInit {
   }
 
   verificarCampos(): boolean {
-      return this.form.valid;
-    }
+    return this.form.valid;
   }
-
-
+}

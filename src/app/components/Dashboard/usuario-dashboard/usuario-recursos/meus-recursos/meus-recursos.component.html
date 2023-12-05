@@ -80,7 +80,7 @@
               >
                 <i class="pi action-button pi-download"></i>
               </div>
-              <div *ngIf="modoExibicao === 'privado'" class="d-flex gap-2">
+              <div *ngIf="modoExibicao === 'privado' || isAdministrator" class="d-flex gap-2">
                 <div
                   pTooltip="Compartilhar" tooltipPosition="top"
                   (click)="confirmShare(rowData)"

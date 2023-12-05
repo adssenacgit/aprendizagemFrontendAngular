@@ -13,12 +13,13 @@ import { SenacCoin } from 'src/app/models/SenacCoin';
 })
 export class HeaderComponent implements OnInit {
 
-  idUsuarioLogado : string;  
+  idUsuarioLogado : string;
   sidebarVisible: boolean;
   sidebarVisible2: boolean;
   senacCoins: SenacCoin = new SenacCoin();
   loading: boolean = true;
   senacCoinMovimentacoes: SenacCoinMovimentacao[];
+  isProfessor: boolean;
 
   list = [
     {
@@ -33,10 +34,11 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authGuardService: AuthGuardService,
     private senacCoinService: SenacCoinService,
-    private senacCoinMovimentacao: SenacCoinMovimentacaoService    
+    private senacCoinMovimentacao: SenacCoinMovimentacaoService
     ) { }
 
   ngOnInit(): void {
+    this.isProfessor = this.authGuardService.VerificarProfessor();
     this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
     this.senacCoinService
       .ObterSenacCoinPeloUsuarioId(this.idUsuarioLogado)
