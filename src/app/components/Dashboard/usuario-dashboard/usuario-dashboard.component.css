@@ -21,21 +21,4 @@ p {
 	font-weight: bold;
 	color: #092c4c;
 }
-
-.dashboard-usuario-card-coin {
-	background: white;
-	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
-	border: transparent;
-	padding: 2rem;
-	margin-bottom: 20px;
-	margin-right: 13px;
-  }
-
-  .dashboard-usuario-card-badges {
-	background: white;
-	box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
-	border: transparent;
-	padding: 2rem;
-	margin-bottom: 20px;
-	margin-right: 13px;
-  }
+  

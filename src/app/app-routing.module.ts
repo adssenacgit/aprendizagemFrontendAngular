@@ -48,6 +48,7 @@ import { TarefasUcComponent } from './components/Dashboard/usuario-dashboard/usu
 import { ConceitosUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conceitos-uc/conceitos-uc.component';
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/participantes-uc/participantes-uc.component';
+import { CarrinhoSenacCoinComponent } from './components/Dashboard/usuario-dashboard/carrinho-senac-coin/carrinho-senac-coin.component';
 import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
 import { ProfessorConteudoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-conteudo-uc.component';
@@ -132,6 +133,9 @@ const routes: Routes = [
       },
       {
         path: 'senacCoin/usuariosenaccoin', component: UsuarioSenacCoinComponent
+      },
+      {
+        path: 'senacCoin/carrinhosenaccoin', component: CarrinhoSenacCoinComponent
       },
       {
         path: 'conceitos/usuarioconceitos', component: UsuarioConceitosFeedbacksComponent
