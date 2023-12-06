@@ -1,0 +1,7 @@
+<section
+  style=" display: flex; flex-direction: row; justify-content: space-between;align-items: center; gap: 2rem">
+  <h1>Compre sua recompensa com seu saldo</h1>
+  <p-panel header="Saldo disponível" *ngFor="let senacCoin of $senacCoins">
+    <h1>{{ senacCoin.saldo | currency}}</h1>
+  </p-panel>
+</section>
