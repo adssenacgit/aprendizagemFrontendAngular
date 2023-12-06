@@ -211,6 +211,7 @@ import { SalvarBadgeComponent } from './components/Dashboard/usuario-dashboard/u
 import { DetalheBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/detalhe-badge/detalhe-badge.component';
 import { ListagemBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-badges/listagem-badges.component';
 import { DialogExclusaoBadgeComponent, ListagemTabelaBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
+import { ListagemUltimasBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-ultimas-badges/listagem-ultimas-badges.component';
 
 
 registerLocaleData(localePT);
@@ -315,7 +316,8 @@ registerLocaleData(localeFR);
     DetalheBadgeComponent,
     ListagemBadgesComponent,
     DialogExclusaoBadgeComponent,
-    ListagemTabelaBadgesComponent
+    ListagemTabelaBadgesComponent,
+    ListagemUltimasBadgesComponent
 
   ],
   imports: [
