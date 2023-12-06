@@ -18,7 +18,7 @@ const httpOptions = {
 })
 export class ChapterAssuntoService {
   url:string = environment.apiServer + 'api/ChapterAssunto';
-  javaUrl: string = 'https://localhost:8080/ChapterAssunto';
+  javaUrl: string = 'http://localhost:8080/chapter-assunto';
 
   constructor(private https: HttpClient) { }
 
