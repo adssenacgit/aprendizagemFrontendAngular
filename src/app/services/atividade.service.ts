@@ -28,12 +28,6 @@ export class AtividadeService {
     return this.https.get<Atividade[]>(apiUrl);
   }
 
-  FiltrarArquivosDeAtividadeByAtividadeIdByEstudanteId (idAtividade: number, idEstudante: number) : Observable<Atividade[]>
-  {
-    const apiUrl = `${this.url}/FiltrarArquivosDeAtividadeByAtividadeIdByEstudanteId/${idAtividade}/${idEstudante}`;
-    return this.https.get<Atividade[]>(apiUrl);
-  }
-
   //Atividade por situação de aprendizagem
   ObterAtividadePorSituacaoId (situacaoId: number) : Observable<Atividade[]>
   {

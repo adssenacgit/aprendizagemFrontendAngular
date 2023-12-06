@@ -29,10 +29,10 @@ import { ProfessorDashboardComponent } from './components/Dashboard/professor-da
 import { TimelineDetalhesComponent } from './components/UnidadeCurricular/timeline/timeline-detalhes/timeline-detalhes.component';
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
-import { ListagemTabelaBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
-import { SalvarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/salvar-badge/salvar-badge.component';
-import { AtualizarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/atualizar-badge/atualizar-badge.component';
-import { ListagemBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-badges/listagem-badges.component';
+import { ListagemBadgesComponent } from './components/Badge/listagem-badge/listagem-badges.component';
+import { NovoBadgeComponent } from './components/Badge/novo-badge/novo-badge.component';
+import { AtualizarBadgeComponent } from './components/Badge/atualizar-badge/atualizar-badge.component';
+import { ListagemUsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/listagem-usuario-badges/listagem-usuario-badges.component';
 import { ListaObjetosAprendizagem } from './components/UnidadeCurricular/lista-objetos-aprendizagem/lista-objetos-aprendizagem.component';
 import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
 import { NovaPerguntaComponent } from './components/ApoioDuvidas/novapergunta/novapergunta.component';
@@ -56,7 +56,6 @@ import { ProfessorPlanejamentoUcComponent } from './components/Dashboard/profess
 import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/situacao-aprendizagem/situacao-aprendizagem.component';
 import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
 import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
-import { DetalheBadgeComponent } from "./components/Dashboard/usuario-dashboard/usuario-badges/estudante/detalhe-badge/detalhe-badge.component";
 
 const routes: Routes = [
   {
@@ -154,19 +153,10 @@ const routes: Routes = [
         path: 'badges/listagembadges', component: ListagemBadgesComponent
       },
       {
-        path: 'badges/professor/listagem', component: ListagemTabelaBadgesComponent
+        path: 'badges/novobadge', component: NovoBadgeComponent
       },
       {
-        path: 'badges/professor/salvar', component: SalvarBadgeComponent
-      },
-      {
-        path: 'badges/professor/atualizar/:id', component: AtualizarBadgeComponent
-      },
-      {
-        path: 'badges/estudante/listagem', component: ListagemBadgesComponent
-      },
-      {
-        path: 'badges/estudante/detalhe/:id', component: DetalheBadgeComponent
+        path: 'badges/atualizarbadge/:id', component: AtualizarBadgeComponent
       },
       {
         path: 'cursos/listagemcursos', component: ListagemCursosComponent
@@ -197,6 +187,9 @@ const routes: Routes = [
       },
       {
         path: 'ofertas/atualizaroferta/:id', component: AtualizarOfertaComponent
+      },
+      {
+        path: 'badges/listagemusuariobadges', component: ListagemUsuarioBadgesComponent
       },
       {
         path: 'unidadeCurricular/objetosaprendizagem', component: ListaObjetosAprendizagem

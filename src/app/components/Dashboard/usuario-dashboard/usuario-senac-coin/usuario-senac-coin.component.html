@@ -1,22 +1,81 @@
-<section style="display: flex; flex-direction: column; justify-content: space-between; gap: 2rem">
-  <app-listagem-saldo
-    [$senacCoins]="senacCoins"
-  ></app-listagem-saldo>
-  <p-tabView>
-    <p-tabPanel header="Recompensas">
-      <app-listagem-recompensas
-        class="container-fluid"
-        style="display: flex; flex-direction: row"
-        [$senacCoins]="senacCoins"
-        [$senacCoinRecompensas]="senacCoinRecompensas"
-      ></app-listagem-recompensas>
-    </p-tabPanel>
-    <p-tabPanel header="Movimentações">
-      <app-listagem-movimentacoes
-        [$isLoading]="isLoading"
-        [$senacCoinMovimentacoes]="senacCoinMovimentacoes"
-      >
-      </app-listagem-movimentacoes>
-    </p-tabPanel>
-  </p-tabView>
-</section>
+<div class="col-md-12 teste">
+        <p-accordion [multiple]="true">
+          <p-accordionTab header="Movimentações">
+            <p-table
+              #dt1
+              [value]="senacCoinMovimentacoes"
+              dataKey="id"
+              [rows]="10"
+              [showCurrentPageReport]="true"
+              [rowsPerPageOptions]="[10, 25, 50]"
+              [loading]="isLoading"
+              [paginator]="true"
+              currentPageReportTemplate="Apresentando {first} para {last} de {totalRecords} registros"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width: 15rem">
+                        <div class="flex justify-content-center align-items-center">
+                          Data
+                          <p-columnFilter
+                            type="text"
+                            field="data"
+                            display="menu"
+                          ></p-columnFilter>
+                        </div>
+                      </th>
+                      <th style="min-width: 15rem">
+                        <div class="flex justify-content-center align-items-center">
+                          Observação
+                          <p-columnFilter
+                            type="text"
+                            field="observacao"
+                            display="menu"
+                          ></p-columnFilter>
+                        </div>
+                      </th>
+                      <th style="min-width: 15rem">
+                        <div class="flex justify-content-center align-items-center">
+                          Valor
+                          <p-columnFilter
+                            type="text"
+                            field="valor"
+                            display="menu"
+                          ></p-columnFilter>
+                        </div>
+                      </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-senacCoinMovimentacao>
+                    <tr>
+                        <td>
+                          {{
+                            senacCoinMovimentacao.data
+                              | date : "dd/MM/yyyy hh:mm:ss a" : "+0000"
+                          }}
+                        </td>
+                        <td>
+                          {{ senacCoinMovimentacao.observacao }}
+                        </td>
+                        <td>
+                          {{ senacCoinMovimentacao.valor }}
+                        </td>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">
+                              Não existem unidades curriculares matriculadas neste semestre.
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p-accordionTab>
+          </p-accordion>
+          <app-cards-senac-coin
+            class="container-fluid"
+            style="display: flex; flex-direction: row"
+            [$senacCoins]="senacCoins"
+            [$senacCoinMovimentacoes]="senacCoinMovimentacoes"
+          ></app-cards-senac-coin>
+</div>

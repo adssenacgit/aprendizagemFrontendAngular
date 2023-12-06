@@ -1,14 +1,10 @@
-import {BadgeNivel} from "./BadgeNivel";
-import {BadgeTipo} from "./BadgeTipo";
+import { BadgeNivel } from "./BadgeNivel";
 
 export class Badge {
-  id: number;
-  descricao: string;
-  imagem: string;
-  status: number;
-  nomeArquivo: string;
-  badgeNivelId: number;
-  badgeNivel: BadgeNivel;
-  badgeTipoId: number;
-  badgeTipo: BadgeTipo;
+    id: number;
+    descricao: string;
+    imagem: string;
+    status: number;
+    badgeNivelId: number;
+    badgeNivel: BadgeNivel;
 }

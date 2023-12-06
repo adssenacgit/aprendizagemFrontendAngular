@@ -20,12 +20,6 @@ export class NotificacaoService {
   url = environment.apiServer + 'api/Notificacao';
   constructor(private https: HttpClient) { }
 
-  CadastrarNotificacao(notificacao: Notificacao): Observable<Notificacao>
-  {
-    const apiUrl = `${this.url}`;
-    return this.https.post<Notificacao>(apiUrl, notificacao, httpOptions);
-  }
-
   ObterNotificacaoPeloIdEstudante(id: string): Observable<Notificacao[]>
   {
     const apiUrl = `${this.url}/FiltrarNotificacaoByUsuarioId/${id}`;
