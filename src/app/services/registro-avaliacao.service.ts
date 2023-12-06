@@ -21,8 +21,13 @@ export class RegistroAvaliacaoService {
 
   constructor(private https: HttpClient) { }
 
-  ObterRegistrosAvaliacaoPeloEstudanteId (id: string) : Observable<RegistroAvaliacao[]> {
-    const apiUrl = `${this.url}/TodosRegistrosFilterByEstudanteId/${id}`;
+  SalvarRegistroAvaliacao (registroAvaliacao: RegistroAvaliacao) : Observable<RegistroAvaliacao> {
+    const apiUrl = `${this.url}`;
+    return this.https.post<RegistroAvaliacao>(apiUrl, registroAvaliacao, httpOptions);
+  }
+
+  ObterRegistrosAvaliacaoPeloEstudanteId (estudanteId: number) : Observable<RegistroAvaliacao[]> {
+    const apiUrl = `${this.url}/TodosRegistrosFilterByEstudanteId/${estudanteId}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);
   }
 
@@ -30,7 +35,7 @@ export class RegistroAvaliacaoService {
     const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByEstudanteId/${estudanteId}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);
   }
-  
+
   ObterRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId(estudanteId: number, grupoId: number) : Observable<RegistroAvaliacao[]>{
     const apiUrl = `${this.url}/TodosRegistrosPeriodoAtivoFilterByEstudanteIdByGrupoId/${estudanteId}/${grupoId}`;
     return this.https.get<RegistroAvaliacao[]>(apiUrl);

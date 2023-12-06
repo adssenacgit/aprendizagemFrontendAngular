@@ -1,44 +1,11 @@
-<p-accordion [multiple]="true">
-  <p-accordionTab
-    *ngFor="let reg of registrosAvaliacaoAtual | keyvalue"
-    header="{{ reg.key }}"
-  >
-    <p-table [value]="reg.value" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Avaliação</th>
-          <th>Conceito</th>
-          <th>Feedbacks</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-reg>
-        <tr>
-          <td>{{ reg.avaliacaoTipo.descricao }}</td>
-          <td>{{ reg.avaliacaoConceito.descricao }}</td>
-          <td>
-            
-            
-              <p-button
-                (click)="showDialog(reg.comentario)"
-                icon="pi pi-external-link"
-                label="Abrir comentário do professor"
-                
-              ></p-button>
-            
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-accordionTab>
-</p-accordion>
-
-<p-dialog
-  header="Feedback"
-  [(visible)]="dialogVisible"
-  [breakpoints]="{ '960px': '75vw' }"
-  [style]="{ width: '50vw' }"
-  [draggable]="false"
-  [resizable]="false"
+<app-listagem-conceitos-feedbacks
+  [$isEstudante]="isEstudante"
+  [$registrosAvaliacoes]="registrosAvaliacoes"
+  [$atividades]="atividades"
 >
-  {{ selectedComentario }}
-</p-dialog>
+</app-listagem-conceitos-feedbacks>
+
+<app-salvar-conceito-feedback
+  [$isProfessor]="isProfessor"
+>
+</app-salvar-conceito-feedback>
