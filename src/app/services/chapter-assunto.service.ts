@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ChapterAssunto } from '../models/ChapterAssunto';
+import { ChapterTag } from '../models/ChapterTag';
 
 
 const httpOptions = {
@@ -17,6 +18,7 @@ const httpOptions = {
 })
 export class ChapterAssuntoService {
   url:string = environment.apiServer + 'api/ChapterAssunto';
+  javaUrl: string = 'https://localhost:8080/ChapterAssunto';
 
   constructor(private https: HttpClient) { }
 
@@ -31,9 +33,9 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto>(apiUrl);
   }
 
-  NovoChapterAssunto (chapter: ChapterAssunto): Observable<any>
+  ObterTodosJava() : Observable<ChapterAssunto[]>
   {
-    return this.https.post<ChapterAssunto>(this.url, chapter, httpOptions);
+    return this.https.get<ChapterAssunto[]>(this.javaUrl);
   }
 
   ObterTodosComTotalComentariosJava() : Observable<ChapterAssunto[]>
@@ -45,12 +47,6 @@ export class ChapterAssuntoService {
   ObterChapterAssuntoWithComentariosPaiByIdJava(chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/with-comentarios-pai`;
-    return this.https.get<ChapterAssunto>(apiUrl);
-  }
-
-  ObterChapterAssuntoById (chapterAssuntoId: number) : Observable<ChapterAssunto>
-  {
-    const apiUrl = `${this.url}/${chapterAssuntoId}`;
     return this.https.get<ChapterAssunto>(apiUrl);
   }
 
@@ -104,7 +100,7 @@ export class ChapterAssuntoService {
     const apiUrl = `${this.url}/FiltrarChapterAssunto?descricao=${descricaoAssunto}`;
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
-  
+
   AssociarTagsChapterAssuntoJava(chapterAssuntoId: number, chapterTags: ChapterTag[]): Observable<any>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/associar-tags`;

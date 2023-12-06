@@ -288,7 +288,7 @@ registerLocaleData(localeFR);
     ForumUcComponent,
     CardTopicoComunidadeComponent,
     RecursoDocViewerComponent,
-    CarrinhoSenacCoinComponent
+    CarrinhoSenacCoinComponent,
     ProfessorDashboardComponent,
     ProfessorListaUcComponent,
     CardAvisoComponent,
