@@ -189,6 +189,7 @@ import { ParticipantesUcComponent } from './components/Dashboard/usuario-dashboa
 import { ForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/forum-uc.component';
 import { CardTopicoComunidadeComponent } from './components/ApoioDuvidas/card-topico-comunidade/card-topico-comunidade.component';
 import { RecursoDocViewerComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/recurso-doc-viewer/recurso-doc-viewer.component';
+import { CarrinhoSenacCoinComponent } from './components/Dashboard/usuario-dashboard/carrinho-senac-coin/carrinho-senac-coin.component';
 import { ProfessorDashboardComponent } from './components/Dashboard/professor-dashboard/professor-dashboard.component';
 import { ProfessorListaUcComponent } from './components/Dashboard/professor-dashboard/professor-lista-uc/professor-lista-uc.component';
 import { CardAvisoComponent } from './components/ApoioDuvidas/novapergunta/card-aviso/card-aviso.component';
@@ -197,6 +198,13 @@ import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-das
 import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
 import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
+import { ProfessorInfoGrupoComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-info-grupo/professor-info-grupo.component';
+import { ProfessorConteudoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-conteudo-uc.component';
+import { ProfessorEncontrosComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-conteudo-uc/professor-encontros/professor-encontros.component';
+import { ProfessorPlanejamentoUcComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/professor-planejamento-uc.component';
+import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/situacao-aprendizagem/situacao-aprendizagem.component';
+import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
+import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
 import { CarouselComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/carousel/carousel.component';
 
 
@@ -281,6 +289,7 @@ registerLocaleData(localeFR);
     ForumUcComponent,
     CardTopicoComunidadeComponent,
     RecursoDocViewerComponent,
+    CarrinhoSenacCoinComponent,
     ProfessorDashboardComponent,
     ProfessorListaUcComponent,
     CardAvisoComponent,
@@ -289,7 +298,14 @@ registerLocaleData(localeFR);
     TopicoForumUcComponent,
     UsuarioPerfilComponent,
     ProfessorUnidadeCurricularComponent,
-    CarouselComponent
+    CarouselComponent,
+    ProfessorInfoGrupoComponent,
+    ProfessorConteudoUcComponent,
+    ProfessorEncontrosComponent,
+    ProfessorPlanejamentoUcComponent,
+    SituacaoAprendizagemComponent,
+    ObjetoAprendizagemComponent,
+    AtividadeComponent
   ],
   imports: [
     BrowserModule,

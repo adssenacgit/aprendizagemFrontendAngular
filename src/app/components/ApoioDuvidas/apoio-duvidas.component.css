@@ -73,10 +73,8 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	font-weight: 500;
 	border-radius: 4px;
 	border: 1.5px solid #bcb4b4;
-
   }
   .tags-card {
 	display: flex;
@@ -172,7 +170,6 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	font-weight: 500;
 	border-radius: 4px;
 	border: 1.5px solid #bcb4b4;
   }

@@ -1,18 +1,19 @@
-<div class="d-flex gap-2 align-items-center p-1 select">
+<div class="d-flex gap-2 align-items-center p-1 select" *ngIf="!loading">
   <p-checkbox
+    *ngIf="participante"
     [(ngModel)]="objeto.cursado"
     [binary]="true"
     inputId="binary"
     (onChange)="toggleAcompanhamento($event, objeto)"
   ></p-checkbox>
   <p style="width: 80%;" class="line-clamp"
-    (click)="setObjetoSource(objeto)"
+    (click)="setObjetoSource()"
   >
     {{ objeto.titulo }}
   </p>
   <mat-icon
-    *ngIf="objeto.hasArquivo"
-    (click)="getObjeto(objeto)"
+    *ngIf="objeto.recursos.length > 0"
+    (click)="setDataSource()"
     class="material-symbols-outlined"
   >
     file_open

@@ -33,6 +33,10 @@ export class ObjetoAprendizagemService {
     return this.https.get<ObjetoAprendizagem>(`${this.url}/${id}`);
   }
 
+  obterObjetoComRecursoPorIdJava(id: number): Observable<ObjetoAprendizagem> {
+    return this.https.get<ObjetoAprendizagem>(`${this.javaUrl}/obterObjetoComRecursosPorId/${id}`);
+  }
+
   atualizarObjetoAprendizagem(id: number, objeto: ObjetoAprendizagem): Observable<ObjetoAprendizagem>
   {
     return this.https.put<ObjetoAprendizagem>(`${this.url}/${id}`, objeto);

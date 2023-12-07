@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TopicoForumUcComponent } from './topico-forum-uc.component';
+import { AtividadeComponent } from './atividade.component';
 
-describe('TopicoForumUcComponent', () => {
-  let component: TopicoForumUcComponent;
-  let fixture: ComponentFixture<TopicoForumUcComponent>;
+describe('AtividadeComponent', () => {
+  let component: AtividadeComponent;
+  let fixture: ComponentFixture<AtividadeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopicoForumUcComponent ]
+      declarations: [ AtividadeComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TopicoForumUcComponent);
+    fixture = TestBed.createComponent(AtividadeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

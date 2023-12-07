@@ -18,13 +18,19 @@ const httpOptions = {
 })
 export class ChapterAssuntoService {
   url:string = environment.apiServer + 'api/ChapterAssunto';
-  javaUrl:string = "http://localhost:8080/chapter-assunto"
+  javaUrl: string = 'https://localhost:8080/ChapterAssunto';
 
   constructor(private https: HttpClient) { }
 
   ObterTodos() : Observable<ChapterAssunto[]>
   {
     return this.https.get<ChapterAssunto[]>(this.url);
+  }
+
+  ObterChapterAssuntoById (cursoId: number) : Observable<ChapterAssunto>
+  {
+    const apiUrl = `${this.url}/${cursoId}`;
+    return this.https.get<ChapterAssunto>(apiUrl);
   }
 
   ObterTodosJava() : Observable<ChapterAssunto[]>
@@ -41,12 +47,6 @@ export class ChapterAssuntoService {
   ObterChapterAssuntoWithComentariosPaiByIdJava(chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}/with-comentarios-pai`;
-    return this.https.get<ChapterAssunto>(apiUrl);
-  }
-
-  ObterChapterAssuntoById (chapterAssuntoId: number) : Observable<ChapterAssunto>
-  {
-    const apiUrl = `${this.url}/${chapterAssuntoId}`;
     return this.https.get<ChapterAssunto>(apiUrl);
   }
 
@@ -96,9 +96,8 @@ export class ChapterAssuntoService {
     return this.https.delete<ChapterAssunto>(apiUrl, httpOptions);
   }
 
-  FiltrarChapterAssunto(descricaoAssunto: string) : Observable<ChapterAssunto[]>
-  {
-    const apiUrl = `${this.url}/FiltrarChapterAssunto${descricaoAssunto}`;
+  FiltrarChapterAssunto(descricaoAssunto: string): Observable<ChapterAssunto[]> {
+    const apiUrl = `${this.url}/FiltrarChapterAssunto?descricao=${descricaoAssunto}`;
     return this.https.get<ChapterAssunto[]>(apiUrl);
   }
 

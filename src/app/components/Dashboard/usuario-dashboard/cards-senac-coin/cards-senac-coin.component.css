@@ -16,6 +16,7 @@ p {
 .cards {
   width: 380px;
   height: 380px;
+  margin-left: 50px;
 }
 
 .cardExterior {
@@ -27,6 +28,7 @@ p {
 
 .botao {
   margin-top: 10px;
+  margin-right: 40px;
 }
 
 .btn-warning {
@@ -35,3 +37,13 @@ p {
   color: white;
   font-weight: bold;
 }
+
+  @media (max-width: 1080px) {
+    .cards {
+      right: 5rem;
+      margin-left: 10px;
+    }
+    .botao {
+      margin-left: 2rem;
+    }
+  }

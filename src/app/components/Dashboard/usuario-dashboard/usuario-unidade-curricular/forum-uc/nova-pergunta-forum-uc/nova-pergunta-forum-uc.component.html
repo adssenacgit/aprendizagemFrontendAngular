@@ -1,1 +1,65 @@
-<p>nova-pergunta-forum-uc works!</p>
+<div class="container" id="voltar" >
+  <div>
+    <button type ="button"  class="btn btn-primary"
+    (click)="limparFormulario()">
+      Voltar
+    </button>
+  </div>
+
+  <app-card-aviso></app-card-aviso>
+
+  <form class = "needs-validation" novalidate [formGroup]="form">
+
+    <div class="form-group">
+      <label for="titulo">Titulo</label>
+      <input class="form-control" formControlName="titulo" rows="3" formControlName="titulo" [ngClass]="{ 'is-invalid': submitted && hasError('titulo')}">
+    </div>
+
+    <div class="form-group">
+      <label for="chapter">Chapter (Assunto)</label>
+      <select class="form-control" formControlName="chapter" formControlName="chapter" required>
+        <option value="" disabled selected>Selecione</option>
+        <option *ngFor="let chapter of chapters" [ngValue]="chapter.id">{{chapter.nome}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tags">Tags</label>
+      <mat-form-field class="tags" appearance="fill">
+        <mat-chip-list #chipList aria-label="Tag selection">
+          <mat-chip
+            *ngFor="let tag of descriptions"
+            (removed)="remove(tag)">
+            {{tag}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input
+            placeholder="Nova tag..."
+            #tagInput
+            [formControl]="tagCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+            {{tag}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label for="">Descrição</label>
+      <p-editor formControlName="text" [style]="{ height: '320px' }"></p-editor>
+    </div>
+  </form>
+
+  <div id="perguntar" >
+    <button type="submit" id="botaoEnviar" class="btn btn-primary" (click)="onSubmit()"routerLink="/comunidade" [disabled]="!verificarCampos()">Enviar</button>
+    <button type ="button"  class="btn btn-primary" (click)="limparFormulario()">Limpar Campos</button>
+  </div>
+</div>
