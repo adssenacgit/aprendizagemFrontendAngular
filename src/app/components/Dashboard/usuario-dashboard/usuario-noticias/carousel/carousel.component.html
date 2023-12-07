@@ -1,0 +1,7 @@
+<div class="carousel">
+  <p-carousel [value]="images">
+    <ng-template let-image pTemplate="item">
+      <img [src]="image.source" [alt]="image.alt" style="width: 100%" />
+    </ng-template>
+  </p-carousel>
+</div>

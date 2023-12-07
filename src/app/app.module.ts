@@ -197,6 +197,7 @@ import { NovaPerguntaForumUcComponent } from './components/Dashboard/usuario-das
 import { TopicoForumUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/forum-uc/topico-forum-uc/topico-forum-uc.component';
 import { UsuarioPerfilComponent } from './components/Dashboard/usuario-dashboard/usuario-perfil/usuario-perfil.component';
 import { ProfessorUnidadeCurricularComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-unidade-curricular.component';
+import { CarouselComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/carousel/carousel.component';
 
 
 registerLocaleData(localePT);
@@ -287,7 +288,8 @@ registerLocaleData(localeFR);
     NovaPerguntaForumUcComponent,
     TopicoForumUcComponent,
     UsuarioPerfilComponent,
-    ProfessorUnidadeCurricularComponent
+    ProfessorUnidadeCurricularComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
