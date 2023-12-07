@@ -1,0 +1,15 @@
+<div class="news-container">
+  <div class="card" *ngFor="let news of newsList; let i = index">
+    <p-card class="pcard">
+      <ng-template pTemplate="header">
+        {{ news.title }}
+      </ng-template>
+      <div class="card-body">
+        {{ news.content }}
+      </div>
+      <ng-template pTemplate="footer">
+        {{ news.date }}
+      </ng-template>
+    </p-card>
+  </div>
+</div>

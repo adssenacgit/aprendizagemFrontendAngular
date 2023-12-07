@@ -1,32 +1,23 @@
 app-carousel {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;;
     justify-content: center;
     min-height: 100vh;
     margin: 0 20px;
-    max-width: 600px;
+    /* max-width: 600px; */
     margin-left: auto;
     margin-right: auto;
+    flex-wrap: wrap;
 }
 
-.title {
-    text-align: center;
-    color: #212121;
-    font-size: 25px;
-    font-weight: bold;
-}
 
-.line {
-    width: 100%;
-    border-bottom: 1px solid #E2E4E2;
-    margin-bottom: 20px;
-}
+
 
 .search {
     display: flex;

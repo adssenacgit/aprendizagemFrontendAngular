@@ -206,6 +206,7 @@ import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-
 import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
 import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
 import { CarouselComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/carousel/carousel.component';
+import { CardNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/card-noticias/card-noticias.component';
 
 
 registerLocaleData(localePT);
@@ -305,7 +306,8 @@ registerLocaleData(localeFR);
     ProfessorPlanejamentoUcComponent,
     SituacaoAprendizagemComponent,
     ObjetoAprendizagemComponent,
-    AtividadeComponent
+    AtividadeComponent,
+    CardNoticiasComponent
   ],
   imports: [
     BrowserModule,
