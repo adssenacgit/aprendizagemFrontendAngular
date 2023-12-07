@@ -22,8 +22,7 @@
   display: none;
   justify-content: center;
   background-color: #f7941d;
-  margin-top: 10px;
-  border-radius: 50px;
+  margin-top: 5px;
 }
 .lista_menu_responsivo{
   background-color: #092C4C;
@@ -37,8 +36,7 @@
   justify-content: space-around;
   font-size: medium;
   padding: 10px;
-  margin-right: 5rem;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 .nav-bar {
   background: #092C4C;
@@ -79,4 +77,3 @@ a:hover {
     display:block;
   }
 }
-
