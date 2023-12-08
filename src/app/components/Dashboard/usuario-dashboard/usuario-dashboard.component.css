@@ -39,3 +39,26 @@ p {
 	margin-bottom: 20px;
 	margin-right: 13px;
   }
+.usuario-proximas-atividades{
+  width: 40rem;
+}
+
+@media only screen and (max-width: 1508px) {
+  .usuario-proximas-atividades{
+    width: 95%;
+  }
+}
+@media only screen and (max-width: 870px) {
+  .usuario-calendario-academico{
+    display:none;
+  }
+  .dashboard-usuario-card-coin{
+    display: none;
+  }
+  .dashboard-usuario-card-badges{
+    display: none;
+  }
+  .dois{
+    justify-content: start;
+  }
+}
