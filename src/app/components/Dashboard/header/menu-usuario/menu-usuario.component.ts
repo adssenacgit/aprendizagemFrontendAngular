@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Usuario } from 'src/app/models/Usuario';
 
 @Component({
   selector: 'app-menu-usuario',
@@ -11,13 +13,21 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 export class MenuUsuarioComponent implements OnInit {
   items: MenuItem[];
   nomeUsuarioLogado: string; //= localStorage.getItem("NomeUsuarioLogado");
+  usuario : Usuario = new Usuario;
+  idUsuarioLogado : string;
 
   constructor(
     private router: Router,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
+    private usuarioService: UsuariosService
     ) { }
 
   ngOnInit() {
+    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+
+    this.usuarioService.ObterUsuarioPorId(this.idUsuarioLogado).subscribe(resultado=>{
+      this.usuario = resultado;
+    })
 
     this.nomeUsuarioLogado = this.authGuardService.getNomeUsuarioLogado();
     this.items = [{
@@ -57,5 +67,10 @@ export class MenuUsuarioComponent implements OnInit {
     //localStorage.clear();
     sessionStorage.clear();
     this.router.navigate(["usuarios/loginusuario"]);
+  }
+  getImage(baseImage:string) : any{
+
+    let objectURL = 'data:image/png;base64,' + atob(baseImage);
+    return objectURL;
   }
 }
