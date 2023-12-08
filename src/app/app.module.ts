@@ -1,4 +1,7 @@
+import { ListagemRecompensasComponent } from './components/Dashboard/usuario-dashboard/usuario-senac-coin/estudante/listagem-recompensas/listagem-recompensas.component';
+import { ListagemSaldoComponent } from './components/Dashboard/usuario-dashboard/usuario-senac-coin/estudante/listagem-saldo/listagem-saldo.component';
 
+import { SalvarConceitoFeedbackComponent } from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/professor/salvar-conceito-feedback/salvar-conceito-feedback.component';
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,6 +41,8 @@ import { AdministradorDashboardComponent } from './components/Dashboard/administ
 import { UsuarioCalendarioAcademicoComponent } from './components/Dashboard/usuario-dashboard/usuario-calendario-academico/usuario-calendario-academico/usuario-calendario-academico.component';
 import { UsuarioConceitosFeedbacksComponent } from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/usuario-conceitos-feedbacks.component';
 import { UsuarioSenacCoinComponent } from './components/Dashboard/usuario-dashboard/usuario-senac-coin/usuario-senac-coin.component';
+import { ListagemMovimentacoesComponent } from './components/Dashboard/usuario-dashboard/usuario-senac-coin/estudante/listagem-movimentacoes/listagem-movimentacoes.component';
+
 import { UsuarioTrilhaCursoComponent } from './components/Dashboard/usuario-dashboard/usuario-trilha-curso/usuario-trilha-curso.component';
 import { UsuarioRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/usuario-recursos.component';
 
@@ -45,10 +50,6 @@ import { UnidadeCurricularDescricaoComponent } from './components/UnidadeCurricu
 
 import { EstudoPrevioComponent } from './components/UnidadeCurricular/estudo-previo/estudo-previo.component';
 import { DialogIndicadoresComponent, EncontrosComponent } from './components/UnidadeCurricular/encontros/encontros.component';
-
-import { ListagemBadgesComponent, DialogExclusaoBadgeComponent } from './components/Badge/listagem-badge/listagem-badges.component';
-import { NovoBadgeComponent } from './components/Badge/novo-badge/novo-badge.component';
-import { AtualizarBadgeComponent } from './components/Badge/atualizar-badge/atualizar-badge.component';
 
 import { MenuUsuarioComponent } from './components/Dashboard/header/menu-usuario/menu-usuario.component';
 
@@ -62,7 +63,8 @@ import { UsuarioDadosComponent } from './components/Dashboard/usuario-dashboard/
 import { UsuarioProximasAtividadesComponent } from './components/Dashboard/usuario-dashboard/usuario-proximas-atividades/usuario-proximas-atividades.component';
 import { UsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/usuario-badges.component';
 
-import { ListagemUsuarioBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/listagem-usuario-badges/listagem-usuario-badges.component';
+import { AtualizarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/atualizar-badge/atualizar-badge.component';
+
 import { ApoioDuvidasComponent } from './components/ApoioDuvidas/apoio-duvidas.component';
 import { ComentarioComponent } from './components/ApoioDuvidas/comentario/comentario.component';
 
@@ -77,8 +79,6 @@ import { CardContatoComponent } from './components/Dashboard/dashboard/mensagens
 import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/usuario-recursos/meus-recursos/meus-recursos.component';
 
 import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
-
-import { CardsSenacCoinComponent } from './components/Dashboard/usuario-dashboard/cards-senac-coin/cards-senac-coin.component';
 
 import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
 
@@ -154,6 +154,7 @@ import { InputMaskModule } from "primeng/inputmask";
 import { EditorModule } from 'primeng/editor';
 import { DropdownModule } from 'primeng/dropdown';
 import { MatChipsModule } from '@angular/material/chips';
+import { TagModule } from 'primeng/tag';
 
 
 //Ngx Imports
@@ -207,6 +208,13 @@ import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-da
 import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
 import { CarouselComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/carousel/carousel.component';
 import { CardNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/card-noticias/card-noticias.component';
+import { ListagemConceitosFeedbacksComponent } from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/estudante/listagem-conceitos-feedbacks/listagem-conceitos-feedbacks.component';
+import { SalvarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/salvar-badge/salvar-badge.component';
+import { DetalheBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/detalhe-badge/detalhe-badge.component';
+import { ListagemBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-badges/listagem-badges.component';
+import { DialogExclusaoBadgeComponent, ListagemTabelaBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
+import { ListagemUltimasBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-ultimas-badges/listagem-ultimas-badges.component';
+
 import { DetalhesNoticiaComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/detalhes-noticia/detalhes-noticia.component';
 import { CardComentarioComponent } from './components/ApoioDuvidas/comentario/card-comentario/card-comentario.component';
 
@@ -223,10 +231,6 @@ registerLocaleData(localeFR);
     NovoCursoComponent,
     AtualizarCursoComponent,
     DialogExclusaoCursosComponent,
-    ListagemBadgesComponent,
-    DialogExclusaoBadgeComponent,
-    NovoBadgeComponent,
-    AtualizarBadgeComponent,
     ListagemFuncoesComponent,
     NovaFuncaoComponent,
     AtualizarFuncaoComponent,
@@ -261,7 +265,7 @@ registerLocaleData(localeFR);
     UsuarioDadosComponent,
     UsuarioProximasAtividadesComponent,
     UsuarioBadgesComponent,
-    ListagemUsuarioBadgesComponent,
+    AtualizarBadgeComponent,
     ApoioDuvidasComponent,
     ComentarioComponent,
     ListaObjetosAprendizagem,
@@ -271,7 +275,6 @@ registerLocaleData(localeFR);
     CardContatoComponent,
     MeusRecursosComponent,
     AtividadesComponent,
-    CardsSenacCoinComponent,
     SideNavComponent,
     AjudaComponent,
     UsuarioNoticiasComponent,
@@ -293,6 +296,7 @@ registerLocaleData(localeFR);
     CardTopicoComunidadeComponent,
     RecursoDocViewerComponent,
     CarrinhoSenacCoinComponent,
+    ListagemMovimentacoesComponent,
     ProfessorDashboardComponent,
     ProfessorListaUcComponent,
     CardAvisoComponent,
@@ -311,7 +315,18 @@ registerLocaleData(localeFR);
     AtividadeComponent,
     CardNoticiasComponent,
     DetalhesNoticiaComponent,
-    CardComentarioComponent
+    CardComentarioComponent,
+    ListagemRecompensasComponent,
+    ListagemSaldoComponent,
+    UsuarioConceitosFeedbacksComponent,
+    SalvarConceitoFeedbackComponent,
+    ListagemConceitosFeedbacksComponent,
+    SalvarBadgeComponent,
+    DetalheBadgeComponent,
+    ListagemBadgesComponent,
+    DialogExclusaoBadgeComponent,
+    ListagemTabelaBadgesComponent,
+    ListagemUltimasBadgesComponent
   ],
   imports: [
     BrowserModule,
@@ -389,7 +404,7 @@ registerLocaleData(localeFR);
     EditorModule,
     MatChipsModule,
     MatFormFieldModule,
-
+    TagModule,
   ],
   providers: [
     CursosService,

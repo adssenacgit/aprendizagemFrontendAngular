@@ -1,0 +1,49 @@
+.titulos,
+.descricao {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+p {
+  font-size: large;
+}
+
+.cards {
+  width: 380px;
+  height: 380px;
+  margin-left: 50px;
+}
+
+.cardExterior {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.botao {
+  margin-top: 10px;
+  margin-right: 40px;
+}
+
+.btn-warning {
+  background: #f7941d;
+  border: #f7941d;
+  color: white;
+  font-weight: bold;
+}
+
+  @media (max-width: 1080px) {
+    .cards {
+      right: 5rem;
+      margin-left: 10px;
+    }
+    .botao {
+      margin-left: 2rem;
+    }
+  }

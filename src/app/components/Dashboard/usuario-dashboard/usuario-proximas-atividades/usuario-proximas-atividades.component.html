@@ -1,25 +1,23 @@
-<div class="proximas-atividades">
-	<p-panel>
-		<ng-template pTemplate="header">
-		  <b [routerLink]="['/atividades']">Proximas atividades</b>
+<p-panel [style]="{ width: '50%', 'margin-left': '13px', 'box-shadow': '8px 3px 22px 10px rgba(150, 150, 150, 0.11)'}" styleClass="no-border">
+	<ng-template pTemplate="header">
+	  <b [routerLink]="['/atividades']">Proximas atividades</b>
+	</ng-template>
+	<ng-template pTemplate="content">
+	  <p-listbox [options]="atividades" [(ngModel)]="selectedAtividade" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '110px' }" [style]="{ width: '100%', 'border-color': 'transparent' }" styleClass="no-border">
+		<ng-template let-atividade pTemplate="item" id="atividade">
+		  <li [routerLink]="['/atividadeverificacao', atividade.situacaoAprendizagem.id]">
+			<div class="flex align-items-center gap-2">
+			  <h4 class="header" style="font-size: 16px;"><b>Entrega: {{ atividade.dataFim | date:"dd/MM/yyyy HH:mm":"+0000" }}</b></h4>
+			  <div [style.color]="
+				  atividade.grauDificuldade.id === 4 ? '#F60103' :
+				  atividade.grauDificuldade.id === 3 ? '#F79303' :
+				  atividade.grauDificuldade.id === 2 ? '#F7E911' :
+				  atividade.grauDificuldade.id === 1 ? '#3CD014' : '#000000'" style="font-size: 14px;">
+				{{ atividade.descricao }}
+			  </div>
+			</div>
+		  </li>
 		</ng-template>
-		<ng-template pTemplate="content">
-		  <p-listbox [options]="atividades" [(ngModel)]="selectedAtividade" optionLabel="nomeArquivo" [listStyle]="{ 'max-height': '110px' }" [style]="{ width: '100%', 'border-color': 'transparent' }" styleClass="no-border">
-			<ng-template let-atividade pTemplate="item" id="atividade">
-			  <li [routerLink]="['/atividadeverificacao', atividade.situacaoAprendizagem.id]">
-				<div class="flex align-items-center gap-2">
-				  <h4 class="header" style="font-size: 16px;"><b>Entrega: {{ atividade.dataFim | date:"dd/MM/yyyy HH:mm":"+0000" }}</b></h4>
-				  <div [style.color]="
-					  atividade.grauDificuldade.id === 4 ? '#F60103' : 
-					  atividade.grauDificuldade.id === 3 ? '#F79303' :
-					  atividade.grauDificuldade.id === 2 ? '#F7E911' :
-					  atividade.grauDificuldade.id === 1 ? '#3CD014' : '#000000'" style="font-size: 14px;">
-					{{ atividade.descricao }}
-				  </div>
-				</div>
-			  </li>
-			</ng-template>
-		  </p-listbox>
-		</ng-template>
-	  </p-panel>
-</div>
+	  </p-listbox>
+	</ng-template>
+</p-panel>
