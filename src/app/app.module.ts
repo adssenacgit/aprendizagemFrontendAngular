@@ -206,12 +206,15 @@ import { ProfessorPlanejamentoUcComponent } from './components/Dashboard/profess
 import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/situacao-aprendizagem/situacao-aprendizagem.component';
 import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
 import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
+import { CarouselComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/carousel/carousel.component';
+import { CardNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/card-noticias/card-noticias.component';
 import { ListagemConceitosFeedbacksComponent } from './components/Dashboard/usuario-dashboard/usuario-conceitos-feedbacks/estudante/listagem-conceitos-feedbacks/listagem-conceitos-feedbacks.component';
 import { SalvarBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/salvar-badge/salvar-badge.component';
 import { DetalheBadgeComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/detalhe-badge/detalhe-badge.component';
 import { ListagemBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-badges/listagem-badges.component';
 import { DialogExclusaoBadgeComponent, ListagemTabelaBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
 import { ListagemUltimasBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-ultimas-badges/listagem-ultimas-badges.component';
+
 
 
 registerLocaleData(localePT);
@@ -300,6 +303,7 @@ registerLocaleData(localeFR);
     TopicoForumUcComponent,
     UsuarioPerfilComponent,
     ProfessorUnidadeCurricularComponent,
+    CarouselComponent,
     ProfessorInfoGrupoComponent,
     ProfessorConteudoUcComponent,
     ProfessorEncontrosComponent,
@@ -307,6 +311,7 @@ registerLocaleData(localeFR);
     SituacaoAprendizagemComponent,
     ObjetoAprendizagemComponent,
     AtividadeComponent,
+    CardNoticiasComponent,
     ListagemRecompensasComponent,
     ListagemSaldoComponent,
     UsuarioConceitosFeedbacksComponent,
@@ -318,7 +323,6 @@ registerLocaleData(localeFR);
     DialogExclusaoBadgeComponent,
     ListagemTabelaBadgesComponent,
     ListagemUltimasBadgesComponent
-
   ],
   imports: [
     BrowserModule,
