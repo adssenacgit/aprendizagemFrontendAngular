@@ -9,13 +9,13 @@ import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service'
   styleUrls: ['./card-noticias.component.css']
 })
 export class CardNoticiasComponent implements OnInit {
-  newsList: ChapterAssunto[] = [];
+  listaNoticias: ChapterAssunto[] = [];
 
   constructor(private chapterAssuntoService: ChapterAssuntoService, public router: Router) {}
 
   ngOnInit(): void {
     this.chapterAssuntoService.ObterNoticiasJava().subscribe((data) => {
-      this.newsList = data;
+      this.listaNoticias = data;
       console.log(data);
     });
   }

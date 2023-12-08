@@ -32,23 +32,15 @@
 
 }
 
-.pcard {
-  box-shadow: none !important;
-  display: flex;
-  flex-direction: column;
-}
 
-.card .ui-card-body {
-  border: none;
-  box-shadow: none !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centralizar verticalmente */
-  text-align: center; /* Centralizar horizontalmente */
+
+h2 {
+  color: #122B4B;
+  font-family: 'PoppinsSemiBold';
 }
 
 .card-body {
-  margin-top: 10px; /* Espaço entre a imagem e o título */
+  margin-top: 0px; /* Espaço entre a imagem e o título */
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centralizar verticalmente */
@@ -59,12 +51,18 @@
   overflow: hidden;
   text-overflow: ellipsis; /* Adiciona reticências para indicar que há mais texto */
   white-space: pre-line;
+  font-family: 'PoppinsRegular';
 }
 
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.action-read {
+  background-color: #1660a5;
+  font-family: 'PoppinsRegular';
 }
 
 @media (max-width: 1024px) {

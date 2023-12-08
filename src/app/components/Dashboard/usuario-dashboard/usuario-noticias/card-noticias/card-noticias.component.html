@@ -1,17 +1,17 @@
 <div class="news-container">
-  <div class="card" *ngFor="let news of newsList; let i = index">
-    <p-card class="pcard">
+  <div class="card" *ngFor="let noticia of listaNoticias; let i = index">
+    <p-card [style]="{ 'border': 'none', 'box-shadow': 'none' }">
       <ng-template pTemplate="header">
         <div class="image-container">
-          <img class="news-image" src="{{ 'data:image/png;base64,' + news.imagem }}" />
+          <img class="news-image" src="{{ 'data:image/png;base64,' + noticia.imagem }}" />
         </div>
       </ng-template>
-      <div class="card-body">
-       <h2>{{ news.titulo }}</h2>
-       <div class="description" [innerHTML]="news.descricao"></div>
+      <div class="card-body" [style]="{'padding-top': 0}">
+       <h2>{{ noticia.titulo }}</h2>
+       <div class="description" [innerHTML]="noticia.descricao"></div>
       </div>
       <ng-template class="footer" pTemplate="footer">
-        <p-button (click)="verNoticiaCompleta(news)">Leia mais</p-button>
+        <button type ="button"  class="btn btn-primary action-read" (click)="verNoticiaCompleta(noticia)">Leia Mais</button>
       </ng-template>
     </p-card>
   </div>
