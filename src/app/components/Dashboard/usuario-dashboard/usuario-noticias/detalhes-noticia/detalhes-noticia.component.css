@@ -1,3 +1,7 @@
+.container {
+  padding: 0px 25px;
+}
+
 .image-container {
   display: flex;
   justify-content: center;
@@ -5,7 +9,7 @@
 }
 
 .news-image {
-  max-width: 75%; /* Define a largura máxima como 100% do contêiner pai */
+  max-width: 70%; /* Define a largura máxima como 100% do contêiner pai */
   height: auto;   /* Mantém a proporção original da imagem */
 }
 

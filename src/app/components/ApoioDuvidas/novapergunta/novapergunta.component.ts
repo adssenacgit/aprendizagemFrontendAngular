@@ -63,7 +63,7 @@ export class NovaPerguntaComponent implements OnInit {
 
   ngOnInit(): void {
     // todos os chapters
-    this.chapterService.ObterTodos().subscribe((chapters: Chapter[]) => {
+    this.chapterService.ObterTodosJava().subscribe((chapters: Chapter[]) => {
       this.chapters = chapters;
     });
 
