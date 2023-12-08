@@ -50,6 +50,12 @@ export class ChapterAssuntoService {
     return this.https.get<ChapterAssunto>(apiUrl);
   }
 
+  ObterNoticiasJava() : Observable<ChapterAssunto[]>
+  {
+    const apiUrl = `${this.javaUrl}/noticias`;
+    return this.https.get<ChapterAssunto[]>(apiUrl);
+  }
+
   ObterChapterAssuntoByIdJava (chapterAssuntoId: number) : Observable<ChapterAssunto>
   {
     const apiUrl = `${this.javaUrl}/${chapterAssuntoId}`;

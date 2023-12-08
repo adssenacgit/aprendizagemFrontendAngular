@@ -20,10 +20,15 @@ export class ChapterService {
 
   constructor(private https: HttpClient) { }
 
- 
+
   ObterTodos() : Observable<Chapter[]>
   {
     return this.https.get<Chapter[]>(this.url);
+  }
+
+  ObterTodosJava() : Observable<Chapter[]>
+  {
+    return this.https.get<Chapter[]>(this.javaUrl);
   }
 
   ObterChapterById (chapterId: number) : Observable<Chapter>

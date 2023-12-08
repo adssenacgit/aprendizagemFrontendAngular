@@ -56,6 +56,7 @@ import { ProfessorPlanejamentoUcComponent } from './components/Dashboard/profess
 import { SituacaoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/situacao-aprendizagem/situacao-aprendizagem.component';
 import { AtividadeComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/atividade/atividade.component';
 import { ObjetoAprendizagemComponent } from './components/Dashboard/professor-dashboard/professor-unidade-curricular/professor-planejamento-uc/objeto-aprendizagem/objeto-aprendizagem.component';
+import { DetalhesNoticiaComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/detalhes-noticia/detalhes-noticia.component';
 
 const routes: Routes = [
   {
@@ -220,6 +221,9 @@ const routes: Routes = [
       },
       {
         path: 'noticias', component: UsuarioNoticiasComponent
+      },
+      {
+        path: 'noticias/detalhes/:id', component: DetalhesNoticiaComponent
       },
       {
         path: 'perfil', component: UsuarioPerfilComponent

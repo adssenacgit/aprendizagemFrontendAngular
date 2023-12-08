@@ -59,71 +59,7 @@
         </div>
       </div>
       <div>
-
-          <div *ngFor="let comentario of comentarios" class="card answer-card" [attr.id]="'comentario-' + comentario.id" #comentario>
-            <div class="card-body answer-header">
-              <h3>
-                <img class="user-answer-image" src="{{ 'data:image/png;base64,' + comentario.usuario.foto }}" />
-                {{ comentario.usuario.nomeCompleto }}
-              </h3>
-              <h4>
-                {{ comentario.data }}
-              </h4>
-              <div class="verified-icon">
-                <i class="bi bi-check2-all"></i>Verificado
-              </div>
-            </div>
-            <div class="answer-body">
-              <div class="card-body question-text">
-                <a *ngIf="comentario.paiId" (click)="scrollToElement(comentario.paiId)">{{'@' + getPosterNameByComentarioId(comentario.paiId) }}</a>
-                <p [innerHTML]="comentario.texto"></p>
-              </div>
-              <div class="card-body answer-actions">
-                <div class="first-buttons">
-                  <button type="button" class="btn btn-default first-btn" [class.pressed]="checarCurtida(comentario.curtidas, idUsuarioLogado)"
-                    (click)="!checarCurtida(comentario.curtidas, idUsuarioLogado) ? curtir(comentario) : descurtir(comentario)">
-                    <i class="bi bi-hand-thumbs-up"></i>
-                    {{comentario.curtidas.length}}
-                  </button>
-                  <button class="first-btn" (click)="showModalResposta(comentario)"> <i
-                    class="bi bi-chat">  Responder</i></button>
-                  <p-dialog header="{{'Responder a ' + comentario.usuario.nomeCompleto}}" [(visible)]="modalResposta" [style]="{ width: '60vw' }" [draggable]="false">
-                    <form [formGroup]="respostaFilhoForm">
-                      <p-editor formControlName="comentario" [style]="{ height: '320px' }"></p-editor>
-                      <div class="action-buttons">
-                        <button type="submit" class="btn btn-primary action-send" (click)="responder()">Enviar</button>
-                        <button type="button" class="btn btn-primary action-cancel" (click)="limparFormularioFilho()">Limpar Campos</button>
-                      </div>
-                    </form>
-
-                  </p-dialog>
-                </div>
-                <div class="second-buttons">
-                  <button type="button" class="btn btn-default second-btn" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"> <i class="bi bi bi-pencil"></i></button>
-                  <button type="button" class="btn btn-default second-btn"> <i class="bi bi-trash"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <app-card-comentario></app-card-comentario>
       </div>
 
     </div>

@@ -1,0 +1,70 @@
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin:42px 0px;
+}
+
+.news-image {
+  max-width: 75%; /* Define a largura máxima como 100% do contêiner pai */
+  height: auto;   /* Mantém a proporção original da imagem */
+}
+
+h1 {
+  font-size: 42px;
+  color: #122B4B;
+  font-family: 'PoppinsSemiBold';
+  margin-bottom: 25px;
+  line-height: 1.5;
+
+}
+
+h2 {
+  font-size: 32px;
+  color: #122B4B;
+  font-family: 'PoppinsSemiBold';
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+h3 {
+  font-size: 24px;
+  color: #122B4B;
+  font-family: 'PoppinsSemiBold';
+  margin-top: 50px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.description {
+  font-size: 20px;
+  font-family: 'PoppinsRegular';
+  line-height: 1.5;
+}
+
+.action-buttons {
+  margin-top: 10px;
+}
+.action-buttons .btn {
+  margin-right: 10px;
+}
+.action-send {
+  background-color: #1660a5;
+}
+
+.action-return {
+  background-color: #1660a5;
+}
+
+.action-cancel {
+  background-color: #f38c0d;
+  color: white;
+  border: #f38c0d;
+}
+
+
+@media (max-width: 767px) {
+  /* Ajusta o layout para telas menores */
+  .news-image {
+    max-width: 100%; /* Utiliza 100% da largura para telas menores */
+  }
+}
