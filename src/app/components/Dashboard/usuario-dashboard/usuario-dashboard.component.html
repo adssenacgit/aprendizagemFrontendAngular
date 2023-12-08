@@ -1,19 +1,6 @@
 <div class="container-fluid">
-  <div style="display:flex ; flex-direction: row; justify-content: space-around; margin-top: 30px;">
-    <div>
-      <div style="margin-bottom: 40px;">
-        <app-usuario-proximas-atividades></app-usuario-proximas-atividades>
-      </div>
-      <div>
-        <app-usuario-arquivos-privados></app-usuario-arquivos-privados>
-      </div>
-    </div>
-    <div>
-      <div  style="margin-left: -50%; margin-top: 20px">
-        <app-usuario-calendario-academico></app-usuario-calendario-academico>
-      </div>
-    </div>
-    <div>
+  <div style="display:flex ; flex-direction: row-reverse; flex-wrap: wrap; justify-content: space-around; margin-top: 30px;">
+    <div class="usuario-">
       <div>
         <app-menu-usuario></app-menu-usuario>
       </div>
@@ -21,7 +8,20 @@
         <app-usuario-dados></app-usuario-dados>
       </div>
       <div class="dashboard-usuario-card-badges">
-        <app-listagem-ultimas-badges></app-listagem-ultimas-badges>
+        <app-usuario-badges></app-usuario-badges>
+      </div>
+      <!-- <div>
+        <app-usuario-arquivos-privados></app-usuario-arquivos-privados>
+      </div> -->
+    </div>
+    <div class="usuario-calendario-academico">
+      <div style="margin-top: 20px">
+        <app-usuario-calendario-academico></app-usuario-calendario-academico>
+      </div>
+    </div>
+    <div>
+      <div class="usuario-proximas-atividades" style="margin-bottom: 40px;">
+        <app-usuario-proximas-atividades></app-usuario-proximas-atividades>
       </div>
     </div>
   </div>

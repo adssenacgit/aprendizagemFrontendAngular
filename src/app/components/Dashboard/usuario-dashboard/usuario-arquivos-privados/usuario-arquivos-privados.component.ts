@@ -27,11 +27,11 @@ export class UsuarioArquivosPrivadosComponent implements OnInit {
     //this.recursos.push(this.recurso);
     //this.recursos.push(this.recurso);
 
-    this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
+  //   this.idUsuarioLogado = this.authGuardService.getIdUsuarioLogado();
 
-    this.recursoService.ObterRecursoPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado=>{
-      this.recursos = resultado; 
-  }) 
+  //   this.recursoService.ObterRecursoPeloUsuarioId(this.idUsuarioLogado).subscribe(resultado=>{
+  //     this.recursos = resultado;
+  // }) 
   }
 
 }
