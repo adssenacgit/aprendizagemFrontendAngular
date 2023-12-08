@@ -100,7 +100,7 @@ export class ApoioDuvidasComponent implements OnInit {
   }
 
   todosChapter() {
-    this.chapterService.ObterTodos().subscribe((data) => {
+    this.chapterService.ObterTodosJava().subscribe((data) => {
       this.chapterTodos = data;
       this.chapterTodos.forEach((val) => this.chapterTodosNomes.push(val.nome));
       console.log(this.chapterTodosNomes);

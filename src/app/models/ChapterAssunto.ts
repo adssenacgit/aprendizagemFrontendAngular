@@ -18,5 +18,6 @@ export class ChapterAssunto {
     tags: ChapterTag[] = [];
     comentarios: ChapterAssuntoComentario[] = [];
     totalComentarios: number;
+    imagem: string;
 
 }

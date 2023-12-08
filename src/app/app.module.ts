@@ -215,6 +215,8 @@ import { ListagemBadgesComponent } from './components/Dashboard/usuario-dashboar
 import { DialogExclusaoBadgeComponent, ListagemTabelaBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/professor/listagem-tabela-badge/listagem-tabela-badges.component';
 import { ListagemUltimasBadgesComponent } from './components/Dashboard/usuario-dashboard/usuario-badges/estudante/listagem-ultimas-badges/listagem-ultimas-badges.component';
 
+import { DetalhesNoticiaComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/detalhes-noticia/detalhes-noticia.component';
+import { CardComentarioComponent } from './components/ApoioDuvidas/comentario/card-comentario/card-comentario.component';
 
 
 registerLocaleData(localePT);
@@ -312,6 +314,8 @@ registerLocaleData(localeFR);
     ObjetoAprendizagemComponent,
     AtividadeComponent,
     CardNoticiasComponent,
+    DetalhesNoticiaComponent,
+    CardComentarioComponent,
     ListagemRecompensasComponent,
     ListagemSaldoComponent,
     UsuarioConceitosFeedbacksComponent,
