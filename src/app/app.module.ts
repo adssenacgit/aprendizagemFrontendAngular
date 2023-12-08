@@ -311,7 +311,7 @@ registerLocaleData(localeFR);
     SituacaoAprendizagemComponent,
     ObjetoAprendizagemComponent,
     AtividadeComponent,
-    CardNoticiasComponent
+    CardNoticiasComponent,
     ListagemRecompensasComponent,
     ListagemSaldoComponent,
     UsuarioConceitosFeedbacksComponent,
