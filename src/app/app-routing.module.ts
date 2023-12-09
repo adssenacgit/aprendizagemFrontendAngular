@@ -36,7 +36,7 @@ import { AtividadesComponent } from './components/UnidadeCurricular/atividades/a
 import { ApoioDuvidasComponent } from './components/ApoioDuvidas/apoio-duvidas.component';
 import { AjudaComponent } from './components/Dashboard/usuario-dashboard/usuario-ajuda/ajuda.component';
 import { UsuarioRequerimentoWebComponent } from './components/Dashboard/usuario-dashboard/usuario-requerimento-web/usuario-requerimento-web.component';
-import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
+import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.component';
 import { UsuarioUnidadeCurricularComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/usuario-unidade-curricular.component';
 import { EncontrosListaComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/encontros/encontros.component';
 import { ConteudoUcComponent } from './components/Dashboard/usuario-dashboard/usuario-unidade-curricular/conteudo-uc/conteudo-uc.component';

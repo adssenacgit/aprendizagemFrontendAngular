@@ -45,6 +45,10 @@ export class SituacaoAprendizagemService {
     return this.https.put<SituacaoAprendizagem>(`${this.url}/${id}`, situacao);
   }
 
+  atualizarSituacaoAprendizagemJava(id: number, situacao: SituacaoAprendizagem): Observable<SituacaoAprendizagem> {
+    return this.https.put<SituacaoAprendizagem>(`${this.javaUrl}/${id}`, situacao);
+  }
+
   excluirSituacaoAprendizagem(id: number): Observable<void> {
     return this.https.delete<void>(`${this.url}/${id}`);
   }

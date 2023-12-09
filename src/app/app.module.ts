@@ -80,7 +80,7 @@ import { MeusRecursosComponent } from './components/Dashboard/usuario-dashboard/
 
 import { AtividadesComponent } from './components/UnidadeCurricular/atividades/atividades.component';
 
-import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.coomponent';
+import { UsuarioNoticiasComponent } from './components/Dashboard/usuario-dashboard/usuario-noticias/usuario-noticias.component';
 
 import { CardMensagemComponent } from './components/Dashboard/dashboard/mensagens/card-mensagem/card-mensagem.component';
 

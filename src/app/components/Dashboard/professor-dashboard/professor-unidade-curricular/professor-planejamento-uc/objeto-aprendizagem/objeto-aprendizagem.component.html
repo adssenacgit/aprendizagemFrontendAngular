@@ -1,1 +1,25 @@
-<p>objeto-aprendizagem works!</p>
+<div class="container" id="voltar" >
+  <div>
+    <button type ="button"  class="btn btn-primary" (click)="limparFormulario(); goBack()">Voltar</button>
+  </div>
+
+  <h2>Cadastrar Objeto de Aprendizagem na Situação de Aprendizagem {{situacaoAprendizagem.titulo}}</h2>
+
+  <form class = "needs-validation" novalidate [formGroup]="form">
+
+    <div class="form-group">
+      <label for="titulo">Titulo</label>
+      <input [ngModel]="objetoAprendizagem.titulo" class="form-control" formControlName="titulo" rows="3" [ngClass]="{ 'is-invalid': submitted && hasError('titulo')}">
+    </div>
+
+    <div class="form-group">
+      <label for="descricao">Descrição</label>
+      <p-editor [ngModel]="objetoAprendizagem.descricao" formControlName="descricao" [style]="{ height: '320px' }" ></p-editor>
+    </div>
+  </form>
+
+  <div id="perguntar" >
+    <button type="submit" id="botaoEnviar" class="btn btn-primary" (click)="onSubmit()" [disabled]="!verificarCampos()">Enviar</button>
+    <button type ="button"  class="btn btn-primary" (click)="limparFormulario()">Limpar Campos</button>
+  </div>
+</div>
