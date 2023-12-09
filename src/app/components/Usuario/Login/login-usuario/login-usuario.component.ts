@@ -14,7 +14,7 @@ export class LoginUsuarioComponent implements OnInit {
   formulario: any;
   erros: string [];
 
-  constructor(private usuariosService: UsuariosService, 
+  constructor(private usuariosService: UsuariosService,
     private router: Router,
     private authGuard: AuthGuardService) { }
 
@@ -38,16 +38,19 @@ export class LoginUsuarioComponent implements OnInit {
     this.usuariosService.LogarUsuario(dadosLogin).subscribe(resultado => {
       const cpfUsuarioLogado = resultado.cpfUsuarioLogado;
       const usuarioId = resultado.usuarioId;
+
       const nomeUsuarioLogado = resultado.usuarioNome;
       const tokenUsuarioLogado = resultado.tokenUsuarioLogado;
 
       //localStorage.setItem('CpfUsuarioLogado', cpfUsuarioLogado);
-      //localStorage.setItem('NomeUsuarioLogado', nomeUsuarioLogado);      
+      //localStorage.setItem('NomeUsuarioLogado', nomeUsuarioLogado);
       //localStorage.setItem('UsuarioId', usuarioId);
-      
+
       //localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
       sessionStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
-
+      this.usuariosService.ObterUsuarioPorId(usuarioId).subscribe(
+        res => this.usuariosService.setUsuario(res)
+      )
       if (this.authGuard.VerificarAdministrador()){
         this.router.navigate(['/dashboard/administradordashboard']);
       } else if (this.authGuard.VerificarProfessor()){
@@ -55,7 +58,7 @@ export class LoginUsuarioComponent implements OnInit {
       } else {
         this.router.navigate(['/dashboard/usuariodashboard']);
       }
-      
+
     },
     (err) => {
       if (err.status === 400){
@@ -65,7 +68,7 @@ export class LoginUsuarioComponent implements OnInit {
             this.erros.push(err.error.errors[campo]);
           }
       }else{
-        this.erros.push(err.error);        
+        this.erros.push(err.error);
       }
     });
   }

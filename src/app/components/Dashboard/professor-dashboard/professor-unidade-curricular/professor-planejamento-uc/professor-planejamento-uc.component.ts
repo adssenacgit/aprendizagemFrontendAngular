@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Encontro } from 'src/app/models/Encontro';
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 import { PlanejamentoUC } from 'src/app/models/PlanejamentoUC';
@@ -23,6 +24,8 @@ export class ProfessorPlanejamentoUcComponent implements OnInit {
   situacoesAprendizagem: SituacaoAprendizagem[]
   objetoAprendizagem: ObjetoAprendizagem;
   form: FormGroup;
+  visible: boolean = false;
+  router: Router
 
   constructor(
     private grupoService: GrupoService,
@@ -64,6 +67,17 @@ export class ProfessorPlanejamentoUcComponent implements OnInit {
       this.situacaoAprendizagemService.setSituacaoAprendizagem(situacao);
     }
     else {this.situacaoAprendizagemService.setSituacaoAprendizagem(new SituacaoAprendizagem())}
+  }
+
+  abrirModalConteudo(situacao: SituacaoAprendizagem) {
+    this.visible = true;
+    this.situacaoAprendizagemService.setSituacaoAprendizagem(situacao);
+  }
+
+  criarObjeto() {
+  }
+
+  criarAtividade() {
   }
 
 }

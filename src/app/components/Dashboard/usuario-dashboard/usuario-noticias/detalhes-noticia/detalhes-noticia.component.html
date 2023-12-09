@@ -1,0 +1,22 @@
+<div class="container">
+  <button type ="button"  class="btn btn-primary action-return" routerLink="/noticias">Voltar</button>
+  <div class="image-container"><img class="news-image" src="{{ 'data:image/png;base64,' + noticia.imagem }}"></div>
+  <h1>{{ noticia.titulo }}</h1>
+  <div class="description" [innerHTML]="noticia.descricao"></div>
+  <div class="comentarios">
+    <h2>Comentários</h2>
+    <app-card-comentario></app-card-comentario>
+    <form id="formComentario" class="needs-validation" novalidate [formGroup]="form">
+      <div class="form-group">
+        <h3>Fazer um comentário</h3>
+        <p-editor id="comentario" formControlName="comentario" [style]="{ height: '320px' }">{{ textoSanitizado
+          }}</p-editor>
+      </div>
+    </form>
+    <div class="action-buttons">
+      <button type="submit" class="btn btn-primary action-send" (click)="onSubmit()"
+        >Enviar</button>
+      <button type="button" class="btn btn-primary action-cancel" (click)="limparFormulario()">Limpar Campos</button>
+    </div>
+  </div>
+</div>

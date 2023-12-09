@@ -8,6 +8,7 @@ export class ObjetoAprendizagem {
     descricao: string;
     arquivo: string;
     status: number;
+    ordem: number;
     grauDificuldadeId: number;
     grauDificuldade: GrauDificuldade;
     usuarioId: string;

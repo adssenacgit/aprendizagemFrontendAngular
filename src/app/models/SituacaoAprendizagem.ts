@@ -8,7 +8,7 @@ export class SituacaoAprendizagem {
     id: number;
     titulo: string;
     descricao: string;
-    duracao: number;
+    duracao: number = 10;
     ordem: number;
     status: number;
     planejamentoUCId: number;
@@ -17,7 +17,7 @@ export class SituacaoAprendizagem {
     grauDificuldade:GrauDificuldade;
     badgeId: number;
     badge:Badge
-    objetosAprendizagem?: ObjetoAprendizagem[];
-    atividades?: Atividade[];
+    objetosAprendizagem!: ObjetoAprendizagem[];
+    atividades!: Atividade[];
     selecionado? : number;
 }

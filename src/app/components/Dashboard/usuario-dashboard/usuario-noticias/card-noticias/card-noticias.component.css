@@ -6,6 +6,23 @@
   width: 80rem;
 }
 
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 40%; /* Ajuste conforme necessário para controlar a altura visível da imagem */
+  overflow: hidden;
+}
+
+.news-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card {
   width: 45%; /* Ajuste conforme necessário */
   margin-bottom: 20px;
@@ -15,15 +32,37 @@
 
 }
 
-.pcard {
-  box-shadow: none !important;
-  display: flex;
-  flex-direction: column;
+
+
+h2 {
+  color: #122B4B;
+  font-family: 'PoppinsSemiBold';
 }
 
-.card .ui-card-body {
-  border: none;
-  box-shadow: none !important;
+.card-body {
+  margin-top: 0px; /* Espaço entre a imagem e o título */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centralizar verticalmente */
+}
+
+.description {
+  max-height: 5em; /* Altura máxima desejada para exibição inicial (ajuste conforme necessário) */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adiciona reticências para indicar que há mais texto */
+  white-space: pre-line;
+  font-family: 'PoppinsRegular';
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-read {
+  background-color: #1660a5;
+  font-family: 'PoppinsRegular';
 }
 
 @media (max-width: 1024px) {

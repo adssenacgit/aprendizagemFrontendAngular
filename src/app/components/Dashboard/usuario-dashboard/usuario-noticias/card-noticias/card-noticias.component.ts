@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ChapterAssunto } from 'src/app/models/ChapterAssunto';
+import { ChapterAssuntoService } from 'src/app/services/chapter-assunto.service';
 
 @Component({
   selector: 'app-card-noticias',
@@ -6,31 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-noticias.component.css']
 })
 export class CardNoticiasComponent implements OnInit {
-  newsList: any[] = [
-    {
-      title: 'Notícia 1',
-      content: 'Conteúdo da notícia 1...',
-      date: '2023-12-01'
-    },
-    {
-      title: 'Notícia 2',
-      content: 'Conteúdo da notícia 2...',
-      date: '2023-12-02'
-    },
-    {
-      title: 'Notícia 3',
-      content: 'Conteúdo da notícia 3...',
-      date: '2023-12-03'
-    },
-    // {
-    //   title: 'Notícia 4',
-    //   content: 'Conteúdo da notícia 4...',
-    //   date: '2023-12-03'
-    // }
-    // Adicione mais notícias conforme necessário
-  ];
+  listaNoticias: ChapterAssunto[] = [];
 
-  constructor() {}
+  constructor(private chapterAssuntoService: ChapterAssuntoService, public router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.chapterAssuntoService.ObterNoticiasJava().subscribe((data) => {
+      this.listaNoticias = data;
+      console.log(data);
+    });
+  }
+
+  verNoticiaCompleta(news: ChapterAssunto) {
+    this.router.navigate(['noticias/detalhes', news.id]);
+  }
 }

@@ -18,7 +18,9 @@ const httpOptions = {
 export class UsuariosService {
 
   url = environment.apiServer + 'api/Usuario';
-  javaUrl = "http://localhost:8080/usuario"
+  javaUrl = "http://localhost:8080/usuario";
+
+  private usuario: Usuario;
 
   constructor(private http: HttpClient) { }
 
@@ -52,4 +54,12 @@ export class UsuariosService {
     const apiUrl = `${this.url}/${formData.id}`;
     return this.http.put<Usuario>(apiUrl, formData);
   }
+
+  setUsuario(usuario: Usuario) {
+    this.usuario = usuario
+  }
+  getUsuario() {
+    return this.usuario
+  }
+
 }

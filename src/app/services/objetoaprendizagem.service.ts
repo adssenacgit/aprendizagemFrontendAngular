@@ -25,6 +25,11 @@ export class ObjetoAprendizagemService {
     return this.https.post<ObjetoAprendizagem>(this.url, objeto);
   }
 
+  criarObjetoAprendizagemJava(objeto: ObjetoAprendizagem): Observable<ObjetoAprendizagem>
+  {
+    return this.https.post<ObjetoAprendizagem>(this.javaUrl, objeto);
+  }
+
   obterObjetosAprendizagem(): Observable<ObjetoAprendizagem[]> {
     return this.https.get<ObjetoAprendizagem[]>(this.url);
   }

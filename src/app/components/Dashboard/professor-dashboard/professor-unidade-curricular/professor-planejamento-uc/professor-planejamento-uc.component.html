@@ -1,13 +1,109 @@
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <h1>Planejamento UC Ativo</h1>
-      <p>Unidade Curricular: {{planejamentoUcAtual.grupo.unidadeCurricular.nome}}</p>
-      <p>Período Id: {{planejamentoUcAtual.grupo.periodoId}}</p>
-      <p>{{planejamentoUcAtual.descricao}}</p>
+    <h1>Planejamento da UC</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2 class="material">Material das aulas</h2>
+      <p class="material">Gerencie o conteúdo das suas aulas</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 mt-1">
+      <div *ngIf="this.encontros">
+        <div class="encontros-container overflow-scroll">
+          <div class="accordion">
+            <div
+              class="accordion-item"
+              *ngFor="let sit of situacoesAprendizagem; index as i"
+            >
+              <div class="accordion-header" [attr.id]="'panelsStayOpen-heading' + i">
+                <div
+                  class="accordion-button collapsed acc-header"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#panelsStayOpen-collapse' + i"
+                  [attr.aria-expanded]="false"
+                  [attr.aria-controls]="'panelsStayOpen-collapse' + i"
+                >
+                  <div class="encontro-info-container">
+                    <div class="encontro-header-title">
+                      {{ i + 1 }}. {{ sit.titulo }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                [attr.id]="'panelsStayOpen-collapse' + i"
+                class="accordion-collapse collapse"
+                [attr.aria-labelledby]="'panelsStayOpen-heading' + i"
+              >
+                <div class="accordion-body">
+                  <div
+                    *ngIf="
+                      situacoesAprendizagem != null &&
+                        situacoesAprendizagem.length > 0;
+                      else semSituacao
+                    "
+                  >
+                    <div class="p-2 font-weight-bold">
+                      <p class="situacao-titulo">
+                        Objetos de aprendizagem
+                      </p>
+                    </div>
+                    <div *ngIf="sit.objetosAprendizagem != null; else semObjetos">
+                      <div *ngFor="let obj of sit.objetosAprendizagem">
+                        <div class="border-bottom border-1 w-100">
+                          <app-card-objeto-aprendizagem
+                            [objeto]="obj"
+                          ></app-card-objeto-aprendizagem>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="p-2 font-weight-bold">
+                      <p class="situacao-titulo">
+                        Atividades
+                      </p>
+                    </div>
+                    <div *ngIf="sit.atividades != null; else semAtividades">
+                      <div *ngFor="let atividade of sit.atividades">
+                        <div class="border-bottom border-1 w-100">
+                          <app-card-atividade
+                            [atividade]="atividade"
+                          ></app-card-atividade>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-center m-1">
+                      <button mat-raised-button color="primary" (click)="abrirModalConteudo(sit)">
+                        Adicionar conteúdo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <button mat-raised-button color="primary" (click)="setSituacao()" [routerLink]="['../situacao-aprendizagem/', planejamentoUcAtual.id]">Nova Situação de Aprendizagem</button>
+      <ng-template #semSituacao>
+        <p class="p-3" style="color: red">Sem situações de aprendizagem.</p>
+      </ng-template>
 
+      <ng-template #semObjetos>
+        <p style="color: red">
+          Sem objetos de aprendizagem nesta situação de aprendizagem.
+        </p>
+      </ng-template>
+
+      <ng-template #semAtividades>
+        <p style="color: red">
+          Sem Atividades de aprendizagem nesta situação de aprendizagem.
+        </p>
+      </ng-template>
+
+      <!-- <button mat-raised-button color="primary" (click)="setSituacao()" [routerLink]="['../situacao-aprendizagem/', planejamentoUcAtual.id]">Nova Situação de Aprendizagem</button>
       <div *ngFor="let sit of situacoesAprendizagem" class="border">
         <div class="d-flex">
           <h2>Ordem: {{sit.ordem}} Id: {{sit.id}} - {{sit.titulo}}</h2>
@@ -24,9 +120,9 @@
         <div *ngFor="let atv of sit.atividades">
           <p>Atividade: {{atv.descricao}}</p>
         </div>
-      </div>
+      </div> -->
     </div>
-    <div class="col-6">
+    <div class="col-8">
       <div *ngFor="let encontro of encontros">
         <h2>{{encontro.diaLetivo.dialetivo | date}}</h2>
         <div *ngFor="let sit of encontro.situacoesAprendizagem">
@@ -37,3 +133,10 @@
     </div>
   </div>
 </div>
+
+<p-dialog header="Adicionar conteúdo" [(visible)]="visible" [style]="{width: '30vw'}">
+  <div class="d-flex justify-content-around">
+    <p-button routerLink="../objeto-aprendizagem" icon="pi pi-external-link" label="Objeto de aprendizagem"></p-button>
+    <p-button routerLink="../atividade" icon="pi pi-external-link" label="Atividade"></p-button>
+  </div>
+</p-dialog>
