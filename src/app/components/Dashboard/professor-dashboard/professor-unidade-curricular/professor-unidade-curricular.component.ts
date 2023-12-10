@@ -49,7 +49,8 @@ export class ProfessorUnidadeCurricularComponent implements OnInit {
           });
       this.badgeService.ObterBadgesPeloGrupoId(this.grupoId)
       .subscribe({
-        next: (response) => this.badges = response
+        next: (response) => {this.badges = response,
+        console.log(this.badges)}
       })
       this.planejamentoUcService.FiltrarPlanejamentoUCByGrupoId(this.grupoId)
         .subscribe({

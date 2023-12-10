@@ -6,9 +6,11 @@ import { SituacaoAprendizagemService } from 'src/app/services/situacaoaprendizag
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Usuario } from 'src/app/models/Usuario';
+import { MessageService } from 'primeng/api';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-objeto-aprendizagem',
@@ -27,7 +29,7 @@ export class ObjetoAprendizagemComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route : ActivatedRoute,
+    private _snackBar: MatSnackBar,
     private location: Location,
     private situacaoAprendizagemService: SituacaoAprendizagemService,
     private objetoAprendizagemService: ObjetoAprendizagemService,
@@ -87,13 +89,24 @@ export class ObjetoAprendizagemComponent implements OnInit {
 
   atualizarSituacaoComNovoObjeto(objeto: ObjetoAprendizagem, situacaoAtualizada: SituacaoAprendizagem) {
     this.objetoAprendizagemService.criarObjetoAprendizagemJava(objeto)
-      .subscribe(
-        response => {
-          this.situacaoAprendizagem.objetosAprendizagem.push(response);
-          this.situacaoAprendizagemService.atualizarSituacaoAprendizagemJava(situacaoAtualizada.id, situacaoAtualizada)
-            .subscribe((response) => console.log(response));
+      .subscribe({
+        next: (response) => {
+            this.situacaoAprendizagem.objetosAprendizagem.push(response);
+            this.situacaoAprendizagemService.atualizarSituacaoAprendizagemJava(situacaoAtualizada.id, situacaoAtualizada)
+              .subscribe(response => console.log(response));
+        },
+        complete: () => {
+          this.limparFormulario();
+          this.openSnackBar('Objeto de aprendizagem adicionado!', 'ok');
+          setTimeout(() => {
+            this.goBack();
+          },500)
         }
-      )
+      })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 }
 
