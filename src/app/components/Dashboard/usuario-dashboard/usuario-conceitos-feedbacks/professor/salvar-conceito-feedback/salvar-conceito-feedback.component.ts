@@ -27,7 +27,8 @@ import {UsuariosService} from "../../../../../../services/usuarios.service";
 @Component({
   selector: 'app-salvar-conceito-feedback',
   templateUrl: './salvar-conceito-feedback.component.html',
-  styleUrls: ['./salvar-conceito-feedback.component.css']
+  styleUrls: ['./salvar-conceito-feedback.component.css'],
+  providers: [MessageService]
 })
 export class SalvarConceitoFeedbackComponent implements OnInit {
   @Input() $isProfessor: boolean = false;
