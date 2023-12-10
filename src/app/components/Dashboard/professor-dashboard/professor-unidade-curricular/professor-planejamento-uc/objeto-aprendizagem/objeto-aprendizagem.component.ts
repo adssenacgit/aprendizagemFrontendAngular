@@ -6,9 +6,20 @@ import { SituacaoAprendizagemService } from 'src/app/services/situacaoaprendizag
 import { ObjetoAprendizagem } from 'src/app/models/ObjetoAprendizagem';
 import { ObjetoAprendizagemService } from 'src/app/services/objetoaprendizagem.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Usuario } from 'src/app/models/Usuario';
+import { MessageService } from 'primeng/api';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { GrauDificuldadeService } from 'src/app/services/grau-dificuldade.service';
+import { GrauDificuldade } from 'src/app/models/GrauDificuldade';
+import Swal from 'sweetalert2';
+import { Recurso } from 'src/app/models/Recurso';
+
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
 
 @Component({
   selector: 'app-objeto-aprendizagem',
@@ -24,28 +35,37 @@ export class ObjetoAprendizagemComponent implements OnInit {
   blobs: Blob[]
   usuarioId: string;
   usuario: Usuario;
+  grausDificuldade: GrauDificuldade[]
 
   constructor(
     private fb: FormBuilder,
-    private route : ActivatedRoute,
+    private _snackBar: MatSnackBar,
     private location: Location,
     private situacaoAprendizagemService: SituacaoAprendizagemService,
     private objetoAprendizagemService: ObjetoAprendizagemService,
     private authGuardService: AuthGuardService,
-    private usuarioService: UsuariosService
+    private usuarioService: UsuariosService,
+    private grauDificuldadeService: GrauDificuldadeService
   ) { }
 
   ngOnInit(): void {
     this.usuarioId = this.authGuardService.getIdUsuarioLogado();
     this.usuarioService.ObterUsuarioPorId(this.usuarioId)
-      .subscribe(res => this.usuario = res)
+      .subscribe(res => {
+        this.usuario = res
+      })
     this.situacaoAprendizagem = this.situacaoAprendizagemService.getSituacaoAprendizagem();
     this.form = this.fb.group({
       titulo: [null, [Validators.required, Validators.minLength(2)]],
       descricao: [null, [Validators.required, Validators.minLength(4)]],
       ordem: [1],
       status: [1],
+      grauDificuldade: [null],
     });
+    this.grauDificuldadeService.ObterTodosJava()
+      .subscribe(res => {
+        this.grausDificuldade = res
+      })
   }
 
   limparFormulario() {
@@ -71,12 +91,9 @@ export class ObjetoAprendizagemComponent implements OnInit {
       this.objetoAprendizagem.usuarioId = this.usuarioId;
       this.objetoAprendizagem.usuario = this.usuario;
       this.objetoAprendizagem.grauDificuldadeId = 1;
-      this.objetoAprendizagem.grauDificuldade = {
-        id: 1,
-    descricao: 'Básico',
-    status: 1
-      }
-      console.log(this.situacaoAprendizagem)
+      this.objetoAprendizagem.grauDificuldade = this.form.value.grauDificuldade;
+      // console.log(this.situacaoAprendizagem)
+      // console.log(this.objetoAprendizagem)
       this.atualizarSituacaoComNovoObjeto(this.objetoAprendizagem, this.situacaoAprendizagem);
     }
   }
@@ -87,13 +104,23 @@ export class ObjetoAprendizagemComponent implements OnInit {
 
   atualizarSituacaoComNovoObjeto(objeto: ObjetoAprendizagem, situacaoAtualizada: SituacaoAprendizagem) {
     this.objetoAprendizagemService.criarObjetoAprendizagemJava(objeto)
-      .subscribe(
-        response => {
-          this.situacaoAprendizagem.objetosAprendizagem.push(response);
-          this.situacaoAprendizagemService.atualizarSituacaoAprendizagemJava(situacaoAtualizada.id, situacaoAtualizada)
-            .subscribe((response) => console.log(response));
+      .subscribe({
+        next: (response) => {
+            this.situacaoAprendizagem.objetosAprendizagem.push(response);
+            this.situacaoAprendizagemService.atualizarSituacaoAprendizagemJava(situacaoAtualizada.id, situacaoAtualizada)
+              .subscribe(response => console.log(response));
+        },
+        complete: () => {
+          this.limparFormulario();
+          this.openSnackBar('Objeto de aprendizagem adicionado!', 'ok');
+          setTimeout(() => {
+            this.goBack();
+          },500)
         }
-      )
+      })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 }
-

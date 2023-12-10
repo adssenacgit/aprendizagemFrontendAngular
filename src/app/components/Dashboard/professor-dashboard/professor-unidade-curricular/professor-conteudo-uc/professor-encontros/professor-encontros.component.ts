@@ -19,9 +19,4 @@ export class ProfessorEncontrosComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.setDataSource(null);
   }
-
-  obterAcompanhamento(encontro: Encontro){
-    console.log('obterAcompanhamento')
-
-  }
 }

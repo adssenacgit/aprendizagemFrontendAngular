@@ -28,8 +28,8 @@
       font-size: medium;
       gap: 1.5rem;
     ">
-      <span><a *ngIf="!isProfessor" routerLinkActive="active" routerLink="/dashboard/usuariodashboard">Início</a></span>
-      <span><a *ngIf="isProfessor" routerLinkActive="active" routerLink="/dashboard/professordashboard">Início</a></span>
+      <span *ngIf="!isProfessor"><a routerLinkActive="active" routerLink="/dashboard/usuariodashboard">Início</a></span>
+      <span *ngIf="isProfessor"><a routerLinkActive="active" routerLink="/dashboard/professordashboard">Início</a></span>
       <span><a routerLinkActive="active" routerLink="/conceitos/usuarioconceitos">Conceitos</a></span>
       <span><a routerLinkActive="active" routerLink="/recurso/usuariorecursos">Recursos Digitais</a></span>
       <span><a routerLinkActive="active" routerLink="/curso/usuariotrilhacurso">Trilha do Curso</a></span>

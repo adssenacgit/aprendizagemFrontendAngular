@@ -1,5 +1,5 @@
 <div class="container" id="voltar" >
-  <div>
+  <div class="voltar">
     <button type ="button"  class="btn btn-primary" (click)="limparFormulario(); goBack()">Voltar</button>
   </div>
 
@@ -16,9 +16,17 @@
       <label for="descricao">Descrição</label>
       <p-editor [ngModel]="objetoAprendizagem.descricao" formControlName="descricao" [style]="{ height: '320px' }" ></p-editor>
     </div>
+
+    <div class="form-group">
+      <label for="grauDificuldade">Grau de Dificuldade</label>
+      <select class="form-control" formControlName="grauDificuldade" required>
+        <option value="" disabled selected>Selecione</option>
+        <option *ngFor="let grau of grausDificuldade" [ngValue]="grau">{{grau.descricao}}</option>
+      </select>
+    </div>
   </form>
 
-  <div id="perguntar" >
+  <div id="enviar" >
     <button type="submit" id="botaoEnviar" class="btn btn-primary" (click)="onSubmit()" [disabled]="!verificarCampos()">Enviar</button>
     <button type ="button"  class="btn btn-primary" (click)="limparFormulario()">Limpar Campos</button>
   </div>

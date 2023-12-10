@@ -120,6 +120,7 @@ import { MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 //PrimeNG Imports
+import {MessagesModule} from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { BadgeModule } from 'primeng/badge';
 import Swal from 'sweetalert2';
@@ -405,6 +406,7 @@ registerLocaleData(localeFR);
     MatChipsModule,
     MatFormFieldModule,
     TagModule,
+    MessagesModule
   ],
   providers: [
     CursosService,

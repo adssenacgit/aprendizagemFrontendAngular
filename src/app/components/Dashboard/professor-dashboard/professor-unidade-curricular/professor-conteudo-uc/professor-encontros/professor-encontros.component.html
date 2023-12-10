@@ -5,7 +5,7 @@
         class="accordion-item"
         *ngFor="let encontro of encontros; index as i"
       >
-        <div class="accordion-header" [attr.id]="'panelsStayOpen-heading' + i" (click)="obterAcompanhamento(encontro)">
+        <div class="accordion-header" [attr.id]="'panelsStayOpen-heading' + i">
           <div
             class="accordion-button collapsed acc-header"
             type="button"
